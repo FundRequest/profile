@@ -22,60 +22,88 @@
 </head>
 <body>
 
-<section class="header section section--blue">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 col-md-7">
-                <h1>
-                    <img class="top" src="/assets/img/Fundrequest-title-white.png" alt="Fundrequest logo"/>
-                </h1>
-                <p>
-                    FundRequest Bounty Program
-                </p>
+<div class="page-container">
+    <nav class="navlinks navbar navbar-fixed-top headroom headroom--pinned animated" data-headroom="true">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-nav-menu" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <img class="top" src="/assets/img/Fundrequest-title-white.svg" alt="Fundrequest logo"/>
+                    <img class="scroll" src="/assets/img/Fundrequest-title.svg" alt="Fundrequest logo"/>
+                </a>
             </div>
-            <div class="col-sm-12 col-md-5 tablet-hide">
-                <div class="centerdiv">
-                    <div class="center">
-                        <img class="align-middle" src="/assets/img/headerimg.png"
-                             alt="A decentralized marketplace for open source collaboration"/>
+
+            <div class="collapse navbar-collapse" id="top-nav-menu">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a title="About" class="active" href="https://fundrequest.io#about">About</a></li>
+                    <li><a title="Team" href="https://fundrequest.io#team">Team</a></li>
+                    <li><a title="Roadmap" href="https://fundrequest.io#roadmap">Roadmap</a></li>
+                    <li><a title="Whitepaper" href="https://fundrequest.io/whitepaper.pdf" target="_blank">Whitepaper</a></li>
+                    <li class="blog"><a title="Blog" href="https://blog.fundrequest.io/" target="_blank">Blog</a></li>
+                    <li class="button"><a title="Profile" class="button" href="https://profile.fundrequest.io/">Profile</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section class="header section section--blue">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-7">
+                    <h1>
+                        FundRequest Bounty Program
+                    </h1>
+                    <p>
+                    </p>
+                </div>
+                <div class="col-sm-12 col-md-5 tablet-hide">
+                    <div class="centerdiv">
+                        <div class="center">
+                            <img class="align-middle" src="/assets/img/headerimg.png"
+                                 alt="A decentralized marketplace for open source collaboration"/>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section class="section section--white section--compact">
-    <div class="container">
-        <div layout:fragment="content"></div>
-    </div>
-
-
-</section>
+    <section class="section section--white section--compact">
+        <div class="container">
+            <div layout:fragment="content"></div>
+        </div>
+    </section>
 
 
-<section class="footer section section--blue section--compact section--end">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="disclaimer">
-                    <p>© 2018 FundRequest OÜ </p>
+    <section class="footer section section--blue section--compact section--end">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="disclaimer">
+                        <p>© 2018 FundRequest OÜ </p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-</section>
+    </section>
 
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
-<script src="/assets/js/headroom.js"></script>
-<script src="/assets/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
+    <script src="/assets/js/headroom.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/main.js"></script>
 
-<th:block layout:fragment="scripts">
-</th:block>
+    <th:block layout:fragment="scripts">
+    </th:block>
 
+</div>
 </body>
 
 </html>

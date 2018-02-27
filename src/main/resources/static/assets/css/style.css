@@ -1,5 +1,16 @@
+body {
+    background-color: #e4f2f8 !important;
+}
+
+.page-container {
+    max-width: 1920px;
+    background-color: #fff;
+    position: relative;
+    margin: 0 auto;
+}
+
 .navbar {
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1)
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
 }
 
 .navbar.headroom--top {
@@ -7,8 +18,8 @@
 }
 
 .header.section--blue {
-    padding-top: 50px;
-    padding-bottom: 75px
+    padding-top: 150px;
+    padding-bottom: 125px;
 }
 
 .header.section--blue a {
@@ -23,7 +34,8 @@
 
 .section {
     position: relative;
-    padding: 290px 0
+    padding: 290px 0;
+    z-index: 1;
 }
 
 .section::before, .section::after {
