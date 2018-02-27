@@ -28,6 +28,7 @@ nav .navbar-brand { max-width: 283px; }
 nav .navbar-brand img { width: 100%; }
 nav li a { text-transform: uppercase; font-size: 20px; font-weight: 400; text-align: center;}
 nav li a.active { font-weight: 600; }
+nav li a:hover.active { text-decoration: none; cursor: default; }
 nav li.dropdown { margin-right: 15px; margin-left: 15px; /*  border: 1px solid #fff; border-radius: 25px;} */ }
 nav li.dropdown a { padding: 15px 8px; font-weight: 400; font-size: 16px; }
 nav li.dropdown.open a,
@@ -37,18 +38,18 @@ nav ul.nav li.dropdown ul.dropdown-menu { min-width: 50px; max-width: 50px; }
 nav ul.nav li.dropdown ul.dropdown-menu a { padding: 5px 0; }
 
 /*Header*/
-section.header img { width: 50%; }
-section.header h1 { color: #fff; margin: 0; padding: 0; margin-bottom: 38px; margin-top: 30px; }
-section.header p { margin-bottom: 56px; color: #fff; font-size: 20px; }
-section.header a.scrolltonext { display: inline-block; text-decoration: none; text-align: center; position: relative; bottom: -100px; width: 100%; z-index: 99; }
-section.header .scroller img { width: 100%; max-width: 6px; }
-section.header .scroller span { color: #fff; font-size: 14px; margin-top: 15px; display: block;}
-section.header img.rect { z-index: 0; }
+.header img { width: 50%; }
+.header h1 { color: #fff; margin: 0; padding: 0; margin-bottom: 38px; margin-top: 30px; }
+.header p { margin-bottom: 56px; color: #fff; font-size: 20px; }
+.header a.scrolltonext { display: inline-block; text-decoration: none; text-align: center; position: relative; bottom: -100px; width: 100%; z-index: 99; }
+.header .scroller img { width: 100%; max-width: 6px; }
+.header .scroller span { color: #fff; font-size: 14px; margin-top: 15px; display: block;}
+.header img.rect { z-index: 0; }
 
 @media screen and (max-width: 1024px) and (min-width: 991px)  {
-    section.header { padding: 130px 0px; }
-    section.header .centerdiv { display: block; position: relative; height: 406px;}
-    section.header .centerdiv .center { position: relative; top: 50%; transform: translateY(-50%); display: block;}
+    .header { padding: 130px 0px; }
+    .header .centerdiv { display: block; position: relative; height: 406px;}
+    .header .centerdiv .center { position: relative; top: 50%; transform: translateY(-50%); display: block;}
 }
 
 /*Footer */
@@ -75,9 +76,6 @@ section.footer .lSPager.lSpg a { margin: 0; }
 section.footer .lSPager.lSpg { margin-top: 25px !important; }
 
 @media screen and (max-width: 1199px) {
-    nav .navbar-brand { max-width: 230px }
-    nav ul.nav { margin-top: 15px; }
-    nav ul.nav li a { padding: 10px 10px; }
     nav li a { font-size: 18px; }
     section.header input.email { width: 230px; }
     /*	section.footer a.margin { margin: 0px 21px; }*/
@@ -92,61 +90,25 @@ section.footer .lSPager.lSpg { margin-top: 25px !important; }
     section.footer a.margin { margin: 0 10px; }
     section.footer a.marginR { margin: 0 10px 0 0; }
     section.footer a.marginL { margin: 0 0 0 10px; }
-    section.roadmap .irSpinner { width: 120px; }
 }
 
 @media screen and (max-width: 991px) {
-    section { padding: 140px 0; }
-    section.partners { padding: 50px 0;	}
-    nav .navbar-brand { max-width: 200px }
-    nav ul.nav { margin-top: 10px; }
-    nav ul.nav li a { padding: 10px 0; }
-    nav li.blog { margin-right: 10px; }
-    nav ul li { margin-left: 15px; }
     nav ul li .dropdown-menu li { margin: 0; }
-    nav ul.nav li.button { margin-left: 0; margin-top: 0; padding: 3px 5px;}
     nav ul.nav li.dropdown { margin: 0; margin-left: 2px; }
     nav ul.nav li.dropdown a{ padding: 10px 15px 0 0; margin-left: 5px;  }
     nav li a { font-size: 16px; }
     ul.dropdown-menu a { padding: 5px 10px !important; }
     .tablet-hide { display: none; }
     .hide.tablet-show { display: block !important; width: 40%; margin: 0 auto; margin: 0; float: right; }
-    section.header p { max-width: 50%; float: left; }
-    section.header a.scrolltonext { bottom: -50px; }
-    section.header form { float: left; width: 100%; clear: both; }
-    section.header input.email,
-    section.header .submit { width: 49.7%; z-index: 10; }
-    section.header .submit { left: -4px; }
-    section.steps { overflow: hidden; }
-    section.steps { padding: 120px 0 160px 0; }
-    section.steps a.scrolltonext { bottom: -40px; }
-    section.steps .position {margin-top: 50px;}
-    section.steps .stepsbg {left: -415px; width: 120%; }
+    .header p { max-width: 50%; float: left; }
+    .header a.scrolltonext { bottom: -50px; }
 
-    section.roadmap { overflow: hidden; }
-    section.roadmap .irSpinner { width: 80%; }
-    section.roadmap { padding: 100px 0 120px 0; }
-    section.roadmap a.scrolltonext { bottom: -20px; }
-    section.roadmap .position {margin-top: 50px;}
-
-    a.button { padding: 8px 5px !important; }
-    section.footer a img { width: 34px; }
-
-    section.partners .nopadding img { margin: 30px 0px 0 0px; width: 35%; }
-    section.partners h2 { margin-bottom: 15px; }
-    section.team img.bottom { left: -215px; }
-    section.team img.top { right: -215px; }
-    section.team img.bottom,
-    section.team img.top {width: 80%; }
-    section.team .margin { margin-top: 50px; }
-    section.team { padding: 120px 0 80px 0; }
-    section.team .teammember { padding: 0; margin-bottom: 50px; }
-    section.footer .disclaimer { padding: 60px 0 20px 0; }
-    section.footer .partnership { padding: 15px 0; }
-    section.footer .navlinks h2 { font-size: 25px !important; }
-    section.footer .navlinks a { font-size: 18px; }
-    section.info { padding: 30px 0 50px 0; }
-    section.footer .lSSlideOuter .lightSlider > *, section.footer .lSSlideOuter .lSGallery li { max-width: 185px !important; }
+    .footer a img { width: 34px; }
+    .footer .disclaimer { padding: 60px 0 20px 0; }
+    .footer .partnership { padding: 15px 0; }
+    .footer .navlinks h2 { font-size: 25px !important; }
+    .footer .navlinks a { font-size: 18px; }
+    .footer .lSSlideOuter .lightSlider > *, section.footer .lSSlideOuter .lSGallery li { max-width: 185px !important; }
     .irSpinner ul.horizontal { margin-left: -10px; }
 }
 
@@ -155,8 +117,6 @@ section.footer .lSPager.lSpg { margin-top: 25px !important; }
     section { padding: 80px 0; }
     h1, h2 { font-size: 28px !important; line-height: 32px !important; }
     p { font-size: 18px !important; }
-    section.steps .intro_sec3 a { font-size: 18px !important; }
-    section#about { padding-top: 30px; }
     body nav.headroom--top.headroom--pinned { display: block; background-color: #fff !important;  -webkit-transition: all .35s ease-in-out; transition: all .35s ease-in-out; }
     body nav.headroom--top.headroom--pinned img.scroll { display: block !important; }
     body nav.headroom--top.headroom--pinned img.top { display: none !important; }
@@ -167,10 +127,7 @@ section.footer .lSPager.lSpg { margin-top: 25px !important; }
     nav .navbar-collapse { position: relative; background-color: #fff; }
     nav button.navbar-toggle { border: 1px solid transparent; padding: 10px; float: right; }
     nav button.navbar-toggle span { background-color: #000; box-shadow: .5px .5px #000; }
-    nav ul.nav { padding: 0 15px 20px 15px; }
-    nav ul.nav li.dropdown { position: absolute; right: 15px; top: 15px; margin-right: 0px; margin-left: 0px; border: 1px solid transparent; border-radius: 0px; }
-    nav ul.nav li a { color: #000; display: block; padding: 8px; }
-    nav ul.nav li a.btn { color: #fff; margin-top: 10px; }
+    nav ul.nav li.dropdown { position: absolute; right: 15px; top: 15px; margin-right: 0; margin-left: 0; border: 1px solid transparent; border-radius: 0; }
     nav .navbar-brand { padding: 11px 15px; }
     nav .navbar-nav { padding-bottom: 20px; }
     nav.headroom--top.headroom--pinned { padding-top: 0px !important; }
@@ -186,27 +143,27 @@ section.footer .lSPager.lSpg { margin-top: 25px !important; }
     nav.headroom--not-top .navbar-nav li.blog { margin: 0; margin-bottom: 5px;}
     nav.headroom--not-top, nav.headroom--pinned { padding: 0 !important; }
 
-    section.header .js_row { z-index: 10; }
-    section.header a.scrolltonext { bottom: -30px; }
-    section.header input.email,
-    section.header .submit { width: 100%; z-index: 10; }
-    section.header input.email { border-radius: 15px 15px 0px 0px }
-    section.header .submit { border-radius: 15px 15px 15px 15px; margin-left: 4px; top: -1px;}
-    section.header h1 { margin-bottom: 25px; margin-top: 10px; }
-    section.header .hide.tablet-show { width: 70%; float: none; text-align: center; margin: 25px auto !important; }
-    section.header p { float: left; clear: both; max-width: 100%; margin-bottom: 35px; }
-    section.header img.rect,
+    .header .js_row { z-index: 10; }
+    .header a.scrolltonext { bottom: -30px; }
+    .header input.email,
+    .header .submit { width: 100%; z-index: 10; }
+    .header input.email { border-radius: 15px 15px 0px 0px }
+    .header .submit { border-radius: 15px 15px 15px 15px; margin-left: 4px; top: -1px;}
+    .header h1 { margin-bottom: 25px; margin-top: 10px; }
+    .header .hide.tablet-show { width: 70%; float: none; text-align: center; margin: 25px auto !important; }
+    .header p { float: left; clear: both; max-width: 100%; margin-bottom: 35px; }
+    .header img.rect,
 
-    section.footer .navlinks { margin-bottom: 35px; }
-    section.footer { text-align: center; }
-    section.footer a { float: none; }
-    section.footer a img { width: 34px; }
-    section.footer .navlinks a { margin: 0; float: none; display: block; }
-    section.footer a.button { margin: 0; width: 100%; margin-top: 15px; max-width: 275px; }
-    section.footer a.margin { margin: 0 13px; }
+    .footer .navlinks { margin-bottom: 35px; }
+    .footer { text-align: center; }
+    .footer a { float: none; }
+    .footer a img { width: 34px; }
+    .footer .navlinks a { margin: 0; float: none; display: block; }
+    .footer a.button { margin: 0; width: 100%; margin-top: 15px; max-width: 275px; }
+    .footer a.margin { margin: 0 13px; }
 
-    section.footer .lSSlideOuter .lightSlider > *,
-    section.footer .lSSlideOuter .lSGallery li { max-width: 160px !important; }
+    .footer .lSSlideOuter .lightSlider > *,
+    .footer .lSSlideOuter .lSGallery li { max-width: 160px !important; }
 
 }
 

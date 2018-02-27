@@ -161,9 +161,12 @@ a.etherwallet-instructions {
 }
 
 .row--social-link > div {
-    margin-bottom: 30px;
+    margin-bottom: 60px;
 }
 
+.cols-with-mb-30 > [class^="col-"] {
+    margin-bottom: 30px;
+}
 
 @media screen and (min-width: 768px) {
     .headroom--not-top .top-nav-item a {
