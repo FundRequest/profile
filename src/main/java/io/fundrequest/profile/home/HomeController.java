@@ -1,4 +1,4 @@
-package io.fundrequest.bounty.home;
+package io.fundrequest.profile.home;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

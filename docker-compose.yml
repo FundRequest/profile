@@ -7,9 +7,9 @@ services:
       - "3311:3306"
     volumes:
       - ./docker_data/mariadb/data:/var/lib/mysql
-    container_name: bounty_mariadb
+    container_name: profile_mariadb
     environment:
       - MYSQL_ROOT_PASSWORD=fr
-      - MYSQL_DATABASE=bounty
+      - MYSQL_DATABASE=profile
       - MYSQL_USER=fr
       - MYSQL_PASSWORD=fr

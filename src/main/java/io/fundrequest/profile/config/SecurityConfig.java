@@ -1,4 +1,4 @@
-package io.fundrequest.bounty.config;
+package io.fundrequest.profile.config;
 
 import org.keycloak.adapters.KeycloakConfigResolver;
 import org.keycloak.adapters.springboot.KeycloakSpringBootConfigResolver;

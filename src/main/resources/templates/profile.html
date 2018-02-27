@@ -15,7 +15,78 @@
             </p>
         </div>
     </div>
+    <h3>Github</h3>
+    <div class="row">
+        <div class="col-md-6" th:if="${profile.getGithub().getUsername() != null}">
+            <div>
+                <p th:text="${profile.getGithub().getUsername()}"></p>
+            </div>
 
+        </div>
+        <div class="col-md-6" th:if="${profile.getGithub().getUsername() == null}">
+            <div>
+                <a th:href="${profile.getGithub().getSignupLink()}">Link to github</a>
+            </div>
+        </div>
+    </div>
+    <h3>Twitter</h3>
+    <div class="row">
+        <div class="col-md-6" th:if="${profile.getTwitter().getUsername() != null}">
+            <div>
+                <p th:text="${profile.getTwitter().getUsername()}"></p>
+            </div>
+
+        </div>
+        <div class="col-md-6" th:if="${profile.getTwitter().getUsername() == null}">
+            <div>
+                <a th:href="${profile.getTwitter().getSignupLink()}">Link to twitter</a>
+            </div>
+        </div>
+    </div>
+    <h3>Linkedin</h3>
+    <div class="row">
+        <div class="col-md-6" th:if="${profile.getLinkedin().getUsername() != null}">
+            <div>
+                <p th:text="${profile.getLinkedin().getUsername()}"></p>
+            </div>
+
+        </div>
+        <div class="col-md-6" th:if="${profile.getLinkedin().getUsername() == null}">
+            <div>
+                <a th:href="${profile.getLinkedin().getSignupLink()}">Link to linkedin</a>
+            </div>
+        </div>
+    </div>
+
+    <h3>Google</h3>
+    <div class="row">
+        <div class="col-md-6" th:if="${profile.getGoogle().getUsername() != null}">
+            <div>
+                <p th:text="${profile.getGoogle().getUsername()}"></p>
+            </div>
+
+        </div>
+        <div class="col-md-6" th:if="${profile.getGoogle().getUsername() == null}">
+            <div>
+                <a th:href="${profile.getGoogle().getSignupLink()}">Link to google</a>
+            </div>
+        </div>
+    </div>
+
+    <h3>Stack Overflow</h3>
+    <div class="row">
+        <div class="col-md-6" th:if="${profile.getStackoverflow().getUsername() != null}">
+            <div>
+                <p th:text="${profile.getStackoverflow().getUsername()}"></p>
+            </div>
+
+        </div>
+        <div class="col-md-6" th:if="${profile.getStackoverflow().getUsername() == null}">
+            <div>
+                <a th:href="${profile.getStackoverflow().getSignupLink()}">Link to Stack Overflow</a>
+            </div>
+        </div>
+    </div>
 
 
 
