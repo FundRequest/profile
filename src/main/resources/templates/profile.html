@@ -1,95 +1,89 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Bounty program</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
-          integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous"/>
 </head>
 <body>
 <section layout:fragment="content">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-12">
             <p>
-               Welcome <span th:text="${profile.getName()}"></span> <span th:text="${profile.getEmail()}"></span>
-
+                Welcome <span th:text="${profile.getName()}"></span> <span th:text="${profile.getEmail()}"></span>
             </p>
         </div>
     </div>
-    <h3>Github</h3>
-    <div class="row">
-        <div class="col-md-6" th:if="${profile.getGithub().getUsername() != null}">
-            <div>
-                <p th:text="${profile.getGithub().getUsername()}"></p>
-            </div>
 
+    <div class="row row--social-link">
+        <div class="col-12 col-md-6">
+            <div class="card card--social-link">
+                <div class="card-body">
+                    <h5 class="card-title">Github</h5>
+                    <p class="card-text">
+                        <span th:if="${profile.getGithub().getUsername() !=null}"
+                              th:text="${profile.getGithub().getUsername()}"></span>
+                    </p>
+                    <a th:if="${profile.getGithub().getUsername() == null}"
+                       th:href="${profile.getGithub().getSignupLink()}" class="btn btn-primary">Connect</a>
+                </div>
+            </div>
         </div>
-        <div class="col-md-6" th:if="${profile.getGithub().getUsername() == null}">
-            <div>
-                <a th:href="${profile.getGithub().getSignupLink()}">Link to github</a>
+
+        <div class="col-12 col-md-6">
+            <div class="card card--social-link">
+                <div class="card-body">
+                    <h5 class="card-title">LinkedIn</h5>
+                    <p class="card-text">
+                        <span th:if="${profile.getLinkedin().getUsername() !=null}"
+                              th:text="${profile.getLinkedin().getUsername()}"></span>
+                    </p>
+                    <a th:if="${profile.getLinkedin().getUsername() == null}"
+                       th:href="${profile.getLinkedin().getSignupLink()}" class="btn btn-primary">Connect</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+            <div class="card card--social-link">
+                <div class="card-body">
+                    <h5 class="card-title">Twitter</h5>
+                    <p class="card-text">
+                        <span th:if="${profile.getTwitter().getUsername() !=null}"
+                              th:text="${profile.getTwitter().getUsername()}"></span>
+                    </p>
+                    <a th:if="${profile.getTwitter().getUsername() == null}"
+                       th:href="${profile.getTwitter().getSignupLink()}" class="btn btn-primary">Connect</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+            <div class="card card--social-link">
+                <div class="card-body">
+                    <h5 class="card-title">Google</h5>
+                    <p class="card-text">
+                        <span th:if="${profile.getGoogle().getUsername() !=null}"
+                              th:text="${profile.getGoogle().getUsername()}"></span>
+                    </p>
+                    <a th:if="${profile.getGoogle().getUsername() == null}"
+                       th:href="${profile.getGoogle().getSignupLink()}" class="btn btn-primary">Connect</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+            <div class="card card--social-link">
+                <div class="card-body">
+                    <h5 class="card-title">Stack Overflow</h5>
+                    <p class="card-text">
+                        <span th:if="${profile.getStackoverflow().getUsername() !=null}"
+                              th:text="${profile.getStackoverflow().getUsername()}"></span>
+                    </p>
+                    <a th:if="${profile.getStackoverflow().getUsername() == null}"
+                       th:href="${profile.getStackoverflow().getSignupLink()}" class="btn btn-primary">Connect</a>
+                </div>
             </div>
         </div>
     </div>
-    <h3>Twitter</h3>
-    <div class="row">
-        <div class="col-md-6" th:if="${profile.getTwitter().getUsername() != null}">
-            <div>
-                <p th:text="${profile.getTwitter().getUsername()}"></p>
-            </div>
-
-        </div>
-        <div class="col-md-6" th:if="${profile.getTwitter().getUsername() == null}">
-            <div>
-                <a th:href="${profile.getTwitter().getSignupLink()}">Link to twitter</a>
-            </div>
-        </div>
-    </div>
-    <h3>Linkedin</h3>
-    <div class="row">
-        <div class="col-md-6" th:if="${profile.getLinkedin().getUsername() != null}">
-            <div>
-                <p th:text="${profile.getLinkedin().getUsername()}"></p>
-            </div>
-
-        </div>
-        <div class="col-md-6" th:if="${profile.getLinkedin().getUsername() == null}">
-            <div>
-                <a th:href="${profile.getLinkedin().getSignupLink()}">Link to linkedin</a>
-            </div>
-        </div>
-    </div>
-
-    <h3>Google</h3>
-    <div class="row">
-        <div class="col-md-6" th:if="${profile.getGoogle().getUsername() != null}">
-            <div>
-                <p th:text="${profile.getGoogle().getUsername()}"></p>
-            </div>
-
-        </div>
-        <div class="col-md-6" th:if="${profile.getGoogle().getUsername() == null}">
-            <div>
-                <a th:href="${profile.getGoogle().getSignupLink()}">Link to google</a>
-            </div>
-        </div>
-    </div>
-
-    <h3>Stack Overflow</h3>
-    <div class="row">
-        <div class="col-md-6" th:if="${profile.getStackoverflow().getUsername() != null}">
-            <div>
-                <p th:text="${profile.getStackoverflow().getUsername()}"></p>
-            </div>
-
-        </div>
-        <div class="col-md-6" th:if="${profile.getStackoverflow().getUsername() == null}">
-            <div>
-                <a th:href="${profile.getStackoverflow().getSignupLink()}">Link to Stack Overflow</a>
-            </div>
-        </div>
-    </div>
-
-
-
 </section>
 </body>
 </html>

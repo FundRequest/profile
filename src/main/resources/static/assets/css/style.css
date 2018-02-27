@@ -154,3 +154,41 @@ a.info {
 a.etherwallet-instructions {
     font-size: 12px
 }
+
+.card--social-link {
+    border-top: 2px solid #39A4DC;
+    height: 100%;
+}
+
+.row--social-link > div {
+    margin-bottom: 30px;
+}
+
+
+@media screen and (min-width: 768px) {
+    .headroom--not-top .top-nav-item a {
+        color: #000;
+    }
+
+    .headroom--top .top-nav-item a {
+        color: #fff;
+    }
+
+    .top-nav-item:last-child {
+        margin-left: 10px;
+    }
+
+    .top-nav-item a {
+        display: block;
+        text-align: center;
+        line-height: 40px;
+        padding: 10px 20px;
+    }
+
+    .top-nav-item a.btn {
+        color: #fff;
+        line-height: 20px;
+        padding: 20px 30px;
+        margin: 0;
+    }
+}
