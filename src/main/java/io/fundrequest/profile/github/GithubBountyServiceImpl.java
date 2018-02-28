@@ -42,7 +42,7 @@ public class GithubBountyServiceImpl implements GithubBountyService, Application
     public void onApplicationEvent(AuthenticationSuccessEvent event) {
         Authentication principal = event.getAuthentication();
         UserProfile userProfile = profileService.getUserProfile(null, principal);
-        if (userProfile.getGithub() != null && StringUtils.isNotBlank(userProfile.getGithub().getUsername())) {
+        if (userProfile.getGithub() != null && StringUtils.isNotBlank(userProfile.getGithub().getUserId())) {
             createBountyWhenNecessary(principal);
         }
     }
@@ -63,7 +63,7 @@ public class GithubBountyServiceImpl implements GithubBountyService, Application
     private void saveGithubBounty(Principal principal) {
         GithubBounty githubBounty = GithubBounty.builder()
                 .userId(principal.getName())
-                .githubId(profileService.getUserProfile(null, principal).getGithub().getUsername())
+                .githubId(profileService.getUserProfile(null, principal).getGithub().getUserId())
                 .build();
         githubBountyRepository.save(githubBounty);
     }

@@ -46,7 +46,7 @@ public class ProfileServiceImpl implements ProfileService {
     public UserProfile getUserProfile(HttpServletRequest request, Principal principal) {
         IDToken idToken = ((KeycloakAuthenticationToken) principal).getAccount().getKeycloakSecurityContext().getIdToken();
         Map<Provider, UserProfileProvider> providers =
-                keycloakRepository.getUserIdentities(principal.getName()).collect(Collectors.toMap(UserIdentity::getProvider, x -> UserProfileProvider.builder().username(x.getUsername()).build()));
+                keycloakRepository.getUserIdentities(principal.getName()).collect(Collectors.toMap(UserIdentity::getProvider, x -> createUserProfileProvider(x)));
         if (request != null) {
             addMissingProviders(request, principal, providers);
         }
@@ -62,6 +62,10 @@ public class ProfileServiceImpl implements ProfileService {
                 .build();
     }
 
+    private UserProfileProvider createUserProfileProvider(UserIdentity ui) {
+        return UserProfileProvider.builder().userId(ui.getUserId()).username(ui.getUsername()).build();
+    }
+
     @Override
     public void updateEtherAddress(Principal principal, String etherAddress) {
         keycloakRepository.updateEtherAddress(principal.getName(), etherAddress);
@@ -75,7 +79,12 @@ public class ProfileServiceImpl implements ProfileService {
 
     private void addProviderToProviders(HttpServletRequest request, Principal principal, Map<Provider, UserProfileProvider> providers, Provider provider) {
         if (!providers.containsKey(provider)) {
-            providers.put(provider, UserProfileProvider.builder().signupLink(createLink(request, principal, provider.toString().toLowerCase())).build());
+            providers.put(
+                    provider,
+                    UserProfileProvider.builder()
+                            .signupLink(createLink(request, principal, provider.toString().toLowerCase()))
+                            .build()
+            );
         }
     }
 
