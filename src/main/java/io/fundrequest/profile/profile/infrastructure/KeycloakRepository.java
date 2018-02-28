@@ -25,7 +25,7 @@ public class KeycloakRepository {
     public Stream<UserIdentity> getUserIdentities(String userId) {
         return resource.users().get(userId).getFederatedIdentity()
                 .stream()
-                .map(fi -> UserIdentity.builder().provider(Provider.fromString(fi.getIdentityProvider())).username(fi.getUserName()).build());
+                .map(fi -> UserIdentity.builder().provider(Provider.fromString(fi.getIdentityProvider())).username(fi.getUserName()).userId(fi.getUserId()).build());
     }
 
     public void updateEtherAddress(String userId, String etherAddress) {
