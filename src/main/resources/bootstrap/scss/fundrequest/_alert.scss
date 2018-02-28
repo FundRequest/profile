@@ -1,0 +1,24 @@
+.alert-container {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: $zindex-modal-backdrop;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .alert {
+        margin-bottom: .5rem;
+        border-radius: 1000px;
+        display: inline-block;
+        box-shadow: 0 0 0 1px rgba(0,0,0,.06),0 2px 3px 0 rgba(0,0,0,.06);
+
+        &:first-child {
+            margin-top: 5rem;
+        }
+
+        &:hover {
+            box-shadow: 0 0 0 1px rgba(0,0,0,.12),0 2px 3px 0 rgba(0,0,0,.06)
+        }
+    }
+}

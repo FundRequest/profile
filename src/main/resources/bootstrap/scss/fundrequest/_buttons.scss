@@ -1,0 +1,40 @@
+.btn {
+    border-radius: 1000px;
+    user-select: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition: border-color .2s ease-out,background-color .2s ease-out,background-image .2s ease-out,color .2s ease-out,box-shadow .2s linear;
+    box-shadow: 0 0 0 1px rgba(0,0,0,.06),0 2px 3px 0 rgba(0,0,0,.06);
+
+    &:hover {
+        box-shadow: 0 0 0 1px rgba(0,0,0,.12),0 2px 3px 0 rgba(0,0,0,.12)
+    }
+
+    &:active, &:focus {
+        outline: none;
+    }
+
+    &--profile {
+        color: $white;
+        padding: 0;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-content: center;
+        justify-content: center;
+
+        &::after {
+            display: none;
+            content: none !important;
+        }
+
+        .fa {
+            line-height: 2;
+        }
+
+        .top-nav-item & {
+            margin: 10px 0 10px 10px;
+        }
+    }
+}
