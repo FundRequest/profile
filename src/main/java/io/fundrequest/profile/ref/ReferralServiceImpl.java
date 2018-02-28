@@ -1,5 +1,7 @@
 package io.fundrequest.profile.ref;
 
+import io.fundrequest.profile.bounty.BountyService;
+import io.fundrequest.profile.bounty.event.CreateBountyCommand;
 import io.fundrequest.profile.profile.infrastructure.KeycloakRepository;
 import io.fundrequest.profile.ref.domain.Referral;
 import io.fundrequest.profile.ref.infrastructure.ReferralRepository;
@@ -8,15 +10,19 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.Valid;
 
+import static io.fundrequest.profile.bounty.domain.BountyType.REFERRAL;
+
 @Service
 class ReferralServiceImpl implements ReferralService {
 
     private ReferralRepository repository;
     private KeycloakRepository keycloakRepository;
+    private BountyService bountyService;
 
-    public ReferralServiceImpl(ReferralRepository repository, KeycloakRepository keycloakRepository) {
+    public ReferralServiceImpl(ReferralRepository repository, KeycloakRepository keycloakRepository, BountyService bountyService) {
         this.repository = repository;
         this.keycloakRepository = keycloakRepository;
+        this.bountyService = bountyService;
     }
 
     @Override
@@ -31,10 +37,14 @@ class ReferralServiceImpl implements ReferralService {
                     .referee(referee)
                     .build();
             repository.save(referral);
+            bountyService.createBounty(CreateBountyCommand.builder()
+                    .userId(command.getPrincipal().getName())
+                    .type(REFERRAL)
+                    .build());
+
         } else {
             throw new RuntimeException("This ref already exists!");
         }
-
     }
 
     private void validateReferee(String referrer, String referee) {
