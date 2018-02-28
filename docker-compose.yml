@@ -1,13 +1,13 @@
 version: '2'
 
 services:
-  bounty_mariadb:
+  profile_db:
     image: mariadb:10.1
     ports:
       - "3311:3306"
     volumes:
       - ./docker_data/mariadb/data:/var/lib/mysql
-    container_name: profile_mariadb
+    container_name: profile_db
     environment:
       - MYSQL_ROOT_PASSWORD=fr
       - MYSQL_DATABASE=profile

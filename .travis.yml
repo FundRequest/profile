@@ -1,0 +1,11 @@
+language: java
+jdk:
+- oraclejdk8
+cache:
+  directories:
+    - $HOME/.m2
+
+after_success:
+  - docker build -t fundrequestio/profile:"$TRAVIS_BRANCH" .
+  - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+  - docker push fundrequestio/profile:"$TRAVIS_BRANCH"

@@ -9,5 +9,6 @@ import lombok.Data;
 public class UserIdentity {
     private Provider provider;
     private String username;
+    private String userId;
 
 }
