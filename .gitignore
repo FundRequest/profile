@@ -23,6 +23,6 @@ dist/
 nbdist/
 .nb-gradle/
 
-application-*.properties
+application-dev.properties
 
 docker_data
