@@ -8,7 +8,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>bounty</name>
+	<name>profile</name>
 	<description>FundRequest PreSignup profile</description>
 
 	<parent>
