@@ -1,0 +1,109 @@
+body {
+    background-color: #e4f2f8 !important;
+}
+
+.page-container {
+    max-width: 1920px;
+    background-color: $white;
+    position: relative;
+    margin: 0 auto;
+    padding-top: 0;
+
+    @media screen and (min-width: 991px) {
+        padding-top: 150px;
+    }
+}
+
+.header {
+    h1 {
+        color: $white;
+        margin: 0;
+        padding: 0;
+        margin-bottom: 38px;
+        margin-top: 30px;
+
+        @media screen and (max-width: 767px) {
+            margin-bottom: 25px;
+            margin-top: 10px;
+        }
+    }
+
+    p {
+        margin-bottom: 56px;
+        color: $white;
+        font-size: 20px;
+
+        @media screen and (max-width: 767px) {
+            float: left;
+            clear: both;
+            max-width: 100%;
+            margin-bottom: 35px;
+        }
+    }
+
+    a.scrolltonext {
+        display: inline-block;
+        text-decoration: none;
+        text-align: center;
+        position: relative;
+        bottom: -100px;
+        width: 100%;
+        z-index: 99;
+
+        @media screen and (max-width: 767px) {
+            bottom: -30px;
+        }
+
+        @media screen and (max-width: 991px) {
+            bottom: -50px;
+        }
+    }
+
+    .scroller {
+        img {
+            width: 100%;
+            max-width: 6px;
+            span {
+                color: $white;
+                font-size: 14px;
+                margin-top: 15px;
+                display: block;
+            }
+        }
+    }
+
+    @media screen and (max-width: 1024px) and (min-width: 991px) {
+        padding: 130px 0;
+
+        .centerdiv {
+            display: block;
+            position: relative;
+            height: 406px;
+            .center {
+                position: relative;
+                top: 50%;
+                -webkit-transform: translateY(-50%);
+                transform: translateY(-50%);
+                display: block;
+            }
+        }
+    }
+
+    @media screen and (max-width: 1199px) {
+        input.email {
+            width: 230px;
+        }
+    }
+
+    @media screen and (max-width: 767px) {
+        .js_row {
+            z-index: 10;
+        }
+        .hide.tablet-show {
+            width: 70%;
+            float: none;
+            text-align: center;
+            margin: 25px auto !important;
+        }
+    }
+}
