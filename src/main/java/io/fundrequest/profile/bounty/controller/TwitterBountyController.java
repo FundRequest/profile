@@ -32,6 +32,6 @@ public class TwitterBountyController {
 //
 //        }
 //        twitterService.userIsFollowing(profileService.getUserProfile(request, principal).getTwitter())
-        return "OK";
+        return true;
     }
 }
