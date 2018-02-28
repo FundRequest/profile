@@ -25,6 +25,6 @@ public class TwitterBounty {
     private TwitterBountyType type;
     @Column(name = "follow_account")
     private String followAccount;
-    @Column(name = "twittter_required_posts")
+    @Column(name = "required_posts")
     private int requiredPosts = 1;
 }
