@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import javax.ws.rs.NotFoundException;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 
 @Component
@@ -36,9 +37,12 @@ public class KeycloakRepository {
     }
 
     public String getEtherAddress(String userId) {
-        List<String> etherAddresses = resource.users().get(userId).toRepresentation().getAttributes().get("ether_address");
-        if (etherAddresses.size() > 0) {
-            return etherAddresses.get(0);
+        Map<String, List<String>> attributes = resource.users().get(userId).toRepresentation().getAttributes();
+        if (attributes != null && attributes.size() > 0) {
+            List<String> etherAddresses = attributes.get("ether_address");
+            if (etherAddresses.size() > 0) {
+                return etherAddresses.get(0);
+            }
         }
         return null;
     }
