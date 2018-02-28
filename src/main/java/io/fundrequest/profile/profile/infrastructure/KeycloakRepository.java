@@ -5,6 +5,7 @@ import io.fundrequest.profile.profile.provider.Provider;
 import org.keycloak.admin.client.resource.RealmResource;
 import org.springframework.stereotype.Component;
 
+import javax.ws.rs.NotFoundException;
 import java.util.stream.Stream;
 
 @Component
@@ -16,9 +17,19 @@ public class KeycloakRepository {
         this.resource = resource;
     }
 
+
     public Stream<UserIdentity> getUserIdentities(String userId) {
         return resource.users().get(userId).getFederatedIdentity()
                 .stream()
                 .map(fi -> UserIdentity.builder().provider(Provider.fromString(fi.getIdentityProvider())).username(fi.getUserName()).build());
     }
+
+    public boolean userExists(String userId) {
+        try {
+            return resource.users().get(userId).toRepresentation() != null;
+        } catch (NotFoundException e) {
+            return false;
+        }
+    }
+
 }
