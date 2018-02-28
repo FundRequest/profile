@@ -40,7 +40,7 @@ public class KeycloakRepository {
         Map<String, List<String>> attributes = resource.users().get(userId).toRepresentation().getAttributes();
         if (attributes != null && attributes.size() > 0) {
             List<String> etherAddresses = attributes.get("ether_address");
-            if (etherAddresses.size() > 0) {
+            if (etherAddresses != null && etherAddresses.size() > 0) {
                 return etherAddresses.get(0);
             }
         }
