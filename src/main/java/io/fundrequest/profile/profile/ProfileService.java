@@ -7,4 +7,6 @@ import java.security.Principal;
 
 public interface ProfileService {
     UserProfile getUserProfile(HttpServletRequest request, Principal principal);
+
+    void updateEtherAddress(Principal principal, String etherAddress);
 }

@@ -39,16 +39,21 @@ public class ProfileServiceImpl implements ProfileService {
         Map<Provider, UserProfileProvider> providers =
                 keycloakRepository.getUserIdentities(principal.getName()).collect(Collectors.toMap(UserIdentity::getProvider, x -> UserProfileProvider.builder().username(x.getUsername()).build()));
         addMissingProviders(request, principal, providers);
-
         return UserProfile.builder()
                 .name(idToken.getName())
                 .email(idToken.getEmail())
+                .etherAddress(keycloakRepository.getEtherAddress(principal.getName()))
                 .github(providers.get(Provider.GITHUB))
                 .linkedin(providers.get(Provider.LINKEDIN))
                 .twitter(providers.get(Provider.TWITTER))
                 .google(providers.get(Provider.GOOGLE))
                 .stackoverflow(providers.get(Provider.STACKOVERFLOW))
                 .build();
+    }
+
+    @Override
+    public void updateEtherAddress(Principal principal, String etherAddress) {
+        keycloakRepository.updateEtherAddress(principal.getName(), etherAddress);
     }
 
     private void addMissingProviders(HttpServletRequest request, Principal principal, Map<Provider, UserProfileProvider> providers) {

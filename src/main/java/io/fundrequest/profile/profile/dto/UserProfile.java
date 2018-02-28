@@ -9,6 +9,7 @@ public class UserProfile {
     private String id;
     private String name;
     private String email;
+    private String etherAddress;
     private UserProfileProvider github;
     private UserProfileProvider linkedin;
     private UserProfileProvider twitter;
