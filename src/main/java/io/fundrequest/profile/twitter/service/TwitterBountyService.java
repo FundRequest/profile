@@ -1,16 +1,27 @@
 package io.fundrequest.profile.twitter.service;
 
+import io.fundrequest.profile.twitter.model.TwitterBounty;
+import io.fundrequest.profile.twitter.repository.TwitterBountyRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import twitter4j.Twitter;
 
+import java.util.Optional;
+
 @Service
 @Slf4j
-public class TwitterService {
+public class TwitterBountyService {
 
     @Autowired
+    private TwitterBountyRepository twitterBountyRepository;
+    @Autowired
     private Twitter twitter;
+
+    public Optional<TwitterBounty> findById() {
+        //try
+        return Optional.empty();
+    }
 
     public boolean userIsFollowing(final String user) {
         try {
@@ -21,5 +32,7 @@ public class TwitterService {
         }
     }
 
-
+    public boolean hasFullFilled(final String username, final Long bountyId) {
+        return false;
+    }
 }

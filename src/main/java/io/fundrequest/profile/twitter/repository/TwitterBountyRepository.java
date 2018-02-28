@@ -1,6 +1,6 @@
-package io.fundrequest.profile.bounty.repository;
+package io.fundrequest.profile.twitter.repository;
 
-import io.fundrequest.profile.bounty.model.TwitterBounty;
+import io.fundrequest.profile.twitter.model.TwitterBounty;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface TwitterBountyRepository extends JpaRepository<TwitterBounty, Long> {
