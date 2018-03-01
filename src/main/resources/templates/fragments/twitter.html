@@ -48,12 +48,13 @@
                 Get 50 FND for sharing on twitter
             </h5>
             <div>
-                <button class="btn icon-left" th:classappend="'btn-outline-' + ${platformName}">
+                <input th:if="${twitterPost != null}" id="tweetContent" type="hidden" th:value="${twitterPost.content}" />
+                <button id="tweetNow" class="btn icon-left" th:classappend="'btn-outline-' + ${platformName}">
                     <i class="fab" th:classappend="'fa-' + ${platformName}"></i>
                     <span th:text="${buttonText}">Tweet</span>
                 </button>
 
-                <form th:action="@{/bounties/twitter/verify}" th:method="POST">
+                <form id="twitterClaimForm" th:action="@{/bounties/twitter/verify}" th:method="POST">
                     <button type="submit" class="btn btn-success icon-left">
                         <i class="fab" th:classappend="'fa-' + ${platformName}"></i>
                         <span>Verify</span>
