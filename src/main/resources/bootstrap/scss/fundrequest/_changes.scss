@@ -1,0 +1,31 @@
+
+
+a.etherscan {
+    font-size: 12px
+}
+
+a.info {
+    color: black
+}
+
+a.etherwallet-instructions {
+    font-size: 12px
+}
+
+.row--social-link > div {
+    margin-bottom: 60px;
+}
+
+.cols-with-mb-30 > [class^="col-"] {
+    margin-bottom: 30px;
+}
+
+@media screen and (min-width: 768px) {
+    a.top-nav-link {
+        color: $white;
+        display: block;
+        text-align: center;
+        line-height: 40px;
+        padding: 10px 5px;
+    }
+}

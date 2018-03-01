@@ -1,0 +1,131 @@
+.section {
+    position: relative;
+    padding: 290px 0;
+    z-index: 1;
+
+    &::before, &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    &::before {
+        z-index: -2;
+    }
+
+    &::after {
+        z-index: -1;
+    }
+
+    .container {
+        z-index: 0;
+    }
+
+    &--compact {
+        padding: 160px 0 170px 0;
+    }
+
+
+    &--end {
+        padding-top: 20px;
+
+        &::after {
+            background-size: contain;
+        }
+    }
+
+    &--white {
+        padding: 240px 0 220px 0;
+    }
+
+    &--blue {
+        color: $white;
+
+        &::before {
+            background-image: url("../img/rect.png"), url("../img/bg-blue.png");
+            background-repeat: no-repeat, repeat-y;
+            background-size: contain, 100%;
+            background-position: right bottom;
+        }
+
+        &::after {
+            background-position: right bottom;
+            background-size: contain;
+        }
+
+        &.header {
+            padding-top: 150px;
+            padding-bottom: 125px;
+
+            a {
+                color: $white;
+                text-decoration: none;
+                border-bottom: 2px dashed $white;
+
+                &:hover {
+                    border-bottom-style: solid;
+                }
+            }
+        }
+    }
+
+    &--gray {
+        &::before {
+            z-index: -2;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: url("../img/section-5B.png") left bottom, url("../img/section-5A.png") right top;
+            background-repeat: no-repeat;
+            background-color: $gray-100;
+            background-size: contain;
+        }
+
+        &::after {
+            z-index: -1;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+    }
+
+    &--top-squares::before {
+        background-image: url("../img/section-5A.png");
+        background-position: right top;
+    }
+
+    &--bottom-squares::before {
+        background-image: url("../img/section-5B.png");
+        background-position: left bottom;
+    }
+
+    &--no-squares::before {
+        background-image: none;
+    }
+
+}
+
+.section--white.section--compact {
+    padding: 45px 0 50px 0;
+}
+
+
+.navbar {
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+
+    &.headroom--top {
+        box-shadow: none;
+    }
+}
