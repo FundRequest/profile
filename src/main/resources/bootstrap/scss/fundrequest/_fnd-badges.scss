@@ -1,12 +1,31 @@
 .fnd-badge {
     width: 5rem;
     height: 5rem;
-    display: block;
-    position: absolute;
+    display: inline-block;
     background-size: contain;
     background-repeat: no-repeat;
+    background-position: center center;
+
+    &--inactive {
+        filter: grayscale(100%);
+    }
 
     &--dummy {
         background-image: url('../img/dummy-badge.png');
+    }
+}
+
+.card-text--badges {
+    text-align: left;
+
+    .fnd-badge {
+        position: relative;
+        display: inline-block;
+        z-index: 0;
+        margin-right: -2.5rem;
+
+        &:hover {
+            z-index: 1;
+        }
     }
 }

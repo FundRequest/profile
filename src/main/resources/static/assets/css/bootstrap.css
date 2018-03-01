@@ -10326,6 +10326,33 @@ a.text-dark:hover, a.text-dark:focus {
   border-color: #fff;
 }
 
+body {
+  min-height: 100vh;
+  background-color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.page-container {
+  position: relative;
+  margin: 0 auto;
+  padding-top: 0;
+  width: 100%;
+  -ms-flex-preferred-size: 100%;
+  flex-basis: 100%;
+}
+
+@media screen and (min-width: 767px) {
+  .page-container {
+    padding-top: 150px;
+  }
+}
+
 html, body {
   width: 100%;
   height: 100%;
@@ -10873,17 +10900,51 @@ h2 .svg-inline--fa {
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12), 0 2px 3px 0 rgba(0, 0, 0, 0.06);
 }
 
+.error-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+.error-actions {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.error-actions .btn {
+  margin-right: 10px;
+}
+
 .fnd-badge {
   width: 5rem;
   height: 5rem;
-  display: block;
-  position: absolute;
+  display: inline-block;
   background-size: contain;
   background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.fnd-badge--inactive {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
 }
 
 .fnd-badge--dummy {
   background-image: url("../img/dummy-badge.png");
+}
+
+.card-text--badges {
+  text-align: left;
+}
+
+.card-text--badges .fnd-badge {
+  position: relative;
+  display: inline-block;
+  z-index: 0;
+  margin-right: -2.5rem;
+}
+
+.card-text--badges .fnd-badge:hover {
+  z-index: 1;
 }
 
 .bg::before, .bg::after {
@@ -11005,23 +11066,6 @@ h2 .svg-inline--fa {
   top: 0;
   -webkit-transform: translate(30%, -30%) rotate(15deg);
   transform: translate(30%, -30%) rotate(15deg);
-}
-
-body {
-  background-color: #e4f2f8 !important;
-}
-
-.page-container {
-  background-color: #fff;
-  position: relative;
-  margin: 0 auto;
-  padding-top: 0;
-}
-
-@media screen and (min-width: 767px) {
-  .page-container {
-    padding-top: 150px;
-  }
 }
 
 .header h1 {

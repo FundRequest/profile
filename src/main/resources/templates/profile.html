@@ -6,7 +6,7 @@
 <body>
 <div layout:fragment="content" class="row justify-content-center">
     <div class="col-12 col-lg-8">
-        <h3>Hi, <span th:text="${profile.getName()}">My Name</span></h3>
+        <h2>Hi, <span th:text="${profile.getName()}">My Name</span></h2>
 
         <p>Some dummy text</p>
 
@@ -28,7 +28,7 @@
                     </dl>
                     <dl class="card-text">
                         <dt>ETH Address</dt>
-                        <dd>0x000000000</dd>
+                        <dd th:text="${profile.getEtherAddress()}">0x000000000</dd>
                     </dl>
                 </div>
             </div>

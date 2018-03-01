@@ -1,18 +1,3 @@
-body {
-    background-color: #e4f2f8 !important;
-}
-
-.page-container {
-    background-color: $white;
-    position: relative;
-    margin: 0 auto;
-    padding-top: 0;
-
-    @media screen and (min-width: 767px) {
-        padding-top: 150px;
-    }
-}
-
 .header {
     h1 {
         color: $white;

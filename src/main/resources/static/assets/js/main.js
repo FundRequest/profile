@@ -38,10 +38,12 @@
             while ($container.children().length > 3) {
                 $container.children().last().remove();
             }
+
             $container.prepend($element);
             setTimeout(function() {
                 $element.addClass('show');
             }, 100);
+
             setTimeout(function() {
                 $element.alert('close');
             }, myOptions.timeout);
@@ -54,3 +56,8 @@
 
     window.fnd = fnd;
 })();
+
+// init stuff
+$(function() {
+    $('.fnd-badge[data-toggle="tooltip"]').tooltip();
+});
