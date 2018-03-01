@@ -1,0 +1,22 @@
+body {
+    min-height: 100vh;
+    background-color: $white;
+    display: flex;
+    flex-direction: column;
+}
+
+.page-container {
+    position: relative;
+    margin: 0 auto;
+    padding-top: 0;
+    width: 100%;
+    flex-basis: 100%;
+
+    @media screen and (min-width: 767px) {
+        padding-top: 150px;
+    }
+}
+
+.footer {
+
+}

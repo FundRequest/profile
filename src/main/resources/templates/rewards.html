@@ -1,194 +1,58 @@
 <!DOCTYPE html>
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+>
 <head>
 </head>
 <body>
 <div layout:fragment="content" class="row justify-content-center">
     <div class="col-12 col-lg-8">
-        <h3>Rewards</h3>
+        <h2>Rewards</h2>
 
-        <p>Some dummy text</p>
+        <p>Some intro text</p>
 
-        <div class="card flex-md-row mb-4 shadow-light">
-            <div class="card-img-left m-3 flex-auto d-none d-md-block"
-                 th:if="${profile.getGithub().getUsername() !=null}">
-                <img th:src="'https://avatars.githubusercontent.com/' + ${profile.getGithub().getUsername()} + '?size=125'"
-                     class="rounded-circle shadow-light" alt="Completely round image"/>
-            </div>
-            <div class="card-body d-flex flex-column align-items-start">
-                <h5 class="card-title">
-                    General information
-                </h5>
-                <dl class="card-text">
-                    <dt>E-mail</dt>
-                    <dd th:text="${profile.getEmail()}">tryout@fundrequest.io</dd>
-                </dl>
-                <dl class="card-text">
-                    <dt>ETH Address</dt>
-                    <dd>0x000000000</dd>
-                </dl>
-            </div>
-        </div>
-
-        <div class="card mb-4">
+        <div class="card shadow-light mb-5">
             <div class="card-body">
                 <h5 class="card-title">
-                    Personal referral link
+                    Badges
                 </h5>
 
-                <div class="card-text mb-2">
-                    <div class="input-group">
-                        <input class="form-control" id="referral-link" title="personal referral link"
-                               value="https://xyz.testReferralLink-Copy"/>
-                        <div class="input-group-append">
-                            <button class="btn" data-clipboard-target="#referral-link">
-                                <i class="fa fa-clipboard"></i>
-                            </button>
+                <div class="card-text">
+                    <div class="mb-2 d-flex justify-content-between align-items-center">
+                        <div class="card-text card-text--badges">
+                            <div class="fnd-badge fnd-badge--dummy" data-toggle="tooltip" data-placement="bottom" title="You are awesome"></div>
+                            <div class="fnd-badge fnd-badge--dummy" data-toggle="tooltip" data-placement="bottom" title="Buginator > 50 bugs fixed"></div>
+                            <div class="fnd-badge fnd-badge--dummy" data-toggle="tooltip" data-placement="bottom" title="Extreme coder"></div>
+                            <div class="fnd-badge fnd-badge--dummy" data-toggle="tooltip" data-placement="bottom" title="Innovator"></div>
+                        </div>
+                        <div class="card-text">
+                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#see-badges">
+                                See your all badges
+                            </a>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="card mb-5">
+            <div class="card-body">
+                <h5 class="card-title">
+                    Badges
+                </h5>
 
                 <div class="card-text">
-                    <button class="btn btn-outline-linkedin icon-left mb-1">
-                        <i class="fab fa-linkedin"></i>
-                        Share on LinkedIn
-                    </button>
-                    <button class="btn btn-outline-twitter icon-left mb-1">
-                        <i class="fab fa-twitter"></i>
-                        Share on Twitter
-                    </button>
-                    <button class="btn btn-outline-telegram icon-left mb-1">
-                        <i class="fab fa-telegram"></i>
-                        Join our Telegram
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div class="card mb-4">
-            <div class="card-header">
-                Verify as a developer
-            </div>
-            <div class="card-body text-center">
-                <div class="row">
-                    <div class="col-12 col-md-6 mb-1">
-                        <div class="card card--border-top h-100"
-                             th:classappend="${profile.getGithub().getUsername() != null ? 'card--border-top--success' : ''}">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <span>Github</span>
-                                    <i class="fab fa-github"></i>
-                                </h5>
-                                <p class="card-text">
-                                    <a class="btn btn-outline-success"
-                                       th:if="${profile.getGithub().getUsername() != null}"
-                                       href="#disconnect">
-                                        <i class="fa fa-check"></i>
-                                        <span th:text="${profile.getGithub().getUsername()}">Disconnect User</span>
-                                    </a>
-                                    <a class="btn btn-primary"
-                                       th:if="${profile.getGithub().getUsername() == null}"
-                                       th:href="${profile.getGithub().getSignupLink()}">Connect</a>
-                                </p>
-                            </div>
+                    <div class="mb-2 d-flex justify-content-between align-items-center">
+                        <div class="card-text card-text--badges">
+                            <div class="fnd-badge fnd-badge--dummy" data-toggle="tooltip" data-placement="bottom" title="You are awesome"></div>
+                            <div class="fnd-badge fnd-badge--dummy" data-toggle="tooltip" data-placement="bottom" title="Buginator > 50 bugs fixed"></div>
+                            <div class="fnd-badge fnd-badge--dummy" data-toggle="tooltip" data-placement="bottom" title="Extreme coder"></div>
+                            <div class="fnd-badge fnd-badge--dummy" data-toggle="tooltip" data-placement="bottom" title="Innovator"></div>
                         </div>
-                    </div>
-
-                    <div class="col-12 col-md-6 mb-1">
-                        <div class="card card--border-top h-100"
-                             th:classappend="${profile.getStackoverflow().getUsername() != null ? 'card--border-top--success' : ''}">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <span>Stack Overflow</span>
-                                    <i class="fab fa-stack-overflow"></i>
-                                </h5>
-                                <p class="card-text">
-                                    <a class="btn btn-outline-success"
-                                       th:if="${profile.getStackoverflow().getUsername() != null}"
-                                       href="#disconnect">
-                                        <i class="fa fa-check"></i>
-                                        <span th:text="${profile.getStackoverflow().getUsername()}">Disconnect User</span>
-                                    </a>
-                                    <a class="btn btn-primary"
-                                       th:if="${profile.getStackoverflow().getUsername() == null}"
-                                       th:href="${profile.getStackoverflow().getSignupLink()}">Connect</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card mb-4">
-            <div class="card-header">
-                Get social and get rewarded!
-            </div>
-            <div class="card-body text-center">
-                <div class="row">
-                    <div class="col-12 mb-4">
-                        <div class="card card--border-top h-100"
-                             th:classappend="${profile.getLinkedin().getUsername() != null ? 'card--border-top--success' : ''}">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <span>LinkedIn</span>
-                                    <i class="fab fa-linkedin"></i>
-                                </h5>
-                                <a class="btn btn-outline-success"
-                                   th:if="${profile.getLinkedin().getUsername() != null}"
-                                   href="#disconnect">
-                                    <i class="fa fa-check"></i>
-                                    <span th:text="${profile.getLinkedin().getUsername()}">Disconnect User</span>
-                                </a>
-                                <a class="btn btn-primary"
-                                   th:if="${profile.getLinkedin().getUsername() == null}"
-                                   th:href="${profile.getLinkedin().getSignupLink()}">Connect</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-md-6 mb-4">
-                        <div class="card card--border-top h-100"
-                             th:classappend="${profile.getTwitter().getUsername() != null ? 'card--border-top--success' : ''}">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <span>Twitter</span>
-                                    <i class="fab fa-twitter"></i>
-                                </h5>
-
-                                <a class="btn btn-outline-success"
-                                   th:if="${profile.getTwitter().getUsername() != null}"
-                                   href="#disconnect">
-                                    <i class="fa fa-check"></i>
-                                    <span th:text="${profile.getTwitter().getUsername()}">Disconnect User</span>
-                                </a>
-                                <a class="btn btn-primary"
-                                   th:if="${profile.getTwitter().getUsername() == null}"
-                                   th:href="${profile.getTwitter().getSignupLink()}">Connect</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-md-6 mb-4">
-                        <div class="card card--border-top h-100"
-                             th:classappend="${profile.getGoogle().getUsername() != null ? 'card--border-top--success' : ''}">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <span>Google</span>
-                                    <i class="fab fa-google"></i>
-                                </h5>
-
-                                <a class="btn btn-outline-success"
-                                   th:if="${profile.getGoogle().getUsername() != null}"
-                                   href="#disconnect">
-                                    <i class="fa fa-check"></i>
-                                    <span th:text="${profile.getGoogle().getUsername()}">Disconnect User</span>
-                                </a>
-                                <a class="btn btn-primary"
-                                   th:if="${profile.getGoogle().getUsername() == null}"
-                                   th:href="${profile.getGoogle().getSignupLink()}">Connect</a>
-                            </div>
+                        <div class="card-text">
+                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#see-badges">
+                                See your all badges
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -196,5 +60,45 @@
         </div>
     </div>
 </div>
+
+<th:block layout:fragment="modals">
+    <div class="modal fade" tabindex="-1" role="dialog" id="see-badges">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Your badges</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row text-center">
+                        <div class="col-12 col-xs-6 col-md-4 mb-2">
+                            <div><a href="#" class="fnd-badge fnd-badge--dummy"></a></div>
+                            <div class="badge badge-primary">You are awesome badge</div>
+                        </div>
+                        <div class="col-12 col-xs-6 col-md-4 mb-2">
+                            <div><a href="#" class="fnd-badge fnd-badge--dummy fnd-badge--inactive"></a></div>
+                            <div class="badge badge-secondary">Buginator</div>
+                            <div><small>Fix 20 more bugs</small></div>
+                        </div>
+                        <div class="col-12 col-xs-6 col-md-4 mb-2">
+                            <div><a href="#" class="fnd-badge fnd-badge--dummy"></a></div>
+                            <div class="badge badge-primary">Extreme coder</div>
+                        </div>
+                        <div class="col-12 col-xs-6 col-md-4 mb-2">
+                            <div><a href="#" class="fnd-badge fnd-badge--dummy"></a></div>
+                            <div class="badge badge-primary">Innovator</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>
+
 </body>
 </html>

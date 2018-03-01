@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-    <html xmlns="http://www.w3.org/1999/xhtml"
-          xmlns:th="http://www.thymeleaf.org"
-          xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
 
     <title layout:title-pattern="$CONTENT_TITLE">Base</title>
@@ -21,12 +21,19 @@
 <body>
 <div id="alert-container" class="alert-container"></div>
 <div class="page-container">
-    <nav class="navbar navbar-expand flex-md-row fixed-top headroom headroom--pinned animated bg bg--blue" data-headroom="true">
+    <nav class="navbar navbar-expand flex-md-row fixed-top headroom headroom--pinned animated bg bg--blue"
+         data-headroom="true">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button class="navbar-toggle collapsed d-md-none ml-3" type="button" data-toggle="collapse" data-target="#top-nav-menu" aria-controls="top-nav-menu" aria-expanded="false"
-                        aria-label="Toggle navigation"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30" height="30" focusable="false"><title>Menu</title><path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" d="M4 7h22M4 15h22M4 23h22"></path></svg>
+                <button class="navbar-toggle collapsed d-md-none ml-3" type="button" data-toggle="collapse"
+                        data-target="#top-nav-menu" aria-controls="top-nav-menu" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30" height="30"
+                         focusable="false"><title>Menu</title>
+                        <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10"
+                              d="M4 7h22M4 15h22M4 23h22"></path>
+                    </svg>
                 </button>
                 <a class="navbar-brand" href="#">
                     <img src="/assets/img/Fundrequest-title-white.png" alt="Fundrequest logo"/>
@@ -35,22 +42,29 @@
 
             <div class="navbar-collapse collapse" id="top-nav-menu">
                 <ul class="nav navbar-nav ml-md-auto">
-                    <li class="top-nav-item"><a class="top-nav-link" title="About" href="https://fundrequest.io#about">About</a></li>
-                    <li class="top-nav-item"><a class="top-nav-link" title="Team" href="https://fundrequest.io#team">Team</a></li>
-                    <li class="top-nav-item"><a class="top-nav-link" title="Roadmap" href="https://fundrequest.io#roadmap">Roadmap</a></li>
-                    <li class="top-nav-item"><a class="top-nav-link" title="Whitepaper" href="https://fundrequest.io/whitepaper.pdf" target="_blank">Whitepaper</a></li>
-                    <li class="top-nav-item"><a class="top-nav-link" title="Blog" href="https://blog.fundrequest.io/" target="_blank">Blog</a></li>
+                    <li class="top-nav-item"><a class="top-nav-link" title="About" href="https://fundrequest.io#about">About</a>
+                    </li>
+                    <li class="top-nav-item"><a class="top-nav-link" title="Team" href="https://fundrequest.io#team">Team</a>
+                    </li>
+                    <li class="top-nav-item"><a class="top-nav-link" title="Roadmap"
+                                                href="https://fundrequest.io#roadmap">Roadmap</a></li>
+                    <li class="top-nav-item"><a class="top-nav-link" title="Whitepaper"
+                                                href="https://fundrequest.io/whitepaper.pdf"
+                                                target="_blank">Whitepaper</a></li>
+                    <li class="top-nav-item"><a class="top-nav-link" title="Blog" href="https://blog.fundrequest.io/"
+                                                target="_blank">Blog</a></li>
                     <li class="top-nav-item">
                         <div class="dropdown show">
-                            <a class="btn btn-warning btn--profile dropdown-toggle" title="Profile" href="#" role="button"
+                            <a class="btn btn-warning btn--profile dropdown-toggle" title="Profile" href="#"
+                               role="button"
                                id="user-profile-menu"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-user"></i>
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="user-profile-menu">
-                                <a class="dropdown-item" href="#">Profile</a>
-                                <a class="dropdown-item" href="#">Rewards</a>
+                                <a class="dropdown-item" href="/profile">Profile</a>
+                                <a class="dropdown-item" href="/rewards">Rewards</a>
                                 <a class="dropdown-item" href="/logout">Logout</a>
                             </div>
                         </div>
@@ -66,29 +80,40 @@
             <div layout:fragment="content"></div>
         </div>
     </section>
+</div>
 
-    <section class="footer section section--blue section--compact section--end">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="disclaimer">
-                        <p>© 2018 FundRequest OÜ</p>
-                    </div>
+<section class="footer section section--blue section--compact section--end">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="disclaimer">
+                    <p>© 2018 FundRequest OÜ</p>
                 </div>
             </div>
         </div>
-    </section>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
-    <script src="/assets/js/headroom.js"></script>
-    <script src="/assets/js/main.js"></script>
+    </div>
+</section>
 
-    <th:block layout:fragment="scripts">
-    </th:block>
 
-</div>
+<th:block layout:fragment="modals">
+</th:block>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
+<script src="/assets/js/headroom.js"></script>
+<script src="/assets/js/main.js"></script>
+
+<th:block layout:fragment="scripts">
+</th:block>
+
 </body>
 
 </html>
