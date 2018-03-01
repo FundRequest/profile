@@ -17,6 +17,17 @@ body {
     }
 }
 
+a.anchor {
+    display: block;
+    position: relative;
+    top: 0;
+    visibility: hidden;
+
+    @media screen and (min-width: 767px) {
+        top: -150px;
+    }
+}
+
 .footer {
 
 }

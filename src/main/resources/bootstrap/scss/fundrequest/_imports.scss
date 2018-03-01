@@ -1,7 +1,10 @@
+//variables
 @import "variables";
 
+//layout
 @import "layout";
 
+//modules
 @import "existing";
 @import "alert";
 @import "error";
@@ -11,6 +14,9 @@
 @import "buttons";
 @import "cards";
 @import "header";
-@import "profile";
 @import "sections";
 @import "changes";
+
+//pages
+@import "profile";
+@import "rewards";

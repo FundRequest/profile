@@ -1,0 +1,21 @@
+.rewards-list {
+    &__title {
+        font-weight: $font-weight-bold;
+        margin-bottom: $headings-margin-bottom;
+    }
+
+    &__item {
+        padding-left: $list-group-item-padding-y;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: .25em;
+    }
+
+    &__text {
+    }
+
+    &__link {
+        font-size: $font-size-sm;
+    }
+}

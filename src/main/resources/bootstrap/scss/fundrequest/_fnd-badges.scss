@@ -15,6 +15,12 @@
     }
 }
 
+.card-body--fnd-badge-holder {
+    .fnd-badge {
+        position: absolute;
+    }
+}
+
 .card-text--badges {
     text-align: left;
 
@@ -26,6 +32,7 @@
 
         &:hover {
             z-index: 1;
+            filter: drop-shadow(4px 4px 8px rgba(0,0,0,0.5));
         }
     }
 }
