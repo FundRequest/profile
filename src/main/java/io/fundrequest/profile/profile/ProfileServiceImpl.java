@@ -49,7 +49,6 @@ public class ProfileServiceImpl implements ProfileService {
         if (request != null) {
             addMissingProviders(request, principal, providers);
         }
-        addMissingProviders(request, principal, providers);
         return UserProfile.builder()
                 .name(idToken.getName())
                 .email(idToken.getEmail())

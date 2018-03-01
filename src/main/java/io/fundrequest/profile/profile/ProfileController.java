@@ -1,7 +1,12 @@
 package io.fundrequest.profile.profile;
 
+import io.fundrequest.profile.profile.dto.UserProfile;
+import io.fundrequest.profile.profile.dto.UserProfileProvider;
 import io.fundrequest.profile.profile.provider.Provider;
 import io.fundrequest.profile.ref.RefSignupEvent;
+import io.fundrequest.profile.twitter.model.TwitterBounty;
+import io.fundrequest.profile.twitter.model.TwitterPost;
+import io.fundrequest.profile.twitter.service.TwitterBountyService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Controller;
@@ -14,16 +19,23 @@ import org.springframework.web.servlet.view.RedirectView;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class ProfileController {
 
     private ApplicationEventPublisher eventPublisher;
     private ProfileService profileService;
+    private TwitterBountyService twitterBountyService;
 
-    public ProfileController(ApplicationEventPublisher eventPublisher, ProfileService profileService) {
+
+    public ProfileController(ApplicationEventPublisher eventPublisher, ProfileService profileService, TwitterBountyService twitterBountyService) {
         this.eventPublisher = eventPublisher;
         this.profileService = profileService;
+        this.twitterBountyService = twitterBountyService;
     }
 
     @GetMapping("/profile")
@@ -32,8 +44,28 @@ public class ProfileController {
             eventPublisher.publishEvent(RefSignupEvent.builder().principal(principal).ref(ref).build());
             return redirectToProfile();
         }
-        return new ModelAndView("profile")
-                .addObject("profile", profileService.getUserProfile(request, principal));
+        final ModelAndView mav = new ModelAndView("profile");
+        final UserProfile userProfile = profileService.getUserProfile(request, principal);
+        mav.addObject("profile", userProfile);
+        if (userProfile.getTwitter() != null) {
+            final Optional<TwitterBounty> activeBounty = twitterBountyService.getActiveBounty();
+            if (activeBounty.isPresent()) {
+                mav.addObject("activeBounty", activeBounty);
+                if (claimedTwitterBounty(userProfile.getTwitter(), activeBounty.get())) {
+                    mav.addObject("claimedTwitterBounty", true);
+                } else {
+                    mav.addObject("claimedTwitterBounty", false);
+                    final List<TwitterPost> posts = new ArrayList<>(twitterBountyService.getTwitterPosts());
+                    Collections.shuffle(twitterBountyService.getTwitterPosts());
+                    mav.addObject("twitterPost", posts.get(0));
+                }
+            }
+        }
+        return mav;
+    }
+
+    private boolean claimedTwitterBounty(final UserProfileProvider twitter, final TwitterBounty twitterBounty) {
+        return twitterBountyService.claimedBountyAlready(twitter.getUserId(), twitterBounty);
     }
 
     @GetMapping("/profile/link/{provider}/redirect")

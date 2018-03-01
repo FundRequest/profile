@@ -29,6 +29,19 @@ public class TwitterBountyService {
     @Autowired
     private TwitterBountyFulfillmentRepository twitterBountyFulfillmentRepository;
 
+    public List<TwitterPost> getTwitterPosts() {
+        return twitterPostRepository.findAll();
+    }
+
+    public Optional<TwitterBounty> getActiveBounty() {
+        List<TwitterBounty> active = twitterBountyRepository.getActiveTwitterBounties(new Date());
+        if (active.isEmpty()) {
+            return Optional.empty();
+        } else {
+            return Optional.of(active.get(0));
+        }
+    }
+
     public boolean userIsFollowing(final String user) {
         try {
             return twitter.friendsFollowers().showFriendship(user, "fundrequest_io").isSourceFollowingTarget();
@@ -69,8 +82,8 @@ public class TwitterBountyService {
     }
 
     private void fulfillBounty(final String username, final String userId, final TwitterBounty bounty) {
-        final Optional<TwitterBountyFulfillment> alreadyAdded = twitterBountyFulfillmentRepository.findByUserIdAndBounty(userId, bounty);
-        if (!alreadyAdded.isPresent()) {
+        final boolean alreadyAdded = claimedBountyAlready(userId, bounty);
+        if (!alreadyAdded) {
             final TwitterBountyFulfillment newFullfillment = new TwitterBountyFulfillment();
             newFullfillment.setBounty(bounty);
             newFullfillment.setFulfillmentDate(new Date());
@@ -80,5 +93,9 @@ public class TwitterBountyService {
                     newFullfillment
             );
         }
+    }
+
+    public boolean claimedBountyAlready(final String userId, final TwitterBounty bounty) {
+        return twitterBountyFulfillmentRepository.findByUserIdAndBounty(userId, bounty).isPresent();
     }
 }

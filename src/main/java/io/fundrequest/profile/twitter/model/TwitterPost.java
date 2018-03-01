@@ -11,6 +11,7 @@ public class TwitterPost {
 
     @Id
     @GeneratedValue
+    @Column(name = "id")
     private Long twitterPost;
     @Column(name = "content")
     private String content;
