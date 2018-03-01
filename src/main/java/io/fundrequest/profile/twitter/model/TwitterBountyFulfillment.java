@@ -11,6 +11,7 @@ import java.util.Date;
 public class TwitterBountyFulfillment {
 
     @Id
+    @GeneratedValue
     private Long id;
     private String username;
     @Column(name = "user_id")

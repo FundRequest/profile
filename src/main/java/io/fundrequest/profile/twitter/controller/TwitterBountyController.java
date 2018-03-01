@@ -2,6 +2,7 @@ package io.fundrequest.profile.twitter.controller;
 
 import io.fundrequest.profile.profile.ProfileService;
 import io.fundrequest.profile.profile.dto.UserProfileProvider;
+import io.fundrequest.profile.twitter.controller.vo.ValidatedBountyVO;
 import io.fundrequest.profile.twitter.service.TwitterBountyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,10 +26,18 @@ public class TwitterBountyController {
 
     @GetMapping(value = "/{bountyId}")
     @ResponseBody
-    public boolean validateBounty(final HttpServletRequest request, final Principal principal, final @PathVariable("bountyId") Long bountyId) {
+    public ValidatedBountyVO validateBounty(final HttpServletRequest request, final Principal principal, final @PathVariable("bountyId") Long bountyId) {
         boolean isFollowing = isFollowing(request, principal);
-        boolean hasFulfilled = hasFulFilled(request, principal, bountyId);
-        return isFollowing && hasFulfilled;
+        if (!isFollowing) {
+            return new ValidatedBountyVO(false, "You are not following us yet.");
+        } else {
+            boolean hasFulfilled = hasFulFilled(request, principal, bountyId);
+            if (hasFulfilled) {
+                return new ValidatedBountyVO(true, "Successfully validated your tweet.");
+            } else {
+                return new ValidatedBountyVO(false, "Tweet was not found in your last 20 tweets.");
+            }
+        }
     }
 
     private boolean hasFulFilled(final HttpServletRequest request, final Principal principal, final Long bountyId) {
