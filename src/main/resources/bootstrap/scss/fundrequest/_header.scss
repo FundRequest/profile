@@ -3,13 +3,12 @@ body {
 }
 
 .page-container {
-    max-width: 1920px;
     background-color: $white;
     position: relative;
     margin: 0 auto;
     padding-top: 0;
 
-    @media screen and (min-width: 991px) {
+    @media screen and (min-width: 767px) {
         padding-top: 150px;
     }
 }
