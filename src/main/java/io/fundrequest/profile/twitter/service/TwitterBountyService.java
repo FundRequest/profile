@@ -51,9 +51,13 @@ public class TwitterBountyService {
         }
     }
 
-    public boolean hasFullFilled(final String username, final String userId, final Long bountyId) {
-        final TwitterBounty bounty = twitterBountyRepository.findOne(bountyId);
-        return bounty != null && hasFullFilled(username, userId, bounty);
+    public boolean hasFullFilledCurrentBounty(final String username, final String userId) {
+        final List<TwitterBounty> activeTwitterBounties = twitterBountyRepository.getActiveTwitterBounties(new Date());
+        if (!activeTwitterBounties.isEmpty()) {
+            return hasFullFilled(username, userId, activeTwitterBounties.get(0));
+        } else {
+            return false;
+        }
     }
 
     public boolean hasFullFilled(final String username, final String userId, final TwitterBounty bounty) {

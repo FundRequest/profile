@@ -7,7 +7,6 @@ import io.fundrequest.profile.twitter.service.TwitterBountyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -24,14 +23,14 @@ public class TwitterBountyController {
     @Autowired
     private TwitterBountyService twitterbountyService;
 
-    @GetMapping(value = "/{bountyId}")
+    @GetMapping
     @ResponseBody
-    public ValidatedBountyVO validateBounty(final HttpServletRequest request, final Principal principal, final @PathVariable("bountyId") Long bountyId) {
+    public ValidatedBountyVO validateBounty(final HttpServletRequest request, final Principal principal) {
         boolean isFollowing = isFollowing(request, principal);
         if (!isFollowing) {
             return new ValidatedBountyVO(false, "You are not following us yet.");
         } else {
-            boolean hasFulfilled = hasFulFilled(request, principal, bountyId);
+            boolean hasFulfilled = hasFullfilledCurrentBounty(request, principal);
             if (hasFulfilled) {
                 return new ValidatedBountyVO(true, "Successfully validated your tweet.");
             } else {
@@ -40,10 +39,10 @@ public class TwitterBountyController {
         }
     }
 
-    private boolean hasFulFilled(final HttpServletRequest request, final Principal principal, final Long bountyId) {
+    private boolean hasFullfilledCurrentBounty(final HttpServletRequest request, final Principal principal) {
         try {
             final UserProfileProvider twitterProvider = profileService.getUserProfile(request, principal).getTwitter();
-            return twitterbountyService.hasFullFilled(twitterProvider.getUsername(), twitterProvider.getUserId(), bountyId);
+            return twitterbountyService.hasFullFilledCurrentBounty(twitterProvider.getUsername(), twitterProvider.getUserId());
         } catch (final Exception ex) {
             return false;
         }
