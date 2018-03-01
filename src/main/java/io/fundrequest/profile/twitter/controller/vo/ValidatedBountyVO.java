@@ -7,5 +7,5 @@ import lombok.Data;
 @AllArgsConstructor
 public class ValidatedBountyVO {
     private boolean validated;
-    private String error;
+    private String message;
 }

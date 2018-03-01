@@ -4,6 +4,18 @@
 <body>
 <div th:fragment="social-connect-block (platform, platformName, rewardText, buttonText, mb)" th:if="${platform != null}"
      class="col-12" th:classappend="${mb} ? 'mb-4' : ''">
+
+    <a name="chapter4"></a>
+    <div th:if="${validatedTwitterBountyResult != null}">
+        <div class="alert alert-success" th:if="${validatedTwitterBountyResult.validated}">
+            <strong>Success!</strong> <span th:text="${validatedTwitterBountyResult.message}"></span>
+        </div>
+        <div class="alert alert-warning" th:unless="${validatedTwitterBountyResult.validated}">
+            <strong>Failure!</strong> <span th:text="${validatedTwitterBountyResult.message}"></span>
+        </div>
+    </div>
+
+
     <div class="card card--border-top h-100" th:if="${platform.getUsername() == null}">
         <div class="card-body d-flex justify-content-between align-items-center">
             <h5 class="card-title mb-0">
@@ -40,10 +52,13 @@
                     <i class="fab" th:classappend="'fa-' + ${platformName}"></i>
                     <span th:text="${buttonText}">Tweet</span>
                 </button>
-                <button class="btn btn-success icon-left">
-                    <i class="fab" th:classappend="'fa-' + ${platformName}"></i>
-                    <span>Verify</span>
-                </button>
+
+                <form th:action="@{/bounties/twitter/verify}" th:method="POST">
+                    <button type="submit" class="btn btn-success icon-left">
+                        <i class="fab" th:classappend="'fa-' + ${platformName}"></i>
+                        <span>Verify</span>
+                    </button>
+                </form>
             </div>
         </div>
     </div>
