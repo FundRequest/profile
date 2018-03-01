@@ -11,6 +11,6 @@ import java.util.Optional;
 public interface TwitterBountyFulfillmentRepository extends JpaRepository<TwitterBountyFulfillment, Long> {
 
 
-    Optional<TwitterBountyFulfillment> findByUsernameAndBounty(@Param("username") final String username, @Param("bounty") final TwitterBounty bounty);
+    Optional<TwitterBountyFulfillment> findByUserIdAndBounty(@Param("userId") final String userId, @Param("bounty") final TwitterBounty bounty);
 
 }

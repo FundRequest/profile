@@ -37,7 +37,7 @@ public class ProfileServiceImpl implements ProfileService {
     public UserProfile getUserProfile(HttpServletRequest request, Principal principal) {
         IDToken idToken = ((KeycloakAuthenticationToken) principal).getAccount().getKeycloakSecurityContext().getIdToken();
         Map<Provider, UserProfileProvider> providers =
-                keycloakRepository.getUserIdentities(principal.getName()).collect(Collectors.toMap(UserIdentity::getProvider, x -> UserProfileProvider.builder().username(x.getUsername()).build()));
+                keycloakRepository.getUserIdentities(principal.getName()).collect(Collectors.toMap(UserIdentity::getProvider, x -> UserProfileProvider.builder().userId(x.getUserId()).username(x.getUsername()).build()));
         addMissingProviders(request, principal, providers);
         return UserProfile.builder()
                 .name(idToken.getName())

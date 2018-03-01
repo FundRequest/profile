@@ -1,8 +1,10 @@
 package io.fundrequest.profile.twitter.service;
 
 import io.fundrequest.profile.twitter.model.TwitterBounty;
+import io.fundrequest.profile.twitter.model.TwitterBountyFulfillment;
 import io.fundrequest.profile.twitter.model.TwitterBountyType;
 import io.fundrequest.profile.twitter.model.TwitterPost;
+import io.fundrequest.profile.twitter.repository.TwitterBountyFulfillmentRepository;
 import io.fundrequest.profile.twitter.repository.TwitterBountyRepository;
 import io.fundrequest.profile.twitter.repository.TwitterPostRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -10,7 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import twitter4j.Twitter;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -22,6 +26,8 @@ public class TwitterBountyService {
     private Twitter twitter;
     @Autowired
     private TwitterPostRepository twitterPostRepository;
+    @Autowired
+    private TwitterBountyFulfillmentRepository twitterBountyFulfillmentRepository;
 
     public boolean userIsFollowing(final String user) {
         try {
@@ -32,24 +38,20 @@ public class TwitterBountyService {
         }
     }
 
-    public boolean hasFullFilled(final String username, final Long bountyId) {
+    public boolean hasFullFilled(final String username, final String userId, final Long bountyId) {
         final TwitterBounty bounty = twitterBountyRepository.findOne(bountyId);
-        if (bounty != null) {
-            return hasFullFilled(username, bounty);
-        } else {
-            return false;
-        }
+        return bounty != null && hasFullFilled(username, userId, bounty);
     }
 
-    public boolean hasFullFilled(final String username, final TwitterBounty bounty) {
+    public boolean hasFullFilled(final String username, final String userId, final TwitterBounty bounty) {
         if (bounty.getType().equals(TwitterBountyType.TWEET)) {
-            return validateTweets(username, bounty);
+            return validateTweets(username, userId, bounty);
         } else {
             return false;
         }
     }
 
-    private boolean validateTweets(final String username, final TwitterBounty bounty) {
+    private boolean validateTweets(final String username, final String userId, final TwitterBounty bounty) {
         final List<TwitterPost> posts = twitterPostRepository.findAll();
         try {
             boolean fulfillled = twitter.timelines().getUserTimeline(username)
@@ -57,7 +59,7 @@ public class TwitterBountyService {
                     .anyMatch(status -> posts.stream()
                             .anyMatch(post -> status.getText().contains(post.getVerificationText())));
             if (fulfillled) {
-                fulfillBounty(username, bounty);
+                fulfillBounty(username, userId, bounty);
             }
             return fulfillled;
         } catch (final Exception ex) {
@@ -66,8 +68,17 @@ public class TwitterBountyService {
         }
     }
 
-    private void fulfillBounty(final String username, final TwitterBounty bounty) {
-
-
+    private void fulfillBounty(final String username, final String userId, final TwitterBounty bounty) {
+        final Optional<TwitterBountyFulfillment> alreadyAdded = twitterBountyFulfillmentRepository.findByUserIdAndBounty(userId, bounty);
+        if (!alreadyAdded.isPresent()) {
+            final TwitterBountyFulfillment newFullfillment = new TwitterBountyFulfillment();
+            newFullfillment.setBounty(bounty);
+            newFullfillment.setFulfillmentDate(new Date());
+            newFullfillment.setUserId(userId);
+            newFullfillment.setUsername(username);
+            twitterBountyFulfillmentRepository.save(
+                    newFullfillment
+            );
+        }
     }
 }
