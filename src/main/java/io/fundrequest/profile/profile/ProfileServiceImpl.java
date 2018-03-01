@@ -45,11 +45,11 @@ public class ProfileServiceImpl implements ProfileService {
     @Override
     public UserProfile getUserProfile(HttpServletRequest request, Principal principal) {
         IDToken idToken = ((KeycloakAuthenticationToken) principal).getAccount().getKeycloakSecurityContext().getIdToken();
-        Map<Provider, UserProfileProvider> providers =
-                keycloakRepository.getUserIdentities(principal.getName()).collect(Collectors.toMap(UserIdentity::getProvider, x -> createUserProfileProvider(x)));
+        Map<Provider, UserProfileProvider> providers = keycloakRepository.getUserIdentities(principal.getName()).collect(Collectors.toMap(UserIdentity::getProvider, x -> UserProfileProvider.builder().userId(x.getUserId()).username(x.getUsername()).build()));
         if (request != null) {
             addMissingProviders(request, principal, providers);
         }
+        addMissingProviders(request, principal, providers);
         return UserProfile.builder()
                 .name(idToken.getName())
                 .email(idToken.getEmail())
