@@ -1,0 +1,12 @@
+.fnd-badge {
+    width: 5rem;
+    height: 5rem;
+    display: block;
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    &--dummy {
+        background-image: url('../img/dummy-badge.png');
+    }
+}

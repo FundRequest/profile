@@ -9040,7 +9040,7 @@ a.text-dark:hover, a.text-dark:focus {
   line-height: 1.25rem;
   padding-right: 0.5rem;
   margin-right: 0.75rem;
-  border-right: 1px solid #39A4DC;
+  border-right: 1px solid;
 }
 
 .icon-left.btn-sm, .btn-group-sm > .icon-left.btn {
@@ -9073,7 +9073,7 @@ a.text-dark:hover, a.text-dark:focus {
   line-height: 1.25rem;
   padding-left: 0.5rem;
   margin-left: 0.75rem;
-  border-left: 1px solid #39A4DC;
+  border-left: 1px solid;
 }
 
 .icon-right.btn-sm, .btn-group-sm > .icon-right.btn {
@@ -9130,6 +9130,14 @@ a.text-dark:hover, a.text-dark:focus {
   box-shadow: 0 0 0 0.2rem rgba(59, 89, 152, 0.5);
 }
 
+.btn-facebook i {
+  border-color: #3b5998;
+}
+
+.btn-facebook:hover i {
+  border-color: #fff;
+}
+
 .btn-outline-facebook {
   color: #3b5998;
   background-color: transparent;
@@ -9164,6 +9172,14 @@ a.text-dark:hover, a.text-dark:focus {
 .show > .btn-outline-facebook.dropdown-toggle:focus {
   -webkit-box-shadow: 0 0 0 0.2rem rgba(59, 89, 152, 0.5);
   box-shadow: 0 0 0 0.2rem rgba(59, 89, 152, 0.5);
+}
+
+.btn-outline-facebook i {
+  border-color: #3b5998;
+}
+
+.btn-outline-facebook:hover i {
+  border-color: #fff;
 }
 
 .btn-twitter {
@@ -9202,6 +9218,14 @@ a.text-dark:hover, a.text-dark:focus {
   box-shadow: 0 0 0 0.2rem rgba(0, 172, 237, 0.5);
 }
 
+.btn-twitter i {
+  border-color: #00aced;
+}
+
+.btn-twitter:hover i {
+  border-color: #fff;
+}
+
 .btn-outline-twitter {
   color: #00aced;
   background-color: transparent;
@@ -9236,6 +9260,14 @@ a.text-dark:hover, a.text-dark:focus {
 .show > .btn-outline-twitter.dropdown-toggle:focus {
   -webkit-box-shadow: 0 0 0 0.2rem rgba(0, 172, 237, 0.5);
   box-shadow: 0 0 0 0.2rem rgba(0, 172, 237, 0.5);
+}
+
+.btn-outline-twitter i {
+  border-color: #00aced;
+}
+
+.btn-outline-twitter:hover i {
+  border-color: #fff;
 }
 
 .btn-google-plus {
@@ -9274,6 +9306,14 @@ a.text-dark:hover, a.text-dark:focus {
   box-shadow: 0 0 0 0.2rem rgba(221, 75, 57, 0.5);
 }
 
+.btn-google-plus i {
+  border-color: #dd4b39;
+}
+
+.btn-google-plus:hover i {
+  border-color: #fff;
+}
+
 .btn-outline-google-plus {
   color: #dd4b39;
   background-color: transparent;
@@ -9308,6 +9348,14 @@ a.text-dark:hover, a.text-dark:focus {
 .show > .btn-outline-google-plus.dropdown-toggle:focus {
   -webkit-box-shadow: 0 0 0 0.2rem rgba(221, 75, 57, 0.5);
   box-shadow: 0 0 0 0.2rem rgba(221, 75, 57, 0.5);
+}
+
+.btn-outline-google-plus i {
+  border-color: #dd4b39;
+}
+
+.btn-outline-google-plus:hover i {
+  border-color: #fff;
 }
 
 .btn-github {
@@ -9346,6 +9394,14 @@ a.text-dark:hover, a.text-dark:focus {
   box-shadow: 0 0 0 0.2rem rgba(51, 51, 51, 0.5);
 }
 
+.btn-github i {
+  border-color: #333333;
+}
+
+.btn-github:hover i {
+  border-color: #fff;
+}
+
 .btn-outline-github {
   color: #333333;
   background-color: transparent;
@@ -9380,6 +9436,14 @@ a.text-dark:hover, a.text-dark:focus {
 .show > .btn-outline-github.dropdown-toggle:focus {
   -webkit-box-shadow: 0 0 0 0.2rem rgba(51, 51, 51, 0.5);
   box-shadow: 0 0 0 0.2rem rgba(51, 51, 51, 0.5);
+}
+
+.btn-outline-github i {
+  border-color: #333333;
+}
+
+.btn-outline-github:hover i {
+  border-color: #fff;
 }
 
 .btn-linkedin {
@@ -9418,6 +9482,14 @@ a.text-dark:hover, a.text-dark:focus {
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 182, 0.5);
 }
 
+.btn-linkedin i {
+  border-color: #007bb6;
+}
+
+.btn-linkedin:hover i {
+  border-color: #fff;
+}
+
 .btn-outline-linkedin {
   color: #007bb6;
   background-color: transparent;
@@ -9452,6 +9524,14 @@ a.text-dark:hover, a.text-dark:focus {
 .show > .btn-outline-linkedin.dropdown-toggle:focus {
   -webkit-box-shadow: 0 0 0 0.2rem rgba(0, 123, 182, 0.5);
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 182, 0.5);
+}
+
+.btn-outline-linkedin i {
+  border-color: #007bb6;
+}
+
+.btn-outline-linkedin:hover i {
+  border-color: #fff;
 }
 
 .btn-youtube {
@@ -9490,6 +9570,14 @@ a.text-dark:hover, a.text-dark:focus {
   box-shadow: 0 0 0 0.2rem rgba(187, 0, 0, 0.5);
 }
 
+.btn-youtube i {
+  border-color: #bb0000;
+}
+
+.btn-youtube:hover i {
+  border-color: #fff;
+}
+
 .btn-outline-youtube {
   color: #bb0000;
   background-color: transparent;
@@ -9524,6 +9612,14 @@ a.text-dark:hover, a.text-dark:focus {
 .show > .btn-outline-youtube.dropdown-toggle:focus {
   -webkit-box-shadow: 0 0 0 0.2rem rgba(187, 0, 0, 0.5);
   box-shadow: 0 0 0 0.2rem rgba(187, 0, 0, 0.5);
+}
+
+.btn-outline-youtube i {
+  border-color: #bb0000;
+}
+
+.btn-outline-youtube:hover i {
+  border-color: #fff;
 }
 
 .btn-vimeo {
@@ -9562,6 +9658,14 @@ a.text-dark:hover, a.text-dark:focus {
   box-shadow: 0 0 0 0.2rem rgba(170, 212, 80, 0.5);
 }
 
+.btn-vimeo i {
+  border-color: #aad450;
+}
+
+.btn-vimeo:hover i {
+  border-color: #fff;
+}
+
 .btn-outline-vimeo {
   color: #aad450;
   background-color: transparent;
@@ -9596,6 +9700,14 @@ a.text-dark:hover, a.text-dark:focus {
 .show > .btn-outline-vimeo.dropdown-toggle:focus {
   -webkit-box-shadow: 0 0 0 0.2rem rgba(170, 212, 80, 0.5);
   box-shadow: 0 0 0 0.2rem rgba(170, 212, 80, 0.5);
+}
+
+.btn-outline-vimeo i {
+  border-color: #aad450;
+}
+
+.btn-outline-vimeo:hover i {
+  border-color: #fff;
 }
 
 .btn-tumblr {
@@ -9634,6 +9746,14 @@ a.text-dark:hover, a.text-dark:focus {
   box-shadow: 0 0 0 0.2rem rgba(50, 80, 109, 0.5);
 }
 
+.btn-tumblr i {
+  border-color: #32506d;
+}
+
+.btn-tumblr:hover i {
+  border-color: #fff;
+}
+
 .btn-outline-tumblr {
   color: #32506d;
   background-color: transparent;
@@ -9668,6 +9788,14 @@ a.text-dark:hover, a.text-dark:focus {
 .show > .btn-outline-tumblr.dropdown-toggle:focus {
   -webkit-box-shadow: 0 0 0 0.2rem rgba(50, 80, 109, 0.5);
   box-shadow: 0 0 0 0.2rem rgba(50, 80, 109, 0.5);
+}
+
+.btn-outline-tumblr i {
+  border-color: #32506d;
+}
+
+.btn-outline-tumblr:hover i {
+  border-color: #fff;
 }
 
 .btn-instagram {
@@ -9706,6 +9834,14 @@ a.text-dark:hover, a.text-dark:focus {
   box-shadow: 0 0 0 0.2rem rgba(81, 127, 164, 0.5);
 }
 
+.btn-instagram i {
+  border-color: #517fa4;
+}
+
+.btn-instagram:hover i {
+  border-color: #fff;
+}
+
 .btn-outline-instagram {
   color: #517fa4;
   background-color: transparent;
@@ -9740,6 +9876,14 @@ a.text-dark:hover, a.text-dark:focus {
 .show > .btn-outline-instagram.dropdown-toggle:focus {
   -webkit-box-shadow: 0 0 0 0.2rem rgba(81, 127, 164, 0.5);
   box-shadow: 0 0 0 0.2rem rgba(81, 127, 164, 0.5);
+}
+
+.btn-outline-instagram i {
+  border-color: #517fa4;
+}
+
+.btn-outline-instagram:hover i {
+  border-color: #fff;
 }
 
 .btn-flickr {
@@ -9778,6 +9922,14 @@ a.text-dark:hover, a.text-dark:focus {
   box-shadow: 0 0 0 0.2rem rgba(255, 0, 132, 0.5);
 }
 
+.btn-flickr i {
+  border-color: #ff0084;
+}
+
+.btn-flickr:hover i {
+  border-color: #fff;
+}
+
 .btn-outline-flickr {
   color: #ff0084;
   background-color: transparent;
@@ -9812,6 +9964,14 @@ a.text-dark:hover, a.text-dark:focus {
 .show > .btn-outline-flickr.dropdown-toggle:focus {
   -webkit-box-shadow: 0 0 0 0.2rem rgba(255, 0, 132, 0.5);
   box-shadow: 0 0 0 0.2rem rgba(255, 0, 132, 0.5);
+}
+
+.btn-outline-flickr i {
+  border-color: #ff0084;
+}
+
+.btn-outline-flickr:hover i {
+  border-color: #fff;
 }
 
 .btn-telegram {
@@ -9850,6 +10010,14 @@ a.text-dark:hover, a.text-dark:focus {
   box-shadow: 0 0 0 0.2rem rgba(0, 136, 204, 0.5);
 }
 
+.btn-telegram i {
+  border-color: #0088cc;
+}
+
+.btn-telegram:hover i {
+  border-color: #fff;
+}
+
 .btn-outline-telegram {
   color: #0088cc;
   background-color: transparent;
@@ -9884,6 +10052,14 @@ a.text-dark:hover, a.text-dark:focus {
 .show > .btn-outline-telegram.dropdown-toggle:focus {
   -webkit-box-shadow: 0 0 0 0.2rem rgba(0, 136, 204, 0.5);
   box-shadow: 0 0 0 0.2rem rgba(0, 136, 204, 0.5);
+}
+
+.btn-outline-telegram i {
+  border-color: #0088cc;
+}
+
+.btn-outline-telegram:hover i {
+  border-color: #fff;
 }
 
 .btn-vk {
@@ -9922,6 +10098,14 @@ a.text-dark:hover, a.text-dark:focus {
   box-shadow: 0 0 0 0.2rem rgba(69, 102, 142, 0.5);
 }
 
+.btn-vk i {
+  border-color: #45668e;
+}
+
+.btn-vk:hover i {
+  border-color: #fff;
+}
+
 .btn-outline-vk {
   color: #45668e;
   background-color: transparent;
@@ -9956,6 +10140,14 @@ a.text-dark:hover, a.text-dark:focus {
 .show > .btn-outline-vk.dropdown-toggle:focus {
   -webkit-box-shadow: 0 0 0 0.2rem rgba(69, 102, 142, 0.5);
   box-shadow: 0 0 0 0.2rem rgba(69, 102, 142, 0.5);
+}
+
+.btn-outline-vk i {
+  border-color: #45668e;
+}
+
+.btn-outline-vk:hover i {
+  border-color: #fff;
 }
 
 .btn-stumbleupon {
@@ -9994,6 +10186,14 @@ a.text-dark:hover, a.text-dark:focus {
   box-shadow: 0 0 0 0.2rem rgba(235, 72, 35, 0.5);
 }
 
+.btn-stumbleupon i {
+  border-color: #EB4823;
+}
+
+.btn-stumbleupon:hover i {
+  border-color: #fff;
+}
+
 .btn-outline-stumbleupon {
   color: #EB4823;
   background-color: transparent;
@@ -10028,6 +10228,14 @@ a.text-dark:hover, a.text-dark:focus {
 .show > .btn-outline-stumbleupon.dropdown-toggle:focus {
   -webkit-box-shadow: 0 0 0 0.2rem rgba(235, 72, 35, 0.5);
   box-shadow: 0 0 0 0.2rem rgba(235, 72, 35, 0.5);
+}
+
+.btn-outline-stumbleupon i {
+  border-color: #EB4823;
+}
+
+.btn-outline-stumbleupon:hover i {
+  border-color: #fff;
 }
 
 .btn-yahoo {
@@ -10066,6 +10274,14 @@ a.text-dark:hover, a.text-dark:focus {
   box-shadow: 0 0 0 0.2rem rgba(123, 0, 153, 0.5);
 }
 
+.btn-yahoo i {
+  border-color: #7B0099;
+}
+
+.btn-yahoo:hover i {
+  border-color: #fff;
+}
+
 .btn-outline-yahoo {
   color: #7B0099;
   background-color: transparent;
@@ -10100,6 +10316,14 @@ a.text-dark:hover, a.text-dark:focus {
 .show > .btn-outline-yahoo.dropdown-toggle:focus {
   -webkit-box-shadow: 0 0 0 0.2rem rgba(123, 0, 153, 0.5);
   box-shadow: 0 0 0 0.2rem rgba(123, 0, 153, 0.5);
+}
+
+.btn-outline-yahoo i {
+  border-color: #7B0099;
+}
+
+.btn-outline-yahoo:hover i {
+  border-color: #fff;
 }
 
 html, body {
@@ -10649,6 +10873,19 @@ h2 .svg-inline--fa {
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12), 0 2px 3px 0 rgba(0, 0, 0, 0.06);
 }
 
+.fnd-badge {
+  width: 5rem;
+  height: 5rem;
+  display: block;
+  position: absolute;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.fnd-badge--dummy {
+  background-image: url("../img/dummy-badge.png");
+}
+
 .bg::before, .bg::after {
   content: '';
   display: block;
@@ -10689,6 +10926,16 @@ h2 .svg-inline--fa {
 .shadow-light {
   -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06), 0 2px 3px 0 rgba(0, 0, 0, 0.06);
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06), 0 2px 3px 0 rgba(0, 0, 0, 0.06);
+}
+
+.shadow-normal {
+  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12), 0 2px 3px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12), 0 2px 3px 0 rgba(0, 0, 0, 0.12);
+}
+
+.shadow-hard {
+  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.24), 0 2px 3px 0 rgba(0, 0, 0, 0.24);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.24), 0 2px 3px 0 rgba(0, 0, 0, 0.24);
 }
 
 .btn {
@@ -10753,19 +11000,25 @@ h2 .svg-inline--fa {
   border-top-color: #30B561;
 }
 
+.card-body--fnd-badge-holder .fnd-badge {
+  right: 0;
+  top: 0;
+  -webkit-transform: translate(30%, -30%) rotate(15deg);
+  transform: translate(30%, -30%) rotate(15deg);
+}
+
 body {
   background-color: #e4f2f8 !important;
 }
 
 .page-container {
-  max-width: 1920px;
   background-color: #fff;
   position: relative;
   margin: 0 auto;
   padding-top: 0;
 }
 
-@media screen and (min-width: 991px) {
+@media screen and (min-width: 767px) {
   .page-container {
     padding-top: 150px;
   }
@@ -10869,6 +11122,46 @@ body {
     text-align: center;
     margin: 25px auto !important;
   }
+}
+
+.profile-progress {
+  background-image: url("../img/bg-blue.png");
+  background-repeat: repeat;
+  background-size: contain, 100%;
+  background-position: right bottom;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  color: #fff;
+}
+
+.profile-progress:hover, .profile-progress:focus, .profile-progress:active {
+  color: #fff;
+  text-decoration: none;
+  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12), 0 2px 3px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12), 0 2px 3px 0 rgba(0, 0, 0, 0.12);
+}
+
+.profile-progress__bar {
+  -ms-flex-preferred-size: 100%;
+  flex-basis: 100%;
+  padding: 0 1rem;
+}
+
+.profile-progress__bar .progress {
+  height: 0.3rem;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.profile-progress__bar .progress-bar {
+  border-radius: 1000px;
+  background-color: white;
 }
 
 .section {

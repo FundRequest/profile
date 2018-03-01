@@ -10,28 +10,43 @@
 
         <p>Some dummy text</p>
 
-        <div class="card flex-md-row mb-4 shadow-light">
-            <div class="card-img-left m-3 flex-auto d-none d-md-block"
-                 th:if="${profile.getGithub().getUsername() !=null}">
-                <img th:src="'https://avatars.githubusercontent.com/' + ${profile.getGithub().getUsername()} + '?size=125'"
-                     class="rounded-circle shadow-light" alt="Completely round image"/>
+        <div class="card shadow-light mb-5">
+            <div class="d-flex flex-md-row">
+                <div class="card-img-left m-3 flex-auto d-none d-md-block"
+                     th:if="${profile.getGithub().getUsername() !=null}">
+                    <img th:src="'https://avatars.githubusercontent.com/' + ${profile.getGithub().getUsername()} + '?size=125'"
+                         class="rounded-circle shadow-light" alt="Completely round image"/>
+                </div>
+                <div class="card-body d-flex flex-column align-items-start card-body--fnd-badge-holder">
+                    <div class="fnd-badge fnd-badge--dummy"></div>
+                    <h5 class="card-title">
+                        General information
+                    </h5>
+                    <dl class="card-text">
+                        <dt>E-mail</dt>
+                        <dd th:text="${profile.getEmail()}">tryout@fundrequest.io</dd>
+                    </dl>
+                    <dl class="card-text">
+                        <dt>ETH Address</dt>
+                        <dd>0x000000000</dd>
+                    </dl>
+                </div>
             </div>
-            <div class="card-body d-flex flex-column align-items-start">
-                <h5 class="card-title">
-                    General information
-                </h5>
-                <dl class="card-text">
-                    <dt>E-mail</dt>
-                    <dd th:text="${profile.getEmail()}">tryout@fundrequest.io</dd>
-                </dl>
-                <dl class="card-text">
-                    <dt>ETH Address</dt>
-                    <dd>0x000000000</dd>
-                </dl>
-            </div>
+            <a class="card-footer profile-progress" href="#">
+                <div class="profile-progress__percentage">75%</div>
+                <div class="profile-progress__bar">
+                    <h6>Next step: connect to Twitter</h6>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75"
+                             aria-valuemin="0"
+                             aria-valuemax="100"></div>
+                    </div>
+                </div>
+                <i class="fa fa-chevron-right fa-large"></i>
+            </a>
         </div>
 
-        <div class="card mb-4">
+        <div class="card mb-5">
             <div class="card-body">
                 <h5 class="card-title">
                     Personal referral link
@@ -58,15 +73,15 @@
                         <i class="fab fa-twitter"></i>
                         Share on Twitter
                     </button>
-                    <button class="btn btn-outline-telegram icon-left mb-1">
-                        <i class="fab fa-telegram"></i>
-                        Join our Telegram
+                    <button class="btn btn-outline-facebook icon-left mb-1">
+                        <i class="fab fa-facebook"></i>
+                        Share on facebook
                     </button>
                 </div>
             </div>
         </div>
 
-        <div class="card mb-4">
+        <div class="card mb-5">
             <div class="card-header">
                 Verify as a developer
             </div>
@@ -121,76 +136,15 @@
             </div>
         </div>
 
-        <div class="card mb-4">
+        <div class="card mb-5">
             <div class="card-header">
                 Get social and get rewarded!
             </div>
             <div class="card-body text-center">
                 <div class="row">
-                    <div class="col-12 mb-4">
-                        <div class="card card--border-top h-100"
-                             th:classappend="${profile.getLinkedin().getUsername() != null ? 'card--border-top--success' : ''}">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <span>LinkedIn</span>
-                                    <i class="fab fa-linkedin"></i>
-                                </h5>
-                                <a class="btn btn-outline-success"
-                                   th:if="${profile.getLinkedin().getUsername() != null}"
-                                   href="#disconnect">
-                                    <i class="fa fa-check"></i>
-                                    <span th:text="${profile.getLinkedin().getUsername()}">Disconnect User</span>
-                                </a>
-                                <a class="btn btn-primary"
-                                   th:if="${profile.getLinkedin().getUsername() == null}"
-                                   th:href="${profile.getLinkedin().getSignupLink()}">Connect</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-md-6 mb-4">
-                        <div class="card card--border-top h-100"
-                             th:classappend="${profile.getTwitter().getUsername() != null ? 'card--border-top--success' : ''}">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <span>Twitter</span>
-                                    <i class="fab fa-twitter"></i>
-                                </h5>
-
-                                <a class="btn btn-outline-success"
-                                   th:if="${profile.getTwitter().getUsername() != null}"
-                                   href="#disconnect">
-                                    <i class="fa fa-check"></i>
-                                    <span th:text="${profile.getTwitter().getUsername()}">Disconnect User</span>
-                                </a>
-                                <a class="btn btn-primary"
-                                   th:if="${profile.getTwitter().getUsername() == null}"
-                                   th:href="${profile.getTwitter().getSignupLink()}">Connect</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-md-6 mb-4">
-                        <div class="card card--border-top h-100"
-                             th:classappend="${profile.getGoogle().getUsername() != null ? 'card--border-top--success' : ''}">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <span>Google</span>
-                                    <i class="fab fa-google"></i>
-                                </h5>
-
-                                <a class="btn btn-outline-success"
-                                   th:if="${profile.getGoogle().getUsername() != null}"
-                                   href="#disconnect">
-                                    <i class="fa fa-check"></i>
-                                    <span th:text="${profile.getGoogle().getUsername()}">Disconnect User</span>
-                                </a>
-                                <a class="btn btn-primary"
-                                   th:if="${profile.getGoogle().getUsername() == null}"
-                                   th:href="${profile.getGoogle().getSignupLink()}">Connect</a>
-                            </div>
-                        </div>
-                    </div>
+                    <div th:replace="fragments/profile :: social-connect-block(platform=${profile.getLinkedin()}, platformName='linkedin', rewardText='Share and get 50 FND', buttonText='Share on LinkedIn', mb=true)"></div>
+                    <div th:replace="fragments/profile :: social-connect-block(platform=${profile.getTwitter()}, platformName='twitter', rewardText='Tweet and get 50 FND', buttonText='Tweet', mb=true)"></div>
+                    <div th:replace="fragments/profile :: social-connect-block(platform=${profile.getGoogle()}, platformName='google', rewardText='Share and get 50 FND', buttonText='Share on Google', mb=false)"></div>
                 </div>
             </div>
         </div>

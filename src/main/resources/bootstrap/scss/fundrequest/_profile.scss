@@ -1,0 +1,33 @@
+.profile-progress {
+    background-image: url("../img/bg-blue.png");
+    background-repeat: repeat;
+    background-size: contain, 100%;
+    background-position: right bottom;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: $white;
+
+    &:hover,
+    &:focus,
+    &:active {
+        color: $white;
+        text-decoration: none;
+        box-shadow: $box-shadow-normal;
+    }
+
+    &__bar {
+        flex-basis: 100%;
+        padding: 0 1rem;
+
+        .progress {
+            height: 0.3rem;
+            background-color: rgba($white, 0.2);
+        }
+        .progress-bar {
+            border-radius: 1000px;
+            background-color: white;
+        }
+    }
+}
