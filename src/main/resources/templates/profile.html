@@ -96,15 +96,26 @@
                                     <i class="fab fa-github"></i>
                                 </h5>
                                 <p class="card-text">
-                                    <a class="btn btn-outline-success"
-                                       th:if="${profile.getGithub().getUsername() != null}"
-                                       href="#disconnect">
+                                <div th:if="${profile.getGithub().getUsername() != null}">
+                                    <div class="text-success">
                                         <i class="fa fa-check"></i>
-                                        <span th:text="${profile.getGithub().getUsername()}">Disconnect User</span>
-                                    </a>
-                                    <a class="btn btn-primary"
-                                       th:if="${profile.getGithub().getUsername() == null}"
-                                       th:href="${profile.getGithub().getSignupLink()}">Connect</a>
+                                        <span th:text="${profile.getGithub().getUsername()}"></span>
+                                    </div>
+                                    <br/>
+                                    <small>
+                                        <span th:if="${githubVerification.isApproved()}">
+                                            <i class="far fa-smile"></i> Congratulations, you earned <span class="badge badge-secondary">1 FND</span>!
+                                        </span>
+                                        <span th:unless="${githubVerification.isApproved()}">
+                                            <i class="far fa-frown"></i> Too bad, your account is not old enough to earn some FND. But don't worry, you will be able to use the platform!
+                                        </span>
+
+                                    </small>
+
+                                </div>
+                                <a class="btn btn-primary"
+                                   th:if="${profile.getGithub().getUsername() == null}"
+                                   th:href="${profile.getGithub().getSignupLink()}">Connect</a>
                                 </p>
                             </div>
                         </div>
@@ -119,12 +130,23 @@
                                     <i class="fab fa-stack-overflow"></i>
                                 </h5>
                                 <p class="card-text">
-                                    <a class="btn btn-outline-success"
-                                       th:if="${profile.getStackoverflow().getUsername() != null}"
-                                       href="#disconnect">
+                                <div th:if="${profile.getStackoverflow().getUsername() != null}">
+                                    <div class="text-success">
                                         <i class="fa fa-check"></i>
-                                        <span th:text="${profile.getStackoverflow().getUsername()}">Disconnect User</span>
-                                    </a>
+                                        <span th:text="${profile.getStackoverflow().getUsername()}"></span>
+                                    </div>
+                                    <br/>
+                                    <small>
+                                        <span th:if="${stackOverflowVerification.isApproved()}">
+                                            <i class="far fa-smile"></i> Congratulations, you earned <span class="badge badge-secondary">1 FND</span>!
+                                        </span>
+                                        <span th:unless="${stackOverflowVerification.isApproved()}">
+                                            <i class="far fa-frown"></i> Too bad, your account is not old enough to earn some FND. But don't worry, you will be able to use the platform!
+                                        </span>
+
+                                    </small>
+
+                                </div>
                                     <a class="btn btn-primary"
                                        th:if="${profile.getStackoverflow().getUsername() == null}"
                                        th:href="${profile.getStackoverflow().getSignupLink()}">Connect</a>

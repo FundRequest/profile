@@ -1,9 +1,11 @@
 package io.fundrequest.profile.profile;
 
+import io.fundrequest.profile.github.GithubBountyService;
 import io.fundrequest.profile.profile.dto.UserProfile;
 import io.fundrequest.profile.profile.dto.UserProfileProvider;
 import io.fundrequest.profile.profile.provider.Provider;
 import io.fundrequest.profile.ref.RefSignupEvent;
+import io.fundrequest.profile.stackoverflow.StackOverflowBountyService;
 import io.fundrequest.profile.twitter.model.TwitterBounty;
 import io.fundrequest.profile.twitter.model.TwitterPost;
 import io.fundrequest.profile.twitter.service.TwitterBountyService;
@@ -30,12 +32,16 @@ public class ProfileController {
     private ApplicationEventPublisher eventPublisher;
     private ProfileService profileService;
     private TwitterBountyService twitterBountyService;
+    private GithubBountyService githubBountyService;
+    private StackOverflowBountyService stackOverflowBountyService;
 
 
-    public ProfileController(ApplicationEventPublisher eventPublisher, ProfileService profileService, TwitterBountyService twitterBountyService) {
+    public ProfileController(ApplicationEventPublisher eventPublisher, ProfileService profileService, TwitterBountyService twitterBountyService, GithubBountyService githubBountyService, StackOverflowBountyService stackOverflowBountyService) {
         this.eventPublisher = eventPublisher;
         this.profileService = profileService;
         this.twitterBountyService = twitterBountyService;
+        this.githubBountyService = githubBountyService;
+        this.stackOverflowBountyService = stackOverflowBountyService;
     }
 
     @GetMapping("/profile")
@@ -47,6 +53,13 @@ public class ProfileController {
         final ModelAndView mav = new ModelAndView("profile");
         final UserProfile userProfile = profileService.getUserProfile(request, principal);
         mav.addObject("profile", userProfile);
+        enrichTwitter(mav, userProfile);
+        mav.addObject("githubVerification", githubBountyService.getVerification(principal));
+        mav.addObject("stackOverflowVerification", stackOverflowBountyService.getVerification(principal));
+        return mav;
+    }
+
+    private void enrichTwitter(ModelAndView mav, UserProfile userProfile) {
         if (userProfile.getTwitter() != null) {
             final Optional<TwitterBounty> activeBounty = twitterBountyService.getActiveBounty();
             if (activeBounty.isPresent()) {
@@ -61,7 +74,6 @@ public class ProfileController {
                 }
             }
         }
-        return mav;
     }
 
     private boolean claimedTwitterBounty(final UserProfileProvider twitter, final TwitterBounty twitterBounty) {

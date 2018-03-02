@@ -8,6 +8,7 @@ import io.fundrequest.profile.github.dto.GithubUser;
 import io.fundrequest.profile.github.infrastructure.GithubBountyRepository;
 import io.fundrequest.profile.github.infrastructure.GithubClient;
 import io.fundrequest.profile.profile.ProfileService;
+import io.fundrequest.profile.profile.dto.GithubVerificationDto;
 import io.fundrequest.profile.profile.dto.UserLinkedProviderEvent;
 import io.fundrequest.profile.profile.dto.UserProfile;
 import io.fundrequest.profile.profile.provider.Provider;
@@ -17,13 +18,16 @@ import org.springframework.context.event.EventListener;
 import org.springframework.security.authentication.event.AuthenticationSuccessEvent;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.security.Principal;
 import java.time.LocalDateTime;
+import java.time.Month;
 
 @Service
 public class GithubBountyServiceImpl implements GithubBountyService, ApplicationListener<AuthenticationSuccessEvent> {
 
+    private static final LocalDateTime MIN_PROFILE_DATE = LocalDateTime.of(2018, Month.JANUARY.getValue(), 1, 0, 0, 0, 0);
     private ProfileService profileService;
     private GithubBountyRepository githubBountyRepository;
     private BountyService bountyService;
@@ -37,6 +41,7 @@ public class GithubBountyServiceImpl implements GithubBountyService, Application
     }
 
     @EventListener
+    @Transactional
     public void onProviderLinked(UserLinkedProviderEvent event) {
         if (event.getProvider() == Provider.GITHUB) {
             UserProfile userProfile = profileService.getUserProfile(null, event.getPrincipal());
@@ -45,12 +50,20 @@ public class GithubBountyServiceImpl implements GithubBountyService, Application
     }
 
     @Override
+    @Transactional
     public void onApplicationEvent(AuthenticationSuccessEvent event) {
         Authentication principal = event.getAuthentication();
         UserProfile userProfile = profileService.getUserProfile(null, principal);
         if (userProfile.getGithub() != null && StringUtils.isNotBlank(userProfile.getGithub().getUserId())) {
             createBountyWhenNecessary(principal, userProfile);
         }
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public GithubVerificationDto getVerification(Principal principal) {
+        return githubBountyRepository.findByUserId(principal.getName()).map(b -> GithubVerificationDto.builder().approved(b.getValid()).createdAt(b.getCreatedAt()).build())
+                .orElse(null);
     }
 
     private void createBountyWhenNecessary(Principal principal, UserProfile userProfile) {
@@ -65,7 +78,7 @@ public class GithubBountyServiceImpl implements GithubBountyService, Application
     }
 
     private boolean isValidForBounty(GithubUser githubUser) {
-        return githubUser.getCreatedAt().isBefore(LocalDateTime.now().minusMonths(2).plusDays(1));
+        return githubUser.getCreatedAt().isBefore(MIN_PROFILE_DATE);
     }
 
     private void saveBounty(Principal principal) {
