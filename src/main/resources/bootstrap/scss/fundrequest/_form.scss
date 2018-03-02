@@ -1,0 +1,53 @@
+@keyframes rainbow {
+    0% {border-color: $yellow;}
+    20% {border-color: $green;}
+    40% {border-color: $teal;}
+    80% {border-color: $orange;}
+    100% {border-color: $yellow;}
+}
+
+@keyframes valid {
+    0% {border-color: $input-border-color;}
+    25% {border-color: $teal;}
+    50% {border-color: $green;}
+    75% {border-color: $teal;}
+    100% {border-color: $input-border-color;}
+}
+
+.form-control {
+
+    &.is-loading {
+        border-color: $yellow;
+        animation: rainbow 1s infinite;
+    }
+
+    &.is-valid {
+        border-color: $input-border-color;
+        animation: valid 1s;
+    }
+
+    &--not-editable {
+        border-color: transparent;
+        cursor: default;
+        &[readonly] {
+            background-color: transparent;
+        }
+    }
+
+    &--not-editable,
+    &--instant-edit {
+        margin-left: calc(#{(-1 * $input-padding-x)} - #{$input-border-width});
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    &--instant-edit:not(:hover,:active,:focus,.is-invalid) {
+        border-color: transparent;
+
+        .form-edit & {
+            border-color: $input-border-color;
+        }
+    }
+}
+

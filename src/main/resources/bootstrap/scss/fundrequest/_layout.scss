@@ -3,6 +3,7 @@ body {
     background-color: $white;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 }
 
 .page-container {
@@ -11,6 +12,7 @@ body {
     padding-top: 0;
     width: 100%;
     flex-basis: 100%;
+    flex-grow: 1;
 
     @media screen and (min-width: 767px) {
         padding-top: 150px;

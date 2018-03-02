@@ -23,7 +23,11 @@ dist/
 nbdist/
 .nb-gradle/
 
+
+### Others ###
 application-dev.properties
 
 docker_data
+
+src/main/resources/static-project/
 FundRequestVerifierBot
