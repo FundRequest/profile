@@ -1,3 +1,4 @@
+
 .card {
 
     &--border-top {
@@ -16,6 +17,10 @@
                 transform: translate(30%, -30%) rotate(15deg);
             }
         }
+    }
+
+    &-text {
+        width: 100%;
     }
 }
 

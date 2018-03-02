@@ -1,10 +1,21 @@
+declare let Headroom: any;
+declare let Clipboard: any;
+declare let $: any;
+
 class Alert {
-    static show(message, options = null) {
+    private static _container: HTMLElement = document.getElementById('alert-container');
+    private static _options: Object = {
+        type: 'success',
+        timeout: 3000
+    };
+
+    public static show(message: string, options: any = null): void {
         let container = this._container;
         let myOptions = options ? Object.assign(this._options, options) : this._options;
         let newAlert = this._getAlertElement();
         newAlert.querySelector('.alert-content').innerHTML = message;
         newAlert.classList.add(`alert-${myOptions.type}`);
+
         while (this._container.children.length > 3) {
             this._container.removeChild(this._container.lastChild);
         }
@@ -12,22 +23,20 @@ class Alert {
         setTimeout(function () {
             newAlert.classList.add('show');
         }, 100);
+
         setTimeout(function () {
             $(newAlert).alert('close'); // need jquery because it used bs
         }, myOptions.timeout);
     }
-    static _getAlertElement() {
+
+    private static _getAlertElement(): HTMLElement {
         let element = document.createElement('div');
         element.classList.add('alert', 'alert-dismissible', 'fade');
         element.innerHTML = '<span class="alert-content"></span><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
         return element;
     }
 }
-Alert._container = document.getElementById('alert-container');
-Alert._options = {
-    type: 'success',
-    timeout: 3000
-};
+
 class Main {
     constructor() {
         let _headroom = new Headroom(document.querySelector(".headroom"), {
@@ -38,6 +47,7 @@ class Main {
             }
         });
         _headroom.init();
+
         let _clipboard = new Clipboard('[data-clipboard-target]');
         _clipboard.on('success', (e) => {
             Alert.show('Copied to your clipboard! ');
@@ -48,9 +58,11 @@ class Main {
         });
     }
 }
+
 // init stuff
 $(function () {
     $('.fnd-badge[data-toggle="tooltip"]').tooltip();
+
     new Main();
     new InstantEdit();
 });
