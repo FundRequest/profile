@@ -10373,26 +10373,22 @@ a.anchor {
 }
 
 body {
-  font-family: 'jaf-domus';
+  font-family: 'jaf-domus', sans-serif;
+}
+
+h1, h2, h3 {
+  font-family: 'Titillium Web', sans-serif !important;
+  font-weight: 700 !important;
 }
 
 h1, h2 {
-  font-family: 'Titillium Web', sans-serif !important;
-  font-weight: 700 !important;
   font-size: 34px !important;
   line-height: 40px !important;
 }
 
 h3 {
-  font-family: 'Titillium Web', sans-serif !important;
-  font-weight: 700 !important;
   font-size: 20px !important;
   line-height: 26px !important;
-}
-
-a {
-  font-family: 'Titillium Web', sans-serif !important;
-  font-weight: 400;
 }
 
 h2.title {
@@ -10401,7 +10397,7 @@ h2.title {
 }
 
 p {
-  font-family: 'jaf-domus';
+  font-family: 'jaf-domus', sans-serif;
   font-size: 20px;
   line-height: 26px;
   font-weight: 400;
@@ -10909,6 +10905,30 @@ h2 .svg-inline--fa {
 .alert-container .alert:hover {
   -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12), 0 2px 3px 0 rgba(0, 0, 0, 0.06);
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12), 0 2px 3px 0 rgba(0, 0, 0, 0.06);
+}
+
+.user-avatar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  width: 3em;
+  height: 3em;
+  font-size: 1rem;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: #fff;
+  overflow: hidden;
+  border-radius: 10rem;
+  border: 1px solid #dee2e6;
 }
 
 .error-template {
@@ -11513,6 +11533,26 @@ a.etherwallet-instructions {
   -ms-flex-align: center;
   align-items: center;
   margin-bottom: .25em;
+}
+
+.rewards-list__item--referral {
+  padding-left: 0;
+  margin-bottom: 1rem;
+}
+
+.rewards-list__item--referral .rewards-list__text {
+  margin-left: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  line-height: 1;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 
 .rewards-list__link {

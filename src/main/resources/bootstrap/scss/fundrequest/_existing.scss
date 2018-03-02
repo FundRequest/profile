@@ -1,9 +1,9 @@
-body { font-family: 'jaf-domus'; }
-h1, h2 { font-family: 'Titillium Web', sans-serif !important; font-weight: 700 !important; font-size: 34px !important; line-height: 40px !important; }
-h3 { font-family: 'Titillium Web', sans-serif !important; font-weight: 700 !important; font-size: 20px !important; line-height: 26px !important; }
-a { font-family: 'Titillium Web', sans-serif !important; font-weight: 400; }
+body { font-family: 'jaf-domus', sans-serif; }
+h1, h2, h3 { font-family: 'Titillium Web', sans-serif !important; font-weight: 700 !important; }
+h1, h2 { font-size: 34px !important; line-height: 40px !important; }
+h3 { font-size: 20px !important; line-height: 26px !important; }
 h2.title { color: #556992; font-weight: 700; }
-p { font-family: 'jaf-domus'; font-size: 20px; line-height: 26px; font-weight: 400; }
+p { font-family: 'jaf-domus', sans-serif; font-size: 20px; line-height: 26px; font-weight: 400; }
 input { font-family: 'Titillium Web', sans-serif !important; font-size: 20px; line-height: 26px; font-weight: 400; }
 p.intro { font-size: 22px; font-weight: 600; }
 p.intro_sec3 { font-weight: 700; }
