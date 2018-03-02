@@ -26,3 +26,4 @@ nbdist/
 application-dev.properties
 
 docker_data
+FundRequestVerifierBot
