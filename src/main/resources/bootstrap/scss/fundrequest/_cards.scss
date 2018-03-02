@@ -1,8 +1,14 @@
 
 .card {
 
+    @each $color, $value in $theme-colors {
+        &--#{$color} {
+            border-left: 4px solid $value;
+        }
+    }
+
     &--border-top {
-        border-top: 2px solid $blue;
+        border-top: 2px solid $primary;
     }
 
     &--border-top--success {
@@ -17,10 +23,6 @@
                 transform: translate(30%, -30%) rotate(15deg);
             }
         }
-    }
-
-    &-text {
-        width: 100%;
     }
 }
 

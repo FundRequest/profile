@@ -105,71 +105,11 @@
             <div class="card-body text-center">
                 <div class="row">
                     <div class="col-12 col-md-6 mb-1">
-                        <div class="card card--border-top h-100"
-                             th:classappend="${profile.getGithub().getUsername() != null ? 'card--border-top--success' : ''}">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <span>Github</span>
-                                    <i class="fab fa-github"></i>
-                                </h5>
-                                <p class="card-text">
-                                <div th:if="${profile.getGithub().getUsername() != null}">
-                                    <div class="text-success">
-                                        <i class="fa fa-check"></i>
-                                        <span th:text="${profile.getGithub().getUsername()}"></span>
-                                    </div>
-                                    <br/>
-                                    <small>
-                                        <span th:if="${githubVerification.isApproved()}">
-                                            <i class="far fa-smile"></i> Congratulations, you earned <span class="badge badge-secondary">1 FND</span>!
-                                        </span>
-                                        <span th:unless="${githubVerification.isApproved()}">
-                                            <i class="far fa-frown"></i> Too bad, your account is not old enough to earn some FND. But don't worry, you will be able to use the platform!
-                                        </span>
-
-                                    </small>
-
-                                </div>
-                                <a class="btn btn-primary"
-                                   th:if="${profile.getGithub().getUsername() == null}"
-                                   th:href="${profile.getGithub().getSignupLink()}">Connect</a>
-                                </p>
-                            </div>
-                        </div>
+                        <div th:replace="fragments/profile :: developer-connect-block(platform=${profile.getGithub()}, title='Github', platformName='github', verification=${githubVerification})"></div>
                     </div>
 
                     <div class="col-12 col-md-6 mb-1">
-                        <div class="card card--border-top h-100"
-                             th:classappend="${profile.getStackoverflow().getUsername() != null ? 'card--border-top--success' : ''}">
-                            <div class="card-body">
-                                <h5 class="card-title">
-                                    <span>Stack Overflow</span>
-                                    <i class="fab fa-stack-overflow"></i>
-                                </h5>
-                                <p class="card-text">
-                                <div th:if="${profile.getStackoverflow().getUsername() != null}">
-                                    <div class="text-success">
-                                        <i class="fa fa-check"></i>
-                                        <span th:text="${profile.getStackoverflow().getUsername()}"></span>
-                                    </div>
-                                    <br/>
-                                    <small>
-                                        <span th:if="${stackOverflowVerification.isApproved()}">
-                                            <i class="far fa-smile"></i> Congratulations, you earned <span class="badge badge-secondary">1 FND</span>!
-                                        </span>
-                                        <span th:unless="${stackOverflowVerification.isApproved()}">
-                                            <i class="far fa-frown"></i> Too bad, your account is not old enough to earn some FND. But don't worry, you will be able to use the platform!
-                                        </span>
-
-                                    </small>
-
-                                </div>
-                                    <a class="btn btn-primary"
-                                       th:if="${profile.getStackoverflow().getUsername() == null}"
-                                       th:href="${profile.getStackoverflow().getSignupLink()}">Connect</a>
-                                </p>
-                            </div>
-                        </div>
+                        <div th:replace="fragments/profile :: developer-connect-block(platform=${profile.getStackoverflow()}, title='Stack Overflow', platformName='stack-overflow', verification=${stackOverflowVerification})"></div>
                     </div>
                 </div>
             </div>
@@ -182,9 +122,15 @@
             </div>
             <div class="card-body text-center">
                 <div class="row">
-                    <div th:replace="fragments/profile :: social-connect-block(platform=${profile.getLinkedin()}, title='LinkedIn', platformName='linkedin', rewardText='Share and get 50 FND', buttonText='Share on LinkedIn', mb=true)"></div>
-                    <div th:replace="fragments/twitter :: social-connect-block(platform=${profile.getTwitter()}, mb=true)"></div>
-                    <div th:replace="fragments/profile :: social-connect-block(platform=${profile.getGoogle()}, title='Google Plus', platformName='google-plus', rewardText='Share and get 50 FND', buttonText='Share on Google', mb=false)"></div>
+                    <div class="col-12 mb-4">
+                        <div th:replace="fragments/profile :: social-connect-block(platform=${profile.getLinkedin()}, title='LinkedIn', platformName='linkedin', rewardText='Share and get 50 FND', buttonText='Share on LinkedIn')"></div>
+                    </div>
+                    <div class="col-12 mb-4">
+                        <div th:replace="fragments/twitter :: social-connect-block(platform=${profile.getTwitter()}, mb=true)"></div>
+                    </div>
+                    <div class="col-12">
+                        <div th:replace="fragments/profile :: social-connect-block(platform=${profile.getGoogle()}, title='Google Plus', platformName='google-plus', rewardText='Share and get 50 FND', buttonText='Share on Google')"></div>
+                    </div>
                 </div>
             </div>
         </div>

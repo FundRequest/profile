@@ -2,10 +2,8 @@
       xmlns:th="http://www.thymeleaf.org"
 >
 <body>
-<div th:fragment="social-connect-block (platform, mb)" th:if="${platform != null}"
-     class="col-12" th:classappend="${mb} ? 'mb-4' : ''">
-
-    <a name="chapter4"></a>
+<div th:fragment="social-connect-block (platform)" th:if="${platform != null}">
+    <a class="anchor" th:id="'get-social-twitter'"></a>
     <div th:if="${validatedTwitterBountyResult != null}">
         <div class="alert alert-success" th:if="${validatedTwitterBountyResult.validated}">
             <strong>Success!</strong> <span th:text="${validatedTwitterBountyResult.message}"></span>
