@@ -18,11 +18,15 @@ public class TelegramConfiguration {
                                                   @Value("${io.fundrequest.telegram.bot.apikey}")
                                                           String botApiKey,
                                                   @Value("${io.fundrequest.telegram.bot.fundrequestChannel}")
-                                                              String fundrequestChannel,
+                                                          String fundrequestChannel,
+                                                  @Value("${io.fundrequest.telegram.bot.fundrequestChannelLink}")
+                                                          String fundrequestChannelLink,
+                                                  @Value("${io.fundrequest.telegram.bot.registrationPage}")
+                                                          String registrationPage,
                                                   TelegramVerificationService telegramVerificationService) throws TelegramApiRequestException {
         ApiContextInitializer.init();
         final TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
-        telegramBotsApi.registerBot(new FundRequestVerifierBot(botApiKey, botName, telegramVerificationService, fundrequestChannel));
+        telegramBotsApi.registerBot(new FundRequestVerifierBot(botApiKey, botName, telegramVerificationService, fundrequestChannel, fundrequestChannelLink, registrationPage));
         return telegramBotsApi;
     }
 }

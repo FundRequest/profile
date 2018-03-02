@@ -15,9 +15,14 @@ public class TelegramVerificationService {
     @Autowired
     private TelegramVerificationRepository telegramVerificationRepository;
 
+    @Transactional(readOnly = true)
+    public boolean exists(final String telegramName) {
+        return telegramVerificationRepository.findByTelegramName(telegramName).isPresent();
+    }
+
     @Transactional
-    public boolean verify(final String userId, final String secret) {
-        final Optional<TelegramVerification> byUserIdAndSecret = telegramVerificationRepository.findByTelegramNameAndSecret(userId, secret);
+    public boolean verify(final String telegramName, final String secret) {
+        final Optional<TelegramVerification> byUserIdAndSecret = telegramVerificationRepository.findByTelegramNameAndSecret(telegramName, secret);
         if (byUserIdAndSecret.isPresent()) {
             TelegramVerification telegramVerification = byUserIdAndSecret.get();
             if (!telegramVerification.isVerified()) {
