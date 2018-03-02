@@ -71,7 +71,7 @@
                 <div class="card-text mb-2">
                     <div class="input-group">
                         <input class="form-control" id="referral-link" title="personal referral link"
-                               value="https://xyz.testReferralLink-Copy"/>
+                               value="https://xyz.testReferralLink-Copy" th:value="${refLink}"/>
                         <div class="input-group-append">
                             <button class="btn" data-clipboard-target="#referral-link">
                                 <i class="fa fa-clipboard"></i>
@@ -83,15 +83,20 @@
                 <div class="card-text">
                     <button class="btn btn-outline-linkedin icon-left mb-1">
                         <i class="fab fa-linkedin"></i>
-                        Share on LinkedIn
+                        <a target="_blank" th:href="${'https://www.linkedin.com/shareArticle?mini=true&amp;url='+ 'https://profile-dev.fundrequest.io' + '&amp;title=FundRequest%20Platform%20Signup&amp;summary=I%20just%20joined%20the%20FundRequest%20platform%20pre-signup.%20You%20can%20signup%20as%20well.&amp;source=fundrequest.io'}">Share on LinkedIn</a>
                     </button>
                     <button class="btn btn-outline-twitter icon-left mb-1">
                         <i class="fab fa-twitter"></i>
-                        Share on Twitter
+                        <a target="_blank"
+                           th:href="${'https://twitter.com/home?status=I%20just%20joined%20the%20FundRequest%20platform%20pre-signup.%20You%20can%20signup%20as%20well%3A ' + refLink}">Share
+                            on Twitter</a>
+
                     </button>
                     <button class="btn btn-outline-facebook icon-left mb-1">
                         <i class="fab fa-facebook"></i>
-                        Share on facebook
+                        <a target="_blank"
+                           th:href="${'https://www.facebook.com/sharer/sharer.php?u=I%20just%20joined%20the%20FundRequest%20platform%20pre-signup.%20You%20can%20signup%20as%20well%3A%20' + refLink}">Share
+                            on facebook</a>
                     </button>
                 </div>
             </div>
@@ -123,13 +128,13 @@
             <div class="card-body text-center">
                 <div class="row">
                     <div class="col-12 mb-4">
-                        <div th:replace="fragments/profile :: social-connect-block(platform=${profile.getLinkedin()}, title='LinkedIn', platformName='linkedin', rewardText='Share and get 50 FND', buttonText='Share on LinkedIn')"></div>
+                        <div th:replace="fragments/profile :: social-connect-block(platform=${profile.getLinkedin()}, title='LinkedIn', platformName='linkedin', rewardText='Share and get 50 FND', buttonText='Share on LinkedIn', buttonLink='https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A//blog.fundrequest.io/fundrequest-platform-survey-d06b3df5fd54&amp;title=FundRequest%20Platform&amp;summary=I%20just%20filled%20in%20the%20FundRequest%20Survey%20and%20already%20earned%20some%20FND!%20You%20can%20do%20it%20as%20well!&amp;source=https%3A//fundrequest.io')"></div>
                     </div>
                     <div class="col-12 mb-4">
                         <div th:replace="fragments/twitter :: social-connect-block(platform=${profile.getTwitter()}, mb=true)"></div>
                     </div>
                     <div class="col-12">
-                        <div th:replace="fragments/profile :: social-connect-block(platform=${profile.getGoogle()}, title='Google Plus', platformName='google-plus', rewardText='Share and get 50 FND', buttonText='Share on Google')"></div>
+                        <div th:replace="fragments/profile :: social-connect-block(platform=${profile.getGoogle()}, title='Google Plus', platformName='google-plus', rewardText='Share and get 50 FND', buttonText='Share on Google',buttonLink='https://share')"></div>
                     </div>
                 </div>
             </div>

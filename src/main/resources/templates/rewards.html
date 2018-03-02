@@ -108,11 +108,10 @@
 
         <div class="card mb-5">
             <div class="card-header d-flex justify-content-between">
-                <span class="card-title mb-0">
-                    <span>2 Referrals signed up</span>
-                    <span class="text-muted">(potential 20 FND)</span>
-                </span>
-                <span class="text-success">10 FND</span>
+                <span class="card-title mb-0">Referrals</span>
+                <div>
+                    <span class="badge badge-success" id="referral-total">- FND</span>
+                </div>
             </div>
 
             <div class="card-body">
@@ -121,35 +120,8 @@
                         <div class="text-primary">Referrals that signed up</div>
                         <small>When the referrals is verified, you get rewarded</small>
                     </div>
-                    <div class="rewards-list__item rewards-list__item--referral">
-                        <div class="d-flex">
-                            <div class="user-avatar">
-                                SM
-                            </div>
-                            <div class="rewards-list__text">
-                                <div>Steve Maris</div>
-                                <small>steve.maris@fundrequest.io</small>
-                            </div>
-                        </div>
-                        <div>
-                            <span class="badge badge-secondary">Not verified</span>
-                            <span class="text-muted ml-2">0 FND</span>
-                        </div>
-                    </div>
-                    <div class="rewards-list__item rewards-list__item--referral">
-                        <div class="d-flex">
-                            <div class="user-avatar">
-                                DV
-                            </div>
-                            <div class="rewards-list__text">
-                                <div>Davy Van Roy</div>
-                                <small>davy.van.roy@fundrequest.io</small>
-                            </div>
-                        </div>
-                        <div>
-                            <span class="badge badge-success">Verified</span>
-                            <span class="text-success ml-2">10 FND</span>
-                        </div>
+                    <div id="rewards-list-content">
+                        Loading...
                     </div>
                 </div>
             </div>
@@ -205,5 +177,8 @@
     </div>
 </th:block>
 
+<div layout:fragment="scripts" class="row justify-content-center">
+    <script type="application/javascript" th:src="@{/assets/js/fundrequest/referral.js}"></script>
+</div>
 </body>
 </html>

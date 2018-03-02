@@ -1,5 +1,6 @@
 package io.fundrequest.profile.bounty.domain;
 
+import io.fundrequest.profile.common.domain.AuditedEntity;
 import lombok.Builder;
 
 import javax.persistence.Column;
@@ -13,7 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "bounty")
-public class Bounty {
+public class Bounty extends AuditedEntity {
 
     @Id
     @Column(name = "id")

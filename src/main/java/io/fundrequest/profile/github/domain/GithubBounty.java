@@ -1,5 +1,6 @@
 package io.fundrequest.profile.github.domain;
 
+import io.fundrequest.profile.common.domain.AuditedEntity;
 import lombok.Builder;
 
 import javax.persistence.Column;
@@ -12,7 +13,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "github_bounty")
-public class GithubBounty {
+public class GithubBounty extends AuditedEntity {
 
     @Id
     @GeneratedValue

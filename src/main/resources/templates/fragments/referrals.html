@@ -1,0 +1,29 @@
+<div xmlns:th="http://www.thymeleaf.org">
+    <div class="rewards-list__item rewards-list__item--referral" th:each="r : ${referrals}">
+        <div class="d-flex">
+            <div class="user-avatar">
+                <i class="fas fa-user-plus"></i>
+            </div>
+            <div class="rewards-list__text">
+                Your referral link was used on <span th:text="${#temporals.format(r.getCreatedAt(), 'yyyy-MM-dd HH:mm')}"></span>
+            </div>
+        </div>
+        <div class="d-flex">
+            <div th:if="${r.getStatus() == T(io.fundrequest.profile.ref.domain.ReferralStatus).PENDING}"
+                 th:remove="tag">
+                <span class="text-muted">Not verified</span>
+                <span class="text-muted ml-2"><span class="badge badge-secondary">0 FND</span></span>
+            </div>
+            <div th:if="${r.getStatus() == T(io.fundrequest.profile.ref.domain.ReferralStatus).VERIFIED}"
+                 th:remove="tag">
+                <span class="text-success">Verified</span>
+                <span class="text-success ml-2"><span class="badge badge-success">2 FND</span></span>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="rewards-list__item rewards-list__item--referral" th:if="${referrals.isEmpty()}">
+        You don't have any referrals yet.
+    </div>
+</div>

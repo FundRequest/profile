@@ -2,13 +2,21 @@ package io.fundrequest.profile.ref;
 
 import io.fundrequest.profile.bounty.BountyService;
 import io.fundrequest.profile.bounty.event.CreateBountyCommand;
+import io.fundrequest.profile.profile.dto.UserLinkedProviderEvent;
 import io.fundrequest.profile.profile.infrastructure.KeycloakRepository;
 import io.fundrequest.profile.ref.domain.Referral;
+import io.fundrequest.profile.ref.domain.ReferralStatus;
+import io.fundrequest.profile.ref.dto.ReferralDto;
 import io.fundrequest.profile.ref.infrastructure.ReferralRepository;
+import org.springframework.context.event.EventListener;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.Valid;
+import java.security.Principal;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static io.fundrequest.profile.bounty.domain.BountyType.REFERRAL;
 
@@ -25,26 +33,64 @@ class ReferralServiceImpl implements ReferralService {
         this.bountyService = bountyService;
     }
 
+    @EventListener
+    @Transactional
+    public void onProviderLinked(UserLinkedProviderEvent event) {
+        repository.findByReferee(event.getPrincipal().getName())
+                .ifPresent(r -> sendBountyIfPossible(r, event.getPrincipal()));
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public List<ReferralDto> getReferrals(Principal principal) {
+        return repository.findByReferrer(principal.getName(), new Sort(Sort.Direction.DESC, "creationDate"))
+                .stream()
+                .map(r -> ReferralDto.builder().status(r.getStatus()).createdAt(r.getCreationDate()).build())
+                .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public Long getTotalVerifiedReferrals(Principal principal) {
+        return
+                repository.countByReferrerAndStatus(principal.getName(), ReferralStatus.VERIFIED)
+                * 2;
+    }
+
     @Override
     @Transactional
     public void createNewRef(@Valid CreateRefCommand command) {
-        String referrer = command.getPrincipal().getName();
-        String referee = command.getRef();
+        String referrer = command.getRef();
+        String referee = command.getPrincipal().getName();
         validateReferee(referrer, referee);
-        if (!repository.existsByReferrerAndReferee(referrer, referee)) {
+        if (!repository.existsByReferee(referee)) {
             Referral referral = Referral.builder()
                     .referrer(referrer)
                     .referee(referee)
+                    .status(ReferralStatus.PENDING)
                     .build();
             repository.save(referral);
-            bountyService.createBounty(CreateBountyCommand.builder()
-                    .userId(command.getPrincipal().getName())
-                    .type(REFERRAL)
-                    .build());
+            sendBountyIfPossible(referral, command.getPrincipal());
 
         } else {
             throw new RuntimeException("This ref already exists!");
         }
+    }
+
+    private void sendBountyIfPossible(Referral referral, Principal principal) {
+        if (isVerifiedPrincipal(principal)) {
+            referral.setStatus(ReferralStatus.VERIFIED);
+            bountyService.createBounty(CreateBountyCommand.builder()
+                    .userId(principal.getName())
+                    .type(REFERRAL)
+                    .build());
+            repository.save(referral);
+        }
+    }
+
+    private boolean isVerifiedPrincipal(Principal principal) {
+        return keycloakRepository.getUserIdentities(principal.getName())
+                .findFirst().isPresent();
     }
 
     private void validateReferee(String referrer, String referee) {
