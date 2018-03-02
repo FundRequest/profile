@@ -12,13 +12,16 @@ import static org.telegram.abilitybots.api.objects.Privacy.PUBLIC;
 public class FundRequestVerifierBot extends AbilityBot {
 
     private final TelegramVerificationService telegramVerificationService;
+    private final String fundrequestChannel;
 
     public FundRequestVerifierBot(final String botToken,
                                   final String botUsername,
-                                  final TelegramVerificationService telegramVerificationService
+                                  final TelegramVerificationService telegramVerificationService,
+                                  final String fundrequestChannel
     ) {
         super(botToken, botUsername);
         this.telegramVerificationService = telegramVerificationService;
+        this.fundrequestChannel = fundrequestChannel;
     }
 
     @Override
@@ -34,7 +37,7 @@ public class FundRequestVerifierBot extends AbilityBot {
                 .privacy(PUBLIC)
                 .action(ctx -> {
                     final GetChatMember getChatMember = new GetChatMember();
-                    getChatMember.setChatId("-247444321");
+                    getChatMember.setChatId(fundrequestChannel);
                     getChatMember.setUserId(ctx.user().id());
                     try {
                         ChatMember execute = this.execute(getChatMember);

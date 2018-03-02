@@ -17,10 +17,12 @@ public class TelegramConfiguration {
                                                           String botName,
                                                   @Value("${io.fundrequest.telegram.bot.apikey}")
                                                           String botApiKey,
+                                                  @Value("${io.fundrequest.telegram.bot.fundrequestChannel}")
+                                                              String fundrequestChannel,
                                                   TelegramVerificationService telegramVerificationService) throws TelegramApiRequestException {
         ApiContextInitializer.init();
         final TelegramBotsApi telegramBotsApi = new TelegramBotsApi();
-        telegramBotsApi.registerBot(new FundRequestVerifierBot(botApiKey, botName, telegramVerificationService));
+        telegramBotsApi.registerBot(new FundRequestVerifierBot(botApiKey, botName, telegramVerificationService, fundrequestChannel));
         return telegramBotsApi;
     }
 }
