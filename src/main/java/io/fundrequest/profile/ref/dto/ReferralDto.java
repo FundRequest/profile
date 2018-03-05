@@ -12,4 +12,7 @@ public class ReferralDto {
 
     private LocalDateTime createdAt;
     private ReferralStatus status;
+    private String email;
+    private String name;
+    private String picture;
 }

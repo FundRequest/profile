@@ -11370,6 +11370,8 @@ h2 .svg-inline--fa {
   overflow: hidden;
   border-radius: 0.125rem;
   border: 1px solid #dee2e6; }
+  .user-avatar img {
+    width: 35px; }
 
 .error-template {
   padding: 40px 15px;
