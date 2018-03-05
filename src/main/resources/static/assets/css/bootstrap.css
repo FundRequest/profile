@@ -11198,6 +11198,38 @@ h2 .svg-inline--fa {
   margin: 10px 0 10px 10px;
 }
 
+.card--primary {
+  border-left: 4px solid #39A4DC;
+}
+
+.card--secondary {
+  border-left: 4px solid #6c757d;
+}
+
+.card--success {
+  border-left: 4px solid #30B561;
+}
+
+.card--info {
+  border-left: 4px solid #17a2b8;
+}
+
+.card--warning {
+  border-left: 4px solid #F68C3E;
+}
+
+.card--danger {
+  border-left: 4px solid #dc3545;
+}
+
+.card--light {
+  border-left: 4px solid #f8f9fa;
+}
+
+.card--dark {
+  border-left: 4px solid #343a40;
+}
+
 .card--border-top {
   border-top: 2px solid #39A4DC;
 }
@@ -11211,10 +11243,6 @@ h2 .svg-inline--fa {
   top: 0;
   -webkit-transform: translate(30%, -30%) rotate(15deg);
   transform: translate(30%, -30%) rotate(15deg);
-}
-
-.card-text {
-  width: 100%;
 }
 
 .header h1 {
@@ -11498,6 +11526,18 @@ a.etherwallet-instructions {
   text-decoration: none;
   -webkit-box-shadow: 0 0 0 0.05rem rgba(0, 0, 0, 0.12), 0 0.1rem 0.15rem 0 rgba(0, 0, 0, 0.12);
   box-shadow: 0 0 0 0.05rem rgba(0, 0, 0, 0.12), 0 0.1rem 0.15rem 0 rgba(0, 0, 0, 0.12);
+}
+
+.profile-progress i {
+  -webkit-transition: -webkit-transform .6s ease;
+  transition: -webkit-transform .6s ease;
+  transition: transform .6s ease;
+  transition: transform .6s ease, -webkit-transform .6s ease;
+}
+
+.profile-progress i:hover {
+  -webkit-transform: translateX(10px);
+  transform: translateX(10px);
 }
 
 .profile-progress__bar {

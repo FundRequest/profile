@@ -11,7 +11,7 @@
 
         <p>Some intro text</p>
 
-        <div class="card shadow-light mb-5">
+        <div class="card mb-5">
             <div class="card-body">
                 <h5 class="card-title">
                     Badges
@@ -31,7 +31,7 @@
                         </div>
                         <div class="card-text">
                             <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#see-badges">
-                                See your all badges
+                                See all your badges
                             </a>
                         </div>
                     </div>
@@ -39,10 +39,19 @@
             </div>
         </div>
 
+        <div class="card card--success shadow-normal mb-5">
+            <div class="card-body d-flex justify-content-between">
+                <h5 class="mb-0">Total rewards</h5>
+                <div class="text-success">
+                    60 FND
+                </div>
+            </div>
+        </div>
+
         <div class="card mb-5">
             <div class="card-header d-flex justify-content-between">
                 <span class="card-title mb-0">Rewards</span>
-                <span class="text-success">120 FND</span>
+                <span class="card-text text-success">50 FND</span>
             </div>
 
             <div class="card-body">
@@ -53,11 +62,14 @@
                     </div>
                     <div class="rewards-list__item">
                         <div class="rewards-list__text">Connect with Github</div>
-                        <a class="rewards-list__link" href="/profile#verify-developer">Get 50 FND</a>
+                        <div>
+                            <span class="text-success">Connected </span>
+                            <span class="badge badge-success">50 FND</span>
+                        </div>
                     </div>
                     <div class="rewards-list__item">
                         <div class="rewards-list__text">Connect with Stackoverflow</div>
-                        <a class="rewards-list__link" href="/profile#verify-developer">Get 25 FND</a>
+                        <a class="rewards-list__link" href="/profile#verify-developer">Get 20 FND</a>
                     </div>
                     <hr/>
                 </div>
@@ -72,7 +84,9 @@
                             <i class="fab fa-linkedin mr-1"></i>
                             <span>Connect LinkedIn and share</span>
                         </div>
-                        <a class="rewards-list__link" href="/profile#get-social-linkedin">Get 50 FND</a>
+                        <div>
+                            <a class="rewards-list__link" href="/profile#get-social-linkedin">Get 50 FND</a>
+                        </div>
                     </div>
                     <div class="rewards-list__item">
                         <div class="rewards-list__text">
@@ -96,8 +110,7 @@
             <div class="card-header d-flex justify-content-between">
                 <span class="card-title mb-0">Referrals</span>
                 <div>
-                    <small class="text-muted">Pending 120 FND -</small>
-                    <span class="text-success">120 FND</span>
+                    <span class="badge badge-success" id="referral-total">- FND</span>
                 </div>
             </div>
 
@@ -107,35 +120,8 @@
                         <div class="text-primary">Referrals that signed up</div>
                         <small>When the referrals is verified, you get rewarded</small>
                     </div>
-                    <div class="rewards-list__item rewards-list__item--referral">
-                        <div class="d-flex">
-                            <div class="user-avatar">
-                                SM
-                            </div>
-                            <div class="rewards-list__text">
-                                <div>Steve Maris</div>
-                                <small>steve.maris@fundrequest.io</small>
-                            </div>
-                        </div>
-                        <div class="d-flex">
-                            <span class="text-muted">Not verified</span>
-                            <span class="text-muted ml-2">0 FND</span>
-                        </div>
-                    </div>
-                    <div class="rewards-list__item rewards-list__item--referral">
-                        <div class="d-flex">
-                            <div class="user-avatar">
-                                DV
-                            </div>
-                            <div class="rewards-list__text">
-                                <div>Davy Van Roy</div>
-                                <small>davy.van.roy@fundrequest.io</small>
-                            </div>
-                        </div>
-                        <div class="d-flex">
-                            <span class="text-success">Verified</span>
-                            <span class="text-success ml-2">2 FND</span>
-                        </div>
+                    <div id="rewards-list-content">
+                        Loading...
                     </div>
                 </div>
             </div>
@@ -191,5 +177,8 @@
     </div>
 </th:block>
 
+<div layout:fragment="scripts" class="row justify-content-center">
+    <script type="application/javascript" th:src="@{/assets/js/fundrequest/referral.js}"></script>
+</div>
 </body>
 </html>

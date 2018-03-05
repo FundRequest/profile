@@ -1,5 +1,6 @@
 package io.fundrequest.profile.stackoverflow.domain;
 
+import io.fundrequest.profile.common.domain.AuditedEntity;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "stack_overflow_bounty")
 @Getter
-public class StackOverflowBounty {
+public class StackOverflowBounty extends AuditedEntity {
     @Id
     @GeneratedValue
     @Column(name = "id")

@@ -2,7 +2,7 @@
       xmlns:th="http://www.thymeleaf.org"
 >
 <body>
-<div th:fragment="social-connect-block (platform, title, platformName, rewardText, buttonText, mb)" th:if="${platform != null}"
+<div th:fragment="social-connect-block (platform, title, platformName, rewardText, buttonText, buttonLink)" th:if="${platform != null}"
      class="col-12" th:classappend="${mb} ? 'mb-4' : ''">
     <a class="anchor" th:id="'get-social-' + ${platformName}"></a>
 
@@ -34,11 +34,45 @@
             <div>
                 <button class="btn icon-left" th:classappend="'btn-outline-' + ${platformName}">
                     <i class="fab" th:classappend="'fa-' + ${platformName}"></i>
-                    <span th:text="${buttonText}">Share on Google</span>
+                    <a href="https://share" th:text="${buttonText}" target="_blank" th:href="${buttonLink}">Share on google</a>
                 </button>
             </div>
         </div>
     </div>
 </div>
+
+<div th:fragment="developer-connect-block(platform, title, platformName, verification)"
+     class="card card--border-top h-100"
+     th:classappend="${platform.getUsername() != null ? 'card--border-top--success' : ''}">
+    <div class="card-body">
+        <h5 class="card-title">
+            <span th:text="${title}">Github</span>
+            <i class="fab" th:classappend="'fa-' + ${platformName}"></i>
+        </h5>
+        <th:block th:if="${platform.getUsername() != null}">
+            <div class="card-title text-success" th:text="${platform.getUsername()}">
+                Github username
+            </div>
+            <small class="card-text">
+                <span th:if="${verification.isApproved()}">
+                    <i class="far fa-smile"></i>
+                    Congratulations, you earned
+                    <span class="badge badge-success">1 FND</span> !
+                </span>
+                <span th:unless="${verification.isApproved()}">
+                    <i class="far fa-frown"></i>
+                    Too bad, your account is not old enough to earn some FND.
+                    But don't worry, you will be able to use the platform!
+                </span>
+            </small>
+        </th:block>
+        <div class="card-text"
+             th:if="${platform.getUsername() == null}">
+            <a class="btn btn-primary"
+               th:href="${platform.getSignupLink()}">Connect</a>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
