@@ -104,7 +104,6 @@ section.footer .lSPager.lSpg { margin-top: 25px !important; }
     nav .navbar-header { width: 100%; }
     nav .navbar-collapse { position: relative; background-color: $white; }
     nav button.navbar-toggle { border: 1px solid transparent; padding: 10px; float: right; }
-    nav button.navbar-toggle span { background-color: #000; -webkit-box-shadow: .5px .5px #000; box-shadow: .5px .5px #000; }
     nav ul.nav li.dropdown { position: absolute; right: 15px; top: 15px; margin-right: 0; margin-left: 0; border: 1px solid transparent; border-radius: 0; }
     nav .navbar-brand { padding: 11px 15px; }
     nav .navbar-nav { padding-bottom: 20px; }
@@ -113,7 +112,6 @@ section.footer .lSPager.lSpg { margin-top: 25px !important; }
     nav.headroom--top.headroom--pinned li.dropdown .dropdown-menu { min-width: auto; max-width: auto; }
     nav.headroom--top.headroom--pinned .dropdown-menu li a { }
     nav.headroom--pinned ul li.button a { text-align: center; color: $white !important; }
-    nav.headroom--not-top button.navbar-toggle span { background-color: #000; -webkit-box-shadow: .5px .5px #000; box-shadow: .5px .5px #000; }
     nav.headroom--not-top li.dropdown a.dropdown-toggle { padding: 0px !important; margin-top: 2px; }
     nav.headroom--not-top li.dropdown ul.dropdown-menu { min-width: auto !important; max-width: auto !important; }
     nav.headroom--not-top li.dropdown ul.dropdown-menu li { margin: 0; }

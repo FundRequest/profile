@@ -1,7 +1,7 @@
 /*!
  * Bootstrap Docs (https://getbootstrap.com)
- * Copyright 2011-2018 The Bootstrap Authors
- * Copyright 2011-2018 Twitter, Inc.
+ * Copyright 2011-2017 The Bootstrap Authors
+ * Copyright 2011-2017 Twitter, Inc.
  * Licensed under the Creative Commons Attribution 3.0 Unported License. For
  * details, see https://creativecommons.org/licenses/by/3.0/.
  */
@@ -23,24 +23,26 @@
 //
 // Happy Bootstrapping!
 
-// Load Bootstrap variables and mixins
-@import "../../scss/functions";
-@import "../../scss/variables";
-@import "../../scss/mixins";
+// Load custom Bootstrap variables and core
+@import "variables";
+@import "../../scss/core";
 
 // Load docs components
-@import "variables";
 @import "nav";
 @import "masthead";
+@import "featured-sites";
 @import "ads";
 @import "content";
+@import "page-header";
 @import "skiplink";
 @import "sidebar";
 @import "footer";
 @import "component-examples";
+@import "responsive-tests";
 @import "buttons";
 @import "callouts";
 @import "examples";
+@import "team";
 @import "browser-bugs";
 @import "brand";
 @import "colors";
@@ -50,3 +52,6 @@
 @import "syntax";
 @import "anchor";
 @import "algolia";
+
+// Custom MDB Drawer styling for docs
+@import "drawer";

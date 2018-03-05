@@ -2,8 +2,7 @@
       xmlns:th="http://www.thymeleaf.org"
 >
 <body>
-<div th:fragment="social-connect-block (platform, title, platformName, rewardText, buttonText, buttonLink)" th:if="${platform != null}"
-     class="col-12" th:classappend="${mb} ? 'mb-4' : ''">
+<div th:fragment="social-connect-block (platform, title, platformName, rewardText, buttonText, buttonLink)" th:if="${platform != null}">
     <a class="anchor" th:id="'get-social-' + ${platformName}"></a>
 
     <div class="card card--border-top h-100" th:if="${platform.getUsername() == null}">
@@ -12,7 +11,7 @@
                 <span th:text="${title}">Google</span>
                 <i class="fab" th:classappend="'fa-' + ${platformName}"></i>
             </h5>
-            <a class="btn btn-primary"
+            <a class="btn btn-raised btn-primary"
                th:href="${platform.getSignupLink()}">Connect</a>
         </div>
     </div>
@@ -32,10 +31,11 @@
                 Get 50 FND for sharing on google
             </h5>
             <div>
-                <button class="btn icon-left" th:classappend="'btn-outline-' + ${platformName}">
+                <a href="#" target="_blank" th:href="${buttonLink}"
+                   class="btn icon-left" th:classappend="'btn-outline-' + ${platformName}">
                     <i class="fab" th:classappend="'fa-' + ${platformName}"></i>
-                    <a href="https://share" th:text="${buttonText}" target="_blank" th:href="${buttonLink}">Share on google</a>
-                </button>
+                    <span th:text="${buttonText}">Share on google</span>
+                </a>
             </div>
         </div>
     </div>
@@ -68,7 +68,7 @@
         </th:block>
         <div class="card-text"
              th:if="${platform.getUsername() == null}">
-            <a class="btn btn-primary"
+            <a class="btn btn-raised btn-primary"
                th:href="${platform.getSignupLink()}">Connect</a>
         </div>
     </div>

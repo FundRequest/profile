@@ -8,20 +8,22 @@
     align-items: center;
     justify-content: space-between;
     color: $white;
+   // transition: box-shadow .3s ease;
 
     &:hover,
     &:focus,
     &:active {
         color: $white;
         text-decoration: none;
-        box-shadow: $box-shadow-normal;
+        //box-shadow: $box-shadow-normal;
+
+        i {
+            transform: translateX(10px);
+        }
     }
 
     i {
         transition: transform .6s ease;
-        &:hover {
-            transform: translateX(10px);
-        }
     }
 
     &__bar {

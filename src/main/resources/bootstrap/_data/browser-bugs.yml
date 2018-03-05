@@ -204,7 +204,7 @@
   summary: >
     `table-cell` borders not overlapping despite `margin-right: -1px`
   upstream_bug: >
-    Chromium#749848
+    Chromium#568691
   origin: >
     Bootstrap#17438, Bootstrap#14237
 
@@ -250,16 +250,6 @@
 
 -
   browser: >
-    Chrome
-  summary: >
-    Significant performance hit for dynamic SVGs with text depending on the number of fonts in `font-family`.
-  upstream_bug: >
-    Chromium#781344
-  origin: >
-    Bootstrap#24673
-
--
-  browser: >
     Safari
   summary: >
     `rem` units in media queries should be calculated using `font-size: initial`, not the root element's `font-size`
@@ -277,16 +267,6 @@
     WebKit#163658
   origin: >
     Bootstrap#20732
-
--
-  browser: >
-    Safari
-  summary: >
-    CSS `min-width` and `max-width` media features should not round fractional pixel
-  upstream_bug: >
-    WebKit#178261
-  origin: >
-    Bootstrap#25166
 
 -
   browser: >

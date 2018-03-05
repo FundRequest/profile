@@ -53,4 +53,5 @@ $(function () {
     $('.fnd-badge[data-toggle="tooltip"]').tooltip();
     new Main();
     new InstantEdit();
+    $(document).ready(function () { $('body').bootstrapMaterialDesign(); });
 });

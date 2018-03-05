@@ -81,23 +81,22 @@
                 </div>
 
                 <div class="card-text">
-                    <button class="btn btn-outline-linkedin icon-left mb-1">
+                    <a class="btn btn-outline-linkedin icon-left mb-1"
+                       th:href="${'https://www.linkedin.com/shareArticle?mini=true&amp;url='+ 'https://profile-dev.fundrequest.io' + '&amp;title=FundRequest%20Platform%20Signup&amp;summary=I%20just%20joined%20the%20FundRequest%20platform%20pre-signup.%20You%20can%20signup%20as%20well.&amp;source=fundrequest.io'}" target="_blank">
                         <i class="fab fa-linkedin"></i>
-                        <a target="_blank" th:href="${'https://www.linkedin.com/shareArticle?mini=true&amp;url='+ 'https://profile-dev.fundrequest.io' + '&amp;title=FundRequest%20Platform%20Signup&amp;summary=I%20just%20joined%20the%20FundRequest%20platform%20pre-signup.%20You%20can%20signup%20as%20well.&amp;source=fundrequest.io'}">Share on LinkedIn</a>
-                    </button>
-                    <button class="btn btn-outline-twitter icon-left mb-1">
+                        <span>Share on LinkedIn</span>
+                    </a>
+                    <a class="btn btn-outline-twitter icon-left mb-1"
+                       th:href="${'https://twitter.com/home?status=I%20just%20joined%20the%20FundRequest%20platform%20pre-signup.%20You%20can%20signup%20as%20well%3A ' + refLink}" target="_blank">
                         <i class="fab fa-twitter"></i>
-                        <a target="_blank"
-                           th:href="${'https://twitter.com/home?status=I%20just%20joined%20the%20FundRequest%20platform%20pre-signup.%20You%20can%20signup%20as%20well%3A ' + refLink}">Share
-                            on Twitter</a>
+                        <span>Share on Twitter</span>
 
-                    </button>
-                    <button class="btn btn-outline-facebook icon-left mb-1">
+                    </a>
+                    <a class="btn btn-outline-facebook icon-left mb-1"
+                       th:href="${'https://www.facebook.com/sharer/sharer.php?u=I%20just%20joined%20the%20FundRequest%20platform%20pre-signup.%20You%20can%20signup%20as%20well%3A%20' + refLink}" target="_blank">
                         <i class="fab fa-facebook"></i>
-                        <a target="_blank"
-                           th:href="${'https://www.facebook.com/sharer/sharer.php?u=I%20just%20joined%20the%20FundRequest%20platform%20pre-signup.%20You%20can%20signup%20as%20well%3A%20' + refLink}">Share
-                            on facebook</a>
-                    </button>
+                        <span>Share on facebook</span>
+                    </a>
                 </div>
             </div>
         </div>

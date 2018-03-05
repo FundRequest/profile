@@ -1,131 +1,147 @@
-// The dropdown wrapper (`<div>`)
-.dropup,
-.dropdown {
-  position: relative;
-}
+// Menus https://www.google.com/design/spec/components/menus.html#menus-specs
+// Dropdown buttons (mobile and desktop) https://www.google.com/design/spec/components/buttons.html#buttons-dropdown-buttons
 
-.dropdown-toggle {
-  // Generate the caret automatically
-  @include caret;
-}
-
-// The dropdown menu
 .dropdown-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: $zindex-dropdown;
-  display: none; // none by default, but block on "open" of the menu
-  float: left;
-  min-width: $dropdown-min-width;
-  padding: $dropdown-padding-y 0;
-  margin: $dropdown-spacer 0 0; // override default ul
-  font-size: $font-size-base; // Redeclare because nesting can cause inheritance issues
-  color: $body-color;
-  text-align: left; // Ensures proper alignment if parent has it changed (e.g., modal footer)
-  list-style: none;
-  background-color: $dropdown-bg;
-  background-clip: padding-box;
-  border: $dropdown-border-width solid $dropdown-border-color;
-  @include border-radius($dropdown-border-radius);
-  @include box-shadow($dropdown-box-shadow);
+  display: none;
+  padding: .25rem 0;
+  border: 0;
+  opacity: 0;
+  transform: scale(0);
+  transform-origin: 0 0;
+  will-change: transform, opacity;
+  transition: transform $bmd-menu-expand-duration $bmd-animation-curve-default,
+              opacity $bmd-menu-fade-duration $bmd-animation-curve-default;
+
+  @include media-breakpoint-up(md) {
+    padding: .5rem 0;
+  }
+
+  &.showing {
+    animation-name: bmd-dropdown-animation;
+    animation-duration: $bmd-menu-expand-duration;
+    animation-fill-mode: forwards;
+    animation-timing-function: $bmd-animation-curve-default;
+  }
+
+  .open > &,
+  &.show {
+    display: block;
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  &.hiding {
+    display: block;
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  &[x-placement="bottom-start"],
+  &.dropdown-menu-left {
+    transform-origin: 0 0;
+  }
+
+  &[x-placement="bottom-end"],
+  &.dropdown-menu-right {
+    transform-origin: 100% 0;
+  }
+
+  &[x-placement="top-start"] {
+    transform-origin: 0 100%;
+  }
+
+  &[x-placement="top-end"] {
+    transform-origin: 100% 100%;
+  }
+
+  // https://www.google.com/design/spec/components/menus.html#menus-specs
+  .dropdown-item {
+    // used to properly size the ripple container
+    position: relative;
+
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+
+    min-width: $bmd-menu-item-min-width;
+    max-width: $bmd-menu-item-max-width;
+    min-height: $bmd-menu-item-min-height;
+
+    padding: $bmd-menu-item-padding-top $bmd-menu-item-padding-right
+      $bmd-menu-item-padding-bottom $bmd-menu-item-padding-left;
+
+    // FIXME: multi-line menu word wrapping doesn't work - see the maximum width example in menus.md
+    overflow: hidden;
+    line-height: $bmd-menu-line-height;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+
+    &.active,
+    &:active {
+      background-color: inherit;
+      color: inherit;
+    }
+
+    // Simple menus always maintain a 16dp margin (phone) or 24dp margin (tablet) to the left and right edges of the screen.
+    @include media-breakpoint-up(md) {
+      padding-right: $bmd-menu-item-padding-right-md;
+      padding-left: $bmd-menu-item-padding-left-md;
+    }
+  }
 }
 
-// Allow for dropdowns to go bottom up (aka, dropup-menu)
-// Just add .dropup after the standard .dropdown class and you're set.
-.dropup {
-  .dropdown-menu {
-    margin-top: 0;
-    margin-bottom: $dropdown-spacer;
-  }
-
-  .dropdown-toggle {
-    @include caret(up);
-  }
-}
-
-.dropright {
-  .dropdown-menu {
-    margin-top: 0;
-    margin-left: $dropdown-spacer;
-  }
-
-  .dropdown-toggle {
-    @include caret(right);
+// this could be in a .btn-group or .dropdown
+.dropdown-toggle {
+  &.bmd-btn-icon,
+  &.bmd-btn-fab {
+    // remove the dropdown icon
     &::after {
-      vertical-align: 0;
+      display: none;
+    }
+
+    ~ .dropdown-menu {
+      &.dropdown-menu-top-left,
+      &.dropdown-menu-top-right {
+        bottom: $bmd-btn-icon-size; // push up the bottom of the menu the height of the button
+      }
+    }
+  }
+
+  &.bmd-btn-fab-sm {
+    ~ .dropdown-menu {
+      &.dropdown-menu-top-left,
+      &.dropdown-menu-top-right {
+        bottom: $bmd-btn-fab-size-sm; // push up the bottom of the menu the height of the button
+      }
+    }
+  }
+
+  &.bmd-btn-icon {
+    ~ .dropdown-menu {
+      // collapse some spacing
+      margin: 0;
+    }
+  }
+
+  .show &.btn {
+    &,
+    &-secondary,
+    &-success,
+    &-info,
+    &-warning,
+    &-danger {
+      background-color: transparent;
     }
   }
 }
 
-.dropleft {
-  .dropdown-menu {
-    margin-top: 0;
-    margin-right: $dropdown-spacer;
+@keyframes bmd-dropdown-animation {
+  from {
+    opacity: 0;
+    transform: scale(0);
   }
-
-  .dropdown-toggle {
-    @include caret(left);
-    &::before {
-      vertical-align: 0;
-    }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
-}
-
-// Dividers (basically an `<hr>`) within the dropdown
-.dropdown-divider {
-  @include nav-divider($dropdown-divider-bg);
-}
-
-// Links, buttons, and more within the dropdown menu
-//
-// `<button>`-specific styles are denoted with `// For <button>s`
-.dropdown-item {
-  display: block;
-  width: 100%; // For `<button>`s
-  padding: $dropdown-item-padding-y $dropdown-item-padding-x;
-  clear: both;
-  font-weight: $font-weight-normal;
-  color: $dropdown-link-color;
-  text-align: inherit; // For `<button>`s
-  white-space: nowrap; // prevent links from randomly breaking onto new lines
-  background-color: transparent; // For `<button>`s
-  border: 0; // For `<button>`s
-
-  @include hover-focus {
-    color: $dropdown-link-hover-color;
-    text-decoration: none;
-    @include gradient-bg($dropdown-link-hover-bg);
-  }
-
-  &.active,
-  &:active {
-    color: $dropdown-link-active-color;
-    text-decoration: none;
-    @include gradient-bg($dropdown-link-active-bg);
-  }
-
-  &.disabled,
-  &:disabled {
-    color: $dropdown-link-disabled-color;
-    background-color: transparent;
-    // Remove CSS gradients if they're enabled
-    @if $enable-gradients {
-      background-image: none;
-    }
-  }
-}
-
-.dropdown-menu.show {
-  display: block;
-}
-
-// Dropdown section headers
-.dropdown-header {
-  display: block;
-  padding: $dropdown-padding-y $dropdown-item-padding-x;
-  margin-bottom: 0; // for use with heading elements
-  font-size: $font-size-sm;
-  color: $dropdown-header-color;
-  white-space: nowrap; // as with > li > a
 }

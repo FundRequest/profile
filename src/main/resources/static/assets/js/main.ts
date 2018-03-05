@@ -65,4 +65,5 @@ $(function () {
 
     new Main();
     new InstantEdit();
+    $(document).ready(function() { $('body').bootstrapMaterialDesign(); });
 });
