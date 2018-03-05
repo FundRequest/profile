@@ -20,62 +20,58 @@
 </head>
 <body>
 <div id="alert-container" class="alert-container"></div>
-<div class="page-container">
-    <nav class="navbar navbar-expand flex-md-row fixed-top headroom headroom--pinned animated bg bg--blue"
-         data-headroom="true">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button class="navbar-toggle collapsed d-md-none ml-3" type="button" data-toggle="collapse"
-                        data-target="#top-nav-menu" aria-controls="top-nav-menu" aria-expanded="false"
-                        aria-label="Toggle navigation">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30" height="30"
-                         focusable="false"><title>Menu</title>
-                        <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10"
-                              d="M4 7h22M4 15h22M4 23h22"></path>
-                    </svg>
-                </button>
-                <a class="navbar-brand" href="/profile">
-                    <img src="/assets/img/Fundrequest-title-white.png" alt="Fundrequest logo"/>
-                </a>
-            </div>
+<div class="fnd-page-container">
+    <nav class="fnd-header navbar navbar-dark navbar-expand-md bg bg--blue bg--no-rect">
+        <a class="navbar-brand navbar-brand--fnd" href="/profile">
+            <img class="d-md-none" src="/assets/img/logo-single180.png" alt="Fundrequest logo"/>
+            <img class="d-none d-md-block" src="/assets/img/Fundrequest-title-white.png" alt="Fundrequest logo"/>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#primary-menu"
+                aria-controls="primary-menu" aria-expanded="false" aria-label="Toggle primary menu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-            <div class="navbar-collapse collapse" id="top-nav-menu">
-                <ul class="nav navbar-nav ml-md-auto">
-                    <li class="top-nav-item"><a class="top-nav-link" title="About" href="https://fundrequest.io#about">About</a>
-                    </li>
-                    <li class="top-nav-item"><a class="top-nav-link" title="Team" href="https://fundrequest.io#team">Team</a>
-                    </li>
-                    <li class="top-nav-item"><a class="top-nav-link" title="Roadmap"
-                                                href="https://fundrequest.io#roadmap">Roadmap</a></li>
-                    <li class="top-nav-item"><a class="top-nav-link" title="Whitepaper"
-                                                href="https://fundrequest.io/whitepaper.pdf"
-                                                target="_blank">Whitepaper</a></li>
-                    <li class="top-nav-item"><a class="top-nav-link" title="Blog" href="https://blog.fundrequest.io/"
-                                                target="_blank">Blog</a></li>
-                    <li class="top-nav-item">
-                        <div class="dropdown">
-                            <button class="btn btn btn-warning bmd-btn-fab btn--profile dropdown-toggle" title="Profile"
-                               type="button"
-                               id="user-profile-menu"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-user"></i>
-                            </button>
+        <div class="collapse navbar-collapse" id="primary-menu">
+            <ul class="navbar-nav text-center ml-md-auto">
+                <li class="nav-item">
+                    <a class="nav-link" title="About" href="https://fundrequest.io#about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" title="Team" href="https://fundrequest.io#team">Team</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" title="Roadmap" href="https://fundrequest.io#roadmap">Roadmap</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" title="Whitepaper" href="https://fundrequest.io/whitepaper.pdf"
+                       target="_blank">Whitepaper</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" title="Blog" href="https://blog.fundrequest.io/"
+                       target="_blank">Blog</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <button class="btn btn btn-warning bmd-btn-fab bmd-btn-fab-sm btn--profile dropdown-toggle"
+                            title="Profile"
+                            type="button"
+                            id="user-profile-menu"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-user"></i>
+                    </button>
 
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="user-profile-menu">
-                                <a class="dropdown-item" href="/profile">Profile</a>
-                                <a class="dropdown-item" href="/rewards">Rewards</a>
-                                <a class="dropdown-item" href="/logout">Logout</a>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="user-profile-menu">
+                        <a class="dropdown-item" href="/profile">Profile</a>
+                        <a class="dropdown-item" href="/rewards">Rewards</a>
+                        <a class="dropdown-item" href="/logout">Logout</a>
+                    </div>
+                </li>
+            </ul>
         </div>
     </nav>
 
-    <section class="section section--white section--compact">
+    <div layout:fragment="ribbon"></div>
+
+    <section class="fnd-main">
         <div class="container">
             <div layout:fragment="content"></div>
         </div>
@@ -109,7 +105,6 @@
         integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9"
         crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
-<script src="/assets/js/headroom.js"></script>
 <script src="/assets/js/instant-edit.js"></script>
 <script src="/assets/js/main.js"></script>
 

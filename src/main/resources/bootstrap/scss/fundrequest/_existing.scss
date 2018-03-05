@@ -4,36 +4,7 @@ h1, h2 { font-size: 34px !important; line-height: 40px !important; }
 h3 { font-size: 20px !important; line-height: 26px !important; }
 h2.title { color: #556992; font-weight: 700; }
 p { font-family: 'jaf-domus', sans-serif; font-size: 20px; line-height: 26px; font-weight: 400; }
-input { font-family: 'Titillium Web', sans-serif !important; font-size: 20px; line-height: 26px; font-weight: 400; }
-p.intro { font-size: 22px; font-weight: 600; }
-p.intro_sec3 { font-weight: 700; }
-.titlediv { width: 100%; }
-.titlediv h2.title { text-align: center; }
-.center { text-align: center; }
-
-/*nav -> headroom */
-nav.headroom--unpinned { display: none; -webkit-transition: all .35s ease-in-out; transition: all .35s ease-in-out; }
-nav.headroom--top.headroom--pinned { padding-top: 50px !important; background-color: transparent !important; -webkit-transition: all .35s ease-in-out; transition: all .35s ease-in-out;}
-nav.headroom--top.headroom--pinned img.scroll { display: none; }
-nav.headroom--top.headroom--pinned img.top { display: block; }
-nav.headroom--top.headroom--pinned .dropdown-menu li a { color: #000 !important; }
-nav.headroom--pinned { display: block; background-color: $white; padding: 12px 0; -webkit-transition: all .35s ease-in-out; transition: all .35s ease-in-out; }
-nav.headroom--pinned img.top { display: none; }
-
-/* nav */
-nav { -webkit-transition: all .35s ease-in-out; transition: all .35s ease-in-out; }
-nav .navbar-brand { max-width: 283px; }
-nav .navbar-brand img { width: 100%; }
-nav li a { text-transform: uppercase; font-size: 20px; font-weight: 400; text-align: center;}
-nav li a.active { font-weight: 600; }
-nav li a:hover.active { text-decoration: none; cursor: default; }
-nav li.dropdown { margin-right: 15px; margin-left: 15px; /*  border: 1px solid $white; border-radius: 25px;} */ }
-nav li.dropdown a { padding: 15px 8px; font-weight: 400; font-size: 16px; }
-nav li.dropdown.open a,
-nav li.dropdown.open a:active,
-nav ul.nav li.dropdown.open a:focus { background-color: transparent; }
-nav ul.nav li.dropdown ul.dropdown-menu { min-width: 50px; max-width: 50px; }
-nav ul.nav li.dropdown ul.dropdown-menu a { padding: 5px 0; }
+input { font-family: 'Titillium Web', sans-serif !important; }
 
 /*Footer */
 section.footer { padding-bottom: 0; }
@@ -49,22 +20,8 @@ section.footer .disclaimer { float: left;  width: 100%; text-align: center; }
 section.footer .disclaimer a {text-decoration: underline; top: 0; margin: 0; float: none; display: inline-block; color: #dfeff9; font-size: 18px; font-family: 'jaf-domus' !important; }
 section.footer .disclaimer a:hover { text-decoration: none; }
 section.footer .disclaimer p { font-size: 18px; color: #dfeff9; display: inline-block; }
-section.footer .partnership a { top: 0; }
-section.footer .partnership-logos { background-color: $white; }
-section.footer .partnership { float: left; width: 100%; padding: 50px 0;}
-section.footer .partnership a { max-width: 214px; }
-section.footer .partnership a img { width: 100%;}
-section.footer .js_horizontal a { margin: 0 0px; }
-section.footer .lSPager.lSpg a { margin: 0; }
-section.footer .lSPager.lSpg { margin-top: 25px !important; }
 
 @media screen and (max-width: 1199px) {
-    nav li a { font-size: 18px; }
-    a.button { font-size: 15px; }
-    section.footer .lSSlideOuter .lightSlider > *,
-    section.footer .lSSlideOuter .lSGallery li { max-width: 175px !important; }
-    section.steps,
-    section.team,
     section.footer { padding: 150px 0 150px 0; }
     section.footer { padding-bottom: 0px; }
     section.footer a.margin { margin: 0 10px; }
@@ -83,42 +40,14 @@ section.footer .lSPager.lSpg { margin-top: 25px !important; }
 
     .footer a img { width: 34px; }
     .footer .disclaimer { padding: 60px 0 20px 0; }
-    .footer .partnership { padding: 15px 0; }
     .footer .navlinks h2 { font-size: 25px !important; }
-    .footer .navlinks a { font-size: 18px; }
-    .footer .lSSlideOuter .lightSlider > *, section.footer .lSSlideOuter .lSGallery li { max-width: 185px !important; }
     .irSpinner ul.horizontal { margin-left: -10px; }
 }
 
 @media screen and (max-width: 767px) {
-    body .fixed-top { top: auto; bottom: 0; margin-bottom: 0; border-width: 1px 0 0; }
     section { padding: 80px 0; }
     h1, h2 { font-size: 28px !important; line-height: 32px !important; }
     p { font-size: 18px !important; }
-    body nav.headroom--top.headroom--pinned { display: block; background-color: $white !important;  -webkit-transition: all .35s ease-in-out; transition: all .35s ease-in-out; }
-    body nav.headroom--top.headroom--pinned img.scroll { display: block !important; }
-    body nav.headroom--top.headroom--pinned img.top { display: none !important; }
-    nav.headroom img.top { display: none; }
-    nav.headroom ul li.button a { color: $white; }
-    nav { margin: 0px; }
-    nav .navbar-header { width: 100%; }
-    nav .navbar-collapse { position: relative; background-color: $white; }
-    nav button.navbar-toggle { border: 1px solid transparent; padding: 10px; float: right; }
-    nav ul.nav li.dropdown { position: absolute; right: 15px; top: 15px; margin-right: 0; margin-left: 0; border: 1px solid transparent; border-radius: 0; }
-    nav .navbar-brand { padding: 11px 15px; }
-    nav .navbar-nav { padding-bottom: 20px; }
-    nav.headroom--top.headroom--pinned { padding-top: 0px !important; }
-    nav.headroom--top.headroom--pinned li.dropdown a { padding: 0px; margin-top: 4px; }
-    nav.headroom--top.headroom--pinned li.dropdown .dropdown-menu { min-width: auto; max-width: auto; }
-    nav.headroom--top.headroom--pinned .dropdown-menu li a { }
-    nav.headroom--pinned ul li.button a { text-align: center; color: $white !important; }
-    nav.headroom--not-top li.dropdown a.dropdown-toggle { padding: 0px !important; margin-top: 2px; }
-    nav.headroom--not-top li.dropdown ul.dropdown-menu { min-width: auto !important; max-width: auto !important; }
-    nav.headroom--not-top li.dropdown ul.dropdown-menu li { margin: 0; }
-    nav.headroom--not-top .navbar-nav li { margin-left: 0; }
-    nav.headroom--not-top .navbar-nav li.blog { margin: 0; margin-bottom: 5px;}
-    nav.headroom--not-top, nav.headroom--pinned { padding: 0 !important; }
-
     .footer .navlinks { margin-bottom: 35px; }
     .footer { text-align: center; }
     .footer a { float: none; }
@@ -127,15 +56,6 @@ section.footer .lSPager.lSpg { margin-top: 25px !important; }
     .footer a.button { margin: 0; width: 100%; margin-top: 15px; max-width: 275px; }
     .footer a.margin { margin: 0 13px; }
 
-    .footer .lSSlideOuter .lightSlider > *,
-    .footer .lSSlideOuter .lSGallery li { max-width: 160px !important; }
-
-}
-
-@media screen and (max-width: 375px) {
-    section.footer .lSSlideOuter .lightSlider > *, section.footer .lSSlideOuter .lSGallery li {
-        max-width: 185px !important;
-    }
 }
 
 h2 .svg-inline--fa { vertical-align: baseline; }

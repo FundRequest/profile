@@ -33,9 +33,9 @@ class InstantEdit {
                     valid = value.length;
                     message = 'Field is required';
                     break;
-                case 'etherium':
+                case 'ethereum':
                     valid = value.length > 0 ? value.match(/^0x[a-fA-F0-9]{40}$/) : true;
-                    message = 'Not a valid etherium address';
+                    message = 'Not a valid ethereum address';
                     break;
             }
         }

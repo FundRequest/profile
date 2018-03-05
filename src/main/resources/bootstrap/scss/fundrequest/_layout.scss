@@ -1,21 +1,92 @@
 body {
     min-height: 100vh;
-    //background-color: $white;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.page-container {
+.fnd-page-container {
     position: relative;
     margin: 0 auto;
     padding-top: 0;
     width: 100%;
     flex-basis: 100%;
     flex-grow: 1;
+}
 
-    @media screen and (min-width: 767px) {
-        padding-top: 150px;
+.fnd-header {
+    .navbar-nav {
+        align-items: center;
+    }
+}
+
+.fnd-ribbon {
+    height: 200px;
+    flex-shrink: 0;
+    background-color: $blue;
+    background-image: url("../img/rect.png"), url("../img/bg-blue.png");
+    background-repeat: no-repeat, repeat-y;
+    background-size: contain, 100%;
+    background-position: right bottom;
+
+    &--novice {
+        background-image: url("../img/rect.png"), url("../img/bg-green.png");
+    }
+}
+
+.fnd-main {
+    flex-shrink: 0;
+    padding-top: 20px;
+
+    .fnd-ribbon + & {
+        margin-top: -140px;
+
+
+        @include media-breakpoint-up(md) {
+            margin-top: -180px;
+        }
+    }
+}
+
+.navbar-brand--fnd {
+    > img {
+        max-height: 35px;
+    }
+}
+
+.navbar--fnd-secondary {
+    padding-top: 0;
+    padding-bottom: 0;
+    @include box-shadow($bmd-shadow-2dp);
+
+    .nav-item {
+        margin: 0 map-get($spacers, 2);
+
+        &:first-child {
+            margin-left: 0;
+        }
+
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+
+    .nav-link {
+        transition: border-color, color .3s ease;
+        height: 100%;
+        padding: ($nav-link-padding-y * 2) ($nav-link-padding-x * 2);
+        color: $secondary;
+        border-bottom: 1px solid transparent;
+
+        &:hover {
+            color: $primary;
+            border-bottom-color: $primary;
+        }
+    }
+
+    .active .nav-link {
+        color: $primary;
+        border-bottom: 3px solid $primary;
     }
 }
 
@@ -24,10 +95,6 @@ a.anchor {
     position: relative;
     top: 0;
     visibility: hidden;
-
-    @media screen and (min-width: 767px) {
-        top: -150px;
-    }
 }
 
 .footer {

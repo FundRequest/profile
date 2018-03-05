@@ -39,15 +39,6 @@ class Alert {
 
 class Main {
     constructor() {
-        let _headroom = new Headroom(document.querySelector(".headroom"), {
-            tolerance: 10,
-            classes: {
-                pinned: "slideDown",
-                unpinned: "slideUp"
-            }
-        });
-        _headroom.init();
-
         let _clipboard = new Clipboard('[data-clipboard-target]');
         _clipboard.on('success', (e) => {
             Alert.show('Copied to your clipboard! ');
@@ -65,5 +56,5 @@ $(function () {
 
     new Main();
     new InstantEdit();
-    $(document).ready(function() { $('body').bootstrapMaterialDesign(); });
+    $('body').bootstrapMaterialDesign();
 });

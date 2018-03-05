@@ -4,62 +4,67 @@
 <head>
 </head>
 <body>
+<div layout:fragment="ribbon" class="fnd-ribbon fnd-ribbon--novice"></div>
+
 <div layout:fragment="content" class="row justify-content-center">
-    <div class="col-12 col-lg-8">
-        <h2>Hi, <span th:text="${profile.getName()}">My Name</span></h2>
-
-        <p>Some dummy text</p>
-
-        <div class="card shadow-light mb-5">
-            <div class="d-flex flex-md-row">
-                <div class="card-img-left m-3 flex-auto d-none d-md-block"
-                     th:if="${profile.getGithub().getUsername() !=null}">
-                    <img th:src="'https://avatars.githubusercontent.com/' + ${profile.getGithub().getUsername()} + '?size=125'"
-                         class="rounded-circle shadow-light" alt="Completely round image"/>
-                </div>
-                <div class="card-body card-body--fnd-badge-holder">
-                    <div class="fnd-badge fnd-badge--dummy"></div>
-                    <h5 class="card-title">
-                        General information
-                    </h5>
-                    <div class="card-text mb-3">
-                        <label class="mb-0">E-mail</label>
-                        <input type="text"
-                               th:value="${profile.getEmail()}"
-                               class="form-control form-control--not-editable" disabled="disabled" readonly="readonly" />
-                    </div>
-                    <div class="row">
-                        <div class="col-12 col-md-6">
-                            <div class="card-text mb-3">
-                                <label for="eth-address" class="mb-0">ETH Address</label>
+    <div class="col-12">
+        <div class="card card--fnd-profile mb-1 d-flex flex-column flex-md-row">
+            <div class="fnd-profile-picture" th:if="${profile.getGithub().getUsername() !=null}">
+                <img th:src="'https://avatars.githubusercontent.com/' + ${profile.getGithub().getUsername()} + '?size=200'"
+                     alt="Profile image"/>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 col-md-9">
+                        <h5 class="card-title mb-0" th:text="${profile.getName()}">
+                            My Name
+                        </h5>
+                        <div class="card-text">
+                            <div class="form-group bmd-form-group mb-0">
+                                <label class="bmd-label-static">E-mail</label>
                                 <input type="text"
-                                       id="eth-address"
+                                       th:value="${profile.getEmail()}"
+                                       class="form-control form-control--label" disabled="disabled"
+                                       readonly="readonly"/>
+                            </div>
+                            <div class="form-group bmd-form-group mb-0">
+                                <label for="eth-address" class="bmd-label-floating">ETH Address</label>
+                                <input id="eth-address"
                                        data-edit="eth-address"
-                                       data-edit-validation="etherium"
-                                       th:value="${profile.getEtherAddress()}"
-                                       class="form-control form-control--instant-edit" placeholder="Not defined" />
-                                <div data-edit-messages="eth-address"></div>
+                                       data-edit-validation="ethereum"
+                                       class="form-control form-control--instant-edit"
+                                       th:value="${profile.getEtherAddress()}" type="text"/>
+                                <span class="text-danger" data-edit-messages="eth-address"></span>
                             </div>
                         </div>
-                        <div class="col-12 col-md-6">
-
-                        </div>
                     </div>
-
+                    <div class="col-12 col-md-3 text-center">
+                        <span class="badge badge-success">Badge placeholder</span>
+                        <span class="badge badge-success">Badge placeholder</span>
+                        <span class="badge badge-success">Badge placeholder</span>
+                    </div>
                 </div>
             </div>
-            <a class="card-footer profile-progress" href="#">
-                <div class="profile-progress__percentage">75%</div>
-                <div class="profile-progress__bar">
-                    <h6>Next step: connect to Twitter</h6>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75"
-                             aria-valuemin="0"
-                             aria-valuemax="100"></div>
-                    </div>
+        </div>
+        <div class="card mb-5">
+            <nav class="navbar navbar-expand navbar--fnd-secondary"> <!-- navbar-expand-md -->
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#sec-menu" aria-controls="sec-menu"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="sec-menu">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/profile">Profile <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/rewards">Rewards</a>
+                        </li>
+                    </ul>
                 </div>
-                <i class="fa fa-chevron-right fa-large"></i>
-            </a>
+            </nav>
         </div>
 
         <div class="card mb-5">
@@ -68,10 +73,11 @@
                     Personal referral link
                 </h5>
 
-                <div class="card-text mb-2">
+                <div class="card-text mb-3">
                     <div class="input-group">
-                        <input class="form-control" id="referral-link" title="personal referral link"
-                               value="https://xyz.testReferralLink-Copy" th:value="${refLink}"/>
+                        <input class="form-control form-control--not-editable" id="referral-link"
+                               title="personal referral link"
+                               value="https://xyz.testReferralLink-Copy" th:value="${refLink}" readonly="readonly"/>
                         <div class="input-group-append">
                             <button class="btn" data-clipboard-target="#referral-link">
                                 <i class="fa fa-clipboard"></i>
@@ -80,20 +86,23 @@
                     </div>
                 </div>
 
-                <div class="card-text">
-                    <a class="btn btn-outline-linkedin icon-left mb-1"
-                       th:href="${'https://www.linkedin.com/shareArticle?mini=true&amp;url='+ 'https://profile-dev.fundrequest.io' + '&amp;title=FundRequest%20Platform%20Signup&amp;summary=I%20just%20joined%20the%20FundRequest%20platform%20pre-signup.%20You%20can%20signup%20as%20well.&amp;source=fundrequest.io'}" target="_blank">
+                <div class="card-text text-center">
+                    <a class="btn btn-outline-linkedin icon-left mb-2 mb-md-0"
+                       th:href="${'https://www.linkedin.com/shareArticle?mini=true&amp;url='+ 'https://profile-dev.fundrequest.io' + '&amp;title=FundRequest%20Platform%20Signup&amp;summary=I%20just%20joined%20the%20FundRequest%20platform%20pre-signup.%20You%20can%20signup%20as%20well.&amp;source=fundrequest.io'}"
+                       target="_blank">
                         <i class="fab fa-linkedin"></i>
                         <span>Share on LinkedIn</span>
                     </a>
-                    <a class="btn btn-outline-twitter icon-left mb-1"
-                       th:href="${'https://twitter.com/home?status=I%20just%20joined%20the%20FundRequest%20platform%20pre-signup.%20You%20can%20signup%20as%20well%3A ' + refLink}" target="_blank">
+                    <a class="btn btn-outline-twitter icon-left mb-2 mb-md-0"
+                       th:href="${'https://twitter.com/home?status=I%20just%20joined%20the%20FundRequest%20platform%20pre-signup.%20You%20can%20signup%20as%20well%3A ' + refLink}"
+                       target="_blank">
                         <i class="fab fa-twitter"></i>
                         <span>Share on Twitter</span>
 
                     </a>
-                    <a class="btn btn-outline-facebook icon-left mb-1"
-                       th:href="${'https://www.facebook.com/sharer/sharer.php?u=I%20just%20joined%20the%20FundRequest%20platform%20pre-signup.%20You%20can%20signup%20as%20well%3A%20' + refLink}" target="_blank">
+                    <a class="btn btn-outline-facebook icon-left mb-0"
+                       th:href="${'https://www.facebook.com/sharer/sharer.php?u=I%20just%20joined%20the%20FundRequest%20platform%20pre-signup.%20You%20can%20signup%20as%20well%3A%20' + refLink}"
+                       target="_blank">
                         <i class="fab fa-facebook"></i>
                         <span>Share on facebook</span>
                     </a>
@@ -103,16 +112,16 @@
 
         <div class="card mb-5">
             <div class="card-header">
-                Verify as a developer
+                Are you a developer?
                 <a class="anchor" id="verify-developer"></a>
             </div>
             <div class="card-body text-center">
                 <div class="row">
-                    <div class="col-12 col-md-6 mb-1">
+                    <div class="col-12 col-md-6 mb-4 mb-md-0">
                         <div th:replace="fragments/profile :: developer-connect-block(platform=${profile.getGithub()}, title='Github', platformName='github', verification=${githubVerification})"></div>
                     </div>
 
-                    <div class="col-12 col-md-6 mb-1">
+                    <div class="col-12 col-md-6 mb-0">
                         <div th:replace="fragments/profile :: developer-connect-block(platform=${profile.getStackoverflow()}, title='Stack Overflow', platformName='stack-overflow', verification=${stackOverflowVerification})"></div>
                     </div>
                 </div>
@@ -121,7 +130,7 @@
 
         <div class="card mb-5">
             <div class="card-header">
-                Get social and get rewarded!
+                Be social and get rewarded!
                 <a class="anchor" id="get-social"></a>
             </div>
             <div class="card-body text-center">
@@ -130,7 +139,7 @@
                         <div th:replace="fragments/profile :: social-connect-block(platform=${profile.getLinkedin()}, title='LinkedIn', platformName='linkedin', rewardText='Share and get 50 FND', buttonText='Share on LinkedIn', buttonLink='https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A//blog.fundrequest.io/fundrequest-platform-survey-d06b3df5fd54&amp;title=FundRequest%20Platform&amp;summary=I%20just%20filled%20in%20the%20FundRequest%20Survey%20and%20already%20earned%20some%20FND!%20You%20can%20do%20it%20as%20well!&amp;source=https%3A//fundrequest.io')"></div>
                     </div>
                     <div class="col-12 mb-4">
-                        <div th:replace="fragments/twitter :: social-connect-block(platform=${profile.getTwitter()}, mb=true)"></div>
+                        <div th:replace="fragments/twitter :: social-connect-block(platform=${profile.getTwitter()})"></div>
                     </div>
                     <div class="col-12">
                         <div th:replace="fragments/profile :: social-connect-block(platform=${profile.getGoogle()}, title='Google Plus', platformName='google-plus', rewardText='Share and get 50 FND', buttonText='Share on Google',buttonLink='https://share')"></div>
