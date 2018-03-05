@@ -39,6 +39,10 @@ public class KeycloakRepository {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
 
+    public UserRepresentation getUser(String userId) {
+        return resource.users().get(userId).toRepresentation();
+    }
+
 
     public Stream<UserIdentity> getUserIdentities(String userId) {
         return resource.users().get(userId).getFederatedIdentity()
@@ -54,11 +58,15 @@ public class KeycloakRepository {
     }
 
     public String getEtherAddress(String userId) {
-        Map<String, List<String>> attributes = resource.users().get(userId).toRepresentation().getAttributes();
+        return getAttribute(getUser(userId), "ether_address");
+    }
+
+    public String getAttribute(UserRepresentation userRepresentation, String property) {
+        Map<String, List<String>> attributes = userRepresentation.getAttributes();
         if (attributes != null && attributes.size() > 0) {
-            List<String> etherAddresses = attributes.get("ether_address");
-            if (etherAddresses != null && etherAddresses.size() > 0) {
-                return etherAddresses.get(0);
+            List<String> properties = attributes.get(property);
+            if (properties != null && properties.size() > 0) {
+                return properties.get(0);
             }
         }
         return null;
