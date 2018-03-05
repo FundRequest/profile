@@ -14,6 +14,7 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
@@ -59,6 +60,13 @@ public class ProfileController {
         mav.addObject("refLink", getRefLink(request, principal));
         return mav;
     }
+
+    @PostMapping("/profile/etheraddress")
+    public ModelAndView updateAddress(Principal principal, @RequestParam("etheraddress") String etherAddress) {
+        profileService.updateEtherAddress(principal,  etherAddress);
+        return redirectToProfile();
+    }
+
 
     private static String getRefLink(HttpServletRequest req, Principal principal) {
         String scheme = req.getScheme();
