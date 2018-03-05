@@ -17,6 +17,13 @@
         box-shadow: $box-shadow-normal;
     }
 
+    i {
+        transition: transform .6s ease;
+        &:hover {
+            transform: translateX(10px);
+        }
+    }
+
     &__bar {
         flex-basis: 100%;
         padding: 0 1rem;

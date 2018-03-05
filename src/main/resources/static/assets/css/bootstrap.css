@@ -11528,6 +11528,18 @@ a.etherwallet-instructions {
   box-shadow: 0 0 0 0.05rem rgba(0, 0, 0, 0.12), 0 0.1rem 0.15rem 0 rgba(0, 0, 0, 0.12);
 }
 
+.profile-progress i {
+  -webkit-transition: -webkit-transform .6s ease;
+  transition: -webkit-transform .6s ease;
+  transition: transform .6s ease;
+  transition: transform .6s ease, -webkit-transform .6s ease;
+}
+
+.profile-progress i:hover {
+  -webkit-transform: translateX(10px);
+  transform: translateX(10px);
+}
+
 .profile-progress__bar {
   -ms-flex-preferred-size: 100%;
   flex-basis: 100%;
