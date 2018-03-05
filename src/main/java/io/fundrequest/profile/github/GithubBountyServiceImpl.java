@@ -12,6 +12,7 @@ import io.fundrequest.profile.profile.dto.GithubVerificationDto;
 import io.fundrequest.profile.profile.dto.UserLinkedProviderEvent;
 import io.fundrequest.profile.profile.dto.UserProfile;
 import io.fundrequest.profile.profile.provider.Provider;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.EventListener;
@@ -25,6 +26,7 @@ import java.time.LocalDateTime;
 import java.time.Month;
 
 @Service
+@Slf4j
 public class GithubBountyServiceImpl implements GithubBountyService, ApplicationListener<AuthenticationSuccessEvent> {
 
     private static final LocalDateTime MIN_PROFILE_DATE = LocalDateTime.of(2018, Month.JANUARY.getValue(), 1, 0, 0, 0, 0);
@@ -67,14 +69,19 @@ public class GithubBountyServiceImpl implements GithubBountyService, Application
     }
 
     private void createBountyWhenNecessary(Principal principal, UserProfile userProfile) {
-        if (!githubBountyRepository.existsByUserId(principal.getName())) {
-            GithubUser githubUser = githubClient.getUser(userProfile.getGithub().getUsername());
-            boolean validForBounty = isValidForBounty(githubUser);
-            saveGithubBounty(principal, githubUser, validForBounty);
-            if (validForBounty) {
-                saveBounty(principal);
+        try {
+            if (!githubBountyRepository.existsByUserId(principal.getName())) {
+                GithubUser githubUser = githubClient.getUser(userProfile.getGithub().getUsername());
+                boolean validForBounty = isValidForBounty(githubUser);
+                saveGithubBounty(principal, githubUser, validForBounty);
+                if (validForBounty) {
+                    saveBounty(principal);
+                }
             }
+        } catch (Exception e) {
+            log.error("Error when creating github bounty", e);
         }
+
     }
 
     private boolean isValidForBounty(GithubUser githubUser) {
