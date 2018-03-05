@@ -2,8 +2,8 @@
       xmlns:th="http://www.thymeleaf.org"
 >
 <body>
-<div th:fragment="social-connect-block (platform, title, platformName, rewardText, buttonText)"
-     th:if="${platform != null}">
+<div th:fragment="social-connect-block (platform, title, platformName, rewardText, buttonText, buttonLink)" th:if="${platform != null}"
+     class="col-12" th:classappend="${mb} ? 'mb-4' : ''">
     <a class="anchor" th:id="'get-social-' + ${platformName}"></a>
 
     <div class="card card--border-top h-100" th:if="${platform.getUsername() == null}">
@@ -34,7 +34,7 @@
             <div>
                 <button class="btn icon-left" th:classappend="'btn-outline-' + ${platformName}">
                     <i class="fab" th:classappend="'fa-' + ${platformName}"></i>
-                    <span th:text="${buttonText}">Share on Google</span>
+                    <a href="https://share" th:text="${buttonText}" target="_blank" th:href="${buttonLink}">Share on google</a>
                 </button>
             </div>
         </div>

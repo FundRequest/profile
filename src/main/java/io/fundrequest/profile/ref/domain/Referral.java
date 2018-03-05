@@ -1,9 +1,13 @@
 package io.fundrequest.profile.ref.domain;
 
+import io.fundrequest.profile.common.domain.AuditedEntity;
 import lombok.Builder;
+import lombok.Getter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,7 +15,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "referral")
-public class Referral {
+@Getter
+public class Referral extends AuditedEntity {
 
     @Id
     @Column(name = "id")
@@ -24,24 +29,22 @@ public class Referral {
     @Column(name = "referee")
     private String referee;
 
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    private ReferralStatus status;
+
     Referral() {
     }
 
     @Builder
-    public Referral(String referrer, String referee) {
+    public Referral(String referrer, String referee, ReferralStatus status) {
         this.referrer = referrer;
         this.referee = referee;
+        this.status = status;
     }
 
-    public Long getId() {
-        return id;
+    public void setStatus(ReferralStatus status) {
+        this.status = status;
     }
 
-    public String getReferrer() {
-        return referrer;
-    }
-
-    public String getReferee() {
-        return referee;
-    }
 }

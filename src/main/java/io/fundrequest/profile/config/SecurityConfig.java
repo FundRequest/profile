@@ -58,6 +58,8 @@ class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/profile").authenticated()
                 .antMatchers("/rewards").authenticated()
+                .antMatchers("/referrals").authenticated()
+                .antMatchers("/referrals/total").authenticated()
                 .anyRequest().permitAll();
     }
 }

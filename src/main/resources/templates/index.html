@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout">
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout">
 <head>
 </head>
 <body>
@@ -13,7 +15,7 @@
 
     <div class="col-12">
         <p>
-            <a class="link button" href="profile">Create profile</a>
+            <a class="link button" th:href="${profileLink}" href="profile">Create profile</a>
         </p>
     </div>
 </div>
