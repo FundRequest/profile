@@ -1,5 +1,8 @@
 ALTER TABLE referral
-  ADD creation_date TIMESTAMP,
-  ADD last_modified_date TIMESTAMP,
-  ADD created_by VARCHAR(100),
-  ADD last_modified_by VARCHAR(100);
+  ADD COLUMN creation_date TIMESTAMP;
+ALTER TABLE referral
+  ADD COLUMN last_modified_date TIMESTAMP;
+ALTER TABLE referral
+  ADD COLUMN created_by VARCHAR(100);
+ALTER TABLE referral
+  ADD COLUMN last_modified_by VARCHAR(100);
