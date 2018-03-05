@@ -46,7 +46,7 @@
             </h5>
             <div>
                 <input th:if="${twitterPost != null}" id="tweetContent" type="hidden" th:value="${twitterPost.content}" />
-                <button id="tweetNow" class="btn btn-outline-twitter">
+                <button id="tweetNow" class="btn btn-outline-twitter icon-left">
                     <i class="fab fa-twitter" th:classappend="'fa-' + ${platformName}"></i>
                     <span>Tweet</span>
                 </button>

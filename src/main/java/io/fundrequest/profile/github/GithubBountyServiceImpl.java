@@ -65,7 +65,8 @@ public class GithubBountyServiceImpl implements GithubBountyService, Application
     @Transactional(readOnly = true)
     public GithubVerificationDto getVerification(Principal principal) {
         return githubBountyRepository.findByUserId(principal.getName()).map(b -> GithubVerificationDto.builder().approved(b.getValid()).createdAt(b.getCreatedAt()).build())
-                .orElse(null);
+                .orElse(GithubVerificationDto.builder()
+                        .approved(false).build());
     }
 
     private void createBountyWhenNecessary(Principal principal, UserProfile userProfile) {

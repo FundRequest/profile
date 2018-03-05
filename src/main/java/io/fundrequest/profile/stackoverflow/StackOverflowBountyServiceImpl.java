@@ -49,7 +49,8 @@ class StackOverflowBountyServiceImpl implements StackOverflowBountyService {
     @Transactional(readOnly = true)
     public StackOverflowVerificationDto getVerification(Principal principal) {
         return repository.findByUserId(principal.getName()).map(b -> StackOverflowVerificationDto.builder().approved(b.getValid()).createdAt(b.getCreatedAt()).build())
-                .orElse(null);
+                .orElse(StackOverflowVerificationDto.builder()
+                        .approved(false).build());
     }
 
     private void createBountyWhenNecessary(Principal principal, UserProfile userProfile) {

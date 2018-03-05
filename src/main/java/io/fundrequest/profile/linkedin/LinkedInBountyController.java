@@ -1,10 +1,11 @@
 package io.fundrequest.profile.linkedin;
 
 
+import io.fundrequest.profile.linkedin.dto.LinkedInVerificationDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.security.Principal;
 
@@ -18,10 +19,13 @@ public class LinkedInBountyController {
         this.linkedInService = linkedInService;
     }
 
-    @GetMapping("")
-    @ResponseBody
-    public String getLInkedIn(Principal principal) {
+    @PostMapping
+    public void verify(Principal principal) {
         linkedInService.verifyLinkedInBounty(principal);
-        return "";
+    }
+
+    @GetMapping
+    public LinkedInVerificationDto getVerification(Principal principal) {
+        return linkedInService.getVerification(principal);
     }
 }

@@ -8,6 +8,7 @@ import io.fundrequest.profile.linkedin.domain.LinkedInVerification;
 import io.fundrequest.profile.linkedin.dto.LinkedInShare;
 import io.fundrequest.profile.linkedin.dto.LinkedInShareContent;
 import io.fundrequest.profile.linkedin.dto.LinkedInUpdateResult;
+import io.fundrequest.profile.linkedin.dto.LinkedInVerificationDto;
 import io.fundrequest.profile.linkedin.infrastructure.LinkedInClient;
 import io.fundrequest.profile.linkedin.infrastructure.LinkedInPostRepository;
 import io.fundrequest.profile.linkedin.infrastructure.LinkedInVerificationRepository;
@@ -16,6 +17,7 @@ import io.fundrequest.profile.profile.provider.Provider;
 import lombok.extern.slf4j.Slf4j;
 import org.keycloak.adapters.springsecurity.token.KeycloakAuthenticationToken;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.security.Principal;
 import java.util.Collections;
@@ -40,6 +42,20 @@ class LinkedInServiceImpl implements LinkedInService {
     }
 
     @Override
+    @Transactional(readOnly = true)
+    public LinkedInVerificationDto getVerification(Principal principal) {
+        return repository.findByUserId(principal.getName()).map(
+                l -> LinkedInVerificationDto.builder()
+                        .verified(true)
+                        .postUrl(l.getPostUrl())
+                        .build()
+        ).orElseGet(() -> LinkedInVerificationDto.builder()
+                .verified(false)
+                .build());
+    }
+
+    @Override
+    @Transactional
     public void verifyLinkedInBounty(Principal principal) {
         if (!repository.findByUserId(principal.getName()).isPresent()) {
             KeycloakAuthenticationToken token = (KeycloakAuthenticationToken) principal;
