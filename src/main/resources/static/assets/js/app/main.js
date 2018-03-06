@@ -1,9 +1,9 @@
-define(["require", "exports", "jquery", "alert", "instant-edit", "clipboard", "bootstrap"], function (require, exports, $, alert_1, instant_edit_1, Clipboard) {
+define(["require", "exports", "jquery", "clipboard", "app/alert", "app/instant-edit", "bootstrap"], function (require, exports, $, ClipboardJS, alert_1, instant_edit_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var Main = /** @class */ (function () {
         function Main() {
-            var _clipboard = new Clipboard('[data-clipboard-target]');
+            var _clipboard = new ClipboardJS('[data-clipboard-target]');
             _clipboard.on('success', function (e) {
                 alert_1.Alert.show('Copied to your clipboard! ');
                 e.clearSelection();
@@ -14,7 +14,6 @@ define(["require", "exports", "jquery", "alert", "instant-edit", "clipboard", "b
             new instant_edit_1.InstantEdit();
             $('.fnd-badge[data-toggle="tooltip"]').tooltip();
             $('body').bootstrapMaterialDesign();
-            alert_1.Alert.show('test', 'danger');
         }
         return Main;
     }());

@@ -1,18 +1,13 @@
 
 .card {
+    .card {
+        @include box-shadow($bmd-shadow-3dp);
+    }
 
     @each $color, $value in $theme-colors {
         &--#{$color} {
-            border-left: 4px solid $value;
+            border-top: 2px solid $value;
         }
-    }
-
-    &--border-top {
-        border-top: 2px solid $primary;
-    }
-
-    &--border-top--success {
-        border-top-color: $success;
     }
 
     &-body {
@@ -21,6 +16,34 @@
                 right: 0;
                 top: 0;
                 transform: translate(30%, -30%) rotate(15deg);
+            }
+        }
+    }
+
+    &-text {
+        &[class*='card-text--step-'] {
+            position: relative;
+            padding-left: 2rem;
+
+            &::before {
+                color: $primary;
+                left: 0;
+                top: 0;
+                display: block;
+                width: 2rem;
+                font-size: 2rem;
+                text-align: left;
+                height: 100%;
+                position: absolute;
+                line-height: 1rem;
+            }
+        }
+
+        @each $step in (1,2,3,4,5,6,7,8,9,10) {
+            &--step-#{$step} {
+                &::before {
+                    content: '#{$step}. ';
+                }
             }
         }
     }

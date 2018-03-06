@@ -24,14 +24,6 @@ body {
     height: 200px;
     flex-shrink: 0;
     background-color: $blue;
-    background-image: url("../img/rect.png"), url("../img/bg-blue.png");
-    background-repeat: no-repeat, repeat-y;
-    background-size: contain, 100%;
-    background-position: right bottom;
-
-    &--novice {
-        background-image: url("../img/rect.png"), url("../img/bg-green.png");
-    }
 }
 
 .fnd-main {
