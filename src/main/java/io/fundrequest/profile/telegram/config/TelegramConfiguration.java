@@ -11,7 +11,7 @@ import org.telegram.telegrambots.TelegramBotsApi;
 import org.telegram.telegrambots.exceptions.TelegramApiRequestException;
 
 @Configuration
-@ConditionalOnProperty("${io.fundrequest.telegram.bot.enabled}")
+@ConditionalOnProperty("io.fundrequest.telegram.bot.enabled")
 public class TelegramConfiguration {
 
     @Bean

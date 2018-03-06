@@ -35,7 +35,7 @@ public class TelegramVerificationService {
     public boolean verify(final String telegramName, final String secret) {
         final Optional<TelegramVerification> byUserIdAndSecret = telegramVerificationRepository.findByTelegramNameAndSecret(telegramName, secret);
         if (byUserIdAndSecret.isPresent()) {
-            TelegramVerification telegramVerification = byUserIdAndSecret.get();
+            final TelegramVerification telegramVerification = byUserIdAndSecret.get();
             if (!telegramVerification.isVerified()) {
                 //payout lads!
             }
