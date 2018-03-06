@@ -1,5 +1,4 @@
-import 'utils';
-import 'instant-edit';
+import {InstantEdit} from 'instant-edit';
 import * as Clipboard from 'clipboard';
 import * as $ from 'jquery';
 import 'bootstrap';
@@ -50,8 +49,8 @@ class Main {
             Alert.show('This browser doesn\'t allow copying to your clipboard, please do it manually');
         });
 
-        $('.fnd-badge[data-toggle="tooltip"]').tooltip();
         new InstantEdit();
+        $('.fnd-badge[data-toggle="tooltip"]').tooltip();
         $('body').bootstrapMaterialDesign();
     }
 }

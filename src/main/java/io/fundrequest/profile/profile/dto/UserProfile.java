@@ -10,6 +10,7 @@ public class UserProfile {
     private String name;
     private String email;
     private String etherAddress;
+    private String telegramName;
     private UserProfileProvider github;
     private UserProfileProvider linkedin;
     private UserProfileProvider twitter;

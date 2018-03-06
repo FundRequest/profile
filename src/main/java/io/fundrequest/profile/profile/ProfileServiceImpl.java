@@ -27,11 +27,13 @@ import java.util.stream.Collectors;
 @Service
 public class ProfileServiceImpl implements ProfileService {
 
-    private KeycloakRepository keycloakRepository;
-    private String keycloakUrl;
-    private ApplicationEventPublisher eventPublisher;
+    private final KeycloakRepository keycloakRepository;
+    private final String keycloakUrl;
+    private final ApplicationEventPublisher eventPublisher;
 
-    public ProfileServiceImpl(KeycloakRepository keycloakRepository, @Value("${io.fundrequest.keycloak-custom.server-url}") String keycloakUrl, ApplicationEventPublisher eventPublisher) {
+    public ProfileServiceImpl(final KeycloakRepository keycloakRepository,
+                              final @Value("${io.fundrequest.keycloak-custom.server-url}") String keycloakUrl,
+                              final ApplicationEventPublisher eventPublisher) {
         this.keycloakRepository = keycloakRepository;
         this.keycloakUrl = keycloakUrl;
         this.eventPublisher = eventPublisher;
@@ -53,6 +55,7 @@ public class ProfileServiceImpl implements ProfileService {
                 .name(idToken.getName())
                 .email(idToken.getEmail())
                 .etherAddress(keycloakRepository.getEtherAddress(principal.getName()))
+                .telegramName(keycloakRepository.getTelegramName(principal.getName()))
                 .github(providers.get(Provider.GITHUB))
                 .linkedin(providers.get(Provider.LINKEDIN))
                 .twitter(providers.get(Provider.TWITTER))
@@ -61,13 +64,14 @@ public class ProfileServiceImpl implements ProfileService {
                 .build();
     }
 
-    private UserProfileProvider createUserProfileProvider(UserIdentity ui) {
-        return UserProfileProvider.builder().userId(ui.getUserId()).username(ui.getUsername()).build();
-    }
-
     @Override
     public void updateEtherAddress(Principal principal, String etherAddress) {
         keycloakRepository.updateEtherAddress(principal.getName(), etherAddress);
+    }
+
+    @Override
+    public void updateTelegramName(Principal principal, String telegramName) {
+        keycloakRepository.updateTelegramName(principal.getName(), telegramName);
     }
 
     private void addMissingProviders(HttpServletRequest request, Principal principal, Map<Provider, UserProfileProvider> providers) {
@@ -91,7 +95,7 @@ public class ProfileServiceImpl implements ProfileService {
         AccessToken token = ((KeycloakAuthenticationToken) principal).getAccount().getKeycloakSecurityContext().getToken();
         String clientId = token.getIssuedFor();
         String nonce = UUID.randomUUID().toString();
-        MessageDigest md = null;
+        MessageDigest md;
         try {
             md = MessageDigest.getInstance("SHA-256");
         } catch (NoSuchAlgorithmException e) {

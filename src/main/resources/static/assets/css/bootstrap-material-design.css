@@ -11440,6 +11440,12 @@ h2 .svg-inline--fa {
   100% {
     border-color: rgba(0, 0, 0, 0.26); } }
 
+.form-control--readonly-text {
+  background-color: rgba(0, 0, 0, 0.12);
+  padding: 0.5625rem;
+  user-select: none;
+  cursor: not-allowed; }
+
 .form-control.is-loading, .is-loading.custom-file-control {
   border-color: #ffd64a;
   animation: rainbow 1s infinite; }

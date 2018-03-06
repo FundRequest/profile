@@ -11,4 +11,6 @@ public interface TelegramVerificationRepository extends JpaRepository<TelegramVe
     Optional<TelegramVerification> findByTelegramNameAndSecret(@Param("telegramName") final String userId, final @Param("secret") String secret);
 
     Optional<TelegramVerification> findByTelegramName(@Param("telegramName") final String telegramName);
+
+    Optional<TelegramVerification> findByUserId(@Param("userId") final String userId);
 }
