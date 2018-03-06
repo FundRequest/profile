@@ -37,9 +37,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-md-3 d-flex align-items-center justify-content-center">
+                        <a th:href="@{/profile/mastery}" class="col-12 col-md-3 d-flex align-items-center justify-content-center">
                             <h2 class="text-success">Novice</h2>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -54,10 +54,10 @@
                     <div class="collapse navbar-collapse" id="sec-menu">
                         <ul class="navbar-nav mr-auto">
                             <li th:classappend="${activeTab == 'profile'} ? 'active' : ''" class="nav-item">
-                                <a class="nav-link" href="/profile">Profile</a>
+                                <a class="nav-link" th:href="@{/profile}">Profile</a>
                             </li>
                             <li th:classappend="${activeTab == 'rewards'} ? 'active' : ''" class="nav-item">
-                                <a class="nav-link" href="/rewards">Rewards</a>
+                                <a class="nav-link" th:href="@{/rewards}">Rewards</a>
                             </li>
                         </ul>
                     </div>

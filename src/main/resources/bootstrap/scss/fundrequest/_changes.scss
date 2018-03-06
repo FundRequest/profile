@@ -29,3 +29,7 @@ a.etherwallet-instructions {
         padding: 10px 5px;
     }
 }
+
+@each $level, $value in $mastery-levels {
+    @include text-emphasis-variant(".text--#{$level}", $value);
+}

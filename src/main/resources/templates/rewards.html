@@ -7,33 +7,32 @@
 <body>
 <div layout:fragment="content" class="row justify-content-center">
     <div class="col-12">
-        <h2>Rewards</h2>
-
-        <p>Some intro text</p>
-
         <div class="card card--success shadow-normal mb-5">
-            <div class="card-body d-flex justify-content-between">
-                <h5 class="mb-0">Total rewards</h5>
-                <div class="text-success">
+            <h5 class="card-header card-header--label">
+                <span>Total rewards</span>
+                <small class="text-success">
                     60 FND
-                </div>
-            </div>
+                </small>
+            </h5>
         </div>
 
         <div class="card mb-5">
-            <div class="card-header d-flex justify-content-between">
-                <span class="card-title mb-0">Rewards</span>
-                <span class="card-text text-success">50 FND</span>
-            </div>
+            <h5 class="card-header card-header card-header--label">
+                <span>Rewards</span>
+                <small class="text-success">50 FND</small>
+            </h5>
 
             <div class="card-body">
                 <div class="rewards-list">
                     <div class="rewards-list__title">
-                        <div><a href="/profile#verify-developer">Are you a developer?</a></div>
-                        <small>You account needs to be created before 01-01-2018</small>
+                        <h5><a href="/profile#verify-developer">Are you a developer?</a></h5>
+                        <span>You account needs to be created before 01-01-2018</span>
                     </div>
                     <div class="rewards-list__item">
-                        <div class="rewards-list__text">Connect with Github</div>
+                        <div class="rewards-list__text">
+                            <i class="fab fa-github mr-1"></i>
+                            <span>Connect with Github</span>
+                        </div>
                         <div th:if="${githubVerification != null and githubVerification.isApproved()}">
                             <span class="text-success">Connected </span>
                             <span class="text-success">15 FND</span>
@@ -46,7 +45,10 @@
                         </div>
                     </div>
                     <div class="rewards-list__item">
-                        <div class="rewards-list__text">Connect with Stackoverflow</div>
+                        <div class="rewards-list__text">
+                            <i class="fab fa-stack-overflow mr-1"></i>
+                            <span>Connect with Stack Overflow</span>
+                        </div>
                         <div th:if="${stackOverflowVerification != null and stackOverflowVerification.isApproved()}">
                             <span class="text-success">Connected </span>
                             <span class="text-success">15 FND</span>
@@ -63,8 +65,8 @@
 
                 <div class="rewards-list">
                     <div class="rewards-list__title">
-                        <div><a href="/profile#get-social">Be social</a></div>
-                        <small>Connect your account and post a message</small>
+                        <h5><a href="/profile#get-social">Be social</a></h5>
+                        <span>Connect your account and post a message</span>
                     </div>
                     <div class="rewards-list__item">
                         <div class="rewards-list__text">
@@ -95,14 +97,14 @@
 
                 <div class="rewards-list" th:if="${survey}">
                     <div class="rewards-list__title">
-                        <div><a href="#">Survey</a></div>
-                        <small>You must have filled in the platform survey correctly</small>
+                        <h5><a href="#">Survey</a></h5>
+                        <span>You must have filled in the platform survey correctly</span>
                     </div>
                     <div class="rewards-list__item">
                         <div class="rewards-list__text">Fill in survey</div>
                         <div>
-                            <span class="text-secondary">Unverified </span>
-                            <span class="badge badge-secondary">0 FND</span>
+                            <span class="text-muted">Unverified </span>
+                            <span class="text-muted">0 FND</span>
                         </div>
                     </div>
                 </div>
@@ -110,18 +112,16 @@
         </div>
 
         <div class="card mb-5">
-            <div class="card-header d-flex justify-content-between">
-                <span class="card-title mb-0">Referrals</span>
-                <div>
-                    <span class="badge badge-success" id="referral-total">- FND</span>
-                </div>
-            </div>
+            <h5 class="card-header card-header card-header--label">
+                <span>Referrals</span>
+                <small class="text-success" id="referral-total">- FND</small>
+            </h5>
 
             <div class="card-body">
-                <div class="rewards-list">
+                <div class="card-text rewards-list">
                     <div class="rewards-list__title">
-                        <div class="text-primary">Referrals that signed up</div>
-                        <small>When the referrals is verified, you get rewarded</small>
+                        <h5 class="text-primary">Referrals that signed up</h5>
+                        <span>When the referrals are verified, you get rewarded</span>
                     </div>
                     <div id="rewards-list-content">
                         Loading...
@@ -131,7 +131,7 @@
         </div>
 
         <div class="card bg-light mb-5">
-            <div class="card-header">FAQ</div>
+            <h5 class="card-header">FAQ</h5>
             <div class="card-body">
 
             </div>
@@ -180,7 +180,7 @@
     </div>
 </th:block>
 
-<div layout:fragment="scripts" class="row justify-content-center">
+<div layout:fragment="scripts">
     <script>require(["fundrequest/referral"])</script>
 </div>
 </body>

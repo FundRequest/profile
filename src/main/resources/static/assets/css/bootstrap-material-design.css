@@ -11377,20 +11377,6 @@ h2 .svg-inline--fa {
   .user-avatar img {
     width: 35px; }
 
-.fnd-error-template {
-  padding: 40px 15px; }
-
-.fnd-error-stack pre {
-  margin-top: 100px;
-  max-height: 500px; }
-
-.fnd-error-actions {
-  margin-top: 15px;
-  margin-bottom: 15px; }
-
-.fnd-error-actions .btn, .fnd-error-actions .custom-file-control::before {
-  margin-right: 10px; }
-
 .fnd-badge {
   width: 5rem;
   height: 5rem;
@@ -11417,70 +11403,6 @@ h2 .svg-inline--fa {
     .card-text--badges .fnd-badge:hover {
       z-index: 1;
       filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.36)); }
-
-@keyframes rainbow {
-  0% {
-    border-color: #ffd64a; }
-  20% {
-    border-color: #30b561; }
-  40% {
-    border-color: #7cc78f; }
-  80% {
-    border-color: #f68c3e; }
-  100% {
-    border-color: #ffd64a; } }
-
-@keyframes valid {
-  0% {
-    border-color: rgba(0, 0, 0, 0.26); }
-  25% {
-    border-color: #7cc78f; }
-  50% {
-    border-color: #30b561; }
-  75% {
-    border-color: #7cc78f; }
-  100% {
-    border-color: rgba(0, 0, 0, 0.26); } }
-
-.form-control.is-loading, .is-loading.custom-file-control {
-  border-color: #ffd64a;
-  animation: rainbow 1s infinite; }
-
-.form-control.is-valid, .is-valid.custom-file-control {
-  border-color: rgba(0, 0, 0, 0.26);
-  animation: valid 1s; }
-
-.form-control--not-editable, .form-control--label {
-  border-color: transparent;
-  cursor: default; }
-  .form-control--not-editable[readonly], .form-control--label[readonly] {
-    background-color: transparent; }
-
-.form-control--label[readonly] {
-  background-image: none; }
-
-.form-control--not-editable, .form-control--instant-edit {
-  margin-left: calc(0 - 1px);
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden; }
-
-.form-control--instant-edit:not(:hover):not(:active):not(:focus):not(.is-invalid) {
-  border-color: transparent; }
-  .form-edit .form-control--instant-edit:not(:hover):not(:active):not(:focus):not(.is-invalid) {
-    border-color: rgba(0, 0, 0, 0.26); }
-
-.form-control + .text-danger, .custom-file-control + .text-danger {
-  position: absolute;
-  margin-top: 0;
-  font-size: 0.875rem; }
-
-.form-control--readonly-text {
-  background-color: rgba(0, 0, 0, 0.12);
-  padding: 0.5625rem;
-  min-height: 6rem;
-  user-select: none;
-  cursor: not-allowed; }
 
 .bg::before, .bg::after {
   content: '';
@@ -12456,6 +12378,84 @@ h2 .svg-inline--fa {
   background-position: center center;
   box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.2); }
 
+.fnd-error-template {
+  padding: 40px 15px; }
+
+.fnd-error-stack pre {
+  margin-top: 100px;
+  max-height: 500px; }
+
+.fnd-error-actions {
+  margin-top: 15px;
+  margin-bottom: 15px; }
+
+.fnd-error-actions .btn, .fnd-error-actions .custom-file-control::before {
+  margin-right: 10px; }
+
+@keyframes rainbow {
+  0% {
+    border-color: #ffd64a; }
+  20% {
+    border-color: #30b561; }
+  40% {
+    border-color: #7cc78f; }
+  80% {
+    border-color: #f68c3e; }
+  100% {
+    border-color: #ffd64a; } }
+
+@keyframes valid {
+  0% {
+    border-color: rgba(0, 0, 0, 0.26); }
+  25% {
+    border-color: #7cc78f; }
+  50% {
+    border-color: #30b561; }
+  75% {
+    border-color: #7cc78f; }
+  100% {
+    border-color: rgba(0, 0, 0, 0.26); } }
+
+.form-control.is-loading, .is-loading.custom-file-control {
+  border-color: #ffd64a;
+  animation: rainbow 1s infinite; }
+
+.form-control.is-valid, .is-valid.custom-file-control {
+  border-color: rgba(0, 0, 0, 0.26);
+  animation: valid 1s; }
+
+.form-control--not-editable, .form-control--label {
+  border-color: transparent;
+  cursor: default; }
+  .form-control--not-editable[readonly], .form-control--label[readonly] {
+    background-color: transparent; }
+
+.form-control--label[readonly] {
+  background-image: none; }
+
+.form-control--not-editable, .form-control--instant-edit {
+  margin-left: calc(0 - 1px);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden; }
+
+.form-control--instant-edit:not(:hover):not(:active):not(:focus):not(.is-invalid) {
+  border-color: transparent; }
+  .form-edit .form-control--instant-edit:not(:hover):not(:active):not(:focus):not(.is-invalid) {
+    border-color: rgba(0, 0, 0, 0.26); }
+
+.form-control + .text-danger, .custom-file-control + .text-danger {
+  position: absolute;
+  margin-top: 0;
+  font-size: 0.875rem; }
+
+.form-control--readonly-text {
+  background-color: rgba(0, 0, 0, 0.12);
+  padding: 0.5625rem;
+  min-height: 6rem;
+  user-select: none;
+  cursor: not-allowed; }
+
 .header h1 {
   color: #fff;
   margin: 0;
@@ -12528,6 +12528,17 @@ h2 .svg-inline--fa {
     float: none;
     text-align: center;
     margin: 25px auto !important; } }
+
+.fnd-mastery-list {
+  padding: 0;
+  list-style: none; }
+  .fnd-mastery-list li {
+    position: relative;
+    padding-left: 1.5rem; }
+    .fnd-mastery-list li i {
+      position: absolute;
+      left: 0;
+      line-height: 1.5; }
 
 .progress {
   box-shadow: none;
@@ -12694,6 +12705,30 @@ a.etherwallet-instructions {
     text-align: center;
     line-height: 40px;
     padding: 10px 5px; } }
+
+.text--novice {
+  color: #30b561 !important; }
+
+a.text--novice:hover, a.text--novice:focus {
+  color: #258d4b !important; }
+
+.text--contributor {
+  color: #39a4dc !important; }
+
+a.text--contributor:hover, a.text--contributor:focus {
+  color: #228ac0 !important; }
+
+.text--expert {
+  color: #ffd64a !important; }
+
+a.text--expert:hover, a.text--expert:focus {
+  color: #ffca17 !important; }
+
+.text--master {
+  color: #f68c3e !important; }
+
+a.text--master:hover, a.text--master:focus {
+  color: #f46f0d !important; }
 
 .fnd-profile-picture {
   width: 100px;
