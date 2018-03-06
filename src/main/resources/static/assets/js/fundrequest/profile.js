@@ -1,6 +1,5 @@
-(function () {
-	$(document).ready(function () {
-
+define(["jquery"], function ($) {
+    $(function () {
 		$('#tweetNow').click(function () {
 			console.log('lol');
 			var textToTweet = $('#tweetContent').val();
@@ -17,4 +16,4 @@
 		});
 
 	});
-})();
+});

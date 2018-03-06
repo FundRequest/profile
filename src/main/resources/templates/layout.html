@@ -17,9 +17,14 @@
     <link rel="stylesheet" href="/assets/css/headroom.css"/>
     <link rel="stylesheet" href="/assets/css/bootstrap-material-design.css"/>
 
+    <script data-main="assets/js/app" src="assets/js/require.js"></script>
+
 </head>
 <body>
 <div id="alert-container" class="alert-container"></div>
+<div class="progress primary-color-dark fixed-top d-none" data-page-loader="true">
+    <div class="indeterminate"></div>
+</div>
 <div class="fnd-page-container">
     <nav class="fnd-header navbar navbar-dark navbar-expand-md bg bg--blue bg--no-rect">
         <a class="navbar-brand navbar-brand--fnd" href="/profile">
@@ -90,23 +95,8 @@
     </div>
 </section>
 
-
 <th:block layout:fragment="modals">
 </th:block>
-
-<script
-        src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
-<script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js"
-        integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U"
-        crossorigin="anonymous"></script>
-<script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js"
-        integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
-<script src="/assets/js/instant-edit.js"></script>
-<script src="/assets/js/main.js"></script>
 
 <th:block layout:fragment="scripts">
 </th:block>

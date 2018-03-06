@@ -1,9 +1,9 @@
+
 class InstantEdit {
     private _document: HTMLDocument = document;
     private _invalidFormClass: string = 'is-invalid';
     private _validFormClass: string = 'is-valid';
     private _invalidMessageClass: string = 'invalid-feedback';
-    private _isLoadingClass: string = 'is-loading';
 
     constructor() {
         let list = this._document.querySelectorAll('[data-edit]');
@@ -64,7 +64,7 @@ class InstantEdit {
             return;
         }
 
-        this._addLoading(field, name);
+        Utils.showLoading();
         let error: boolean = false;
 
 
@@ -86,7 +86,7 @@ class InstantEdit {
                             // show error message
          */
         setTimeout(() => { // fake ajax call
-            this._removeLoading(field, name);
+            Utils.hideLoading();
 
             if (error) {
                 this._showError(field, name, 'Not yet implemented');
@@ -99,14 +99,6 @@ class InstantEdit {
             }
         }, 3000);
 
-    }
-
-    private _addLoading(field, name) {
-        field.classList.add(this._isLoadingClass);
-    }
-
-    private _removeLoading(field, name) {
-        field.classList.remove(this._isLoadingClass);
     }
 
     private _hideError(field, name) {

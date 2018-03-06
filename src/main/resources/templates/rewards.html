@@ -150,7 +150,7 @@
 </th:block>
 
 <div layout:fragment="scripts" class="row justify-content-center">
-    <script type="application/javascript" th:src="@{/assets/js/fundrequest/referral.js}"></script>
+    <script>require(["fundrequest/referral"])</script>
 </div>
 </body>
 </html>
