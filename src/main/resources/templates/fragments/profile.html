@@ -2,17 +2,17 @@
       xmlns:th="http://www.thymeleaf.org"
 >
 <body>
-<div th:fragment="social-connect-block (platform, title, platformName, rewardText, buttonText, buttonLink)" th:if="${platform != null}"
-     class="col-12" th:classappend="${mb} ? 'mb-4' : ''">
+<div th:fragment="social-connect-block (platform, title, platformName, rewardText, buttonText, buttonLink)"
+     th:if="${platform != null}">
     <a class="anchor" th:id="'get-social-' + ${platformName}"></a>
 
     <div class="card card--border-top h-100" th:if="${platform.getUsername() == null}">
-        <div class="card-body d-flex justify-content-between align-items-center">
-            <h5 class="card-title mb-0">
+        <div class="card-body d-md-flex justify-content-between align-items-center">
+            <h5 class="card-title mb-2 mb-md-0">
                 <span th:text="${title}">Google</span>
                 <i class="fab" th:classappend="'fa-' + ${platformName}"></i>
             </h5>
-            <a class="btn btn-primary"
+            <a class="btn mb-0 btn-raised btn-primary"
                th:href="${platform.getSignupLink()}">Connect</a>
         </div>
     </div>
@@ -20,23 +20,20 @@
     <div class="card card--border-top card--border-top--success h-100"
          th:if="${platform.getUsername() != null}">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <div>
-                <span th:text="${title}">Platform name</span>
-            </div>
+            <span th:text="${title}">Platform name</span>
             <a class="badge bagde-success">
                 <span th:text="${platform.getUsername()}">User name, link to profile?</span>
             </a>
         </div>
-        <div class="card-body d-flex justify-content-between align-items-center">
-            <h5 class="card-title mb-0" th:text="${rewardText}">
+        <div class="card-body d-md-flex justify-content-between align-items-center">
+            <h5 class="card-title mb-2 mb-md-0" th:text="${rewardText}">
                 Get 50 FND for sharing on google
             </h5>
-            <div>
-                <button class="btn icon-left" th:classappend="'btn-outline-' + ${platformName}">
-                    <i class="fab" th:classappend="'fa-' + ${platformName}"></i>
-                    <a href="https://share" th:text="${buttonText}" target="_blank" th:href="${buttonLink}">Share on google</a>
-                </button>
-            </div>
+            <a href="#" target="_blank" th:href="${buttonLink}"
+               class="btn mb-0 icon-left" th:classappend="'btn-outline-' + ${platformName}">
+                <i class="fab" th:classappend="'fa-' + ${platformName}"></i>
+                <span th:text="${buttonText}">Share on google</span>
+            </a>
         </div>
     </div>
 </div>
@@ -68,7 +65,7 @@
         </th:block>
         <div class="card-text"
              th:if="${platform.getUsername() == null}">
-            <a class="btn btn-primary"
+            <a class="btn btn-raised btn-primary"
                th:href="${platform.getSignupLink()}">Connect</a>
         </div>
     </div>

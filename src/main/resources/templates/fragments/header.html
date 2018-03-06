@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+
+<th:block th:fragment="header">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <div class="card card--fnd-profile mb-1 d-flex flex-column flex-md-row">
+                <div class="fnd-profile-picture" th:if="${profile.getGithub().getUsername() !=null}">
+                    <img th:src="'https://avatars.githubusercontent.com/' + ${profile.getGithub().getUsername()} + '?size=200'"
+                         alt="Profile image"/>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 col-md-9">
+                            <h5 class="card-title mb-0" th:text="${profile.getName()}">
+                                My Name
+                            </h5>
+                            <div class="card-text">
+                                <div class="form-group bmd-form-group mb-0">
+                                    <label class="bmd-label-static">E-mail</label>
+                                    <input type="text"
+                                           th:value="${profile.getEmail()}"
+                                           class="form-control form-control--label" disabled="disabled"
+                                           readonly="readonly"/>
+                                </div>
+                                <div class="form-group bmd-form-group mb-0">
+                                    <label for="eth-address" class="bmd-label-floating">ETH Address</label>
+                                    <input id="eth-address"
+                                           data-edit="eth-address"
+                                           data-edit-validation="ethereum"
+                                           class="form-control form-control--instant-edit"
+                                           th:value="${profile.getEtherAddress()}" type="text"/>
+                                    <span class="text-danger" data-edit-messages="eth-address"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-3 text-center">
+                            <span class="badge badge-success">Badge placeholder</span>
+                            <span class="badge badge-success">Badge placeholder</span>
+                            <span class="badge badge-success">Badge placeholder</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-5">
+                <nav class="navbar navbar-expand navbar--fnd-secondary"> <!-- navbar-expand-md -->
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#sec-menu" aria-controls="sec-menu"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="sec-menu">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/profile">Profile <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/rewards">Rewards</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</th:block>
+
+</body>
+</html>

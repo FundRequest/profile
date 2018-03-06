@@ -26,6 +26,8 @@ $social-colors: (
         }
     }
     .btn-outline-#{$media} {
+        border-width: 1px;
+        border-style: solid;
         @include button-outline-variant($color);
         i {
             border-color: $color;

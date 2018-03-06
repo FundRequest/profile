@@ -8,6 +8,7 @@ import io.fundrequest.profile.ref.domain.Referral;
 import io.fundrequest.profile.ref.domain.ReferralStatus;
 import io.fundrequest.profile.ref.dto.ReferralDto;
 import io.fundrequest.profile.ref.infrastructure.ReferralRepository;
+import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.context.event.EventListener;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -45,8 +46,18 @@ class ReferralServiceImpl implements ReferralService {
     public List<ReferralDto> getReferrals(Principal principal) {
         return repository.findByReferrer(principal.getName(), new Sort(Sort.Direction.DESC, "creationDate"))
                 .stream()
-                .map(r -> ReferralDto.builder().status(r.getStatus()).createdAt(r.getCreationDate()).build())
+                .parallel()
+                .map(this::createReferralDto)
                 .collect(Collectors.toList());
+    }
+
+    private ReferralDto createReferralDto(Referral r) {
+        UserRepresentation ur = keycloakRepository.getUser(r.getReferee());
+        return ReferralDto.builder().status(r.getStatus())
+                .name(ur.getFirstName() + " " + ur.getLastName())
+                .email(ur.getEmail())
+                .picture(keycloakRepository.getAttribute(ur, "picture"))
+                .createdAt(r.getCreationDate()).build();
     }
 
     @Transactional(readOnly = true)
@@ -54,7 +65,7 @@ class ReferralServiceImpl implements ReferralService {
     public Long getTotalVerifiedReferrals(Principal principal) {
         return
                 repository.countByReferrerAndStatus(principal.getName(), ReferralStatus.VERIFIED)
-                * 2;
+                        * 2;
     }
 
     @Override
@@ -62,7 +73,7 @@ class ReferralServiceImpl implements ReferralService {
     public void createNewRef(@Valid CreateRefCommand command) {
         String referrer = command.getRef();
         String referee = command.getPrincipal().getName();
-        validateReferee(referrer, referee);
+        validReferral(referrer, referee);
         if (!repository.existsByReferee(referee)) {
             Referral referral = Referral.builder()
                     .referrer(referrer)
@@ -93,9 +104,12 @@ class ReferralServiceImpl implements ReferralService {
                 .findFirst().isPresent();
     }
 
-    private void validateReferee(String referrer, String referee) {
+    private void validReferral(String referrer, String referee) {
         if (isValidReferee(referrer, referee)) {
-            throw new RuntimeException("this is not a valid referee");
+            throw new RuntimeException("This is not a valid referee");
+        }
+        if (!keycloakRepository.userExists(referrer)) {
+            throw new RuntimeException("This is not a valid referrer");
         }
     }
 

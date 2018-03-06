@@ -19,7 +19,7 @@
                 <span>Twitter</span>
                 <i class="fab twitter"></i>
             </h5>
-            <a class="btn btn-primary"
+            <a class="btn btn-raised btn-primary"
                th:href="${platform.getSignupLink()}">Connect</a>
         </div>
     </div>
@@ -46,13 +46,13 @@
             </h5>
             <div>
                 <input th:if="${twitterPost != null}" id="tweetContent" type="hidden" th:value="${twitterPost.content}" />
-                <button id="tweetNow" class="btn btn-outline-twitter">
+                <button id="tweetNow" class="btn btn-outline-twitter icon-left">
                     <i class="fab fa-twitter" th:classappend="'fa-' + ${platformName}"></i>
                     <span>Tweet</span>
                 </button>
 
                 <form id="twitterClaimForm" th:action="@{/bounties/twitter/verify}" th:method="POST">
-                    <button type="submit" class="btn btn-success icon-left">
+                    <button type="submit" class="btn btn-raised btn-success icon-left">
                         <i class="fab fa-twitter"></i>
                         <span>Verify</span>
                     </button>

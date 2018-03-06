@@ -27,7 +27,21 @@
     - title: Tables
     - title: Figures
 
-- title: Components
+- title: Material Design
+  pages:
+    - title: Buttons
+    - title: Collapse inline
+    - title: Drawers
+    - title: Extensions
+    - title: Forms
+    - title: Labels
+    - title: List groups
+    - title: Menus
+    - title: Navs
+    - title: Selections
+    - title: Snackbars
+
+- title: Bootstrap Components
   pages:
     - title: Alerts
     - title: Badge

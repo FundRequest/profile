@@ -2,10 +2,13 @@
     <div class="rewards-list__item rewards-list__item--referral" th:each="r : ${referrals}">
         <div class="d-flex">
             <div class="user-avatar">
-                <i class="fas fa-user-plus"></i>
+                <img th:if="${r.getPicture() != null}" class="rounded-circle shadow-light" alt="Completely round image" th:src="${r.getPicture()}" />
+                <i class="fas fa-user-plus" th:if="${r.getPicture() == null}"></i>
             </div>
             <div class="rewards-list__text">
-                Your referral link was used on <span th:text="${#temporals.format(r.getCreatedAt(), 'yyyy-MM-dd HH:mm')}"></span>
+                <div th:text="${r.getName()}">Steve Maris</div>
+                <small th:text="${r.getEmail()}">steve.maris@fundrequest.io</small>
+                <small th:text="${#temporals.format(r.getCreatedAt(), 'yyyy-MM-dd HH:mm')}">date</small>
             </div>
         </div>
         <div class="d-flex">

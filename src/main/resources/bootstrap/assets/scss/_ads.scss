@@ -1,4 +1,4 @@
-// stylelint-disable declaration-no-important, selector-max-id
+// scss-lint:disable ImportantRule, IdSelector
 
 //
 // Carbon ads
@@ -35,4 +35,15 @@
 .carbon-poweredby {
   display: block;
   color: #777 !important;
+}
+
+body.creativetim, body:not(.creativetim):not(.mdbootstrap) {
+  .partner.mdbootstrap {
+    display: none;
+  }
+}
+body.mdbootstrap {
+  .partner.creativetim {
+    display: none;
+  }
 }

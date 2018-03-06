@@ -34,5 +34,9 @@
             background-size: contain, 100%;
             background-position: right bottom;
         }
+
+        &.bg--no-rect::before {
+            background-image: none, url("../img/bg-blue.png");
+        }
     }
 }

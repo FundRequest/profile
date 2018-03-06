@@ -26,12 +26,17 @@
         animation: valid 1s;
     }
 
-    &--not-editable {
+    &--not-editable,
+    &--label {
         border-color: transparent;
         cursor: default;
         &[readonly] {
             background-color: transparent;
         }
+    }
+
+    &--label[readonly] {
+        background-image: none;
     }
 
     &--not-editable,
@@ -48,6 +53,12 @@
         .form-edit & {
             border-color: $input-border-color;
         }
+    }
+
+    + .text-danger {
+        position: absolute;
+        margin-top: 0;
+        font-size: $font-size-sm;
     }
 }
 

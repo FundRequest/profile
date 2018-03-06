@@ -1,6 +1,5 @@
-(function () {
-	$(document).ready(function () {
-
+define(["jquery"], function ($) {
+    $(function () {
 		$('#tweetNow').click(function () {
 			var textToTweet = $('#tweetContent').val();
 			var twtLink = 'http://twitter.com/home?status=' + encodeURIComponent(textToTweet);
@@ -16,4 +15,4 @@
 		});
 
 	});
-})();
+});
