@@ -12,4 +12,6 @@ public interface ProfileService {
     UserProfile getUserProfile(HttpServletRequest request, Principal principal);
 
     void updateEtherAddress(Principal principal, String etherAddress);
+
+    void updateTelegramName(Principal principal, String telegramName);
 }

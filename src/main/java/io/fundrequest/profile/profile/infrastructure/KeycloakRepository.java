@@ -36,10 +36,28 @@ public class KeycloakRepository {
         userResource.update(userRepresentation);
     }
 
+    public void updateTelegramName(String userId, String telegramName) {
+        UserResource userResource = resource.users().get(userId);
+        UserRepresentation userRepresentation = userResource.toRepresentation();
+        userRepresentation.getAttributes().put("telegram_name", Collections.singletonList(telegramName));
+        userResource.update(userRepresentation);
+    }
+
     public String getEtherAddress(String userId) {
         Map<String, List<String>> attributes = resource.users().get(userId).toRepresentation().getAttributes();
         if (attributes != null && attributes.size() > 0) {
             List<String> etherAddresses = attributes.get("ether_address");
+            if (etherAddresses != null && etherAddresses.size() > 0) {
+                return etherAddresses.get(0);
+            }
+        }
+        return null;
+    }
+
+    public String getTelegramName(String userId) {
+        Map<String, List<String>> attributes = resource.users().get(userId).toRepresentation().getAttributes();
+        if (attributes != null && attributes.size() > 0) {
+            List<String> etherAddresses = attributes.get("telegram_name");
             if (etherAddresses != null && etherAddresses.size() > 0) {
                 return etherAddresses.get(0);
             }

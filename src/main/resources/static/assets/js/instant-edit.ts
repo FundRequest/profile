@@ -39,7 +39,11 @@ class InstantEdit {
                     break;
                 case 'etherium':
                     valid = value.length > 0 ? value.match(/^0x[a-fA-F0-9]{40}$/) : true;
-                    message = 'Not a valid etherium address';
+                    message = 'Not a valid ethereum address';
+                    break;
+                case 'telegram':
+                    valid = value.length > 0;
+                    message = 'Not a valid telegram name';
                     break;
             }
         }

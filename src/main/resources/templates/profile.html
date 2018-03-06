@@ -26,7 +26,7 @@
                         <label class="mb-0">E-mail</label>
                         <input type="text"
                                th:value="${profile.getEmail()}"
-                               class="form-control form-control--not-editable" disabled="disabled" readonly="readonly" />
+                               class="form-control form-control--not-editable" disabled="disabled" readonly="readonly"/>
                     </div>
                     <div class="row">
                         <div class="col-12 col-md-6">
@@ -37,7 +37,7 @@
                                        data-edit="eth-address"
                                        data-edit-validation="etherium"
                                        th:value="${profile.getEtherAddress()}"
-                                       class="form-control form-control--instant-edit" placeholder="Not defined" />
+                                       class="form-control form-control--instant-edit" placeholder="Not defined"/>
                                 <div data-edit-messages="eth-address"></div>
                             </div>
                         </div>
@@ -83,7 +83,9 @@
                 <div class="card-text">
                     <button class="btn btn-outline-linkedin icon-left mb-1">
                         <i class="fab fa-linkedin"></i>
-                        <a target="_blank" th:href="${'https://www.linkedin.com/shareArticle?mini=true&amp;url='+ 'https://profile-dev.fundrequest.io' + '&amp;title=FundRequest%20Platform%20Signup&amp;summary=I%20just%20joined%20the%20FundRequest%20platform%20pre-signup.%20You%20can%20signup%20as%20well.&amp;source=fundrequest.io'}">Share on LinkedIn</a>
+                        <a target="_blank"
+                           th:href="${'https://www.linkedin.com/shareArticle?mini=true&amp;url='+ 'https://profile-dev.fundrequest.io' + '&amp;title=FundRequest%20Platform%20Signup&amp;summary=I%20just%20joined%20the%20FundRequest%20platform%20pre-signup.%20You%20can%20signup%20as%20well.&amp;source=fundrequest.io'}">Share
+                            on LinkedIn</a>
                     </button>
                     <button class="btn btn-outline-twitter icon-left mb-1">
                         <i class="fab fa-twitter"></i>
@@ -101,6 +103,65 @@
                 </div>
             </div>
         </div>
+
+        <div class="card mb-5">
+            <div class="card-body">
+                <h5 class="card-title">
+                    Join us on Telegram
+                </h5>
+
+                <div th:if="${telegramVerified}">
+                    <label class="mb-0">E-mail</label>
+                    <input type="text"
+                           th:value="${profile.getTelegramName()}"
+                           class="form-control form-control--not-editable" disabled="disabled" readonly="readonly"/>
+                </div>
+                <div th:unless="${telegramVerified}">
+
+                    <div class="card-text">
+
+                        <label for="telegram-name" class="mb-0">Enter your telegram name</label>
+                        <input type="text"
+                               id="telegram-name"
+                               data-edit="telegram-name"
+                               data-edit-validation="telegram"
+                               th:value="${profile.getTelegramName()}"
+                               class="form-control form-control--instant-edit" placeholder="No Telegram name defined yet"/>
+                        <div data-edit-messages="telegram-name"></div>
+
+                        <br />
+                        <button class="btn btn-outline-linkedin icon-left mb-1">
+                            <i class="fab fa-telegram"></i>
+                            <a target="_blank" th:href="@{https://t.me/fundrequestofficial}">Join us on Telegram</a>
+                        </button>
+                    </div>
+
+                    <p>After you've joined our channel, please verify yourself with our bot.</p>
+
+                    <div class="card-text">
+                        <button class="btn btn-outline-linkedin icon-left mb-1">
+                            <i class="fab fa-telegram"></i>
+                            <a target="_blank" th:href="@{https://t.me/FundRequestVerifierBot}">Contact our Bot</a>
+                        </button>
+                    </div>
+
+                    <p>And tell him this.</p>
+
+                    <div class="card-text mb-2">
+                        <div class="input-group">
+                            <input class="form-control" id="referral-link" title="personal referral link"
+                                   value="referralkey" th:value="${telegramVerificationCommand}"/>
+                            <div class="input-group-append">
+                                <button class="btn" data-clipboard-target="#referral-link">
+                                    <i class="fa fa-clipboard"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
         <div class="card mb-5">
             <div class="card-header">

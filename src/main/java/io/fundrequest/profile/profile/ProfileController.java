@@ -6,6 +6,8 @@ import io.fundrequest.profile.profile.dto.UserProfileProvider;
 import io.fundrequest.profile.profile.provider.Provider;
 import io.fundrequest.profile.ref.RefSignupEvent;
 import io.fundrequest.profile.stackoverflow.StackOverflowBountyService;
+import io.fundrequest.profile.telegram.domain.TelegramVerification;
+import io.fundrequest.profile.telegram.service.TelegramVerificationService;
 import io.fundrequest.profile.twitter.model.TwitterBounty;
 import io.fundrequest.profile.twitter.model.TwitterPost;
 import io.fundrequest.profile.twitter.service.TwitterBountyService;
@@ -35,14 +37,21 @@ public class ProfileController {
     private TwitterBountyService twitterBountyService;
     private GithubBountyService githubBountyService;
     private StackOverflowBountyService stackOverflowBountyService;
+    private TelegramVerificationService telegramVerificationService;
 
 
-    public ProfileController(ApplicationEventPublisher eventPublisher, ProfileService profileService, TwitterBountyService twitterBountyService, GithubBountyService githubBountyService, StackOverflowBountyService stackOverflowBountyService) {
+    public ProfileController(final ApplicationEventPublisher eventPublisher,
+                             final ProfileService profileService,
+                             final TwitterBountyService twitterBountyService,
+                             final GithubBountyService githubBountyService,
+                             final StackOverflowBountyService stackOverflowBountyService,
+                             final TelegramVerificationService telegramVerificationService) {
         this.eventPublisher = eventPublisher;
         this.profileService = profileService;
         this.twitterBountyService = twitterBountyService;
         this.githubBountyService = githubBountyService;
         this.stackOverflowBountyService = stackOverflowBountyService;
+        this.telegramVerificationService = telegramVerificationService;
     }
 
     @GetMapping("/profile")
@@ -55,18 +64,41 @@ public class ProfileController {
         final UserProfile userProfile = profileService.getUserProfile(request, principal);
         mav.addObject("profile", userProfile);
         enrichTwitter(mav, userProfile);
+        enrichTelegram(mav, principal);
         mav.addObject("githubVerification", githubBountyService.getVerification(principal));
         mav.addObject("stackOverflowVerification", stackOverflowBountyService.getVerification(principal));
         mav.addObject("refLink", getRefLink(request, principal));
+
         return mav;
+    }
+
+    private void enrichTelegram(final ModelAndView mav, final Principal principal) {
+        final Optional<TelegramVerification> telegramVerification = telegramVerificationService.getByUserId(principal);
+        if (telegramVerification.isPresent() && telegramVerification.get().isVerified()) {
+            mav.addObject("telegramVerified", true);
+            mav.addObject("telegramVerification", telegramVerification.get());
+        } else {
+            mav.addObject("telegramVerified", false);
+            mav.addObject("telegramVerificationCommand", getTelegramVerificationCommand(principal));
+        }
+    }
+
+    private String getTelegramVerificationCommand(final Principal principal) {
+        return "/verify " + telegramVerificationService.createSecret(principal.getName());
     }
 
     @PostMapping("/profile/etheraddress")
     public ModelAndView updateAddress(Principal principal, @RequestParam("etheraddress") String etherAddress) {
-        profileService.updateEtherAddress(principal,  etherAddress);
+        profileService.updateEtherAddress(principal, etherAddress);
         return redirectToProfile();
     }
 
+    @PostMapping("/profile/telegramname")
+    public ModelAndView updateTelegram(Principal principal, @RequestParam("telegramname") String telegramname) {
+        telegramVerificationService.createTelegramVerification(principal.getName(), telegramname);
+        profileService.updateTelegramName(principal, telegramname);
+        return redirectToProfile();
+    }
 
     private static String getRefLink(HttpServletRequest req, Principal principal) {
         String scheme = req.getScheme();
