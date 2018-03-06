@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout">
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
 </head>
 <body>
 <div layout:fragment="content" class="row justify-content-center">
     <div class="error-template">
         <h1>Oops!</h1>
-        <h2>404 Not Found</h2>
-        <div class="error-details">
-            Sorry, an error has occured, Requested page not found!
+        <h2 th:text="${status + ' ' + error}">404 Not Found</h2>
+        <div class="error-details" th:text="${'Sorry, an error has occured: '+error+'!'}">
         </div>
         <div class="error-actions">
             <a href="#" class="btn btn-raised btn-primary btn-lg">
