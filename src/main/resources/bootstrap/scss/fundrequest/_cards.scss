@@ -47,4 +47,26 @@
             }
         }
     }
+
+    &-header {
+        &--label {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+}
+
+.card-top-image {
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: -20px;
+    height: 150px;
+    background-color: $blue-200;
+    background-image: url("../img/error.png");
+    background-size: contain;
+    background-repeat: repeat-x;
+    background-position: center center;
+    @include box-shadow($bmd-shadow-4dp);
 }

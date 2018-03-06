@@ -1,20 +1,19 @@
-.error-template {
-  padding: 40px 15px;
-  text-align: center;
-  .error-stack {
-    text-align: left;
+.fnd-error-template {
+    padding: 40px 15px;
+}
+
+.fnd-error-stack {
     pre {
-      margin-top: 100px;
-      max-height: 500px;
+        margin-top: 100px;
+        max-height: 500px;
     }
-  }
 }
 
-.error-actions {
-  margin-top: 15px;
-  margin-bottom: 15px;
+.fnd-error-actions {
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
-.error-actions .btn {
-  margin-right: 10px;
+.fnd-error-actions .btn {
+    margin-right: 10px;
 }

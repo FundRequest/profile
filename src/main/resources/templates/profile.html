@@ -8,9 +8,10 @@
 <div layout:fragment="content" class="row justify-content-center">
     <div class="col-12">
         <div class="card mb-5">
-            <h5 class="card-header">
-                Personal referral link
-                <a class="anchor" id="referral-link"></a>
+            <a class="anchor" id="referral-link"></a>
+            <h5 class="card-header card-header--label">
+                <span>Personal referral link?</span>
+                <small class="text-muted">Potential 5 FND / referral</small>
             </h5>
             <div class="card-body">
                 <div class="card-text mb-3">
@@ -51,9 +52,10 @@
         </div>
 
         <div class="card mb-5">
-            <h5 class="card-header">
-                Are you a developer?
-                <a class="anchor" id="verify-developer"></a>
+            <a class="anchor" id="verify-developer"></a>
+            <h5 class="card-header card-header--label">
+                <span>Are you a developer?</span>
+                <small class="text-muted">Potential 30 FND</small>
             </h5>
             <div class="card-body text-center">
                 <div class="row">
@@ -69,9 +71,10 @@
         </div>
 
         <div class="card mb-5">
-            <h5 class="card-header">
-                Be social and get rewarded!
-                <a class="anchor" id="get-social"></a>
+            <a class="anchor" id="get-social"></a>
+            <h5 class="card-header card-header--label">
+                <span>Be social and get rewarded!</span>
+                <small class="text-muted">Potential 25 FND</small>
             </h5>
             <div class="card-body text-center">
                 <div class="row">
@@ -93,7 +96,6 @@
 <th:block layout:fragment="modals">
     <th:block th:replace="fragments/linkedin :: modal"></th:block>
     <th:block th:replace="fragments/telegram :: modal(profile=${profile}, verified=${telegramVerified}, verificationCommand=${telegramVerificationCommand})"></th:block>
-
 </th:block>
 
 <div layout:fragment="scripts">

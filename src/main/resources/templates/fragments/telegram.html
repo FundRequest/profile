@@ -1,6 +1,5 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
->
+      xmlns:th="http://www.thymeleaf.org">
 <body>
 <div th:fragment="social-connect-block (username, verified)">
     <div class="card h-100" th:classappend="${verified ? 'card--success' : 'card--primary'}">
@@ -31,7 +30,7 @@
 
 <div th:fragment="modal (profile, verified, verificationCommand)" class="modal fade" tabindex="-1"
      role="dialog" id="modal-share-telegram">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Join us on Telegram</h5>

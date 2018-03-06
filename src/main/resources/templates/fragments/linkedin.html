@@ -39,7 +39,7 @@
 </div>
 
 <div th:fragment="modal" class="modal fade" tabindex="-1" role="dialog" id="modal-share-linked-in">
-    <div class="modal-dialog modal-dialog--linkedin" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">LinkedIn</h5>
@@ -52,13 +52,12 @@
                     awesome
                 </div>
                 <div><label class="mb-2">Share with: <strong>public</strong></label></div>
-                <button class="btn btn-outline-linkedin icon-left" type="button" data-share-linked-in="button">
-                    <i class="fab fa-linkedin"></i>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button class="btn btn-raised btn-primary mb-3" type="button" data-share-linked-in="button">
                     <span>Share</span>
                 </button>
-            </div>
-            <div class="modal-footer justify-content-center">
-                <button type="button" class="btn btn-raised btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary mb-3" data-dismiss="modal">Hmm, I don't want to share ...</button>
             </div>
         </div>
     </div>
