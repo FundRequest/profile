@@ -71,5 +71,6 @@ public class TelegramVerificationService {
     }
 
     public String createSecret(final String userId) {
+        return DigestUtils.sha1Hex(userId);
     }
 }
