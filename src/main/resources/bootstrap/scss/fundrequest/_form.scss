@@ -14,7 +14,16 @@
     100% {border-color: $input-border-color;}
 }
 
+.form-control--readonly-text {
+    background-color: $gray-lighter;
+    padding: $input-padding-y-lg;
+
+    user-select: none;
+    cursor: not-allowed;
+}
+
 .form-control {
+
 
     &.is-loading {
         border-color: $yellow;
