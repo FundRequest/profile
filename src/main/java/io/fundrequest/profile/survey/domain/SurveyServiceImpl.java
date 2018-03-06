@@ -46,6 +46,7 @@ public class SurveyServiceImpl implements SurveyService, ApplicationListener<Aut
         this.keycloakRepository = keycloakRepository;
     }
 
+    @Override
     @Transactional(readOnly = true)
     public SurveyDto getSurveyResult(Principal principal) {
         return repository.findByUserId(principal.getName())
