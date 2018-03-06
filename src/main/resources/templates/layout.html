@@ -75,11 +75,15 @@
         </div>
     </nav>
 
-    <div class="fnd-ribbon fnd-ribbon--novice"></div>
-    
+    <div th:if="${profile}" th:remove="tag">
+        <div class="fnd-ribbon fnd-ribbon--novice"></div>
+    </div>
+
     <section class="fnd-main">
         <div class="container">
-            <div th:replace="fragments/header"></div>
+            <div th:if="${profile}" th:remove="tag">
+                <div th:replace="fragments/header"></div>
+            </div>
             <div layout:fragment="content"></div>
         </div>
     </section>

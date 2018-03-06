@@ -14,6 +14,7 @@ import io.fundrequest.profile.twitter.service.TwitterBountyService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -55,14 +56,13 @@ public class ProfileController {
     }
 
     @GetMapping("/profile")
-    public ModelAndView showProfile(Principal principal, @RequestParam(value = "ref", required = false) String ref, HttpServletRequest request) {
+    public ModelAndView showProfile(Principal principal, @RequestParam(value = "ref", required = false) String ref, HttpServletRequest request, Model model) {
         if (StringUtils.isNotBlank(ref)) {
             eventPublisher.publishEvent(RefSignupEvent.builder().principal(principal).ref(ref).build());
             return redirectToProfile();
         }
         final ModelAndView mav = new ModelAndView("profile");
-        final UserProfile userProfile = profileService.getUserProfile(request, principal);
-        mav.addObject("profile", userProfile);
+        final UserProfile userProfile = (UserProfile) model.asMap().get("profile");
         enrichTwitter(mav, userProfile);
         enrichTelegram(mav, principal);
         mav.addObject("githubVerification", githubBountyService.getVerification(principal));
