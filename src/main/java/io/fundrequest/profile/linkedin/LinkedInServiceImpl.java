@@ -5,6 +5,7 @@ import io.fundrequest.profile.bounty.domain.BountyType;
 import io.fundrequest.profile.bounty.event.CreateBountyCommand;
 import io.fundrequest.profile.linkedin.domain.LinkedInPost;
 import io.fundrequest.profile.linkedin.domain.LinkedInVerification;
+import io.fundrequest.profile.linkedin.dto.LinkedInPostDto;
 import io.fundrequest.profile.linkedin.dto.LinkedInShare;
 import io.fundrequest.profile.linkedin.dto.LinkedInShareContent;
 import io.fundrequest.profile.linkedin.dto.LinkedInUpdateResult;
@@ -14,6 +15,7 @@ import io.fundrequest.profile.linkedin.infrastructure.LinkedInPostRepository;
 import io.fundrequest.profile.linkedin.infrastructure.LinkedInVerificationRepository;
 import io.fundrequest.profile.profile.infrastructure.KeycloakRepository;
 import io.fundrequest.profile.profile.provider.Provider;
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.keycloak.adapters.springsecurity.token.KeycloakAuthenticationToken;
 import org.springframework.stereotype.Service;
@@ -56,10 +58,10 @@ class LinkedInServiceImpl implements LinkedInService {
 
     @Override
     @Transactional
-    public void verifyLinkedInBounty(Principal principal) {
+    public void postLinkedInShare(Principal principal, @NonNull Long postId) {
         if (!repository.findByUserId(principal.getName()).isPresent()) {
             KeycloakAuthenticationToken token = (KeycloakAuthenticationToken) principal;
-            LinkedInShare linkedInShare = getRandomShare();
+            LinkedInShare linkedInShare = getLinkedInShare(postId);
             LinkedInUpdateResult linkedInUpdateResult = client.postNetworkUpdate(
                     keycloakRepository.getAccessToken(token, Provider.LINKEDIN),
                     linkedInShare
@@ -74,10 +76,24 @@ class LinkedInServiceImpl implements LinkedInService {
         }
     }
 
-    private LinkedInShare getRandomShare() {
+    @Override
+    @Transactional(readOnly = true)
+    public LinkedInPostDto getRandomPost() {
         List<LinkedInPost> posts = postRepository.findAll();
         Collections.shuffle(posts);
         LinkedInPost post = posts.get(0);
+        return LinkedInPostDto.builder()
+                .id(post.getId())
+                .comment(post.getComment())
+                .title(post.getTitle())
+                .description(post.getDescription())
+                .submittedUrl(post.getSubmittedUrl())
+                .submittedImageUrl(post.getSubmittedImageUrl())
+                .build();
+    }
+
+    private LinkedInShare getLinkedInShare(Long postId) {
+        LinkedInPost post = postRepository.findOne(postId);
         return LinkedInShare.builder()
                 .comment(post.getComment())
                 .content(
