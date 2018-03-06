@@ -15,11 +15,16 @@ public class BountyController {
     private SurveyService surveyService;
     private GithubBountyService githubBountyService;
     private StackOverflowBountyService stackOverflowBountyService;
+    private BountyService bountyService;
 
-    public BountyController(SurveyService surveyService, GithubBountyService githubBountyService, StackOverflowBountyService stackOverflowBountyService) {
+    public BountyController(final SurveyService surveyService,
+                            final GithubBountyService githubBountyService,
+                            final StackOverflowBountyService stackOverflowBountyService,
+                            final BountyService bountyService) {
         this.surveyService = surveyService;
         this.githubBountyService = githubBountyService;
         this.stackOverflowBountyService = stackOverflowBountyService;
+        this.bountyService = bountyService;
     }
 
     @RequestMapping("/rewards")
@@ -28,6 +33,7 @@ public class BountyController {
         mav.addObject("survey", surveyService.getSurveyResult(principal));
         mav.addObject("githubVerification", githubBountyService.getVerification(principal));
         mav.addObject("stackOverflowVerification", stackOverflowBountyService.getVerification(principal));
+        mav.addObject("bounty", bountyService.getBounties(principal));
         return mav;
     }
 }
