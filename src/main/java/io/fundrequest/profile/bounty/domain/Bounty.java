@@ -2,6 +2,7 @@ package io.fundrequest.profile.bounty.domain;
 
 import io.fundrequest.profile.common.domain.AuditedEntity;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +15,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "bounty")
+@NoArgsConstructor
 public class Bounty extends AuditedEntity {
 
     @Id
@@ -31,6 +33,8 @@ public class Bounty extends AuditedEntity {
     @Column(name = "status")
     @Enumerated(value = EnumType.STRING)
     private BountyStatus status;
+
+
 
     @Builder
     Bounty(String userId, BountyType type) {
