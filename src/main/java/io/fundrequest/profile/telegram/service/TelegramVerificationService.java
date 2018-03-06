@@ -2,14 +2,11 @@ package io.fundrequest.profile.telegram.service;
 
 import io.fundrequest.profile.telegram.domain.TelegramVerification;
 import io.fundrequest.profile.telegram.repository.TelegramVerificationRepository;
-import org.keycloak.common.util.Base64Url;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.security.Principal;
 import java.util.Date;
 import java.util.Optional;
@@ -74,13 +71,5 @@ public class TelegramVerificationService {
     }
 
     public String createSecret(final String userId) {
-        final MessageDigest md;
-        try {
-            md = MessageDigest.getInstance("SHA-256");
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        }
-        byte[] check = md.digest(userId.getBytes(StandardCharsets.UTF_8));
-        return Base64Url.encode(check);
     }
 }
