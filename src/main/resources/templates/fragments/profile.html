@@ -45,21 +45,9 @@
             <i class="fab" th:classappend="'fa-' + ${platformName}"></i>
         </h5>
         <th:block th:if="${platform.getUsername() != null}">
-            <div class="card-title text-success" th:text="${platform.getUsername()}">
-                Github username
+            <div class="card-title text-success">
+                <i class="fas fa-check"></i> <span th:text="${platform.getUsername()}">Github username</span>
             </div>
-            <small class="card-text">
-                <span th:if="${verification.isApproved()}">
-                    <i class="far fa-smile"></i>
-                    Congratulations, you earned
-                    <span class="badge badge-success">1 FND</span> !
-                </span>
-                <span th:unless="${verification.isApproved()}">
-                    <i class="far fa-frown"></i>
-                    Too bad, your account is not old enough to earn some FND.
-                    But don't worry, you will be able to use the platform!
-                </span>
-            </small>
         </th:block>
         <div class="card-text"
              th:if="${platform.getUsername() == null}">
