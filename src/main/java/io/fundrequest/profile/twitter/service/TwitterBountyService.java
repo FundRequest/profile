@@ -1,5 +1,8 @@
 package io.fundrequest.profile.twitter.service;
 
+import io.fundrequest.profile.bounty.BountyService;
+import io.fundrequest.profile.bounty.domain.BountyType;
+import io.fundrequest.profile.bounty.event.CreateBountyCommand;
 import io.fundrequest.profile.twitter.model.TwitterBounty;
 import io.fundrequest.profile.twitter.model.TwitterBountyFulfillment;
 import io.fundrequest.profile.twitter.model.TwitterBountyType;
@@ -8,7 +11,6 @@ import io.fundrequest.profile.twitter.repository.TwitterBountyFulfillmentReposit
 import io.fundrequest.profile.twitter.repository.TwitterBountyRepository;
 import io.fundrequest.profile.twitter.repository.TwitterPostRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import twitter4j.Twitter;
 
@@ -20,14 +22,23 @@ import java.util.Optional;
 @Slf4j
 public class TwitterBountyService {
 
-    @Autowired
     private TwitterBountyRepository twitterBountyRepository;
-    @Autowired
     private Twitter twitter;
-    @Autowired
     private TwitterPostRepository twitterPostRepository;
-    @Autowired
     private TwitterBountyFulfillmentRepository twitterBountyFulfillmentRepository;
+    private BountyService bountyService;
+
+    public TwitterBountyService(final TwitterBountyRepository twitterBountyRepository,
+                                final Twitter twitter,
+                                final TwitterPostRepository twitterPostRepository,
+                                final TwitterBountyFulfillmentRepository twitterBountyFulfillmentRepository,
+                                final BountyService bountyService) {
+        this.twitterBountyRepository = twitterBountyRepository;
+        this.twitter = twitter;
+        this.twitterPostRepository = twitterPostRepository;
+        this.twitterBountyFulfillmentRepository = twitterBountyFulfillmentRepository;
+        this.bountyService = bountyService;
+    }
 
     public List<TwitterPost> getTwitterPosts() {
         return twitterPostRepository.findAll();
@@ -95,6 +106,12 @@ public class TwitterBountyService {
             newFullfillment.setUsername(username);
             twitterBountyFulfillmentRepository.save(
                     newFullfillment
+            );
+            bountyService.createBounty(
+                    CreateBountyCommand
+                            .builder()
+                            .type(BountyType.TWITTER_TWEET_FOLLOW)
+                            .build()
             );
         }
     }

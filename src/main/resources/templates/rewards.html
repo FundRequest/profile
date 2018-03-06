@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout"
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout" th:with="activeTab='rewards'"
       xmlns:th="http://www.thymeleaf.org"
 >
 <head>
@@ -34,14 +34,29 @@
                     </div>
                     <div class="rewards-list__item">
                         <div class="rewards-list__text">Connect with Github</div>
-                        <div>
+                        <div th:if="${githubVerification != null and githubVerification.isApproved()}">
                             <span class="text-success">Connected </span>
-                            <span class="badge badge-success">50 FND</span>
+                            <span class="text-success">15 FND</span>
+                        </div>
+                        <div th:if="${githubVerification != null and !githubVerification.isApproved()}">
+                            <span class="text-warning">Account created after 2018-01-01 </span>
+                        </div>
+                        <div th:if="${githubVerification == null}">
+                            <a class="rewards-list__link" href="/profile#verify-developer">Get 15 FND</a>
                         </div>
                     </div>
                     <div class="rewards-list__item">
                         <div class="rewards-list__text">Connect with Stackoverflow</div>
-                        <a class="rewards-list__link" href="/profile#verify-developer">Get 20 FND</a>
+                        <div th:if="${stackOverflowVerification != null and stackOverflowVerification.isApproved()}">
+                            <span class="text-success">Connected </span>
+                            <span class="text-success">15 FND</span>
+                        </div>
+                        <div th:if="${stackOverflowVerification != null and !stackOverflowVerification.isApproved()}">
+                            <span class="text-warning">Account created after 2018-01-01 </span>
+                        </div>
+                        <div th:if="${stackOverflowVerification == null}">
+                            <a class="rewards-list__link" href="/profile#verify-developer">Get 15 FND</a>
+                        </div>
                     </div>
                     <hr/>
                 </div>

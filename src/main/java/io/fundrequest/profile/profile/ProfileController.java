@@ -65,8 +65,7 @@ public class ProfileController {
         final UserProfile userProfile = (UserProfile) model.asMap().get("profile");
         enrichTwitter(mav, userProfile);
         enrichTelegram(mav, principal);
-        mav.addObject("githubVerification", githubBountyService.getVerification(principal));
-        mav.addObject("stackOverflowVerification", stackOverflowBountyService.getVerification(principal));
+
         mav.addObject("refLink", getRefLink(request, principal));
 
         return mav;

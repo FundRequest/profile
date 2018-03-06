@@ -21,6 +21,7 @@ import org.springframework.stereotype.Component;
 import javax.ws.rs.NotFoundException;
 import java.io.IOException;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
@@ -53,6 +54,9 @@ public class KeycloakRepository {
     public void updateEtherAddress(String userId, String etherAddress) {
         UserResource userResource = resource.users().get(userId);
         UserRepresentation userRepresentation = userResource.toRepresentation();
+        if (userRepresentation.getAttributes() == null) {
+            userRepresentation.setAttributes(new HashMap<>());
+        }
         userRepresentation.getAttributes().put("ether_address", Collections.singletonList(etherAddress));
         userResource.update(userRepresentation);
     }
@@ -60,6 +64,9 @@ public class KeycloakRepository {
     public void updateTelegramName(String userId, String telegramName) {
         UserResource userResource = resource.users().get(userId);
         UserRepresentation userRepresentation = userResource.toRepresentation();
+        if (userRepresentation.getAttributes() == null) {
+            userRepresentation.setAttributes(new HashMap<>());
+        }
         userRepresentation.getAttributes().put("telegram_name", Collections.singletonList(telegramName));
         userResource.update(userRepresentation);
     }

@@ -1,15 +1,14 @@
 package io.fundrequest.profile.telegram.service;
 
+import io.fundrequest.profile.bounty.BountyService;
+import io.fundrequest.profile.bounty.domain.BountyType;
+import io.fundrequest.profile.bounty.event.CreateBountyCommand;
 import io.fundrequest.profile.telegram.domain.TelegramVerification;
 import io.fundrequest.profile.telegram.repository.TelegramVerificationRepository;
-import org.keycloak.common.util.Base64Url;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.security.Principal;
 import java.util.Date;
 import java.util.Optional;
@@ -17,8 +16,14 @@ import java.util.Optional;
 @Service
 public class TelegramVerificationService {
 
-    @Autowired
-    private TelegramVerificationRepository telegramVerificationRepository;
+    private final TelegramVerificationRepository telegramVerificationRepository;
+    private final BountyService bountyService;
+
+    public TelegramVerificationService(final TelegramVerificationRepository telegramVerificationRepository,
+                                       final BountyService bountyService) {
+        this.telegramVerificationRepository = telegramVerificationRepository;
+        this.bountyService = bountyService;
+    }
 
     @Transactional(readOnly = true)
     public boolean exists(final String telegramName) {
@@ -38,9 +43,14 @@ public class TelegramVerificationService {
     public boolean verify(final String telegramName, final String secret) {
         final Optional<TelegramVerification> byUserIdAndSecret = telegramVerificationRepository.findByTelegramNameAndSecret(telegramName, secret);
         if (byUserIdAndSecret.isPresent()) {
-            TelegramVerification telegramVerification = byUserIdAndSecret.get();
+            final TelegramVerification telegramVerification = byUserIdAndSecret.get();
             if (!telegramVerification.isVerified()) {
-                //payout lads!
+                bountyService.createBounty(
+                        CreateBountyCommand.builder()
+                                .type(BountyType.LINK_TELEGRAM)
+                                .userId(telegramVerification.getUserId())
+                                .build()
+                );
             }
             telegramVerification.setLastAction(new Date());
             telegramVerification.setVerified(true);
@@ -74,13 +84,6 @@ public class TelegramVerificationService {
     }
 
     public String createSecret(final String userId) {
-        final MessageDigest md;
-        try {
-            md = MessageDigest.getInstance("SHA-256");
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        }
-        byte[] check = md.digest(userId.getBytes(StandardCharsets.UTF_8));
-        return Base64Url.encode(check);
+        return DigestUtils.sha1Hex(userId);
     }
 }
