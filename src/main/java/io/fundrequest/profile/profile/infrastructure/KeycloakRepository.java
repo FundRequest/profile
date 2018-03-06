@@ -75,6 +75,10 @@ public class KeycloakRepository {
         return getAttribute(getUser(userId), "ether_address");
     }
 
+    public String getEtherAddress(UserRepresentation userRepresentation) {
+        return getAttribute(userRepresentation, "ether_address");
+    }
+
     public String getAttribute(UserRepresentation userRepresentation, String property) {
         Map<String, List<String>> attributes = userRepresentation.getAttributes();
         if (attributes != null && attributes.size() > 0) {
@@ -86,15 +90,8 @@ public class KeycloakRepository {
         return null;
     }
 
-    public String getTelegramName(String userId) {
-        Map<String, List<String>> attributes = resource.users().get(userId).toRepresentation().getAttributes();
-        if (attributes != null && attributes.size() > 0) {
-            List<String> etherAddresses = attributes.get("telegram_name");
-            if (etherAddresses != null && etherAddresses.size() > 0) {
-                return etherAddresses.get(0);
-            }
-        }
-        return null;
+    public String getTelegramName(UserRepresentation userRepresentation) {
+        return getAttribute(userRepresentation, "telegram_name");
     }
 
     public String getAccessToken(@NonNull KeycloakAuthenticationToken token, @NonNull Provider provider) {

@@ -11,6 +11,7 @@ import org.keycloak.common.util.Base64Url;
 import org.keycloak.common.util.KeycloakUriBuilder;
 import org.keycloak.representations.AccessToken;
 import org.keycloak.representations.IDToken;
+import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
@@ -51,17 +52,27 @@ public class ProfileServiceImpl implements ProfileService {
         if (request != null) {
             addMissingProviders(request, principal, providers);
         }
+        UserRepresentation user = keycloakRepository.getUser(principal.getName());
         return UserProfile.builder()
                 .name(idToken.getName())
                 .email(idToken.getEmail())
-                .etherAddress(keycloakRepository.getEtherAddress(principal.getName()))
-                .telegramName(keycloakRepository.getTelegramName(principal.getName()))
+                .picture(getPicture(idToken))
+                .etherAddress(keycloakRepository.getEtherAddress(user))
+                .telegramName(keycloakRepository.getTelegramName(user))
                 .github(providers.get(Provider.GITHUB))
                 .linkedin(providers.get(Provider.LINKEDIN))
                 .twitter(providers.get(Provider.TWITTER))
                 .google(providers.get(Provider.GOOGLE))
                 .stackoverflow(providers.get(Provider.STACKOVERFLOW))
                 .build();
+    }
+
+    private String getPicture(IDToken idToken) {
+        String picture = idToken.getPicture();
+        if (picture.endsWith("?sz=50")) {
+            picture += "0";
+        }
+        return picture;
     }
 
     @Override
