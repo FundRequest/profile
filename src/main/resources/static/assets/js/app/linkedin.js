@@ -1,4 +1,4 @@
-define(["require", "exports", "alert", "jquery"], function (require, exports, alert_1, $) {
+define(["require", "exports", "app/alert", "jquery"], function (require, exports, alert_1, $) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var LinkedIn = /** @class */ (function () {

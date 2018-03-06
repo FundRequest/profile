@@ -1,4 +1,4 @@
-import {Alert} from 'alert';
+import {Alert} from 'app/alert';
 import * as $ from 'jquery';
 
 class LinkedIn {

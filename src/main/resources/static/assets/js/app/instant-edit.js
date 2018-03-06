@@ -1,4 +1,4 @@
-define(["require", "exports", "utils", "jquery"], function (require, exports, utils_1, $) {
+define(["require", "exports", "app/utils", "jquery"], function (require, exports, utils_1, $) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var InstantEdit = /** @class */ (function () {

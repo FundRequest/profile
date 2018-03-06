@@ -2,7 +2,7 @@
     position: fixed;
     left: 50%;
     transform: translateX(-50%);
-    z-index: $zindex-modal-backdrop;
+    z-index: $zindex-modal + 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -19,6 +19,16 @@
 
         &:hover {
             @include box-shadow($bmd-shadow-6dp);
+        }
+    }
+
+    .modal-open & {
+        .alert {
+            @include box-shadow($bmd-shadow-6dp);
+        }
+
+        &:hover {
+            @include box-shadow($bmd-shadow-8dp);
         }
     }
 }

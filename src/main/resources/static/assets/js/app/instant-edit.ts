@@ -1,4 +1,4 @@
-import {Utils} from 'utils';
+import {Utils} from 'app/utils';
 import * as $ from 'jquery';
 
 export class InstantEdit {

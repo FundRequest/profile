@@ -1,12 +1,12 @@
 import * as $ from 'jquery';
 import 'bootstrap';
-import {Alert} from 'alert';
-import {InstantEdit} from 'instant-edit';
-import * as Clipboard from 'clipboard';
+import * as ClipboardJS from 'clipboard';
+import {Alert} from 'app/alert';
+import {InstantEdit} from 'app/instant-edit';
 
 class Main {
     constructor() {
-        let _clipboard = new Clipboard('[data-clipboard-target]');
+        let _clipboard = new ClipboardJS('[data-clipboard-target]');
         _clipboard.on('success', (e) => {
             Alert.show('Copied to your clipboard! ');
             e.clearSelection();
@@ -18,8 +18,6 @@ class Main {
         new InstantEdit();
         $('.fnd-badge[data-toggle="tooltip"]').tooltip();
         $('body').bootstrapMaterialDesign();
-
-        Alert.show('test', 'danger');
     }
 }
 

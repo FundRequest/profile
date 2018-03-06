@@ -6,35 +6,62 @@
      th:if="${platform != null}">
     <a class="anchor" th:id="'get-social-' + ${platformName}"></a>
 
-    <div class="card card--border-top h-100" th:if="${platform.getUsername() == null}">
+    <div class="card card--primary h-100" th:if="${platform.getUsername() == null}">
         <div class="card-body d-md-flex justify-content-between align-items-center">
-            <h5 class="card-title mb-2 mb-md-0">
+            <idv class="card-title mb-2 mb-md-0">
                 <span th:text="${title}">Google</span>
                 <i class="fab" th:classappend="'fa-' + ${platformName}"></i>
-            </h5>
+            </idv>
             <a class="btn mb-0 btn-raised btn-primary"
                th:href="${platform.getSignupLink()}">Connect</a>
         </div>
     </div>
 
-    <div class="card card--border-top card--border-top--success h-100"
+    <div class="card card--success h-100"
          th:if="${platform.getUsername() != null}">
-        <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="card-header d-flex justify-content-between align-items-center">
             <span th:text="${title}">Platform name</span>
             <span th:text="${platform.getUsername()}">User name, link to profile?</span>
-        </div>
+        </h5>
         <div class="card-body d-md-flex justify-content-between align-items-center">
-            <h5 class="card-title mb-2 mb-md-0" th:text="${rewardText}">
+            <div class="card-title mb-2 mb-md-0" th:text="${rewardText}">
                 Get 50 FND for sharing on google
-            </h5>
+            </div>
 
-            <a href="#" class="btn mb-0 icon-left" th:classappend="'btn-outline-' + ${platformName}" th:attr="data-target=${'#' + modalId}, data-toggle=modal">
+            <a href="#" class="btn mb-0 icon-left" th:classappend="'btn-outline-' + ${platformName}"
+               th:attr="data-target=${'#' + modalId}, data-toggle=modal">
                 <i class="fab" th:classappend="'fa-' + ${platformName}"></i>
                 <span th:text="${buttonText}">Share on google</span>
             </a>
         </div>
     </div>
     <script>require(["app/linkedin"])</script>
+</div>
+
+<div th:fragment="modal" class="modal fade" tabindex="-1" role="dialog" id="modal-share-linked-in">
+    <div class="modal-dialog modal-dialog--linkedin" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">LinkedIn</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body d-block">
+                <div class="form-control form-control--readonly-text mb-2" data-share-linked-in="text">FundRequest is
+                    awesome
+                </div>
+                <div><label class="mb-2">Share with: <strong>public</strong></label></div>
+                <button class="btn btn-outline-linkedin icon-left" type="button" data-share-linked-in="button">
+                    <i class="fab fa-linkedin"></i>
+                    <span>Share</span>
+                </button>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-raised btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 </body>
