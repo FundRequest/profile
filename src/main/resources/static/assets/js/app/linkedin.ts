@@ -1,28 +1,27 @@
+import {Alert} from 'alert';
 import * as $ from 'jquery';
 
 class LinkedIn {
     private _postId = null;
-    private _message = null;
 
     constructor() {
-        let self = this;
+        let $button = $('[data-share-linked-in="button"]');
+        let $modal = $('#modal-share-linked-in');
 
-        $('[data-share-linked-in="button"]').on('click', (e) => {
-            $.post('/bounties/linkedin', { 'post-id': this._postId }, {
-                error: () => {
-                    console.log('error sharing');
-                },
-                success: () => {
-                    console.log('shared');
-                }
+        $button.on('click', (e) => {
+            $.post('/bounties/linkedin', {'post-id': this._postId}, () => {
+                $modal.modal('hide');
+                Alert.show('Sharing is caring, thanks!');
+            }).fail(() => {
+                Alert.show('Oeps, something went wrong, please try again.', { type: 'danger'});
             });
         });
 
-        $('#modal-share-linked-in').on('show.bs.modal', (e) => {
+        $modal.on('show.bs.modal', (e) => {
             let message: HTMLElement = $('[data-share-linked-in="text"]', e.target)[0];
 
             $.get('/bounties/linkedin/random-post', (data) => {
-                self._postId = data.id;
+                this._postId = data.id;
                 message.innerHTML = data.description;
             });
         });

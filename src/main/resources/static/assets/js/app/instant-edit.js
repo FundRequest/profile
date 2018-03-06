@@ -60,20 +60,31 @@ define(["require", "exports", "utils", "jquery"], function (require, exports, ut
         InstantEdit.prototype._saveItem = function (field, name) {
             var isValid = this._validateItem(field, name);
             var self = this;
+            var postAddress = null;
+            var data = null;
             if (!isValid) {
                 return;
             }
             utils_1.Utils.showLoading();
-            var error = false;
-            $.post('/profile/etheraddress', {
-                etheraddress: field.value,
-                error: function () {
-                    self._showError(field, name, 'Something went wrong.');
-                },
-                success: function () {
+            switch (field.dataset.edit) {
+                case 'eth-address':
+                    postAddress = '/profile/etheraddress';
+                    data = { etheraddress: field.value };
+                    break;
+                case 'telegram-name':
+                    postAddress = '/profile/telegramname';
+                    data = { telegramname: field.value };
+                    break;
+                default:
                     utils_1.Utils.hideLoading();
-                    self._hideError(field, name);
-                }
+                    return;
+            }
+            $.post(postAddress, data, function () {
+                self._hideError(field, name);
+            }).fail(function () {
+                self._showError(field, name, 'Something went wrong.');
+            }).always(function () {
+                utils_1.Utils.hideLoading();
             });
         };
         InstantEdit.prototype._hideError = function (field, name) {

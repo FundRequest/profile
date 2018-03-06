@@ -51,65 +51,6 @@
         </div>
 
         <div class="card mb-5">
-            <div class="card-body">
-                <h5 class="card-title">
-                    Join us on Telegram
-                </h5>
-
-                <div th:if="${telegramVerified}">
-                    <label class="mb-0">E-mail</label>
-                    <input type="text"
-                           th:value="${profile.getTelegramName()}"
-                           class="form-control form-control--not-editable" disabled="disabled" readonly="readonly"/>
-                </div>
-                <div th:unless="${telegramVerified}">
-
-                    <div class="card-text">
-
-                        <label for="telegram-name" class="mb-0">Enter your telegram name</label>
-                        <input type="text"
-                               id="telegram-name"
-                               data-edit="telegram-name"
-                               data-edit-validation="telegram"
-                               th:value="${profile.getTelegramName()}"
-                               class="form-control form-control--instant-edit" placeholder="No Telegram name defined yet"/>
-                        <div data-edit-messages="telegram-name"></div>
-
-                        <br />
-                        <button class="btn btn-outline-linkedin icon-left mb-1">
-                            <i class="fab fa-telegram"></i>
-                            <a target="_blank" th:href="@{https://t.me/fundrequestofficial}">Join us on Telegram</a>
-                        </button>
-                    </div>
-
-                    <p>After you've joined our channel, please verify yourself with our bot.</p>
-
-                    <div class="card-text">
-                        <button class="btn btn-outline-linkedin icon-left mb-1">
-                            <i class="fab fa-telegram"></i>
-                            <a target="_blank" th:href="@{https://t.me/FundRequestVerifierBot}">Contact our Bot</a>
-                        </button>
-                    </div>
-
-                    <p>And tell him this.</p>
-
-                    <div class="card-text mb-2">
-                        <div class="input-group">
-                            <input class="form-control" id="referral-link" title="personal referral link"
-                                   value="referralkey" th:value="${telegramVerificationCommand}"/>
-                            <div class="input-group-append">
-                                <button class="btn" data-clipboard-target="#referral-link">
-                                    <i class="fa fa-clipboard"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="card mb-5">
             <div class="card-header">
                 Are you a developer?
                 <a class="anchor" id="verify-developer"></a>
@@ -141,7 +82,7 @@
                         <div th:replace="fragments/twitter :: social-connect-block(platform=${profile.getTwitter()})"></div>
                     </div>
                     <div class="col-12">
-                        <div th:replace="fragments/profile :: social-connect-block(platform=${profile.getGoogle()}, title='Google Plus', platformName='google-plus', rewardText='Share and get 50 FND', buttonText='Share on Google',buttonLink='https://share', modalId='')"></div>
+                        <div th:replace="fragments/telegram :: social-connect-block(profile=${profile}, telegramVerified=${telegramVerified}, telegramVerificationCommand=${telegramVerificationCommand})"></div>
                     </div>
                 </div>
             </div>

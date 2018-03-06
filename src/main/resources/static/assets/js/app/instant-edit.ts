@@ -62,23 +62,35 @@ export class InstantEdit {
     private _saveItem(field, name) {
         let isValid = this._validateItem(field, name);
         let self = this;
+        let postAddress = null;
+        let data = null;
 
         if (!isValid) {
             return;
         }
 
         Utils.showLoading();
-        let error: boolean = false;
 
-        $.post('/profile/etheraddress', {
-            etheraddress: field.value,
-            error: () => {
-                self._showError(field, name, 'Something went wrong.');
-            },
-            success: () => {
+        switch (field.dataset.edit) {
+            case 'eth-address':
+                postAddress = '/profile/etheraddress';
+                data = {etheraddress: field.value};
+                break;
+            case 'telegram-name':
+                postAddress = '/profile/telegramname';
+                data = {telegramname: field.value};
+                break;
+            default:
                 Utils.hideLoading();
-                self._hideError(field, name);
-            }
+                return;
+        }
+
+        $.post(postAddress, data, () => {
+            self._hideError(field, name);
+        }).fail(() => {
+            self._showError(field, name, 'Something went wrong.');
+        }).always(() => {
+            Utils.hideLoading();
         });
 
     }
