@@ -74,6 +74,22 @@
                         </div>
                         <a class="rewards-list__link" href="/profile#get-social-telegram">Get 50 FND</a>
                     </div>
+                    <hr th:if="${survey}"/>
+                </div>
+
+
+                <div class="rewards-list" th:if="${survey}">
+                    <div class="rewards-list__title">
+                        <div><a href="#">Survey</a></div>
+                        <small>You must have filled in the platform survey correctly</small>
+                    </div>
+                    <div class="rewards-list__item">
+                        <div class="rewards-list__text">Fill in survey</div>
+                        <div>
+                            <span class="text-secondary">Unverified </span>
+                            <span class="badge badge-secondary">0 FND</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
