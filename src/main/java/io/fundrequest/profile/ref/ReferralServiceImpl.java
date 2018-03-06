@@ -73,7 +73,7 @@ class ReferralServiceImpl implements ReferralService {
     public void createNewRef(@Valid CreateRefCommand command) {
         String referrer = command.getRef();
         String referee = command.getPrincipal().getName();
-        validateReferee(referrer, referee);
+        validReferral(referrer, referee);
         if (!repository.existsByReferee(referee)) {
             Referral referral = Referral.builder()
                     .referrer(referrer)
@@ -104,9 +104,12 @@ class ReferralServiceImpl implements ReferralService {
                 .findFirst().isPresent();
     }
 
-    private void validateReferee(String referrer, String referee) {
+    private void validReferral(String referrer, String referee) {
         if (isValidReferee(referrer, referee)) {
-            throw new RuntimeException("this is not a valid referee");
+            throw new RuntimeException("This is not a valid referee");
+        }
+        if (!keycloakRepository.userExists(referrer)) {
+            throw new RuntimeException("This is not a valid referrer");
         }
     }
 

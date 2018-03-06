@@ -11376,6 +11376,11 @@ h2 .svg-inline--fa {
 .error-template {
   padding: 40px 15px;
   text-align: center; }
+  .error-template .error-stack {
+    text-align: left; }
+    .error-template .error-stack pre {
+      margin-top: 100px;
+      max-height: 500px; }
 
 .error-actions {
   margin-top: 15px;
