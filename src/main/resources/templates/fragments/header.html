@@ -55,10 +55,10 @@
 
                     <div class="collapse navbar-collapse" id="sec-menu">
                         <ul class="navbar-nav mr-auto">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="/profile">Profile <span class="sr-only">(current)</span></a>
+                            <li th:classappend="${activeTab == 'profile'} ? 'active' : ''" class="nav-item">
+                                <a class="nav-link" href="/profile">Profile</a>
                             </li>
-                            <li class="nav-item">
+                            <li th:classappend="${activeTab == 'rewards'} ? 'active' : ''" class="nav-item">
                                 <a class="nav-link" href="/rewards">Rewards</a>
                             </li>
                         </ul>
