@@ -6,6 +6,7 @@
 
     <title layout:title-pattern="$CONTENT_TITLE">Base</title>
     <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
     <link rel="apple-touch-icon" type="image/png" href="/assets/favicons/logo-single180.png" sizes="180x180"/>
@@ -74,10 +75,11 @@
         </div>
     </nav>
 
-    <div layout:fragment="ribbon"></div>
-
+    <div class="fnd-ribbon fnd-ribbon--novice"></div>
+    
     <section class="fnd-main">
         <div class="container">
+            <div th:replace="fragments/header"></div>
             <div layout:fragment="content"></div>
         </div>
     </section>
