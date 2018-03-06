@@ -1,8 +1,9 @@
+import {Utils} from 'utils';
+import * as $ from 'jquery';
 
-class InstantEdit {
+export class InstantEdit {
     private _document: HTMLDocument = document;
     private _invalidFormClass: string = 'is-invalid';
-    private _validFormClass: string = 'is-valid';
     private _invalidMessageClass: string = 'invalid-feedback';
 
     constructor() {
@@ -17,9 +18,6 @@ class InstantEdit {
                 li.setSelectionRange(0, 0);
                 this._saveItem(li, name);
             });
-
-            // TODO: remove dummy data
-            this._loadItem(li, name);
         }
     }
 
@@ -63,6 +61,7 @@ class InstantEdit {
 
     private _saveItem(field, name) {
         let isValid = this._validateItem(field, name);
+        let self = this;
 
         if (!isValid) {
             return;
@@ -71,37 +70,16 @@ class InstantEdit {
         Utils.showLoading();
         let error: boolean = false;
 
-
-        localStorage.setItem(`fnd.values.${name}`, field.value);
-
-        /*
-            // get field
-            // get validation attributes and do validation
-                // if not ok
-                    // show message
-
-                // if ok
-                    // do ajax call to update item
-                        // show loader
-                            // remove loader
-                            // see if succeeded
-                        // see if error
-                            // remove loader
-                            // show error message
-         */
-        setTimeout(() => { // fake ajax call
-            Utils.hideLoading();
-
-            if (error) {
-                this._showError(field, name, 'Not yet implemented');
-            } else {
-                this._hideError(field, name);
-                field.classList.add(this._validFormClass);
-                setTimeout(() => {
-                    field.classList.remove(this._validFormClass)
-                }, 1000);
+        $.post('/profile/etheraddress', {
+            etheraddress: field.value,
+            error: () => {
+                self._showError(field, name, 'Something went wrong.');
+            },
+            success: () => {
+                Utils.hideLoading();
+                self._hideError(field, name);
             }
-        }, 3000);
+        });
 
     }
 

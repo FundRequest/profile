@@ -1,4 +1,4 @@
-class Utils {
+export class Utils {
 
     public static showLoading() {
         document.querySelector('[data-page-loader]').classList.remove('d-none');
