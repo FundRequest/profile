@@ -1,13 +1,20 @@
 .error-template {
-    padding: 40px 15px;
-    text-align: center;
+  padding: 40px 15px;
+  text-align: center;
+  .error-stack {
+    text-align: left;
+    pre {
+      margin-top: 100px;
+      max-height: 500px;
+    }
+  }
 }
 
 .error-actions {
-    margin-top: 15px;
-    margin-bottom: 15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .error-actions .btn {
-    margin-right: 10px;
+  margin-right: 10px;
 }
