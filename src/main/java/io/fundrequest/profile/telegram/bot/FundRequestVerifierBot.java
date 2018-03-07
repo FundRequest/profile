@@ -49,7 +49,7 @@ public class FundRequestVerifierBot extends AbilityBot {
                     getChatMember.setUserId(ctx.user().id());
                     try {
                         final ChatMember execute = this.execute(getChatMember);
-                        if (execute.getStatus().equalsIgnoreCase("member") || execute.getStatus().equalsIgnoreCase("creator")) {
+                        if (execute.getStatus().equalsIgnoreCase("member") || execute.getStatus().equalsIgnoreCase("creator") || execute.getStatus().equalsIgnoreCase("administrator")) {
                             if (telegramVerificationService.exists(ctx.user().username())) {
                                 if (ctx.arguments().length > 0) {
                                     if (telegramVerificationService.verify(ctx.user().username(), ctx.firstArg())) {
