@@ -6,6 +6,7 @@ import io.fundrequest.profile.profile.dto.UserProfile;
 import io.fundrequest.profile.profile.dto.UserProfileProvider;
 import io.fundrequest.profile.profile.infrastructure.KeycloakRepository;
 import io.fundrequest.profile.profile.provider.Provider;
+import org.apache.commons.lang3.StringUtils;
 import org.keycloak.adapters.springsecurity.token.KeycloakAuthenticationToken;
 import org.keycloak.common.util.Base64Url;
 import org.keycloak.common.util.KeycloakUriBuilder;
@@ -69,7 +70,7 @@ public class ProfileServiceImpl implements ProfileService {
 
     private String getPicture(IDToken idToken) {
         String picture = idToken.getPicture();
-        if (picture.endsWith("?sz=50")) {
+        if (StringUtils.isNotBlank(picture) && picture.endsWith("?sz=50")) {
             picture += "0";
         }
         return picture;
