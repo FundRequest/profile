@@ -135,7 +135,7 @@ public class ProfileController {
     }
 
     @GetMapping("/profile/link/{provider}/redirect")
-    public ModelAndView redirectToHereAfterProfileLink(Principal principal, @PathVariable("provider") String provider, HttpServletRequest request) {
+    public ModelAndView redirectToHereAfterProfileLink(Principal principal, @PathVariable("provider") String provider) {
         profileService.userProviderIdentityLinked(principal, Provider.fromString(provider));
         return redirectToProfile();
     }
