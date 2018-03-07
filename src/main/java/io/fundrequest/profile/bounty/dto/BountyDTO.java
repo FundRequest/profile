@@ -11,5 +11,8 @@ public class BountyDTO {
     private long otherRewards;
     private long referralRewards;
     private long surveyRewards;
+    private long telegramRewards;
+    private long twitterRewards;
+    private long linkedInRewards;
 
 }

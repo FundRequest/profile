@@ -72,7 +72,13 @@
                             <span>Connect LinkedIn and share</span>
                         </div>
                         <div>
-                            <a class="rewards-list__link" href="/profile#get-social-linkedin">Get 10 FND</a>
+                            <div th:if="${bounty.getLinkedInRewards() > 0}">
+                                <span class="text-success">10 FND</span>
+                            </div>
+                            <div th:if="${bounty.getLinkedInRewards() == 0}">
+                                <a class="rewards-list__link" href="/profile#get-social-linkedin">Get 10 FND</a>
+                            </div>
+
                         </div>
                     </div>
                     <div class="rewards-list__item">
@@ -80,14 +86,25 @@
                             <i class="fab fa-twitter mr-1"></i>
                             <span>Connect Twitter and tweet</span>
                         </div>
-                        <a class="rewards-list__link" href="/profile#get-social-twitter">Get 10 FND</a>
+                        <div th:if="${bounty.getTwitterRewards() > 0}">
+                            <span class="text-success">10 FND</span>
+                        </div>
+                        <div th:if="${bounty.getTwitterRewards() == 0}">
+                            <a class="rewards-list__link" href="/profile#get-social-twitter">Get 10 FND</a>
+                        </div>
                     </div>
                     <div class="rewards-list__item">
                         <div class="rewards-list__text">
                             <i class="fab fa-telegram mr-1"></i>
                             <span>Join Telegram and say Hi!</span>
                         </div>
-                        <a class="rewards-list__link" href="/profile#get-social-telegram">Get 5 FND</a>
+                        <div th:if="${bounty.getTelegramRewards() > 0}">
+                            <span class="text-success">5 FND</span>
+                        </div>
+                        <div th:if="${bounty.getTelegramRewards() == 0}">
+                            <a class="rewards-list__link" href="/profile#get-social-telegram">Get 5 FND</a>
+                        </div>
+
                     </div>
                     <hr th:if="${survey}"/>
                 </div>
@@ -112,7 +129,9 @@
         <div class="card mb-5">
             <h5 class="card-header card-header card-header--label">
                 <span>Referrals</span>
-                <small class="text-success" id="referral-total"><span th:text="${bounty.getReferralRewards()}"></span> FND</small>
+                <small class="text-success" id="referral-total"><span th:text="${bounty.getReferralRewards()}"></span>
+                    FND
+                </small>
             </h5>
 
             <div class="card-body">

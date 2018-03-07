@@ -42,17 +42,23 @@ class BountyServiceImpl implements BountyService {
                 .collect(Collectors.groupingBy(Bounty::getType));
 
         int referralRewards = byType.getOrDefault(BountyType.REFERRAL, new ArrayList<>()).size() * REF_LINK_REWARD;
+        int twitterRewards = byType.getOrDefault(BountyType.TWITTER_TWEET_FOLLOW, new ArrayList<>()).size() * 10;
+        int linkedInRewards = byType.getOrDefault(BountyType.POST_LINKEDIN_UPDATE, new ArrayList<>()).size() * 10;
+        int telegramRewards = byType.getOrDefault(BountyType.LINK_TELEGRAM, new ArrayList<>()).size() * 5;
         int otherRewards =
                 byType.get(BountyType.LINK_GITHUB).size() * 15
                         + byType.getOrDefault(BountyType.LINK_STACK_OVERFLOW, new ArrayList<>()).size() * 15
-                        + byType.getOrDefault(BountyType.POST_LINKEDIN_UPDATE, new ArrayList<>()).size() * 10
-                        + byType.getOrDefault(BountyType.TWITTER_TWEET_FOLLOW, new ArrayList<>()).size() * 10
-                        + byType.getOrDefault(BountyType.LINK_TELEGRAM, new ArrayList<>()).size() * 5;
+                        + linkedInRewards
+                        + twitterRewards
+                        + telegramRewards;
 
         return BountyDTO.builder()
                 .referralRewards(referralRewards)
                 .otherRewards(otherRewards)
                 .totalRewards(referralRewards + otherRewards)
+                .twitterRewards(twitterRewards)
+                .linkedInRewards(linkedInRewards)
+                .telegramRewards(telegramRewards)
                 .build();
     }
 
