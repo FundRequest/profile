@@ -3,6 +3,7 @@ package io.fundrequest.profile.stackoverflow;
 import io.fundrequest.profile.bounty.BountyService;
 import io.fundrequest.profile.bounty.domain.BountyType;
 import io.fundrequest.profile.bounty.event.CreateBountyCommand;
+import io.fundrequest.profile.developer.verification.event.DeveloperVerified;
 import io.fundrequest.profile.profile.ProfileService;
 import io.fundrequest.profile.profile.dto.UserLinkedProviderEvent;
 import io.fundrequest.profile.profile.dto.UserProfile;
@@ -13,6 +14,7 @@ import io.fundrequest.profile.stackoverflow.dto.StackOverflowUser;
 import io.fundrequest.profile.stackoverflow.dto.StackOverflowVerificationDto;
 import io.fundrequest.profile.stackoverflow.infrastructure.StackOverflowBountyRepository;
 import io.fundrequest.profile.stackoverflow.infrastructure.StackOverflowClient;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,12 +30,14 @@ class StackOverflowBountyServiceImpl implements StackOverflowBountyService {
     private StackOverflowBountyRepository repository;
     private StackOverflowClient client;
     private BountyService bountyService;
+    private ApplicationEventPublisher eventPublisher;
 
-    public StackOverflowBountyServiceImpl(ProfileService profileService, StackOverflowBountyRepository repository, StackOverflowClient client, BountyService bountyService) {
+    public StackOverflowBountyServiceImpl(ProfileService profileService, StackOverflowBountyRepository repository, StackOverflowClient client, BountyService bountyService, ApplicationEventPublisher eventPublisher) {
         this.profileService = profileService;
         this.repository = repository;
         this.client = client;
         this.bountyService = bountyService;
+        this.eventPublisher = eventPublisher;
     }
 
     @EventListener
@@ -61,6 +65,7 @@ class StackOverflowBountyServiceImpl implements StackOverflowBountyService {
                 saveGithubBounty(principal, user, validForBounty);
                 if (validForBounty) {
                     saveBounty(principal);
+                    eventPublisher.publishEvent(DeveloperVerified.builder().userId(principal.getName()).build());
                 }
             }
         }

@@ -54,7 +54,8 @@
         <div class="card mb-5">
             <a class="anchor" id="verify-developer"></a>
             <h5 class="card-header card-header--label">
-                <span>Verify as a developer</span>
+                <span th:if="${profile.isVerifiedDeveloper()}">You're as verified as a developer!</span>
+                <span th:unless="${profile.isVerifiedDeveloper()}">Verify yourself as a developer</span>
                 <small class="text-muted">Rewards up to 25 FND</small>
             </h5>
             <div class="card-body text-center">

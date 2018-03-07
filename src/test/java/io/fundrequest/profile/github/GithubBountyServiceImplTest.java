@@ -14,6 +14,7 @@ import io.fundrequest.profile.profile.dto.UserProfileProvider;
 import io.fundrequest.profile.profile.provider.Provider;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.authentication.event.AuthenticationSuccessEvent;
 import org.springframework.security.core.Authentication;
 
@@ -31,6 +32,7 @@ public class GithubBountyServiceImplTest {
     private GithubBountyRepository githubBountyRepository;
     private BountyService bountyService;
     private GithubClient githubClient;
+    private ApplicationEventPublisher eventPublisher;
 
     @Before
     public void setUp() throws Exception {
@@ -38,11 +40,12 @@ public class GithubBountyServiceImplTest {
         githubBountyRepository = mock(GithubBountyRepository.class);
         bountyService = mock(BountyService.class);
         githubClient = mock(GithubClient.class);
+        eventPublisher = mock(ApplicationEventPublisher.class);
         githubBountyService = new GithubBountyServiceImpl(
                 profileService,
                 githubBountyRepository,
                 bountyService,
-                githubClient);
+                githubClient, eventPublisher);
     }
 
     @Test

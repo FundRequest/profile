@@ -1,5 +1,6 @@
 package io.fundrequest.profile.profile;
 
+import io.fundrequest.profile.developer.verification.event.DeveloperVerified;
 import io.fundrequest.profile.profile.dto.UserIdentity;
 import io.fundrequest.profile.profile.dto.UserLinkedProviderEvent;
 import io.fundrequest.profile.profile.dto.UserProfile;
@@ -15,6 +16,7 @@ import org.keycloak.representations.IDToken;
 import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
@@ -58,6 +60,7 @@ public class ProfileServiceImpl implements ProfileService {
                 .name(idToken.getName())
                 .email(idToken.getEmail())
                 .picture(getPicture(idToken))
+                .verifiedDeveloper(keycloakRepository.isVerifiedDeveloper(user))
                 .etherAddress(keycloakRepository.getEtherAddress(user))
                 .telegramName(keycloakRepository.getTelegramName(user))
                 .github(providers.get(Provider.GITHUB))
@@ -66,6 +69,11 @@ public class ProfileServiceImpl implements ProfileService {
                 .google(providers.get(Provider.GOOGLE))
                 .stackoverflow(providers.get(Provider.STACKOVERFLOW))
                 .build();
+    }
+
+    @EventListener
+    public void onDeveloperVerified(DeveloperVerified event) {
+        keycloakRepository.updateVerifiedDeveloper(event.getUserId(), true);
     }
 
     private String getPicture(IDToken idToken) {

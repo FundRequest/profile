@@ -6,6 +6,7 @@ import io.fundrequest.profile.profile.dto.UserIdentity;
 import io.fundrequest.profile.profile.dto.accesstoken.LinkedInTokenResult;
 import io.fundrequest.profile.profile.provider.Provider;
 import lombok.NonNull;
+import org.apache.commons.lang3.BooleanUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -51,23 +52,25 @@ public class KeycloakRepository {
                 .map(fi -> UserIdentity.builder().provider(Provider.fromString(fi.getIdentityProvider())).username(fi.getUserName()).userId(fi.getUserId()).build());
     }
 
+
     public void updateEtherAddress(String userId, String etherAddress) {
-        UserResource userResource = resource.users().get(userId);
-        UserRepresentation userRepresentation = userResource.toRepresentation();
-        if (userRepresentation.getAttributes() == null) {
-            userRepresentation.setAttributes(new HashMap<>());
-        }
-        userRepresentation.getAttributes().put("ether_address", Collections.singletonList(etherAddress));
-        userResource.update(userRepresentation);
+        updateAttribute(resource.users().get(userId), "ether_address", etherAddress);
     }
 
     public void updateTelegramName(String userId, String telegramName) {
-        UserResource userResource = resource.users().get(userId);
+        updateAttribute(resource.users().get(userId), "telegram_name", telegramName);
+    }
+
+    public void updateVerifiedDeveloper(String userId, Boolean isVerified) {
+        updateAttribute(resource.users().get(userId), "verified_developer", "" + BooleanUtils.isTrue(isVerified));
+    }
+
+    private void updateAttribute(UserResource userResource, String property, String value) {
         UserRepresentation userRepresentation = userResource.toRepresentation();
         if (userRepresentation.getAttributes() == null) {
             userRepresentation.setAttributes(new HashMap<>());
         }
-        userRepresentation.getAttributes().put("telegram_name", Collections.singletonList(telegramName));
+        userRepresentation.getAttributes().put(property, Collections.singletonList(value));
         userResource.update(userRepresentation);
     }
 
@@ -77,6 +80,10 @@ public class KeycloakRepository {
 
     public String getEtherAddress(UserRepresentation userRepresentation) {
         return getAttribute(userRepresentation, "ether_address");
+    }
+
+    public boolean isVerifiedDeveloper(UserRepresentation userRepresentation) {
+        return "true".equalsIgnoreCase(getAttribute(userRepresentation, "verified_developer"));
     }
 
     public String getAttribute(UserRepresentation userRepresentation, String property) {
