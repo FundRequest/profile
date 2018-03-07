@@ -9,11 +9,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 class BountyServiceImpl implements BountyService {
 
+    private static final int REF_LINK_REWARD = 5;
     private BountyRepository bountyRepository;
 
     public BountyServiceImpl(BountyRepository bountyRepository) {
@@ -34,14 +38,21 @@ class BountyServiceImpl implements BountyService {
     @Override
     public BountyDTO getBounties(final Principal principal) {
         final List<Bounty> byUser = bountyRepository.findByUserId(principal.getName());
+        Map<BountyType, List<Bounty>> byType = byUser.stream()
+                .collect(Collectors.groupingBy(Bounty::getType));
+
+        int referralRewards = byType.getOrDefault(BountyType.REFERRAL, new ArrayList<>()).size() * REF_LINK_REWARD;
+        int otherRewards =
+                byType.get(BountyType.LINK_GITHUB).size() * 15
+                        + byType.getOrDefault(BountyType.LINK_STACK_OVERFLOW, new ArrayList<>()).size() * 15
+                        + byType.getOrDefault(BountyType.POST_LINKEDIN_UPDATE, new ArrayList<>()).size() * 10
+                        + byType.getOrDefault(BountyType.TWITTER_TWEET_FOLLOW, new ArrayList<>()).size() * 10
+                        + byType.getOrDefault(BountyType.LINK_TELEGRAM, new ArrayList<>()).size() * 5;
+
         return BountyDTO.builder()
-                .bounties(byUser)
-                .referralCount(
-                        byUser
-                                .stream()
-                                .filter(x -> x.getType().equals(BountyType.REFERRAL))
-                                .count(
-                                ))
+                .referralRewards(referralRewards)
+                .otherRewards(otherRewards)
+                .totalRewards(referralRewards + otherRewards)
                 .build();
     }
 

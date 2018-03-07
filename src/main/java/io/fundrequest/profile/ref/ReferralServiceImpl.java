@@ -7,6 +7,7 @@ import io.fundrequest.profile.profile.infrastructure.KeycloakRepository;
 import io.fundrequest.profile.ref.domain.Referral;
 import io.fundrequest.profile.ref.domain.ReferralStatus;
 import io.fundrequest.profile.ref.dto.ReferralDto;
+import io.fundrequest.profile.ref.dto.ReferralOverviewDto;
 import io.fundrequest.profile.ref.infrastructure.ReferralRepository;
 import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.context.event.EventListener;
@@ -17,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import static io.fundrequest.profile.bounty.domain.BountyType.REFERRAL;
@@ -43,6 +45,16 @@ class ReferralServiceImpl implements ReferralService {
 
     @Transactional(readOnly = true)
     @Override
+    public ReferralOverviewDto getOverview(Principal principal) {
+        Map<ReferralStatus, List<Referral>> byStatus = repository.findByReferrer(principal.getName()).stream().collect(Collectors.groupingBy(Referral::getStatus));
+        return ReferralOverviewDto.builder()
+                .totalVerified(byStatus.get(ReferralStatus.VERIFIED).size())
+                .totalUnverified(byStatus.get(ReferralStatus.PENDING).size())
+                .build();
+    }
+
+    @Transactional(readOnly = true)
+    @Override
     public List<ReferralDto> getReferrals(Principal principal) {
         return repository.findByReferrer(principal.getName(), new Sort(Sort.Direction.DESC, "creationDate"))
                 .stream()
@@ -58,14 +70,6 @@ class ReferralServiceImpl implements ReferralService {
                 .email(ur.getEmail())
                 .picture(keycloakRepository.getAttribute(ur, "picture"))
                 .createdAt(r.getCreationDate()).build();
-    }
-
-    @Transactional(readOnly = true)
-    @Override
-    public Long getTotalVerifiedReferrals(Principal principal) {
-        return
-                repository.countByReferrerAndStatus(principal.getName(), ReferralStatus.VERIFIED)
-                        * 2;
     }
 
     @Override
