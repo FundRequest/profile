@@ -79,7 +79,7 @@
             <div class="card-body text-center">
                 <div class="row">
                     <div class="col-12 mb-4">
-                        <div th:replace="fragments/linkedin :: social-connect-block(platform=${profile.getLinkedin()}, title='LinkedIn', platformName='linkedin', rewardText='Share and get 50 FND', buttonText='Share on LinkedIn', buttonLink='https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A//blog.fundrequest.io/fundrequest-platform-survey-d06b3df5fd54&amp;title=FundRequest%20Platform&amp;summary=I%20just%20filled%20in%20the%20FundRequest%20Survey%20and%20already%20earned%20some%20FND!%20You%20can%20do%20it%20as%20well!&amp;source=https%3A//fundrequest.io', modalId='modal-share-linked-in')"></div>
+                        <div th:replace="fragments/linkedin :: social-connect-block(platform=${profile.getLinkedin()}, title='LinkedIn', platformName='linkedin', rewardText='Share and get 10 FND', buttonText='Share on LinkedIn', buttonLink='https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A//blog.fundrequest.io/fundrequest-platform-survey-d06b3df5fd54&amp;title=FundRequest%20Platform&amp;summary=I%20just%20filled%20in%20the%20FundRequest%20Survey%20and%20already%20earned%20some%20FND!%20You%20can%20do%20it%20as%20well!&amp;source=https%3A//fundrequest.io', modalId='modal-share-linked-in')"></div>
                     </div>
                     <div class="col-12 mb-4">
                         <div th:replace="fragments/twitter :: social-connect-block(platform=${profile.getTwitter()}, bountyResult=${validatedTwitterBountyResult}, activeBounty=${activeBounty}, claimedTwitterBounty=${claimedTwitterBounty})"></div>
