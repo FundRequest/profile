@@ -3,7 +3,7 @@
         <div class="d-flex">
             <div class="user-avatar">
                 <img th:if="${r.getPicture() != null}" class="rounded-circle shadow-light" alt="Completely round image" th:src="${r.getPicture()}" />
-                <i class="fas fa-user-plus" th:if="${r.getPicture() == null}"></i>
+                <i class="fas fa-user" th:if="${r.getPicture() == null}"></i>
             </div>
             <div class="rewards-list__text">
                 <div th:text="${r.getName()}">Steve Maris</div>
@@ -20,7 +20,7 @@
             <div th:if="${r.getStatus() == T(io.fundrequest.profile.ref.domain.ReferralStatus).VERIFIED}"
                  th:remove="tag">
                 <span class="text-success">Verified</span>
-                <span class="text-success ml-2"><span class="badge badge-success">2 FND</span></span>
+                <span class="text-success ml-2"><span class="badge badge-success">5 FND</span></span>
             </div>
 
         </div>
