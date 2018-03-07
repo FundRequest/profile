@@ -51,9 +51,7 @@ class LinkedInServiceImpl implements LinkedInService {
                         .verified(true)
                         .postUrl(l.getPostUrl())
                         .build()
-        ).orElseGet(() -> LinkedInVerificationDto.builder()
-                .verified(false)
-                .build());
+        ).orElseGet(() -> null);
     }
 
     @Override

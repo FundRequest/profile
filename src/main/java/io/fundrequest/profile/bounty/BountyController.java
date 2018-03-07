@@ -1,6 +1,7 @@
 package io.fundrequest.profile.bounty;
 
 import io.fundrequest.profile.github.GithubBountyService;
+import io.fundrequest.profile.linkedin.LinkedInService;
 import io.fundrequest.profile.stackoverflow.StackOverflowBountyService;
 import io.fundrequest.profile.survey.domain.SurveyService;
 import org.springframework.stereotype.Controller;
@@ -16,15 +17,17 @@ public class BountyController {
     private GithubBountyService githubBountyService;
     private StackOverflowBountyService stackOverflowBountyService;
     private BountyService bountyService;
+    private LinkedInService linkedInService;
 
     public BountyController(final SurveyService surveyService,
                             final GithubBountyService githubBountyService,
                             final StackOverflowBountyService stackOverflowBountyService,
-                            final BountyService bountyService) {
+                            final BountyService bountyService, LinkedInService linkedInService) {
         this.surveyService = surveyService;
         this.githubBountyService = githubBountyService;
         this.stackOverflowBountyService = stackOverflowBountyService;
         this.bountyService = bountyService;
+        this.linkedInService = linkedInService;
     }
 
     @RequestMapping("/rewards")
@@ -33,6 +36,7 @@ public class BountyController {
         mav.addObject("survey", surveyService.getSurveyResult(principal));
         mav.addObject("githubVerification", githubBountyService.getVerification(principal));
         mav.addObject("stackOverflowVerification", stackOverflowBountyService.getVerification(principal));
+        mav.addObject("linkedInVerification", linkedInService.getVerification(principal));
         mav.addObject("bounty", bountyService.getBounties(principal));
         return mav;
     }
