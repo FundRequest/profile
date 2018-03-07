@@ -46,7 +46,7 @@ class BountyServiceImpl implements BountyService {
         int linkedInRewards = byType.getOrDefault(BountyType.POST_LINKEDIN_UPDATE, new ArrayList<>()).size() * 10;
         int telegramRewards = byType.getOrDefault(BountyType.LINK_TELEGRAM, new ArrayList<>()).size() * 5;
         int otherRewards =
-                byType.get(BountyType.LINK_GITHUB).size() * 15
+                byType.getOrDefault(BountyType.LINK_GITHUB, new ArrayList<>()).size() * 15
                         + byType.getOrDefault(BountyType.LINK_STACK_OVERFLOW, new ArrayList<>()).size() * 15
                         + linkedInRewards
                         + twitterRewards

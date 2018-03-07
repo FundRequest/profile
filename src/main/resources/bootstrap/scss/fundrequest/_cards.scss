@@ -18,6 +18,24 @@
                 transform: translate(30%, -30%) rotate(15deg);
             }
         }
+
+        &--blocked {
+            position: relative;
+            z-index: 0;
+            filter: grayscale(75%) blur(1.5px);
+
+            &::after {
+                display: block;
+                content: '';
+                background-color: rgba($black, 0.1);
+                position: absolute;
+                z-index: 1;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                top: 0;
+            }
+        }
     }
 
     &-text {
@@ -55,6 +73,26 @@
             justify-content: space-between;
             align-items: center;
         }
+    }
+
+    &--social {
+        border-top: 2px solid transparent;
+        height: 100%;
+
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    &--social--primary {
+        border-top-color: $primary;
+    }
+
+    &--social--success {
+        border-top-color: $success;
     }
 }
 
