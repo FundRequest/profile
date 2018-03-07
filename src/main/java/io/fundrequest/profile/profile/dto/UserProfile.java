@@ -12,6 +12,7 @@ public class UserProfile {
     private String etherAddress;
     private String telegramName;
     private String picture;
+    private boolean verifiedDeveloper;
     private UserProfileProvider github;
     private UserProfileProvider linkedin;
     private UserProfileProvider twitter;

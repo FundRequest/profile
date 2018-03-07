@@ -3,6 +3,7 @@ package io.fundrequest.profile.github;
 import io.fundrequest.profile.bounty.BountyService;
 import io.fundrequest.profile.bounty.domain.BountyType;
 import io.fundrequest.profile.bounty.event.CreateBountyCommand;
+import io.fundrequest.profile.developer.verification.event.DeveloperVerified;
 import io.fundrequest.profile.github.domain.GithubBounty;
 import io.fundrequest.profile.github.dto.GithubUser;
 import io.fundrequest.profile.github.infrastructure.GithubBountyRepository;
@@ -14,6 +15,7 @@ import io.fundrequest.profile.profile.dto.UserProfile;
 import io.fundrequest.profile.profile.provider.Provider;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.EventListener;
 import org.springframework.security.authentication.event.AuthenticationSuccessEvent;
@@ -34,12 +36,14 @@ public class GithubBountyServiceImpl implements GithubBountyService, Application
     private GithubBountyRepository githubBountyRepository;
     private BountyService bountyService;
     private GithubClient githubClient;
+    private ApplicationEventPublisher eventPublisher;
 
-    public GithubBountyServiceImpl(ProfileService profileService, GithubBountyRepository githubBountyRepository, BountyService bountyService, GithubClient githubClient) {
+    public GithubBountyServiceImpl(ProfileService profileService, GithubBountyRepository githubBountyRepository, BountyService bountyService, GithubClient githubClient, ApplicationEventPublisher eventPublisher) {
         this.profileService = profileService;
         this.githubBountyRepository = githubBountyRepository;
         this.bountyService = bountyService;
         this.githubClient = githubClient;
+        this.eventPublisher = eventPublisher;
     }
 
     @EventListener
@@ -76,6 +80,7 @@ public class GithubBountyServiceImpl implements GithubBountyService, Application
                 saveGithubBounty(principal, githubUser, validForBounty);
                 if (validForBounty) {
                     saveBounty(principal);
+                    eventPublisher.publishEvent(DeveloperVerified.builder().userId(principal.getName()).build());
                 }
             }
         } catch (Exception e) {
