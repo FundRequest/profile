@@ -22,7 +22,8 @@
     "css-prefix": "postcss --config build/postcss.config.js --replace \"../static/assets/css/*.css\" \"!../static/assets/css/*.min.css\"",
     "css-compile": "node-sass --importer=node_modules/node-sass-tilde-importer scss/bootstrap-material-design.scss  ../static/assets/css/bmd.css",
     "css-minify": "cleancss --level 1 --source-map --source-map-inline-sources --output ../static/assets/css/bmd.min.css ../static/assets/css/bmd.css",
-    "watch-css": "nodemon -e scss -x \"npm run css\""
+    "watch-css": "nodemon -e scss -x \"npm run css\"",
+    "watch-dev": "nodemon -e scss -x \"npm run css-compile\""
   },
   "style": "dist/css/bootstrap-material-design.css",
   "sass": "scss/_core.scss",
