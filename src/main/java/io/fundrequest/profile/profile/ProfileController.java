@@ -1,11 +1,9 @@
 package io.fundrequest.profile.profile;
 
-import io.fundrequest.profile.github.GithubBountyService;
 import io.fundrequest.profile.profile.dto.UserProfile;
 import io.fundrequest.profile.profile.dto.UserProfileProvider;
 import io.fundrequest.profile.profile.provider.Provider;
 import io.fundrequest.profile.ref.RefSignupEvent;
-import io.fundrequest.profile.stackoverflow.StackOverflowBountyService;
 import io.fundrequest.profile.telegram.domain.TelegramVerification;
 import io.fundrequest.profile.telegram.service.TelegramVerificationService;
 import io.fundrequest.profile.twitter.model.TwitterBounty;
@@ -36,22 +34,16 @@ public class ProfileController {
     private ApplicationEventPublisher eventPublisher;
     private ProfileService profileService;
     private TwitterBountyService twitterBountyService;
-    private GithubBountyService githubBountyService;
-    private StackOverflowBountyService stackOverflowBountyService;
     private TelegramVerificationService telegramVerificationService;
 
 
     public ProfileController(final ApplicationEventPublisher eventPublisher,
                              final ProfileService profileService,
                              final TwitterBountyService twitterBountyService,
-                             final GithubBountyService githubBountyService,
-                             final StackOverflowBountyService stackOverflowBountyService,
                              final TelegramVerificationService telegramVerificationService) {
         this.eventPublisher = eventPublisher;
         this.profileService = profileService;
         this.twitterBountyService = twitterBountyService;
-        this.githubBountyService = githubBountyService;
-        this.stackOverflowBountyService = stackOverflowBountyService;
         this.telegramVerificationService = telegramVerificationService;
     }
 
@@ -147,6 +139,6 @@ public class ProfileController {
     @GetMapping(path = "/logout")
     public String logout(HttpServletRequest request) throws ServletException {
         request.logout();
-        return "redirect:/";
+        return "redirect:https://fundrequest.io";
     }
 }

@@ -3,6 +3,7 @@ package io.fundrequest.profile.telegram.service;
 import io.fundrequest.profile.bounty.BountyService;
 import io.fundrequest.profile.bounty.domain.BountyType;
 import io.fundrequest.profile.bounty.event.CreateBountyCommand;
+import io.fundrequest.profile.profile.infrastructure.KeycloakRepository;
 import io.fundrequest.profile.telegram.domain.TelegramVerification;
 import io.fundrequest.profile.telegram.repository.TelegramVerificationRepository;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -18,11 +19,14 @@ public class TelegramVerificationService {
 
     private final TelegramVerificationRepository telegramVerificationRepository;
     private final BountyService bountyService;
+    private KeycloakRepository keycloakRepository;
 
     public TelegramVerificationService(final TelegramVerificationRepository telegramVerificationRepository,
-                                       final BountyService bountyService) {
+                                       final BountyService bountyService,
+                                       final KeycloakRepository keycloakRepository) {
         this.telegramVerificationRepository = telegramVerificationRepository;
         this.bountyService = bountyService;
+        this.keycloakRepository = keycloakRepository;
     }
 
     @Transactional(readOnly = true)
@@ -62,24 +66,26 @@ public class TelegramVerificationService {
     }
 
     public void createTelegramVerification(final String userId, final String telegramname) {
-        final Optional<TelegramVerification> byUserId = telegramVerificationRepository.findByUserId(userId);
-        if (byUserId.isPresent()) {
-            TelegramVerification telegramVerification = byUserId.get();
-            if (telegramVerification.isVerified()) {
-                throw new IllegalArgumentException("Principal has already verified a telegram");
+        if (keycloakRepository.isVerifiedDeveloper(userId)) {
+            final Optional<TelegramVerification> byUserId = telegramVerificationRepository.findByUserId(userId);
+            if (byUserId.isPresent()) {
+                TelegramVerification telegramVerification = byUserId.get();
+                if (telegramVerification.isVerified()) {
+                    throw new IllegalArgumentException("Principal has already verified a telegram");
+                } else {
+                    telegramVerification.setTelegramName(telegramname);
+                    telegramVerification.setUserId(userId);
+                    telegramVerification.setLastAction(new Date());
+                    telegramVerification.setSecret(createSecret(userId));
+                    telegramVerificationRepository.save(
+                            telegramVerification
+                    );
+                }
             } else {
-                telegramVerification.setTelegramName(telegramname);
-                telegramVerification.setUserId(userId);
-                telegramVerification.setLastAction(new Date());
-                telegramVerification.setSecret(createSecret(userId));
                 telegramVerificationRepository.save(
-                        telegramVerification
+                        new TelegramVerification(null, telegramname, userId, createSecret(userId), false, new Date())
                 );
             }
-        } else {
-            telegramVerificationRepository.save(
-                    new TelegramVerification(null, telegramname, userId, createSecret(userId), false, new Date())
-            );
         }
     }
 

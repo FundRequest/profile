@@ -61,6 +61,10 @@ public class KeycloakRepository {
         updateAttribute(resource.users().get(userId), "telegram_name", telegramName);
     }
 
+    public void updateHeadline(String userId, String headline) {
+        updateAttribute(resource.users().get(userId), "headline", headline);
+    }
+
     public void updateVerifiedDeveloper(String userId, Boolean isVerified) {
         updateAttribute(resource.users().get(userId), "verified_developer", "" + BooleanUtils.isTrue(isVerified));
     }
@@ -86,6 +90,10 @@ public class KeycloakRepository {
         return "true".equalsIgnoreCase(getAttribute(userRepresentation, "verified_developer"));
     }
 
+    public boolean isVerifiedDeveloper(final String userId) {
+        return isVerifiedDeveloper(getUser(userId));
+    }
+
     public String getAttribute(UserRepresentation userRepresentation, String property) {
         Map<String, List<String>> attributes = userRepresentation.getAttributes();
         if (attributes != null && attributes.size() > 0) {
@@ -99,6 +107,10 @@ public class KeycloakRepository {
 
     public String getTelegramName(UserRepresentation userRepresentation) {
         return getAttribute(userRepresentation, "telegram_name");
+    }
+
+    public String getHeadline(UserRepresentation userRepresentation) {
+        return getAttribute(userRepresentation, "headline");
     }
 
     public String getAccessToken(@NonNull KeycloakAuthenticationToken token, @NonNull Provider provider) {

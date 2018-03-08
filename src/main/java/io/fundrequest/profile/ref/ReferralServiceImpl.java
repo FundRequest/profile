@@ -39,8 +39,10 @@ class ReferralServiceImpl implements ReferralService {
     @EventListener
     @Transactional
     public void onProviderLinked(UserLinkedProviderEvent event) {
-        repository.findByReferee(event.getPrincipal().getName())
-                .ifPresent(r -> sendBountyIfPossible(r, event.getPrincipal()));
+        if (event.getPrincipal() != null) {
+            repository.findByReferee(event.getPrincipal().getName())
+                    .ifPresent(r -> sendBountyIfPossible(r, event.getPrincipal()));
+        }
     }
 
     @Transactional(readOnly = true)
@@ -104,8 +106,7 @@ class ReferralServiceImpl implements ReferralService {
     }
 
     private boolean isVerifiedPrincipal(Principal principal) {
-        return keycloakRepository.getUserIdentities(principal.getName())
-                .findFirst().isPresent();
+        return keycloakRepository.isVerifiedDeveloper(principal.getName());
     }
 
     private void validReferral(String referrer, String referee) {

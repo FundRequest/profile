@@ -11,7 +11,7 @@
             <a class="anchor" id="referral-link"></a>
             <h5 class="card-header card-header--label">
                 <span>Personal referral link</span>
-                <small class="text-muted">Rewards up to 5 FND / verified developer referral</small>
+                <small class="text-muted">Rewards up to 5 FND / verified developer</small>
             </h5>
             <div class="card-body">
                 <div class="card-text mb-3">
@@ -29,20 +29,26 @@
 
                 <div class="card-text text-center">
                     <a class="btn btn-outline-linkedin icon-left mb-2 mb-md-0"
+                       data-open-link-in-popup="true"
                        th:href="${'https://www.linkedin.com/shareArticle?mini=true&amp;url='+ 'https://profile-dev.fundrequest.io' + '&amp;title=FundRequest%20Platform%20Signup&amp;summary=I%20just%20joined%20the%20FundRequest%20platform%20pre-signup.%20You%20can%20signup%20as%20well.&amp;source=fundrequest.io'}"
+                       rel="noopener noreferrer"
                        target="_blank">
                         <i class="fab fa-linkedin"></i>
                         <span>Share on LinkedIn</span>
                     </a>
                     <a class="btn btn-outline-twitter icon-left mb-2 mb-md-0"
+                       data-open-link-in-popup="true"
                        th:href="${'https://twitter.com/home?status=I%20just%20joined%20the%20FundRequest%20platform%20pre-signup.%20You%20can%20signup%20as%20well%3A ' + refLink}"
+                       rel="noopener noreferrer"
                        target="_blank">
                         <i class="fab fa-twitter"></i>
                         <span>Share on Twitter</span>
 
                     </a>
                     <a class="btn btn-outline-facebook icon-left mb-0"
+                       data-open-link-in-popup="true"
                        th:href="${'https://www.facebook.com/sharer/sharer.php?u=I%20just%20joined%20the%20FundRequest%20platform%20pre-signup.%20You%20can%20signup%20as%20well%3A%20' + refLink}"
+                       rel="noopener noreferrer"
                        target="_blank">
                         <i class="fab fa-facebook"></i>
                         <span>Share on facebook</span>
@@ -54,8 +60,8 @@
         <div class="card mb-5">
             <a class="anchor" id="verify-developer"></a>
             <h5 class="card-header card-header--label">
-                <span th:if="${profile.isVerifiedDeveloper()}">You're as verified as a developer!</span>
-                <span th:unless="${profile.isVerifiedDeveloper()}">Verify yourself as a developer</span>
+                <span th:if="${profile.isVerifiedDeveloper()}">You're verified as a developer!</span>
+                <span th:unless="${profile.isVerifiedDeveloper()}">Verify yourself as a developer ...</span>
                 <small class="text-muted">Rewards up to 25 FND</small>
             </h5>
             <div class="card-body text-center">
@@ -74,11 +80,11 @@
         <div class="card card--blocked mb-5">
             <a class="anchor" id="get-social"></a>
             <h5 class="card-header card-header--label">
-                <span th:if="${isDeveloper}">Be social and get rewarded!</span>
-                <span th:unless="${isDeveloper}">Social rewards are only available for verified developers</span>
+                <span th:if="${profile.isVerifiedDeveloper()}">Be social and get rewarded!</span>
+                <span th:unless="${profile.isVerifiedDeveloper()}">Social rewards are only available for verified developers</span>
                 <small class="text-muted">Rewards up to 25 FND</small>
             </h5>
-            <div class="card-body text-center" th:classappend="${isDeveloper ? '' : 'card-body--blocked'}">
+            <div class="card-body text-center" th:classappend="${profile.isVerifiedDeveloper() ? '' : 'card-body--blocked'}">
                 <div class="row">
                     <div class="col-12 col-lg-4 mb-4 mb-lg-0 text-lg-center">
                         <div th:replace="fragments/linkedin :: social-connect-block(platform=${profile.getLinkedin()}, verification=${linkedInVerification})"></div>
@@ -97,6 +103,7 @@
 
 <th:block layout:fragment="modals">
     <th:block th:replace="fragments/linkedin :: modal"></th:block>
+    <th:block th:replace="fragments/twitter :: modal"></th:block>
     <th:block th:replace="fragments/telegram :: modal(profile=${profile}, verified=${telegramVerified}, verificationCommand=${telegramVerificationCommand})"></th:block>
 </th:block>
 

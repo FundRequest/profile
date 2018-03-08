@@ -2,16 +2,8 @@
       xmlns:th="http://www.thymeleaf.org">
 <body>
 
-<th:block th:fragment="social-connect-block (platform, bountyResult, activeBounty, claimedTwitterBounty)" th:if="${platform != null}">
-    <div th:if="${bountyResult != null}">
-        <div class="alert alert-success" th:if="${bountyResult.validated}">
-            <strong>Success!</strong> <span th:text="${bountyResult.message}"></span>
-        </div>
-        <div class="alert alert-warning" th:unless="${bountyResult.validated}">
-            <strong>Failure!</strong> <span th:text="${bountyResult.message}"></span>
-        </div>
-    </div>
-
+<th:block th:fragment="social-connect-block (platform, bountyResult, activeBounty, claimedTwitterBounty)"
+          th:if="${platform != null}">
     <a class="anchor" id="get-social-twitter"></a>
     <div class="card card--social card--social--primary" th:if="${platform.getUsername() == null}">
         <h5 class="card-header">
@@ -22,41 +14,73 @@
         </div>
     </div>
 
-    <div class="card card--social card--social--success"
-         th:if="${platform.getUsername() != null}">
-        <div class="card-header">
-            <div>
-                <span>Twitter</span>
-            </div>
-            <a class="badge bagde-success">
-                <span th:text="${platform.getUsername()}">User name, link to profile?</span>
-            </a>
+    <div class="card card--social card--social--success" th:if="${platform.getUsername() != null}">
+        <div class="card-header card-header--with-label">
+            <span class="card-header-label card-header-label--info"
+                  th:unless="${activeBounty != null &amp;&amp; claimedTwitterBounty}">connected</span>
+            <span class="card-header-label card-header-label--success"
+                  th:if="${activeBounty != null &amp;&amp; claimedTwitterBounty}">verified</span>
+            <div>Twitter <i class="fab fa-twitter"></i></div>
+            <span class="badge badge-success" th:text="${platform.getUsername()}">User name, link to profile?</span>
         </div>
-        <div th:if="${activeBounty != null &amp;&amp; claimedTwitterBounty == true}" class="card-body d-flex justify-content-between align-items-center">
-            <h5 class="card-text mb-0">
-               It look like you've already finished this bounty
-            </h5>
+        <div th:if="${activeBounty != null &amp;&amp; claimedTwitterBounty == true}"
+             class="card-body">
+            <span class="card-text">
+                Finished bounty
+            </span>
         </div>
-        <div th:if="${activeBounty != null  &amp;&amp; claimedTwitterBounty == false}" class="card-body d-flex justify-content-between align-items-center">
-            <h5 class="card-text mb-0">
+        <div th:if="${activeBounty != null  &amp;&amp; claimedTwitterBounty == false}"
+             class="card-body">
+            <input th:if="${twitterPost != null}" id="tweetContent" type="hidden"
+                   th:value="${twitterPost.content}"/>
+            <button class="btn btn-outline-twitter icon-left" data-target="#modal-verify-twitter"
+                    data-toggle="modal">
+                <i class="fab fa-twitter"></i>
+                <span>Tweet and get rewarded</span>
+            </button>
+            <span class="card-text">
                 Get 10 FND for sharing on twitter
-            </h5>
-            <div>
-                <input th:if="${twitterPost != null}" id="tweetContent" type="hidden" th:value="${twitterPost.content}" />
-                <button id="tweetNow" class="btn btn-outline-twitter icon-left">
-                    <i class="fab fa-twitter"></i>
-                    <span>Tweet</span>
-                </button>
+            </span>
+        </div>
+    </div>
+    <script>require(["app/twitter"])</script>
+</th:block>
 
-                <form id="twitterClaimForm" th:action="@{/bounties/twitter/verify}" th:method="POST">
-                    <button type="submit" class="btn btn-raised btn-success icon-left">
-                        <i class="fab fa-twitter"></i>
-                        <span>Verify</span>
-                    </button>
-                </form>
+<div th:fragment="modal" class="modal fade" tabindex="-1"
+     role="dialog" id="modal-verify-twitter">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Twitter</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body d-block">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="card-text card-text--step-1 mb-4">
+                            <button class="btn btn-outline-twitter icon-left">
+                                <i class="fab fa-twitter"></i>
+                                <span>Tweet</span>
+                            </button>
+                        </div>
+
+                        <div class="card-text card-text--step-2 mb-4">
+                            <div>Push the button</div>
+                            <button type="button" class="btn btn-raised btn-success" data-verify-twitter="button">
+                                <span>Verify</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Take me back</button>
             </div>
         </div>
     </div>
-</th:block>
+</div>
+
 </body>
 </html>

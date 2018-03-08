@@ -34,13 +34,13 @@
                             <span>Connect with Github</span>
                         </div>
                         <div th:if="${githubVerification != null and githubVerification.isApproved()}">
-                            <span class="text-success">15 FND</span>
+                            <span class="text-success" th:text="${T(io.fundrequest.profile.bounty.domain.BountyType).LINK_GITHUB.getReward() + ' FND'}">15 FND</span>
                         </div>
                         <div th:if="${githubVerification != null and !githubVerification.isApproved()}">
                             <span class="text-warning">Account created after 2018-01-01 </span>
                         </div>
                         <div th:if="${githubVerification == null}">
-                            <a class="rewards-list__link" href="/profile#verify-developer">Get 15 FND</a>
+                            <a class="rewards-list__link" href="/profile#verify-developer" th:text="${'Get ' + T(io.fundrequest.profile.bounty.domain.BountyType).LINK_GITHUB.getReward() + ' FND'}">Get 15 FND</a>
                         </div>
                     </div>
                     <div class="rewards-list__item">
@@ -49,13 +49,13 @@
                             <span>Connect with Stack Overflow</span>
                         </div>
                         <div th:if="${stackOverflowVerification != null and stackOverflowVerification.isApproved()}">
-                            <span class="text-success">15 FND</span>
+                            <span class="text-success" th:text="${T(io.fundrequest.profile.bounty.domain.BountyType).LINK_STACK_OVERFLOW.getReward() + ' FND'}">15 FND</span>
                         </div>
                         <div th:if="${stackOverflowVerification != null and !stackOverflowVerification.isApproved()}">
                             <span class="text-warning">Account created after 2018-01-01 </span>
                         </div>
                         <div th:if="${stackOverflowVerification == null}">
-                            <a class="rewards-list__link" href="/profile#verify-developer">Get 10 FND</a>
+                            <a class="rewards-list__link" href="/profile#verify-developer" th:text="${'Get ' + T(io.fundrequest.profile.bounty.domain.BountyType).LINK_STACK_OVERFLOW.getReward() + ' FND'}">Get 10 FND</a>
                         </div>
                     </div>
                     <hr/>
@@ -73,7 +73,7 @@
                         </div>
                         <div>
                             <div th:if="${bounty.getLinkedInRewards() > 0}">
-                                <span class="text-success">10 FND</span>
+                                <span class="text-success" th:text="${T(io.fundrequest.profile.bounty.domain.BountyType).POST_LINKEDIN_UPDATE.getReward() + ' FND'}">10 FND</span>
                             </div>
                             <div th:if="${bounty.getLinkedInRewards() == 0}">
                                 <a class="rewards-list__link" href="/profile#get-social-linkedin">Get 10 FND</a>
@@ -87,10 +87,10 @@
                             <span>Connect Twitter and tweet</span>
                         </div>
                         <div th:if="${bounty.getTwitterRewards() > 0}">
-                            <span class="text-success">10 FND</span>
+                            <span class="text-success" th:text="${T(io.fundrequest.profile.bounty.domain.BountyType).TWITTER_TWEET_FOLLOW.getReward() + ' FND'}">10 FND</span>
                         </div>
                         <div th:if="${bounty.getTwitterRewards() == 0}">
-                            <a class="rewards-list__link" href="/profile#get-social-twitter">Get 10 FND</a>
+                            <a class="rewards-list__link" href="/profile#get-social-twitter" th:text="${'Get ' + T(io.fundrequest.profile.bounty.domain.BountyType).TWITTER_TWEET_FOLLOW.getReward() + ' FND'}">Get 10 FND</a>
                         </div>
                     </div>
                     <div class="rewards-list__item">
@@ -99,10 +99,10 @@
                             <span>Join Telegram and say Hi!</span>
                         </div>
                         <div th:if="${bounty.getTelegramRewards() > 0}">
-                            <span class="text-success">5 FND</span>
+                            <span class="text-success" th:text="${T(io.fundrequest.profile.bounty.domain.BountyType).LINK_TELEGRAM.getReward() + ' FND'}">5 FND</span>
                         </div>
                         <div th:if="${bounty.getTelegramRewards() == 0}">
-                            <a class="rewards-list__link" href="/profile#get-social-telegram">Get 5 FND</a>
+                            <a class="rewards-list__link" href="/profile#get-social-telegram" th:text="${'Get ' + T(io.fundrequest.profile.bounty.domain.BountyType).LINK_TELEGRAM.getReward() + ' FND'}">Get 5 FND</a>
                         </div>
 
                     </div>
@@ -146,13 +146,6 @@
                 </div>
             </div>
         </div>
-
-        <!--<div class="card bg-light mb-5">-->
-            <!--<h5 class="card-header">FAQ</h5>-->
-            <!--<div class="card-body">-->
-
-            <!--</div>-->
-        <!--</div>-->
     </div>
 </div>
 

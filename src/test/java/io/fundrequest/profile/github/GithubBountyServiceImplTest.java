@@ -53,7 +53,7 @@ public class GithubBountyServiceImplTest {
         Authentication authentication = mock(Authentication.class, RETURNS_DEEP_STUBS);
         when(authentication.getName()).thenReturn("davy");
         when(profileService.getUserProfile(null, authentication))
-                .thenReturn(UserProfile.builder().github(UserProfileProvider.builder().userId("id").username("davy").build()).build());
+                .thenReturn(UserProfile.builder().github(UserProfileProvider.builder().userId("id").username("davy").build()).verifiedDeveloper(true).build());
         when(githubClient.getUser("davy")).thenReturn(GithubUser.builder().createdAt(LocalDateTime.now().minusMonths(3)).location("Belgium").build());
 
         githubBountyService.onApplicationEvent(new AuthenticationSuccessEvent(authentication));
@@ -66,7 +66,7 @@ public class GithubBountyServiceImplTest {
         Authentication authentication = mock(Authentication.class, RETURNS_DEEP_STUBS);
         when(authentication.getName()).thenReturn("davy");
         when(profileService.getUserProfile(null, authentication))
-                .thenReturn(UserProfile.builder().github(UserProfileProvider.builder().userId("id").username("davy").build()).build());
+                .thenReturn(UserProfile.builder().github(UserProfileProvider.builder().userId("id").username("davy").build()).verifiedDeveloper(true).build());
         when(githubClient.getUser("davy")).thenReturn(GithubUser.builder().createdAt(LocalDateTime.now().minusMonths(3)).location("Belgium").build());
 
         githubBountyService.onProviderLinked(UserLinkedProviderEvent.builder().principal(authentication).provider(Provider.GITHUB).build());

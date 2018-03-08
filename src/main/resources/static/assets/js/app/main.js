@@ -1,4 +1,4 @@
-define(["require", "exports", "jquery", "clipboard", "app/alert", "app/instant-edit", "bootstrap"], function (require, exports, $, ClipboardJS, alert_1, instant_edit_1) {
+define(["require", "exports", "jquery", "clipboard", "./alert", "./instant-edit", "./open-link-in-popup", "bootstrap"], function (require, exports, $, ClipboardJS, alert_1, instant_edit_1, open_link_in_popup_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var Main = /** @class */ (function () {
@@ -12,6 +12,7 @@ define(["require", "exports", "jquery", "clipboard", "app/alert", "app/instant-e
                 alert_1.Alert.show('This browser doesn\'t allow copying to your clipboard, please do it manually');
             });
             new instant_edit_1.InstantEdit();
+            new open_link_in_popup_1.OpenLinkInPopup();
             $('.fnd-badge[data-toggle="tooltip"]').tooltip();
             $('body').bootstrapMaterialDesign();
         }

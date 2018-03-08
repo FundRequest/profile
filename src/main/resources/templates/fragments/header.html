@@ -14,9 +14,12 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12 col-md-9">
-                            <h5 class="card-title mb-0" th:text="${profile.getName()}">
-                                My Name
+                            <h5 class="card-title mb-0">
+                                <span th:text="${profile.getName()}" th:remove="tag">Name</span>
+                                <br />
+                                <small class="text-muted" th:text="${profile.getHeadline()}">test</small>
                             </h5>
+
                             <div class="card-text">
                                 <div class="form-group bmd-form-group mb-0">
                                     <label class="bmd-label-static">E-mail</label>

@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <body>
-<div th:fragment="social-connect-block (username, verified)">
+<th:block th:fragment="social-connect-block (username, verified)">
     <a class="anchor" id="get-social-telegram"></a>
     <div class="card card--social" th:classappend="${verified ? 'card--social--success' : 'card--social--primary'}">
         <h5 class="card-header">
@@ -16,17 +16,19 @@
             </div>
         </div>
         <div class="card-body" th:unless="${verified}">
-            <div class="card-title">
-                Get 5 FND for joining us on telegram, click the button and follow the steps.
+            <div class="card-text">
+                <button class="btn icon-left btn-outline-telegram" data-target="#modal-share-telegram"
+                        data-toggle="modal">
+                    <i class="fab fa-telegram"></i>
+                    <span>Join us on telegram</span>
+                </button>
             </div>
-            <button class="btn icon-left btn-outline-telegram" data-target="#modal-share-telegram"
-                    data-toggle="modal">
-                <i class="fab fa-telegram"></i>
-                <span>Join us on telegram</span>
-            </button>
+            <div class="card-text">
+                Get 5 FND for joining us on telegram.
+            </div>
         </div>
     </div>
-</div>
+</th:block>
 
 <div th:fragment="modal (profile, verified, verificationCommand)" class="modal fade" tabindex="-1"
      role="dialog" id="modal-share-telegram">
@@ -39,6 +41,8 @@
                 </button>
             </div>
             <div class="modal-body d-block">
+                <div class="card">
+                    <div class="card-body">
                 <div th:if="${verified}">
                     <div class="form-group bmd-form-group">
                         <label class="bmd-label-static">E-mail</label>
@@ -98,10 +102,11 @@
                                    th:value="${verificationCommand}"/>
                         </div>
                     </div>
+                </div></div>
                 </div>
             </div>
             <div class="modal-footer justify-content-center">
-                <button type="button" class="btn btn-raised btn-secondary" data-dismiss="modal">Take me back</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Take me back</button>
             </div>
         </div>
     </div>

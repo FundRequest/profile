@@ -2,12 +2,14 @@ package io.fundrequest.profile.twitter.controller;
 
 import io.fundrequest.profile.profile.ProfileService;
 import io.fundrequest.profile.profile.dto.UserProfileProvider;
-import io.fundrequest.profile.twitter.controller.vo.ValidatedBountyVO;
+import io.fundrequest.profile.twitter.dto.ValidatedBountyDto;
 import io.fundrequest.profile.twitter.service.TwitterBountyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,21 +25,25 @@ public class TwitterBountyController {
     @Autowired
     private TwitterBountyService twitterbountyService;
 
-    @PostMapping("/verify")
-    public String validateBounty(final HttpServletRequest request, final Principal principal, final RedirectAttributes redirectAttributes) {
+    @PostMapping(value = "/verify", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ResponseBody
+    public ValidatedBountyDto validateBounty(final HttpServletRequest request, final Principal principal, final RedirectAttributes redirectAttributes) {
+        String message;
+        boolean validated = false;
+
         boolean isFollowing = isFollowing(request, principal);
         if (!isFollowing) {
-            redirectAttributes.addFlashAttribute("validatedTwitterBountyResult", new ValidatedBountyVO(false, "You are not following us yet. Please follow us before claiming."));
+            message = "You are not following us yet. Please follow us before claiming.";
         } else {
             boolean hasFulfilled = hasFullfilledCurrentBounty(request, principal);
             if (hasFulfilled) {
-                redirectAttributes.addFlashAttribute("validatedTwitterBountyResult", new ValidatedBountyVO(true, "Successfully validated your tweet."));
+                validated = true;
+                message = "Successfully validated your tweet.";
             } else {
-
-                redirectAttributes.addFlashAttribute("validatedTwitterBountyResult", new ValidatedBountyVO(false, "Tweet was not found in your last 20 tweets."));
+                message = "Tweet was not found in your last 20 tweets.";
             }
         }
-        return "redirect:/profile#twitter";
+        return ValidatedBountyDto.builder().message(message).validated(validated).build();
     }
 
 
