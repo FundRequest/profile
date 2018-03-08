@@ -103,6 +103,7 @@
 
 <th:block layout:fragment="modals">
     <th:block th:replace="fragments/linkedin :: modal"></th:block>
+    <th:block th:replace="fragments/twitter :: modal"></th:block>
     <th:block th:replace="fragments/telegram :: modal(profile=${profile}, verified=${telegramVerified}, verificationCommand=${telegramVerificationCommand})"></th:block>
 </th:block>
 

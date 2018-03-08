@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <body>
-<div th:fragment="social-connect-block (username, verified)">
+<th:block th:fragment="social-connect-block (username, verified)">
     <a class="anchor" id="get-social-telegram"></a>
     <div class="card card--social" th:classappend="${verified ? 'card--social--success' : 'card--social--primary'}">
         <h5 class="card-header">
@@ -24,11 +24,11 @@
                 </button>
             </div>
             <div class="card-text">
-                Get 5 FND for joining us on telegram, click the button and follow the steps.
+                Get 5 FND for joining us on telegram.
             </div>
         </div>
     </div>
-</div>
+</th:block>
 
 <div th:fragment="modal (profile, verified, verificationCommand)" class="modal fade" tabindex="-1"
      role="dialog" id="modal-share-telegram">
@@ -106,7 +106,7 @@
                 </div>
             </div>
             <div class="modal-footer justify-content-center">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Take me back</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Take me back</button>
             </div>
         </div>
     </div>
