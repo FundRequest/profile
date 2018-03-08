@@ -17,7 +17,6 @@ import java.util.stream.Collectors;
 @Service
 class BountyServiceImpl implements BountyService {
 
-    private static final int REF_LINK_REWARD = 5;
     private BountyRepository bountyRepository;
 
     public BountyServiceImpl(BountyRepository bountyRepository) {
@@ -41,13 +40,13 @@ class BountyServiceImpl implements BountyService {
         Map<BountyType, List<Bounty>> byType = byUser.stream()
                 .collect(Collectors.groupingBy(Bounty::getType));
 
-        int referralRewards = byType.getOrDefault(BountyType.REFERRAL, new ArrayList<>()).size() * REF_LINK_REWARD;
-        int twitterRewards = byType.getOrDefault(BountyType.TWITTER_TWEET_FOLLOW, new ArrayList<>()).size() * 10;
-        int linkedInRewards = byType.getOrDefault(BountyType.POST_LINKEDIN_UPDATE, new ArrayList<>()).size() * 10;
-        int telegramRewards = byType.getOrDefault(BountyType.LINK_TELEGRAM, new ArrayList<>()).size() * 5;
+        int referralRewards = byType.getOrDefault(BountyType.REFERRAL, new ArrayList<>()).size() * BountyType.REFERRAL.getReward();
+        int twitterRewards = byType.getOrDefault(BountyType.TWITTER_TWEET_FOLLOW, new ArrayList<>()).size() * BountyType.TWITTER_TWEET_FOLLOW.getReward();
+        int linkedInRewards = byType.getOrDefault(BountyType.POST_LINKEDIN_UPDATE, new ArrayList<>()).size() * BountyType.POST_LINKEDIN_UPDATE.getReward();
+        int telegramRewards = byType.getOrDefault(BountyType.LINK_TELEGRAM, new ArrayList<>()).size() * BountyType.LINK_TELEGRAM.getReward();
         int otherRewards =
-                byType.getOrDefault(BountyType.LINK_GITHUB, new ArrayList<>()).size() * 15
-                        + byType.getOrDefault(BountyType.LINK_STACK_OVERFLOW, new ArrayList<>()).size() * 15
+                byType.getOrDefault(BountyType.LINK_GITHUB, new ArrayList<>()).size() * BountyType.LINK_GITHUB.getReward()
+                        + byType.getOrDefault(BountyType.LINK_STACK_OVERFLOW, new ArrayList<>()).size() * BountyType.LINK_STACK_OVERFLOW.getReward()
                         + linkedInRewards
                         + twitterRewards
                         + telegramRewards;

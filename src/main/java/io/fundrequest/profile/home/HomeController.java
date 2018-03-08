@@ -7,22 +7,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.security.Principal;
-
 @Controller
 public class HomeController {
 
     @RequestMapping("/")
-    public ModelAndView home(@RequestParam(value = "ref", required = false) String ref, Principal principal) {
+    public ModelAndView home(@RequestParam(value = "ref", required = false) String ref) {
         String profileLink = "/profile";
         if (StringUtils.isNotBlank(ref)) {
             profileLink += "?ref=" + ref;
         }
-        ModelAndView mav = new ModelAndView("index");
-        mav.addObject("profileLink", profileLink);
-        if(principal != null) {
-            return new ModelAndView(new RedirectView(profileLink));
-        }
-        return mav;
+        return new ModelAndView(new RedirectView(profileLink));
     }
 }
