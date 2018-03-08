@@ -12,12 +12,16 @@ import io.fundrequest.profile.linkedin.dto.LinkedInUpdateResult;
 import io.fundrequest.profile.linkedin.dto.LinkedInVerificationDto;
 import io.fundrequest.profile.linkedin.infrastructure.LinkedInClient;
 import io.fundrequest.profile.linkedin.infrastructure.LinkedInPostRepository;
+import io.fundrequest.profile.linkedin.infrastructure.LinkedInUser;
 import io.fundrequest.profile.linkedin.infrastructure.LinkedInVerificationRepository;
+import io.fundrequest.profile.profile.dto.UserLinkedProviderEvent;
 import io.fundrequest.profile.profile.infrastructure.KeycloakRepository;
 import io.fundrequest.profile.profile.provider.Provider;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.keycloak.adapters.springsecurity.token.KeycloakAuthenticationToken;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -52,6 +56,25 @@ class LinkedInServiceImpl implements LinkedInService {
                         .postUrl(l.getPostUrl())
                         .build()
         ).orElseGet(() -> null);
+    }
+
+    @EventListener
+    @Transactional
+    public void onProviderLinked(UserLinkedProviderEvent event) {
+        if (event.getProvider() == Provider.LINKEDIN && event.getPrincipal() != null) {
+            try {
+                updateUserHeadline(event);
+            } catch (Exception e) {
+                log.error("An error occurred when getting users headline from LinkedIn");
+            }
+        }
+    }
+
+    private void updateUserHeadline(UserLinkedProviderEvent event) {
+        LinkedInUser linkedInUser = client.getUserInfo(keycloakRepository.getAccessToken((KeycloakAuthenticationToken) event.getPrincipal(), Provider.LINKEDIN));
+        if (linkedInUser != null && StringUtils.isNotBlank(linkedInUser.getHeadline())) {
+            keycloakRepository.updateHeadline(event.getPrincipal().getName(), linkedInUser.getHeadline());
+        }
     }
 
     @Override

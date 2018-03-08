@@ -4,8 +4,10 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.fundrequest.profile.linkedin.dto.LinkedInShare;
 import io.fundrequest.profile.linkedin.dto.LinkedInUpdateResult;
+import org.apache.http.HttpMessage;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
@@ -28,7 +30,7 @@ public class LinkedInClient {
         String url = "https://api.linkedin.com/v1/people/~/shares?format=json";
         HttpClient httpclient = HttpClientBuilder.create().build();
         HttpPost httpPost = new HttpPost(url);
-        httpPost.addHeader("Authorization", "Bearer " + accessToken);
+        addAuthorizationHeader(accessToken, httpPost);
         httpPost.addHeader("Content-Type", "application/json");
         String json = "{\n" +
                 "  \"comment\": \"Check out developer.linkedin.com!\",\n" +
@@ -53,5 +55,22 @@ public class LinkedInClient {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public LinkedInUser getUserInfo(String accessToken) {
+        String url = "https://api.linkedin.com/v1/people/~?format=json";
+        HttpClient httpclient = HttpClientBuilder.create().build();
+        HttpGet httpGet = new HttpGet(url);
+        addAuthorizationHeader(accessToken, httpGet);
+        try {
+            HttpResponse response = httpclient.execute(httpGet);
+            return objectMapper.readValue(EntityUtils.toString(response.getEntity()), LinkedInUser.class);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void addAuthorizationHeader(String accessToken, HttpMessage httpMessage) {
+        httpMessage.addHeader("Authorization", "Bearer " + accessToken);
     }
 }
