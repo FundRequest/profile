@@ -1,4 +1,4 @@
-import {Alert} from 'app/alert';
+import {Alert} from './alert';
 import * as $ from 'jquery';
 
 interface LinkedInData {
@@ -21,7 +21,7 @@ class LinkedIn {
                 $(modal).modal('hide');
                 Alert.show('Sharing is caring, thanks!');
             }).fail(() => {
-                Alert.show('Oeps, something went wrong, please try again.', { type: 'danger'});
+                Alert.show('Oeps, something went wrong, please try again.', 'danger');
             });
         });
 

@@ -103,6 +103,7 @@
         }
     }
 
+    &--developer,
     &--social {
         border-top: 2px solid transparent;
         height: 100%;
@@ -110,15 +111,23 @@
         .card-body {
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-end;
             align-items: center;
         }
     }
 
+    &--social {
+        h5.card-header {
+            line-height: 42px;
+        }
+    }
+
+    &--developer--primary,
     &--social--primary {
         border-top-color: $primary;
     }
 
+    &--developer--success,
     &--social--success {
         border-top-color: $success;
     }

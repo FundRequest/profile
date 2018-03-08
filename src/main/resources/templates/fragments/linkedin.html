@@ -16,9 +16,8 @@
 
     <div class="card card--social card--social--success" th:if="${platform.getUsername() != null}">
         <div class="card-header card-header--with-label">
-            <span class="card-header-label card-header-label--info">connected</span>
             <div>LinkedIn <i class="fab fa-linkedin"></i></div>
-            <span class="badge badge-success" th:text="${platform.getUsername()}">User name, link to profile?</span>
+            <span class="text-success" th:text="${platform.getUsername()}">User name, link to profile?</span>
         </div>
         <div class="card-body">
             <div class="card-text">

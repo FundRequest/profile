@@ -7,23 +7,45 @@ interface VerifyResponse {
     message: string;
 }
 
-export class Twitter {
+class Twitter {
     constructor() {
-        let button = document.querySelector('[data-verify-twitter="button"]');
-        let modal = document.querySelector('#modal-verify-twitter');
+        let modal: HTMLElement = document.querySelector('#modal-twitter-verify');
+        let button: HTMLElement = document.querySelector('[data-twitter-verify]');
+        let buttonTweet: HTMLElement = document.querySelector('[data-twitter-tweet]');
 
         button.addEventListener('click', (e) => {
-            Utils.showLoading();
-            $.get('/bounties/twitter/validated', (data: VerifyResponse) => {
-                Alert.show(data.message, data.verified ? 'success' : 'danger');
-                if(data.verified) {
-                    $(modal).modal('hide');
+            this._verify(() => { $(modal).modal('hide'); })
+        });
+
+        buttonTweet.addEventListener('click', (e) => {
+            let text: string = buttonTweet.dataset.twitterTweet;
+            let link: string = `http://twitter.com/home?status=${encodeURIComponent(text)}`;
+
+            let twitterWindow: Window = Utils.getNewWindow(link, 600, 600);
+
+            /*
+            let winTimer = window.setInterval(function () {
+                if (twitterWindow.closed !== false) {
+                    window.clearInterval(winTimer);
+                    this._verify();
                 }
-            }).fail(() => {
-                Alert.show('Oeps, something went wrong, please try again.', { type: 'danger'});
-            }).always(() => {
-                Utils.hideLoading();
-            });
+            }, 200);*/
+        });
+    }
+
+    private _verify(callback = null) {
+        Utils.showLoading();
+        $.get('/bounties/twitter/verify', (data: VerifyResponse) => {
+            Alert.show(data.message, data.verified ? 'success' : 'danger');
+            if (data.verified) {
+                callback != null ? callback() : null;
+            }
+        }).fail(() => {
+            Alert.show('Oeps, something went wrong, please try again.', 'danger');
+        }).always(() => {
+            Utils.hideLoading();
         });
     }
 }
+
+new Twitter();

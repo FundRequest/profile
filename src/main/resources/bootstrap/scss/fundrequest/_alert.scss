@@ -25,10 +25,10 @@
     .modal-open & {
         .alert {
             @include box-shadow($bmd-shadow-6dp);
-        }
 
-        &:hover {
-            @include box-shadow($bmd-shadow-8dp);
+            &:hover {
+                @include box-shadow($bmd-shadow-8dp);
+            }
         }
     }
 }

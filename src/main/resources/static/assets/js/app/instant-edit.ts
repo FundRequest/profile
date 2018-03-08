@@ -62,6 +62,7 @@ export class InstantEdit {
     private _saveItem(field, name) {
         let isValid = this._validateItem(field, name);
         let self = this;
+        let title = null;
         let postAddress = null;
         let data = null;
 
@@ -73,10 +74,12 @@ export class InstantEdit {
 
         switch (field.dataset.edit) {
             case 'eth-address':
+                title = 'ETH address';
                 postAddress = '/profile/etheraddress';
                 data = {etheraddress: field.value};
                 break;
             case 'telegram-name':
+                title = 'Telegram name';
                 postAddress = '/profile/telegramname';
                 data = {telegramname: field.value};
                 break;
@@ -87,6 +90,7 @@ export class InstantEdit {
 
         $.post(postAddress, data, () => {
             self._hideError(field, name);
+            Utils.alert(`${title} saved!`);
         }).fail(() => {
             self._showError(field, name, 'Something went wrong.');
         }).always(() => {

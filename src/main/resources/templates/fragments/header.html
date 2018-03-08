@@ -8,8 +8,9 @@
     <div class="row justify-content-center">
         <div class="col-12">
             <div class="card card--fnd-profile mb-1 d-flex flex-column flex-md-row">
-                <div class="fnd-profile-picture" th:if="${profile.getPicture() !=null}">
-                    <img th:src="${profile.getPicture()}" alt="Profile image"/>
+                <div class="fnd-profile-picture">
+                    <img th:src="${profile.getPicture()}" alt="Profile image" th:if="${profile.getPicture() != null}"/>
+                    <img th:src="@{/assets/img/profile-avatar.png}" alt="Profile image" th:if="${profile.getPicture() == null}"/>
                 </div>
                 <div class="card-body">
                     <div class="row">

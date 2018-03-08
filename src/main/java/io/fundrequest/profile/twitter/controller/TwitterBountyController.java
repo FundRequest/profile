@@ -7,6 +7,7 @@ import io.fundrequest.profile.twitter.service.TwitterBountyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,7 +26,7 @@ public class TwitterBountyController {
     @Autowired
     private TwitterBountyService twitterbountyService;
 
-    @PostMapping(value = "/verify", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(value = "/verify", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
     public ValidatedBountyDto validateBounty(final HttpServletRequest request, final Principal principal, final RedirectAttributes redirectAttributes) {
         String message;
