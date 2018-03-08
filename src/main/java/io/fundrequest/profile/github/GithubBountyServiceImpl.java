@@ -78,7 +78,7 @@ public class GithubBountyServiceImpl implements GithubBountyService, Application
                 GithubUser githubUser = githubClient.getUser(userProfile.getGithub().getUsername());
                 boolean validForBounty = isValidForBounty(githubUser);
                 saveGithubBounty(principal, githubUser, validForBounty);
-                if (validForBounty && userProfile.isVerifiedDeveloper()) {
+                if (validForBounty) {
                     saveBounty(principal);
                     eventPublisher.publishEvent(DeveloperVerified.builder().userId(principal.getName()).build());
                 }
