@@ -1,8 +1,8 @@
 <div xmlns:th="http://www.thymeleaf.org">
     <div class="rewards-list__item rewards-list__item--referral" th:each="r : ${referrals}">
         <div class="d-flex">
-            <div class="user-avatar">
-                <img th:if="${r.getPicture() != null}" class="rounded-circle shadow-light" alt="Completely round image" th:src="${r.getPicture()}" />
+            <div class="user-avatar rounded-circle">
+                <img th:if="${r.getPicture() != null}" alt="Completely round image" th:src="${r.getPicture()}" />
                 <i class="fas fa-user" th:if="${r.getPicture() == null}"></i>
             </div>
             <div class="rewards-list__text">

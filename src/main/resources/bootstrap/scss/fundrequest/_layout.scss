@@ -49,7 +49,7 @@ body {
 .navbar--fnd-secondary {
     padding-top: 0;
     padding-bottom: 0;
-    @include box-shadow($bmd-shadow-2dp);
+    box-shadow: none;
 
     .nav-item {
         margin: 0 map-get($spacers, 2);

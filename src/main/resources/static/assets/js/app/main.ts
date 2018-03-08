@@ -1,8 +1,9 @@
 import * as $ from 'jquery';
 import 'bootstrap';
 import * as ClipboardJS from 'clipboard';
-import {Alert} from 'app/alert';
-import {InstantEdit} from 'app/instant-edit';
+import {Alert} from './alert';
+import {InstantEdit} from './instant-edit';
+import {OpenLinkInPopup} from "./open-link-in-popup";
 
 class Main {
     constructor() {
@@ -16,6 +17,7 @@ class Main {
         });
 
         new InstantEdit();
+        new OpenLinkInPopup();
         $('.fnd-badge[data-toggle="tooltip"]').tooltip();
         $('body').bootstrapMaterialDesign();
     }

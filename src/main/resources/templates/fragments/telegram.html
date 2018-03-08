@@ -16,14 +16,16 @@
             </div>
         </div>
         <div class="card-body" th:unless="${verified}">
-            <div class="card-title">
+            <div class="card-text">
+                <button class="btn icon-left btn-outline-telegram" data-target="#modal-share-telegram"
+                        data-toggle="modal">
+                    <i class="fab fa-telegram"></i>
+                    <span>Join us on telegram</span>
+                </button>
+            </div>
+            <div class="card-text">
                 Get 5 FND for joining us on telegram, click the button and follow the steps.
             </div>
-            <button class="btn icon-left btn-outline-telegram" data-target="#modal-share-telegram"
-                    data-toggle="modal">
-                <i class="fab fa-telegram"></i>
-                <span>Join us on telegram</span>
-            </button>
         </div>
     </div>
 </div>
@@ -39,6 +41,8 @@
                 </button>
             </div>
             <div class="modal-body d-block">
+                <div class="card">
+                    <div class="card-body">
                 <div th:if="${verified}">
                     <div class="form-group bmd-form-group">
                         <label class="bmd-label-static">E-mail</label>
@@ -98,10 +102,11 @@
                                    th:value="${verificationCommand}"/>
                         </div>
                     </div>
+                </div></div>
                 </div>
             </div>
             <div class="modal-footer justify-content-center">
-                <button type="button" class="btn btn-raised btn-secondary" data-dismiss="modal">Take me back</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Take me back</button>
             </div>
         </div>
     </div>
