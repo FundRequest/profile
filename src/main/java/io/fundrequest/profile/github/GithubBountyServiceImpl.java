@@ -49,7 +49,7 @@ public class GithubBountyServiceImpl implements GithubBountyService, Application
     @EventListener
     @Transactional
     public void onProviderLinked(UserLinkedProviderEvent event) {
-        if (event.getProvider() == Provider.GITHUB) {
+        if (event.getProvider() == Provider.GITHUB && event.getPrincipal() != null) {
             UserProfile userProfile = profileService.getUserProfile(null, event.getPrincipal());
             createBountyWhenNecessary(event.getPrincipal(), userProfile);
         }
@@ -78,7 +78,7 @@ public class GithubBountyServiceImpl implements GithubBountyService, Application
                 GithubUser githubUser = githubClient.getUser(userProfile.getGithub().getUsername());
                 boolean validForBounty = isValidForBounty(githubUser);
                 saveGithubBounty(principal, githubUser, validForBounty);
-                if (validForBounty) {
+                if (validForBounty && userProfile.isVerifiedDeveloper()) {
                     saveBounty(principal);
                     eventPublisher.publishEvent(DeveloperVerified.builder().userId(principal.getName()).build());
                 }

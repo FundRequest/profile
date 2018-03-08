@@ -57,7 +57,7 @@ class LinkedInServiceImpl implements LinkedInService {
     @Override
     @Transactional
     public void postLinkedInShare(Principal principal, @NonNull Long postId) {
-        if (!repository.findByUserId(principal.getName()).isPresent()) {
+        if (!repository.findByUserId(principal.getName()).isPresent() && keycloakRepository.isVerifiedDeveloper(principal.getName())) {
             KeycloakAuthenticationToken token = (KeycloakAuthenticationToken) principal;
             LinkedInShare linkedInShare = getLinkedInShare(postId);
             LinkedInUpdateResult linkedInUpdateResult = client.postNetworkUpdate(

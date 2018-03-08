@@ -43,7 +43,7 @@ class StackOverflowBountyServiceImpl implements StackOverflowBountyService {
     @EventListener
     @Transactional
     public void onProviderLinked(UserLinkedProviderEvent event) {
-        if (event.getProvider() == Provider.STACKOVERFLOW) {
+        if (event.getProvider() == Provider.STACKOVERFLOW && event.getPrincipal() != null) {
             UserProfile userProfile = profileService.getUserProfile(null, event.getPrincipal());
             createBountyWhenNecessary(event.getPrincipal(), userProfile);
         }
@@ -63,7 +63,7 @@ class StackOverflowBountyServiceImpl implements StackOverflowBountyService {
                 StackOverflowUser user = result.getUsers().get(0);
                 boolean validForBounty = isValidForBounty(user);
                 saveGithubBounty(principal, user, validForBounty);
-                if (validForBounty) {
+                if (validForBounty && userProfile.isVerifiedDeveloper()) {
                     saveBounty(principal);
                     eventPublisher.publishEvent(DeveloperVerified.builder().userId(principal.getName()).build());
                 }
