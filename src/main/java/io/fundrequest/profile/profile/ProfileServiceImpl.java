@@ -63,6 +63,7 @@ public class ProfileServiceImpl implements ProfileService {
                 .verifiedDeveloper(keycloakRepository.isVerifiedDeveloper(user))
                 .etherAddress(keycloakRepository.getEtherAddress(user))
                 .telegramName(keycloakRepository.getTelegramName(user))
+                .headline(keycloakRepository.getHeadline(user))
                 .github(providers.get(Provider.GITHUB))
                 .linkedin(providers.get(Provider.LINKEDIN))
                 .twitter(providers.get(Provider.TWITTER))

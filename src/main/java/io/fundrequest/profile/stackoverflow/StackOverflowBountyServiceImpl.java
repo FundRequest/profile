@@ -63,7 +63,7 @@ class StackOverflowBountyServiceImpl implements StackOverflowBountyService {
                 StackOverflowUser user = result.getUsers().get(0);
                 boolean validForBounty = isValidForBounty(user);
                 saveGithubBounty(principal, user, validForBounty);
-                if (validForBounty && userProfile.isVerifiedDeveloper()) {
+                if (validForBounty) {
                     saveBounty(principal);
                     eventPublisher.publishEvent(DeveloperVerified.builder().userId(principal.getName()).build());
                 }

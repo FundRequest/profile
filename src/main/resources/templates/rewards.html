@@ -73,7 +73,7 @@
                         </div>
                         <div>
                             <div th:if="${bounty.getLinkedInRewards() > 0}">
-                                <span class="text-success" th:text="${'Get ' + T(io.fundrequest.profile.bounty.domain.BountyType).POST_LINKEDIN_UPDATE.getReward() + ' FND'}">10 FND</span>
+                                <span class="text-success" th:text="${T(io.fundrequest.profile.bounty.domain.BountyType).POST_LINKEDIN_UPDATE.getReward() + ' FND'}">10 FND</span>
                             </div>
                             <div th:if="${bounty.getLinkedInRewards() == 0}">
                                 <a class="rewards-list__link" href="/profile#get-social-linkedin">Get 10 FND</a>
