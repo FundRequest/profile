@@ -3,6 +3,7 @@ package io.fundrequest.profile.twitter.service;
 import io.fundrequest.profile.bounty.BountyService;
 import io.fundrequest.profile.bounty.domain.BountyType;
 import io.fundrequest.profile.bounty.event.CreateBountyCommand;
+import io.fundrequest.profile.profile.infrastructure.KeycloakRepository;
 import io.fundrequest.profile.twitter.model.TwitterBounty;
 import io.fundrequest.profile.twitter.model.TwitterBountyFulfillment;
 import io.fundrequest.profile.twitter.model.TwitterBountyType;
@@ -27,17 +28,20 @@ public class TwitterBountyService {
     private TwitterPostRepository twitterPostRepository;
     private TwitterBountyFulfillmentRepository twitterBountyFulfillmentRepository;
     private BountyService bountyService;
+    private KeycloakRepository keycloakRepository;
 
     public TwitterBountyService(final TwitterBountyRepository twitterBountyRepository,
                                 final Twitter twitter,
                                 final TwitterPostRepository twitterPostRepository,
                                 final TwitterBountyFulfillmentRepository twitterBountyFulfillmentRepository,
-                                final BountyService bountyService) {
+                                final BountyService bountyService,
+                                final KeycloakRepository keycloakRepository) {
         this.twitterBountyRepository = twitterBountyRepository;
         this.twitter = twitter;
         this.twitterPostRepository = twitterPostRepository;
         this.twitterBountyFulfillmentRepository = twitterBountyFulfillmentRepository;
         this.bountyService = bountyService;
+        this.keycloakRepository = keycloakRepository;
     }
 
     public List<TwitterPost> getTwitterPosts() {
@@ -71,15 +75,12 @@ public class TwitterBountyService {
         }
     }
 
-    public boolean hasFullFilled(final String username, final String userId, final TwitterBounty bounty) {
-        if (bounty.getType().equals(TwitterBountyType.TWEET)) {
-            return validateTweets(username, userId, bounty);
-        } else {
-            return false;
-        }
+    private boolean hasFullFilled(final String username, final String userId, final TwitterBounty bounty) {
+        return keycloakRepository.isVerifiedDeveloper(userId) && bounty.getType().equals(TwitterBountyType.TWEET) && validateTweets(username, userId, bounty);
     }
 
     private boolean validateTweets(final String username, final String userId, final TwitterBounty bounty) {
+
         final List<TwitterPost> posts = twitterPostRepository.findAll();
         try {
             boolean fulfillled = twitter.timelines().getUserTimeline(username)

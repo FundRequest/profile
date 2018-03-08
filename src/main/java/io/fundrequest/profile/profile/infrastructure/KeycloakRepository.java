@@ -86,6 +86,10 @@ public class KeycloakRepository {
         return "true".equalsIgnoreCase(getAttribute(userRepresentation, "verified_developer"));
     }
 
+    public boolean isVerifiedDeveloper(final String userId) {
+        return isVerifiedDeveloper(getUser(userId));
+    }
+
     public String getAttribute(UserRepresentation userRepresentation, String property) {
         Map<String, List<String>> attributes = userRepresentation.getAttributes();
         if (attributes != null && attributes.size() > 0) {
