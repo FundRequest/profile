@@ -68,6 +68,7 @@ public class FundRequestVerifierBot extends AbilityBot {
                             silent.send(NEGATIV + ctx.user().username() + "! You were not found as a member of the fundrequest channel. (" + execute.getStatus() + ")", ctx.chatId());
                         }
                     } catch (final Exception ex) {
+                        ex.printStackTrace();
                         silent.send(NEGATIV + ctx.user().username() + "! You were not found as a member of the fundrequest channel. Please join us at " + fundrequestChannelLink, ctx.chatId());
                     }
                 })
