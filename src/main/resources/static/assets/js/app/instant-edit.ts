@@ -1,4 +1,5 @@
-import {Utils} from 'app/utils';
+import {Alert} from "./alert";
+import {Utils} from './utils';
 import * as $ from 'jquery';
 
 export class InstantEdit {
@@ -90,7 +91,7 @@ export class InstantEdit {
 
         $.post(postAddress, data, () => {
             self._hideError(field, name);
-            Utils.alert(`${title} saved!`);
+            Alert.show(`${title} saved!`);
         }).fail(() => {
             self._showError(field, name, 'Something went wrong.');
         }).always(() => {

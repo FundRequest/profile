@@ -1,4 +1,4 @@
-define(["require", "exports", "app/utils", "jquery"], function (require, exports, utils_1, $) {
+define(["require", "exports", "./alert", "./utils", "jquery"], function (require, exports, alert_1, utils_1, $) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var InstantEdit = /** @class */ (function () {
@@ -84,7 +84,7 @@ define(["require", "exports", "app/utils", "jquery"], function (require, exports
             }
             $.post(postAddress, data, function () {
                 self._hideError(field, name);
-                utils_1.Utils.alert(title + " saved!");
+                alert_1.Alert.show(title + " saved!");
             }).fail(function () {
                 self._showError(field, name, 'Something went wrong.');
             }).always(function () {
