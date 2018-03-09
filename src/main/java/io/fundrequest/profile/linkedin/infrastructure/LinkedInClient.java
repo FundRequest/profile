@@ -32,19 +32,8 @@ public class LinkedInClient {
         HttpPost httpPost = new HttpPost(url);
         addAuthorizationHeader(accessToken, httpPost);
         httpPost.addHeader("Content-Type", "application/json");
-        String json = "{\n" +
-                "  \"comment\": \"Check out developer.linkedin.com!\",\n" +
-                "  \"content\": {\n" +
-                "    \"title\": \"LinkedIn Developers Resources\",\n" +
-                "    \"description\": \"Leverage LinkedIn's APIs to maximize engagement\",\n" +
-                "    \"submitted-url\": \"https://developer.linkedin.com\",  \n" +
-                "    \"submitted-image-url\": \"https://example.com/logo.png\"\n" +
-                "  },\n" +
-                "  \"visibility\": {\n" +
-                "    \"code\": \"anyone\"\n" +
-                "  }  \n" +
-                "}";
         try {
+            String json = objectMapper.writeValueAsString(content);
             StringEntity entity = new StringEntity(json);
             httpPost.setEntity(entity);
             HttpResponse response = httpclient.execute(httpPost);
