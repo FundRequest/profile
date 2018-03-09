@@ -15,7 +15,7 @@
     </div>
 
     <div class="card card--social card--social--success" th:if="${platform.getUsername() != null}">
-        <div class="card-header card-header--with-label">
+        <div class="card-header">
             <div>LinkedIn <i class="fab fa-linkedin"></i></div>
             <span class="text-success" th:text="${platform.getUsername()}">User name, link to profile?</span>
         </div>
@@ -31,7 +31,7 @@
                 </a>
             </div>
             <div class="card-text">
-                <span th:unless="${verification}">Share and get 10 FND</span>
+                <span th:unless="${verification}">Get 10 FND for sharing on LinkedIn</span>
                 <span th:if="${verification}">
                     <span class="text-success"><i class="fa fa-checked"></i> Verified</span>
                 </span>

@@ -54,12 +54,12 @@
                         </div>
                         <div th:unless="${verified}">
                             <div class="card-text card-text--step-1 mb-4">
-                                <label for="telegram-name">Enter your telegram name</label>
+                                <label for="telegram-name">Enter your telegram handle</label>
                                 <input type="text"
                                        id="telegram-name"
                                        data-edit="telegram-name"
                                        data-edit-validation="telegram"
-                                       placeholder="Ex. myTelegramName"
+                                       placeholder="Ex. @myTelegramHandle"
                                        th:value="${profile.getTelegramName()}"
                                        class="form-control form-control--instant-edit"/>
                                 <span class="text-danger" data-edit-messages="telegram-name"></span>
@@ -80,16 +80,7 @@
                             </div>
 
                             <div class="card-text card-text--step-4 mb-4">
-                                <div>Now, open a chat with our verifier bot</div>
-                                <a class="btn btn-outline-linkedin icon-left mb-1"
-                                   th:href="@{https://t.me/FundRequestVerifierBot}"
-                                   rel="noopener noreferrer" target="_blank">
-                                    <i class="fab fa-telegram"></i>
-                                    <span>Open chat with our bot</span>
-                                </a>
-                            </div>
-                            <div class="card-text card-text--step-5 mb-1">
-                                <div>Copy the commando below to the chat to tell our bot you want to get verified:</div>
+                                <div>Copy the command below</div>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <button class="btn mb-0" data-clipboard-target="#telegram-bot-verify-command">
@@ -101,6 +92,16 @@
                                            readonly="readonly"
                                            th:value="${verificationCommand}"/>
                                 </div>
+                            </div>
+
+                            <div class="card-text card-text--step-5 mb-1">
+                                <div>Now, open a chat with our verifier bot and send him the copied command</div>
+                                <a class="btn btn-outline-linkedin icon-left mb-1"
+                                   th:href="@{https://t.me/FundRequestVerifierBot}"
+                                   rel="noopener noreferrer" target="_blank">
+                                    <i class="fab fa-telegram"></i>
+                                    <span>Open chat with our bot</span>
+                                </a>
                             </div>
                         </div>
                     </div>
