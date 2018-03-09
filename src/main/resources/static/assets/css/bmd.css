@@ -12289,7 +12289,7 @@ h2 .svg-inline--fa {
   .card--developer .card-body, .card--social .card-body {
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center; }
 
 .card--social h5.card-header {
@@ -12299,6 +12299,7 @@ h2 .svg-inline--fa {
   border-top-color: #39a4dc; }
 
 .card--developer--success, .card--social--success {
+  justify-content: flex-end;
   border-top-color: #30b561; }
 
 .card-top-image {

@@ -16,9 +16,8 @@
                     <div class="row">
                         <div class="col-12 col-md-9">
                             <h5 class="card-title mb-0">
-                                <span th:text="${profile.getName()}" th:remove="tag">Name</span>
-                                <br />
-                                <small class="text-muted" th:text="${profile.getHeadline()}">test</small>
+                                <div th:text="${profile.getName()}">Name</div>
+                                <small class="text-muted" th:text="${profile.getHeadline()}">Developer</small>
                             </h5>
 
                             <div class="card-text">
