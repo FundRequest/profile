@@ -12,7 +12,7 @@
     <link rel="apple-touch-icon" type="image/png" href="/assets/favicons/logo-single180.png" sizes="180x180"/>
     <link rel="icon" type="image/png" href="/assets/img/logo-single32.png" sizes="32x31"/>
     <link rel="icon" type="image/png" href="/assets/img/logo-single16.png" sizes="16x15"/>
-    <link rel="stylesheet" th:href="@{/assets/css/bmd.css}" />
+    <link rel="stylesheet" th:href="@{/assets/css/bmd.css}"/>
     <link rel="stylesheet" th:href="@{/assets/css/fontawesome-all.min.css}"/>
     <link rel="stylesheet" th:href="@{/assets/css/googlefonts-titilium/googlefonts.titilium.css}"/>
     <link rel="stylesheet" th:href="@{/assets/css/typekit-jaf-domus/typekit.css}"/>
@@ -58,7 +58,7 @@
                        target="_blank">Blog</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <button class="btn btn btn-warning bmd-btn-fab bmd-btn-fab-sm btn--profile dropdown-toggle"
+                    <button class="btn btn-warning bmd-btn-fab bmd-btn-fab-sm btn--profile dropdown-toggle"
                             title="Profile"
                             type="button"
                             id="user-profile-menu"
@@ -90,13 +90,33 @@
     </section>
 </div>
 
-<section class="footer section section--blue section--compact section--end">
+<section class="fnd-footer section section--blue section--compact section--end">
     <div class="container">
         <div class="row">
-            <div class="col-12">
-                <div class="disclaimer">
-                    <p>© 2018 FundRequest OÜ</p>
-                </div>
+            <div class="fnd-footer__left col-12 mb-3 col-lg-6">
+                © 2018 FundRequest OÜ
+            </div>
+            <div class="fnd-footer__right mb-3 col-lg-6">
+                <a class="btn btn-link btn--social-link pl-0" href="https://github.com/fundrequest/"
+                   rel="noopener noreferrer" target="_blank">
+                    <span class="sr-only">Github</span>
+                    <i class="fab fa-github fa-3x"></i>
+                </a>
+                <a class="btn btn-link btn--social-link" href="https://fundrequest.chat"
+                   target="_blank" rel="noopener noreferrer">
+                    <span class="sr-only">Rocket Chat</span>
+                    <i class="fab fa-rocketchat fa-3x"></i>
+                </a>
+                <a class="btn btn-link btn--social-link" href="https://twitter.com/fundrequest_io"
+                   target="_blank" rel="noopener noreferrer">
+                    <span class="sr-only">Twitter</span>
+                    <i class="fab fa-twitter fa-3x"></i>
+                </a>
+                <a class="btn btn-link btn--social-link pr-0" href="https://t.me/fundrequestofficial"
+                   target="_blank" rel="noopener noreferrer">
+                    <span class="sr-only">Telegram</span>
+                    <i class="fab fa-telegram fa-3x"></i>
+                </a>
             </div>
         </div>
     </div>

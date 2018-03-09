@@ -1,4 +1,4 @@
-define(["require", "exports"], function (require, exports) {
+define(["require", "exports", "./utils"], function (require, exports, utils_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var OpenLinkInPopup = /** @class */ (function () {
@@ -8,7 +8,7 @@ define(["require", "exports"], function (require, exports) {
             links.forEach(function (item) {
                 item.addEventListener('click', function (e) {
                     e.preventDefault();
-                    var newWindow = OpenLinkInPopup._getNewWindow(item.href, 600, 600);
+                    var newWindow = utils_1.Utils.getNewWindow(item.href, 600, 600);
                     if (window.focus) {
                         newWindow.focus();
                     }
@@ -16,14 +16,6 @@ define(["require", "exports"], function (require, exports) {
                 });
             });
         }
-        OpenLinkInPopup._getNewWindow = function (url, widthPopup, heightPopup) {
-            var left = (screen.width / 2) - (widthPopup / 2);
-            var top = (screen.height / 2) - (heightPopup / 2);
-            var newWindow = window.open(null, 'popup', 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + widthPopup + ', height=' + heightPopup + ', top=' + top + ', left=' + left);
-            newWindow.opener = null;
-            newWindow.location.assign(url);
-            return newWindow;
-        };
         return OpenLinkInPopup;
     }());
     exports.OpenLinkInPopup = OpenLinkInPopup;

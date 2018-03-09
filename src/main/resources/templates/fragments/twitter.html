@@ -15,13 +15,9 @@
     </div>
 
     <div class="card card--social card--social--success" th:if="${platform.getUsername() != null}">
-        <div class="card-header card-header--with-label">
-            <span class="card-header-label card-header-label--info"
-                  th:unless="${activeBounty != null &amp;&amp; claimedTwitterBounty}">connected</span>
-            <span class="card-header-label card-header-label--success"
-                  th:if="${activeBounty != null &amp;&amp; claimedTwitterBounty}">verified</span>
+        <div class="card-header">
             <div>Twitter <i class="fab fa-twitter"></i></div>
-            <span class="badge badge-success" th:text="${platform.getUsername()}">User name, link to profile?</span>
+            <span class="text-success" th:text="${platform.getUsername()}">User name, link to profile?</span>
         </div>
         <div th:if="${activeBounty != null &amp;&amp; claimedTwitterBounty == true}"
              class="card-body">
@@ -31,9 +27,7 @@
         </div>
         <div th:if="${activeBounty != null  &amp;&amp; claimedTwitterBounty == false}"
              class="card-body">
-            <input th:if="${twitterPost != null}" id="tweetContent" type="hidden"
-                   th:value="${twitterPost.content}"/>
-            <button class="btn btn-outline-twitter icon-left" data-target="#modal-verify-twitter"
+            <button class="btn btn-outline-twitter icon-left" data-target="#modal-twitter-verify"
                     data-toggle="modal">
                 <i class="fab fa-twitter"></i>
                 <span>Tweet and get rewarded</span>
@@ -46,8 +40,7 @@
     <script>require(["app/twitter"])</script>
 </th:block>
 
-<div th:fragment="modal" class="modal fade" tabindex="-1"
-     role="dialog" id="modal-verify-twitter">
+<div th:fragment="modal" class="modal fade" tabindex="-1" role="dialog" id="modal-twitter-verify">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -60,15 +53,17 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="card-text card-text--step-1 mb-4">
-                            <button class="btn btn-outline-twitter icon-left">
+                            <div>Let's send out a tweet ...</div>
+                            <button class="btn btn-outline-twitter icon-left"
+                                    th:attr="data-twitter-tweet=${twitterPost != null ? twitterPost.content : ''}">
                                 <i class="fab fa-twitter"></i>
                                 <span>Tweet</span>
                             </button>
                         </div>
 
                         <div class="card-text card-text--step-2 mb-4">
-                            <div>Push the button</div>
-                            <button type="button" class="btn btn-raised btn-success" data-verify-twitter="button">
+                            <div>Posted? Then push the button</div>
+                            <button type="button" class="btn btn-raised btn-success" data-twitter-verify="true">
                                 <span>Verify</span>
                             </button>
                         </div>

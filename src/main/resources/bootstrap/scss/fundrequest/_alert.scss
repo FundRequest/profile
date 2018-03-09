@@ -10,7 +10,7 @@
     .alert {
         margin-bottom: .5rem;
         display: inline-block;
-        border-radius: $border-radius;
+        border-radius: 999px;
         @include box-shadow($bmd-shadow-3dp);
 
         &:first-child {
@@ -25,10 +25,10 @@
     .modal-open & {
         .alert {
             @include box-shadow($bmd-shadow-6dp);
-        }
 
-        &:hover {
-            @include box-shadow($bmd-shadow-8dp);
+            &:hover {
+                @include box-shadow($bmd-shadow-8dp);
+            }
         }
     }
 }

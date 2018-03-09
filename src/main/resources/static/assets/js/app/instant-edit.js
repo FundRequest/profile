@@ -1,4 +1,4 @@
-define(["require", "exports", "app/utils", "jquery"], function (require, exports, utils_1, $) {
+define(["require", "exports", "./alert", "./utils", "jquery"], function (require, exports, alert_1, utils_1, $) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var InstantEdit = /** @class */ (function () {
@@ -60,6 +60,7 @@ define(["require", "exports", "app/utils", "jquery"], function (require, exports
         InstantEdit.prototype._saveItem = function (field, name) {
             var isValid = this._validateItem(field, name);
             var self = this;
+            var title = null;
             var postAddress = null;
             var data = null;
             if (!isValid) {
@@ -68,10 +69,12 @@ define(["require", "exports", "app/utils", "jquery"], function (require, exports
             utils_1.Utils.showLoading();
             switch (field.dataset.edit) {
                 case 'eth-address':
+                    title = 'ETH address';
                     postAddress = '/profile/etheraddress';
                     data = { etheraddress: field.value };
                     break;
                 case 'telegram-name':
+                    title = 'Telegram name';
                     postAddress = '/profile/telegramname';
                     data = { telegramname: field.value };
                     break;
@@ -81,6 +84,7 @@ define(["require", "exports", "app/utils", "jquery"], function (require, exports
             }
             $.post(postAddress, data, function () {
                 self._hideError(field, name);
+                alert_1.Alert.show(title + " saved!");
             }).fail(function () {
                 self._showError(field, name, 'Something went wrong.');
             }).always(function () {

@@ -1,4 +1,4 @@
-define(["require", "exports", "app/alert", "jquery"], function (require, exports, alert_1, $) {
+define(["require", "exports", "./alert", "jquery"], function (require, exports, alert_1, $) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var LinkedIn = /** @class */ (function () {
@@ -12,7 +12,7 @@ define(["require", "exports", "app/alert", "jquery"], function (require, exports
                     $(modal).modal('hide');
                     alert_1.Alert.show('Sharing is caring, thanks!');
                 }).fail(function () {
-                    alert_1.Alert.show('Oeps, something went wrong, please try again.', { type: 'danger' });
+                    alert_1.Alert.show('Oeps, something went wrong, please try again.', 'danger');
                 });
             });
             $(modal).on('show.bs.modal', function (e) {
