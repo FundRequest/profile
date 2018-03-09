@@ -41,7 +41,7 @@ class Twitter {
                 callback != null ? callback() : null;
             }
         }).fail(() => {
-            Alert.show('Oeps, something went wrong, please try again.', 'danger');
+            Alert.show('Oops, something went wrong, please try again.', 'danger');
         }).always(() => {
             Utils.hideLoading();
         });
