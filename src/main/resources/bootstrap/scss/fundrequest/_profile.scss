@@ -2,15 +2,16 @@
     width: 100px;
     height: 100px;
 
+    background-color: $blue-200;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+
     margin: -60px auto 0 auto;
     border-radius: $border-radius-lg;
     border: 2px solid $white;
     overflow: hidden;
     @include box-shadow($bmd-shadow-6dp);
-
-    > img {
-        width: 100%;
-    }
 
     @include media-breakpoint-up(sm) {
         width: 125px;
@@ -18,15 +19,17 @@
     }
 
     @include media-breakpoint-up(md) {
-        width: 228px;
-        height: 228px;
-
-
-
+        width: 100%;
+        height: auto;
         margin: 0;
         border-radius: $card-border-radius 0 0 $card-border-radius;
         border: none;
+        flex: 0 0 25%;
         @include box-shadow(none);
+    }
+
+    @include media-breakpoint-up(lg) {
+        flex-basis: 20%;
     }
 }
 

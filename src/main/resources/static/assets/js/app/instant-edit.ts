@@ -37,12 +37,12 @@ export class InstantEdit {
                     message = 'Field is required';
                     break;
                 case 'ethereum':
-                    valid = value.length > 0 ? value.match(/^0x[a-fA-F0-9]{40}$/) : true;
+                    valid = value.length > 0 ? /^0x[a-fA-F0-9]{40}$/.test(value) : true;
                     message = 'Not a valid ethereum address';
                     break;
-                case 'telegram':
-                    valid = value.length > 0;
-                    message = 'Not a valid telegram name';
+                case 'telegram-handle':
+                    valid = value.length > 0 ? /^@?[a-zA-Z][a-zA-Z0-9_]*[a-zA-Z0-9]$/.test(value) : false;
+                    message = 'Telegram handle is required, you can use a-z, 0-9 and underscores.';
                     break;
             }
         }
@@ -54,10 +54,6 @@ export class InstantEdit {
         }
 
         return valid;
-    }
-
-    private _loadItem(field, name) {
-        field.value = localStorage.getItem(`fnd.values.${name}`);
     }
 
     private _saveItem(field, name) {
@@ -79,8 +75,8 @@ export class InstantEdit {
                 postAddress = '/profile/etheraddress';
                 data = {etheraddress: field.value};
                 break;
-            case 'telegram-name':
-                title = 'Telegram name';
+            case 'telegram-handle':
+                title = 'Telegram handle';
                 postAddress = '/profile/telegramname';
                 data = {telegramname: field.value};
                 break;

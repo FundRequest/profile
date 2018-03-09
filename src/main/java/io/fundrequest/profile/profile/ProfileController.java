@@ -86,8 +86,9 @@ public class ProfileController {
 
     @PostMapping("/profile/telegramname")
     public ModelAndView updateTelegram(Principal principal, @RequestParam("telegramname") String telegramname) {
-        if (telegramname.contains("@")) {
-            throw new IllegalArgumentException("Only A-Z is allowed");
+        telegramname = telegramname.startsWith("@") ? telegramname.replaceFirst("@", "") : telegramname;
+        if (!telegramname.matches("^[a-zA-Z][a-zA-Z0-9_]*[a-zA-Z0-9]$")) {
+            throw new IllegalArgumentException("Not a valid telegram handle, you can use a-z, 0-9 and underscores.");
         }
         telegramVerificationService.createTelegramVerification(principal.getName(), telegramname);
         profileService.updateTelegramName(principal, telegramname);

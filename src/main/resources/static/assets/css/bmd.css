@@ -12702,25 +12702,29 @@ a.text--master:hover, a.text--master:focus {
 .fnd-profile-picture {
   width: 100px;
   height: 100px;
+  background-size: cover;
+  background-position: center center;
   margin: -60px auto 0 auto;
   border-radius: 0.3rem;
   border: 2px solid #fff;
   overflow: hidden;
   box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.2); }
-  .fnd-profile-picture > img {
-    width: 100%; }
   @media (min-width: 576px) {
     .fnd-profile-picture {
       width: 125px;
       height: 125px; } }
   @media (min-width: 768px) {
     .fnd-profile-picture {
-      width: 228px;
-      height: 228px;
+      width: 100%;
+      height: auto;
       margin: 0;
       border-radius: 0.25rem 0 0 0.25rem;
       border: none;
+      flex: 0 0 25%;
       box-shadow: none; } }
+  @media (min-width: 992px) {
+    .fnd-profile-picture {
+      flex-basis: 20%; } }
 
 .card--fnd-profile .card-title {
   text-align: center; }
