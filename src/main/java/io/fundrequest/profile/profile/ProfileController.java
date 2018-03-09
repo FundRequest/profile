@@ -95,17 +95,7 @@ public class ProfileController {
     }
 
     private static String getRefLink(HttpServletRequest req, Principal principal) {
-        String scheme = req.getScheme();
-        String serverName = req.getServerName();
-        int serverPort = req.getServerPort();
-        String contextPath = req.getContextPath();
-        StringBuilder url = new StringBuilder();
-        url.append(scheme).append("://").append(serverName);
-        if (serverPort != 80 && serverPort != 443) {
-            url.append(":").append(serverPort);
-        }
-        url.append(contextPath).append("?ref=").append(principal.getName());
-        return url.toString();
+        return "https://fundrequest.io?ref=" + principal.getName();
     }
 
     private void enrichTwitter(ModelAndView mav, UserProfile userProfile) {
