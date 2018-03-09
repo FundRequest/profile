@@ -51,7 +51,7 @@ public class TwitterBountyController {
     private boolean hasFullfilledCurrentBounty(final HttpServletRequest request, final Principal principal) {
         try {
             final UserProfileProvider twitterProvider = profileService.getUserProfile(request, principal).getTwitter();
-            return twitterbountyService.hasFullFilledCurrentBounty(twitterProvider.getUsername(), twitterProvider.getUserId());
+            return twitterbountyService.hasFullFilledCurrentBounty(twitterProvider.getUsername(), twitterProvider.getUserId(), principal);
         } catch (final Exception ex) {
             return false;
         }

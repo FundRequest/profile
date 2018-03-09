@@ -15,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import twitter4j.Twitter;
 
+import java.security.Principal;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -66,17 +67,17 @@ public class TwitterBountyService {
         }
     }
 
-    public boolean hasFullFilledCurrentBounty(final String username, final String userId) {
+    public boolean hasFullFilledCurrentBounty(final String username, final String userId, final Principal principal) {
         final List<TwitterBounty> activeTwitterBounties = twitterBountyRepository.getActiveTwitterBounties(new Date());
         if (!activeTwitterBounties.isEmpty()) {
-            return hasFullFilled(username, userId, activeTwitterBounties.get(0));
+            return hasFullFilled(username, userId, activeTwitterBounties.get(0), principal);
         } else {
             return false;
         }
     }
 
-    private boolean hasFullFilled(final String username, final String userId, final TwitterBounty bounty) {
-        return keycloakRepository.isVerifiedDeveloper(userId) && bounty.getType().equals(TwitterBountyType.TWEET) && validateTweets(username, userId, bounty);
+    private boolean hasFullFilled(final String username, final String userId, final TwitterBounty bounty, final Principal principal) {
+        return keycloakRepository.isVerifiedDeveloper(principal.getName()) && bounty.getType().equals(TwitterBountyType.TWEET) && validateTweets(username, userId, bounty);
     }
 
     private boolean validateTweets(final String username, final String userId, final TwitterBounty bounty) {
