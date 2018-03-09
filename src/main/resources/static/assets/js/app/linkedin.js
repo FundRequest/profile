@@ -12,7 +12,7 @@ define(["require", "exports", "./alert", "jquery"], function (require, exports, 
                     $(modal).modal('hide');
                     alert_1.Alert.show('Sharing is caring, thanks!');
                 }).fail(function () {
-                    alert_1.Alert.show('Oeps, something went wrong, please try again.', 'danger');
+                    alert_1.Alert.show('Oops, something went wrong, please try again.', 'danger');
                 });
             });
             $(modal).on('show.bs.modal', function (e) {

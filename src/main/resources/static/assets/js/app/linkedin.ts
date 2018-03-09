@@ -21,7 +21,7 @@ class LinkedIn {
                 $(modal).modal('hide');
                 Alert.show('Sharing is caring, thanks!');
             }).fail(() => {
-                Alert.show('Oeps, something went wrong, please try again.', 'danger');
+                Alert.show('Oops, something went wrong, please try again.', 'danger');
             });
         });
 
