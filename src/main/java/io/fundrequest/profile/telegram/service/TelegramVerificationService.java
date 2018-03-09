@@ -31,7 +31,7 @@ public class TelegramVerificationService {
 
     @Transactional(readOnly = true)
     public boolean exists(final String telegramName) {
-        return telegramVerificationRepository.findByTelegramName(telegramName).isPresent();
+        return !telegramVerificationRepository.findAllByTelegramName(telegramName).isEmpty();
     }
 
     @Transactional(readOnly = true)
