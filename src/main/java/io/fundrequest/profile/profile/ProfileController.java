@@ -86,6 +86,9 @@ public class ProfileController {
 
     @PostMapping("/profile/telegramname")
     public ModelAndView updateTelegram(Principal principal, @RequestParam("telegramname") String telegramname) {
+        if (telegramname.contains("@")) {
+            throw new IllegalArgumentException("Only A-Z is allowed");
+        }
         telegramVerificationService.createTelegramVerification(principal.getName(), telegramname);
         profileService.updateTelegramName(principal, telegramname);
         return redirectToProfile();
