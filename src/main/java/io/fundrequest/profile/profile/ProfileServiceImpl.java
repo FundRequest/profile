@@ -95,6 +95,11 @@ public class ProfileServiceImpl implements ProfileService {
         keycloakRepository.updateTelegramName(principal.getName(), telegramName);
     }
 
+    @Override
+    public void updateHeadline(Principal principal, String headline) {
+        keycloakRepository.updateHeadline(principal.getName(), headline);
+    }
+
     private void addMissingProviders(HttpServletRequest request, Principal principal, Map<Provider, UserProfileProvider> providers) {
         for (Provider provider : Provider.values()) {
             addProviderToProviders(request, principal, providers, provider);
