@@ -32,7 +32,7 @@ define(["require", "exports", "./alert", "./utils", "jquery"], function (require
                     callback != null ? callback() : null;
                 }
             }).fail(function () {
-                alert_1.Alert.show('Oeps, something went wrong, please try again.', 'danger');
+                alert_1.Alert.show('Oops, something went wrong, please try again.', 'danger');
             }).always(function () {
                 utils_1.Utils.hideLoading();
             });

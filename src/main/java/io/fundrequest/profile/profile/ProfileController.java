@@ -84,6 +84,12 @@ public class ProfileController {
         return redirectToProfile();
     }
 
+    @PostMapping("/profile/headline")
+    public ModelAndView updateHeadline(Principal principal, @RequestParam("headline") String headline) {
+        profileService.updateHeadline(principal, headline);
+        return redirectToProfile();
+    }
+
     @PostMapping("/profile/telegramname")
     public ModelAndView updateTelegram(Principal principal, @RequestParam("telegramname") String telegramname) {
         telegramname = telegramname.startsWith("@") ? telegramname.replaceFirst("@", "") : telegramname;

@@ -14,4 +14,6 @@ public interface ProfileService {
     void updateEtherAddress(Principal principal, String etherAddress);
 
     void updateTelegramName(Principal principal, String telegramName);
+
+    void updateHeadline(Principal principal, String headline);
 }
