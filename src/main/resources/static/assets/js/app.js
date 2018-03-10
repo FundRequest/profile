@@ -1,5 +1,5 @@
 require.config({
-    baseUrl: './',
+    baseUrl: '/assets/js',
     paths: {
         'jquery': ['//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min', 'libs/jquery.min'],
         'popper': ['https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.2/umd/popper', 'libs/popper.min'],
