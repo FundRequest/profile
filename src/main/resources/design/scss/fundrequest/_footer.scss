@@ -1,0 +1,51 @@
+.fnd-footer {
+    &.section {
+        padding-bottom: 0;
+    }
+
+    &__left,
+    &__right {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__left {
+        @include media-breakpoint-up(lg) {
+            justify-content: flex-start;
+        }
+    }
+
+    &__right {
+        @include media-breakpoint-up(lg) {
+            justify-content: flex-end;
+        }
+    }
+}
+
+.btn--social-link {
+    color: $white;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.38));
+    margin-bottom: $bmd-btn-margin-bottom;
+    padding-bottom: 0;
+
+    transition: filter 0.2s $bmd-animation-curve-fast-out-linear-in;
+    will-change: filter, transform;
+
+    &:hover {
+        color: $white;
+        filter: drop-shadow(0 3px 2px rgba(0, 0, 0, 0.40));
+    }
+
+    &:active,
+    &:focus {
+        background-color: transparent;
+        color: $white;
+        filter: drop-shadow(0 0 0);
+    }
+}
+
+.btn--social-link:active.btn--social-link:focus {
+    background-color: transparent;
+    color: $white;
+}

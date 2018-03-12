@@ -29,6 +29,8 @@ application-dev.properties
 
 docker_data
 
-src/main/resources/static-project/
-src/main/resources/bootstrap/node_modules/
 FundRequestVerifierBot
+
+src/main/resources/static-project/
+src/main/resources/design/node_modules
+**/node_modules/**

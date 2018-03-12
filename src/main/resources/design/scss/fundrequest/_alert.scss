@@ -1,0 +1,34 @@
+.alert-container {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: $zindex-modal + 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .alert {
+        margin-bottom: .5rem;
+        display: inline-block;
+        border-radius: 999px;
+        @include box-shadow($bmd-shadow-3dp);
+
+        &:first-child {
+            margin-top: 2rem;
+        }
+
+        &:hover {
+            @include box-shadow($bmd-shadow-6dp);
+        }
+    }
+
+    .modal-open & {
+        .alert {
+            @include box-shadow($bmd-shadow-6dp);
+
+            &:hover {
+                @include box-shadow($bmd-shadow-8dp);
+            }
+        }
+    }
+}
