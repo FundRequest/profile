@@ -7,7 +7,6 @@ $card-border-radius: 0.25rem;
 
 $enable-caret: false;
 
-
 // colors
 $body-bg: #f4f4f4;
 
@@ -91,28 +90,21 @@ $orange-a400: #ffcfbd;
 $orange-a700: #ffbca3;
 $orange: $orange-500;
 
-$deep-orange-50: #fef1e8;
-$deep-orange-100: #fcddc5;
-$deep-orange-200: #fbc69f;
-$deep-orange-300: #f9af78;
-$deep-orange-400: #f79d5b;
-$deep-orange-500: #f68c3e;
-$deep-orange-600: #f58438;
-$deep-orange-700: #f37930;
-$deep-orange-800: #f26f28;
-$deep-orange-900: #ef5c1b;
-$deep-orange-a100: #ffffff;
-$deep-orange-a200: #fff4f0;
-$deep-orange-a400: #ffcfbd;
-$deep-orange-a700: #ffbca3;
-$deep-orange: $orange-500;
-
 $mastery-levels: (
         novice: $green,
         contributor: $blue,
         expert: $yellow,
         master: $orange
 );
+
+$theme-colors: ();
+$theme-colors: map-merge((
+        primary: $blue,
+        success: $green,
+        warning: $orange,
+), $theme-colors);
+
+$font-family-base: 'jaf-domus', sans-serif;
 
 // $box-shadow-light: 0 0 0 .05rem rgba(0, 0, 0, .06), 0 .1rem .15rem 0 rgba(0, 0, 0, .06);
 // $box-shadow-normal: 0 0 0 .05rem rgba(0, 0, 0, .12), 0 .1rem .15rem 0 rgba(0, 0, 0, .12);
