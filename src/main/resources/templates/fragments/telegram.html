@@ -4,12 +4,15 @@
 <th:block th:fragment="social-connect-block (username, verified)">
     <a class="anchor" id="get-social-telegram"></a>
     <div class="card card--social" th:classappend="${verified ? 'card--social--success' : 'card--social--primary'}">
-        <h5 class="card-header">
+        <h5 class="card-header" th:if="${username == null}">
             <span>Telegram <i class="fab fa-telegram"></i></span>
-            <span class="text-success" th:if="${username != null}" th:text="${username}">
+        </h5>
+        <div class="card-header" th:if="${username != null}">
+            <div>Telegram <i class="fab fa-telegram"></i></div>
+            <span class="text-success" th:text="${username}">
                 User name
             </span>
-        </h5>
+        </div>
         <div class="card-body" th:if="${verified}">
             <div class="card-text">
                 <span>Great, thanks for joining!</span>
@@ -54,15 +57,17 @@
                         </div>
                         <div th:unless="${verified}">
                             <div class="card-text card-text--step-1 mb-4">
-                                <label for="telegram-name">Enter your telegram handle</label>
-                                <input type="text"
-                                       id="telegram-name"
-                                       data-edit="telegram-name"
-                                       data-edit-validation="telegram"
-                                       placeholder="Ex. @myTelegramHandle"
-                                       th:value="${profile.getTelegramName()}"
-                                       class="form-control form-control--instant-edit"/>
-                                <span class="text-danger" data-edit-messages="telegram-name"></span>
+                                <label for="telegram-handle">Enter your telegram handle</label>
+                                <div class="form-group bmd-form-group mb-0 pt-0">
+                                    <input type="text"
+                                           id="telegram-handle"
+                                           data-edit="telegram-handle"
+                                           data-edit-validation="telegram-handle"
+                                           placeholder="Ex. @myTelegramHandle"
+                                           th:value="${profile.getTelegramName()}"
+                                           class="form-control form-control--instant-edit"/>
+                                    <span class="text-danger" data-edit-messages="telegram-handle"></span>
+                                </div>
                             </div>
 
                             <div class="card-text card-text--step-2 mb-4">

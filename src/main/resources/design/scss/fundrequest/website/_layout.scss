@@ -1,0 +1,23 @@
+.fnd-page-container {
+    max-width: $page-width;
+
+    &::after {
+        display: block;
+        content: "";
+        position: absolute;
+        z-index: -3;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        background-color: $white;
+    }
+}
+
+.fnd-header {
+    max-width: $page-width;
+    .container {
+        display: flex;
+        justify-content: space-between;
+    }
+}
