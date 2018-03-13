@@ -85,6 +85,7 @@ define(["require", "exports", "./alert", "./utils", "jquery"], function (require
             }).fail(function () {
                 self._showError(field, name, 'Something went wrong.');
             }).always(function () {
+                self._showHideEmptyMessage(field, name);
                 utils_1.Utils.hideLoading();
             });
         };
@@ -101,6 +102,10 @@ define(["require", "exports", "./alert", "./utils", "jquery"], function (require
             show ? messageField.classList.add(this._invalidMessageClass) : messageField.classList.remove(this._invalidMessageClass);
             show ? messageField.innerHTML = errorMessage : messageField.innerHTML = '';
             show ? field.classList.add(this._invalidFormClass) : field.classList.remove(this._invalidFormClass);
+        };
+        InstantEdit.prototype._showHideEmptyMessage = function (field, name) {
+            var messageField = this._document.querySelector("[data-edit-empty-message=\"" + name + "\"]");
+            field.value && field.value.trim().length > 0 ? messageField.classList.add('d-none') : messageField.classList.remove('d-none');
         };
         return InstantEdit;
     }());

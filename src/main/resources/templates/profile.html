@@ -12,7 +12,7 @@
             <a class="anchor" id="referral-link"></a>
             <h5 class="card-header card-header--label">
                 <span>Personal referral link</span>
-                <small class="text-muted">Rewards 5 FND / verified developer</small>
+                <small class="text-muted">Rewards 5 FND for each verified developer</small>
             </h5>
             <div class="card-body">
                 <div class="card-text mb-3">
@@ -75,7 +75,7 @@
         <div class="card card--blocked mb-5">
             <a class="anchor" id="get-social"></a>
             <h5 class="card-header card-header--label">
-                <span th:if="${profile.isVerifiedDeveloper()}">Be social and get rewarded!</span>
+                <span th:if="${profile.isVerifiedDeveloper()}">Be social and be rewarded!</span>
                 <span th:unless="${profile.isVerifiedDeveloper()}">Social rewards are only available for verified developers</span>
                 <small class="text-muted">Rewards up to 25 FND</small>
             </h5>

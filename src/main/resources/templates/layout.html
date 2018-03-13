@@ -9,27 +9,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
-    <link rel="apple-touch-icon" type="image/png" href="/assets/favicons/logo-single180.png" sizes="180x180"/>
-    <link rel="icon" type="image/png" href="/assets/img/logo-single32.png" sizes="32x31"/>
-    <link rel="icon" type="image/png" href="/assets/img/logo-single16.png" sizes="16x15"/>
+    <link rel="apple-touch-icon" type="image/png" th:href="@{/assets/favicons/logo-single180.png}" sizes="180x180"/>
+    <link rel="icon" type="image/png" th:href="@{/assets/img/logo-single32.png}" sizes="32x31"/>
+    <link rel="icon" type="image/png" th:href="@{/assets/img/logo-single16.png}" sizes="16x15"/>
     <link rel="stylesheet" th:href="@{/assets/css/fontawesome-all.min.css}"/>
     <link rel="stylesheet" th:href="@{/assets/css/googlefonts-titilium/googlefonts.titilium.css}"/>
     <link rel="stylesheet" th:href="@{/assets/css/typekit-jaf-domus/typekit.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/css/core.min.css}"/>
     <link rel="stylesheet" th:href="@{/assets/css/general.min.css}"/>
 
     <script data-main="/assets/js/app" th:src="@{/assets/js/require.js}"></script>
 
 </head>
 <body>
+<div class="alert alert-success alert--top">
+    <span>
+        Production release coming soon, track our progress
+        <a th:href="@{https://github.com/orgs/FundRequest/projects/6}" class="alert-link" target="_blank"
+           rel="noopener noreferrer">here</a>.
+    </span>
+</div>
 <div id="alert-container" class="alert-container"></div>
 <div class="progress primary-color-dark fixed-top d-none" data-page-loader="true">
     <div class="indeterminate"></div>
 </div>
 <div class="fnd-page-container">
     <nav class="fnd-header navbar navbar-dark navbar-expand-md bg bg--blue bg--no-rect">
-        <a class="navbar-brand navbar-brand--fnd" href="/profile">
-            <img class="d-md-none" src="/assets/img/logo-single180.png" alt="Fundrequest logo"/>
-            <img class="d-none d-md-block" src="/assets/img/Fundrequest-title-white.png" alt="Fundrequest logo"/>
+        <a class="navbar-brand navbar-brand--fnd" th:href="@{/profile}">
+            <img class="d-md-none" th:src="@{/assets/img/logo-single180.png}" alt="Fundrequest logo"/>
+            <img class="d-none d-md-block" th:src="@{/assets/img/Fundrequest-title-white.png}" alt="Fundrequest logo"/>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#primary-menu"
                 aria-controls="primary-menu" aria-expanded="false" aria-label="Toggle primary menu">
@@ -39,21 +47,21 @@
         <div class="collapse navbar-collapse" id="primary-menu">
             <ul class="navbar-nav text-center ml-md-auto">
                 <li class="nav-item">
-                    <a class="nav-link" title="About" href="https://fundrequest.io#about">About</a>
+                    <a class="nav-link" title="About" th:href="@{https://fundrequest.io#about}">About</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" title="Team" href="https://fundrequest.io#team">Team</a>
+                    <a class="nav-link" title="Team" th:href="@{https://fundrequest.io#team}">Team</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" title="Roadmap" href="https://fundrequest.io#roadmap">Roadmap</a>
+                    <a class="nav-link" title="Roadmap" th:href="@{https://fundrequest.io#roadmap}">Roadmap</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" title="Whitepaper" href="https://fundrequest.io/whitepaper.pdf"
+                    <a class="nav-link" title="Whitepaper" th:href="@{https://fundrequest.io/whitepaper.pdf}"
                        rel="noopener noreferrer"
                        target="_blank">Whitepaper</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" title="Blog" href="https://blog.fundrequest.io/"
+                    <a class="nav-link" title="Blog" th:href="@{https://blog.fundrequest.io/}"
                        rel="noopener noreferrer"
                        target="_blank">Blog</a>
                 </li>
@@ -67,9 +75,9 @@
                     </button>
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="user-profile-menu">
-                        <a class="dropdown-item" href="/profile">Profile</a>
-                        <a class="dropdown-item" href="/rewards">Rewards</a>
-                        <a class="dropdown-item" href="/logout">Logout</a>
+                        <a class="dropdown-item" th:href="@{/profile}">Profile</a>
+                        <a class="dropdown-item" th:href="@{/rewards}">Rewards</a>
+                        <a class="dropdown-item" th:href="@{/logout}">Logout</a>
                     </div>
                 </li>
             </ul>
@@ -80,7 +88,7 @@
         <div class="fnd-ribbon fnd-ribbon--novice"></div>
     </div>
 
-    <section class="fnd-main">
+    <section class="section section--main">
         <div class="container">
             <div th:if="${profile}" th:remove="tag">
                 <div th:replace="fragments/header"></div>
@@ -97,25 +105,25 @@
                 © 2018 FundRequest OÜ
             </div>
             <div class="fnd-footer__right mb-3 col-lg-6">
-                <a class="btn btn-link btn--social-link pl-0" href="https://github.com/fundrequest/"
+                <a class="btn btn-link btn--social-link pl-0" th:href="@{https://github.com/fundrequest/}"
                    rel="noopener noreferrer" target="_blank">
                     <span class="sr-only">Github</span>
-                    <i class="fab fa-github fa-3x"></i>
+                    <i class="fab fa-github"></i>
                 </a>
-                <a class="btn btn-link btn--social-link" href="https://fundrequest.chat"
+                <a class="btn btn-link btn--social-link" th:href="@{https://fundrequest.chat}"
                    target="_blank" rel="noopener noreferrer">
                     <span class="sr-only">Rocket Chat</span>
-                    <i class="fab fa-rocketchat fa-3x"></i>
+                    <i class="fab fa-rocketchat"></i>
                 </a>
-                <a class="btn btn-link btn--social-link" href="https://twitter.com/fundrequest_io"
+                <a class="btn btn-link btn--social-link" th:href="@{https://twitter.com/fundrequest_io}"
                    target="_blank" rel="noopener noreferrer">
                     <span class="sr-only">Twitter</span>
-                    <i class="fab fa-twitter fa-3x"></i>
+                    <i class="fab fa-twitter"></i>
                 </a>
-                <a class="btn btn-link btn--social-link pr-0" href="https://t.me/fundrequestofficial"
+                <a class="btn btn-link btn--social-link pr-0" th:href="@{https://t.me/fundrequestofficial}"
                    target="_blank" rel="noopener noreferrer">
                     <span class="sr-only">Telegram</span>
-                    <i class="fab fa-telegram fa-3x"></i>
+                    <i class="fab fa-telegram"></i>
                 </a>
             </div>
         </div>

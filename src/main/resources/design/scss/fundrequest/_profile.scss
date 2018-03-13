@@ -43,8 +43,11 @@
     }
 }
 
-.btn--profile {
+.btn.btn--profile {
     margin-bottom: 0;
+    .fa {
+        font-size: 1rem;
+    }
 }
 
 .profile-progress {

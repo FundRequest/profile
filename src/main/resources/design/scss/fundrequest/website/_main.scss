@@ -1,10 +1,20 @@
-h1, h2 {
+h1 {
     font-size: 28px;
     line-height: 32px;
 
     @include media-breakpoint-up(md) {
         font-size: 34px;
         line-height: 40px;
+    }
+}
+
+h2 {
+    font-size: 24px;
+    line-height: 28px;
+
+    @include media-breakpoint-up(md) {
+        font-size: 30px;
+        line-height: 36px;
     }
 }
 
@@ -42,6 +52,7 @@ h2 .svg-inline--fa {
     &__title {
         margin: 0 0 10px 0;
         font-size: 25px;
+        font-weight: $font-weight-bold;
         text-transform: uppercase;
         color: $white;
     }
@@ -58,6 +69,17 @@ h2 .svg-inline--fa {
 
         &:hover {
             color: $white;
+        }
+    }
+
+    &__newsletter {
+        display: flex;
+        justify-content: center;
+
+        @include media-breakpoint-up(md) {
+            .btn {
+                width: 100%;
+            }
         }
     }
 }

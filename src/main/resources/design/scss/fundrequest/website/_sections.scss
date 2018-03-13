@@ -11,10 +11,6 @@
             padding-bottom: 30px;
             font-weight: $font-weight-bold;
         }
-
-        &::before {
-            background-position-x: -12rem;
-        }
     }
 
     &--supporters {
@@ -151,7 +147,6 @@
     &::after {
         display: block;
         content: "";
-        margin: 0 auto;
         width: 1920px;
         height: 0;
         border-style: solid;

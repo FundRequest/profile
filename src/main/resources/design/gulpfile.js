@@ -35,7 +35,7 @@ const gulp = require('gulp'),
     sourcemaps = require('gulp-sourcemaps');
 tildeImporter = require('node-sass-tilde-importer');
 
-var target = "../static.assets/css";
+var target = "../static/assets/css";
 
 // Temporary solution until gulp 4
 // https://github.com/gulpjs/gulp/issues/355
@@ -77,6 +77,18 @@ var prefixerOptions = {
     browsers: ['last 2 versions']
 };
 
+gulp.task('styles-core', function() {
+    return gulp.src('scss/core.scss')
+        .pipe(plumber({errorHandler: onError}))
+        .pipe(sourcemaps.init())
+        .pipe(sass(sassOptions))
+        .pipe(prefix(prefixerOptions))
+        .pipe(gulp.dest(target))
+        .pipe(cssmin())
+        .pipe(rename({suffix: '.min'}))
+        .pipe(gulp.dest(target))
+});
+
 gulp.task('styles-general', function() {
     return gulp.src('scss/general.scss')
         .pipe(plumber({errorHandler: onError}))
@@ -101,13 +113,12 @@ gulp.task('styles-website', function() {
         .pipe(gulp.dest(target))
 });
 
-
 gulp.task('watch', function() {
-    gulp.watch(['scss/**/*.scss', '!scss/fundrequest/website/*.scss'], ['styles-general']);
+    gulp.watch(['scss/fundrequest/*.scss', '!scss/fundrequest/website/*.scss'], ['styles-general']);
     gulp.watch('scss/fundrequest/website/*.scss', ['styles-website']);
 });
 
 gulp.task('default', function(done) {
     target = (arg && arg.target) || target;
-    runSequence('styles-general', 'styles-website', 'watch', done);
+    runSequence('styles-core', 'styles-general', 'styles-website', 'watch', done);
 });

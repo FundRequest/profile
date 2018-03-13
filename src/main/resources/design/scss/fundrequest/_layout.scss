@@ -3,12 +3,12 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: stretch;
 }
 
 .fnd-page-container {
     position: relative;
     overflow: hidden;
-    margin: 0 auto;
     padding-top: 0;
     width: 100%;
     flex-basis: 100%;
@@ -16,7 +16,8 @@ body {
 }
 
 .fnd-header {
-    margin: 0 auto;
+    transition: transform .35s ease, background-color .35s ease, color .35s ease, padding-top .35s ease, box-shadow .35s ease;
+    will-change: transform, background-color, color, padding-top, box-shadow;
 
     &.navbar-light {
         background-color: $white !important;
@@ -31,7 +32,7 @@ body {
         }
 
         @include media-breakpoint-up(md) {
-            padding-top: 1rem;
+            padding-top: .5rem;
         }
     }
 
@@ -44,19 +45,12 @@ body {
         width: 260px;
     }
 
-    .navbar-nav {
-        align-items: center;
-    }
-
     &--fixed {
         z-index: $zindex-fixed;
         position: fixed;
         left: 0;
         right: 0;
         bottom: 0;
-
-        transition: background-color .35s ease, color .35s ease, padding-top .35s ease, box-shadow .35s ease;
-        will-change: background-color, color, padding-top, box-shadow;
 
         @include media-breakpoint-up(md) {
             padding-top: 3rem;
@@ -75,25 +69,30 @@ body {
             transform: translateX(0);
         }
     }
+
+    .navbar-nav {
+        align-items: center;
+    }
+
+    .nav-item {
+        @include media-breakpoint-up(md) {
+            .btn {
+                margin-left: .5rem;
+                margin-right: .5rem;
+            }
+
+            &:last-child .btn {
+                margin-left: .5rem;
+                margin-right: 0;
+            }
+        }
+    }
 }
 
 .fnd-ribbon {
-    height: 200px;
+    height: 13rem;
     flex-shrink: 0;
     background-color: $blue-300;
-}
-
-.fnd-main {
-    flex-shrink: 0;
-    padding-top: 20px;
-
-    .fnd-ribbon + & {
-        margin-top: -140px;
-
-        @include media-breakpoint-up(md) {
-            margin-top: -180px;
-        }
-    }
 }
 
 .navbar-brand--fnd {
@@ -117,6 +116,14 @@ body {
         &:last-child {
             margin-right: 0;
         }
+
+        &.active .nav-link,
+        &.active .nav-link:hover {
+            color: $primary;
+            border-bottom-color: $primary;
+        }
+
+
     }
 
     .nav-link {
@@ -124,11 +131,10 @@ body {
         height: 100%;
         padding: ($nav-link-padding-y * 2) ($nav-link-padding-x * 2);
         color: $secondary;
-        border-bottom: 1px solid transparent;
+        border-bottom: 3px solid transparent;
 
         &:hover {
             color: $primary;
-            border-bottom-color: $primary;
         }
     }
 }

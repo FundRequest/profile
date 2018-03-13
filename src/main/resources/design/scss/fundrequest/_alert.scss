@@ -32,3 +32,17 @@
         }
     }
 }
+
+.alert--top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 50px;
+    margin: 0;
+    border-bottom: 1px solid rgba($success, .85);
+}
+
+.alert--top + .alert-container {
+    margin-top: 50px;
+}

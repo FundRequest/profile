@@ -19,4 +19,8 @@ public class UserProfile {
     private UserProfileProvider twitter;
     private UserProfileProvider stackoverflow;
     private UserProfileProvider google;
+
+    public boolean hadEtherAddress() {
+        return etherAddress != null && etherAddress.length() > 0;
+    }
 }
