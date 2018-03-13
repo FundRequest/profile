@@ -16190,6 +16190,7 @@ body {
   transition: transform .35s ease, background-color .35s ease, color .35s ease, padding-top .35s ease, box-shadow .35s ease;
   transition: transform .35s ease, background-color .35s ease, color .35s ease, padding-top .35s ease, box-shadow .35s ease, -webkit-transform .35s ease, -webkit-box-shadow .35s ease;
   will-change: transform, background-color, color, padding-top, box-shadow;
+  margin: 0 auto;
 }
 
 .fnd-header.navbar-light {
@@ -16301,6 +16302,12 @@ body {
   margin-right: 0;
 }
 
+.navbar--fnd-secondary .nav-item.active .nav-link,
+.navbar--fnd-secondary .nav-item.active .nav-link:hover {
+  color: #39a4dc;
+  border-bottom-color: #39a4dc;
+}
+
 .navbar--fnd-secondary .nav-link {
   -webkit-transition: border-color, color .3s ease;
   transition: border-color, color .3s ease;
@@ -16312,7 +16319,6 @@ body {
 
 .navbar--fnd-secondary .nav-link:hover {
   color: #39a4dc;
-  border-bottom-color: #39a4dc;
 }
 
 a.anchor {
@@ -16365,6 +16371,27 @@ a.anchor {
 .modal-open .alert-container .alert:hover {
   -webkit-box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
           box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
+}
+
+.alert--top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  min-height: 50px;
+  margin: 0;
+  width: 100%;
+  border-bottom: 1px solid rgba(48, 181, 97, 0.85);
+}
+
+.alert--top + .alert-container {
+  margin-top: 50px;
 }
 
 .fnd-user-avatar {
@@ -18763,8 +18790,12 @@ a.text--master:hover, a.text--master:focus {
   }
 }
 
-.btn--profile {
+.btn.btn--profile, .btn--profile.custom-file-control::before {
   margin-bottom: 0;
+}
+
+.btn.btn--profile .fa, .btn--profile.custom-file-control::before .fa {
+  font-size: 1rem;
 }
 
 .profile-progress {

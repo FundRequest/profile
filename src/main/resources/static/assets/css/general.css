@@ -10,9 +10,9 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  -webkit-box-align: stretch;
-      -ms-flex-align: stretch;
-          align-items: stretch;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .fnd-page-container {
@@ -33,6 +33,7 @@ body {
   transition: transform .35s ease, background-color .35s ease, color .35s ease, padding-top .35s ease, box-shadow .35s ease;
   transition: transform .35s ease, background-color .35s ease, color .35s ease, padding-top .35s ease, box-shadow .35s ease, -webkit-transform .35s ease, -webkit-box-shadow .35s ease;
   will-change: transform, background-color, color, padding-top, box-shadow;
+  margin: 0 auto;
 }
 
 .fnd-header.navbar-light {
@@ -228,6 +229,7 @@ a.anchor {
   text-align: center;
   min-height: 50px;
   margin: 0;
+  width: 100%;
   border-bottom: 1px solid rgba(48, 181, 97, 0.85);
 }
 

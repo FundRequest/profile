@@ -91,8 +91,8 @@ export class InstantEdit {
         }).fail(() => {
             self._showError(field, name, 'Something went wrong.');
         }).always(() => {
-            self._showHideEmptyMessage(field, name);
             Utils.hideLoading();
+            self._showHideEmptyMessage(field, name);
         });
 
     }
@@ -114,6 +114,8 @@ export class InstantEdit {
 
     private _showHideEmptyMessage(field, name) {
         let messageField: HTMLElement = this._document.querySelector(`[data-edit-empty-message="${name}"]`) as HTMLElement;
-        field.value && field.value.trim().length > 0 ? messageField.classList.add('d-none') : messageField.classList.remove('d-none');
+        if (messageField != null) {
+            field.value && field.value.trim().length > 0 ? messageField.classList.add('d-none') : messageField.classList.remove('d-none');
+        }
     }
 }

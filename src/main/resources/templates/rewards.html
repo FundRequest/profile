@@ -16,8 +16,9 @@
                 </small>
             </h5>
             <div class="card-footer text-center">
-                <div class="font-weight-bold">Rewards will be transfered 7th of may.</div>
-                <div class="text-danger font-weight-bold" th:classappend="${profile.hadEtherAddress() ? 'd-none' : ''}"
+                <div class="font-weight-bold">Rewards will be transfered 7th of May.</div>
+                <div class="text-warning font-weight-bold" th:classappend="${profile.hadEtherAddress() ? 'd-none' : ''}"
+                     th:if="${bounty.getTotalRewards() > 0}"
                      data-edit-empty-message="eth-address">
                     We have to know your ETH Address to transfer your rewards, please enter your ETH Address above.
                 </div>
@@ -146,7 +147,7 @@
                         <th:block th:if="${bounty.getTelegramRewards() == 0}">
                             <div class="rewards-list__text">
                                 <i class="fab fa-telegram mr-1"></i>
-                                <span>Join Telegram and say Hi!</span>
+                                <span>Join Telegram and introduce yourself.</span>
                             </div>
                             <a class="rewards-list__link" th:href="@{/profile#get-social-telegram}"
                                th:text="${'Get ' + T(io.fundrequest.profile.bounty.domain.BountyType).LINK_TELEGRAM.getReward() + ' FND'}">Get

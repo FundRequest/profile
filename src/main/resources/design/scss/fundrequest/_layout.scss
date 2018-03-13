@@ -3,7 +3,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: stretch;
+    align-items: center;
 }
 
 .fnd-page-container {
@@ -18,6 +18,8 @@ body {
 .fnd-header {
     transition: transform .35s ease, background-color .35s ease, color .35s ease, padding-top .35s ease, box-shadow .35s ease;
     will-change: transform, background-color, color, padding-top, box-shadow;
+
+    margin: 0 auto;
 
     &.navbar-light {
         background-color: $white !important;
