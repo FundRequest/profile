@@ -16,7 +16,6 @@ export class InstantEdit {
                 li.classList.remove(this._invalidFormClass);
             });
             li.addEventListener('focusout', () => {
-                li.setSelectionRange(0, 0);
                 this._saveItem(li, name);
             });
         }

@@ -1949,6 +1949,10 @@ a.anchor {
   margin-right: 10px;
 }
 
+.fnd-footer {
+  width: 100%;
+}
+
 .fnd-footer.section {
   padding-bottom: 0;
 }

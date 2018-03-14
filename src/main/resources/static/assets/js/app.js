@@ -3,7 +3,7 @@ require.config({
     paths: {
         'jquery': ['//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min', 'libs/jquery.min'],
         'popper': ['https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.2/umd/popper', 'libs/popper.min'],
-        'bootstrap': 'libs/bootstrap-material-design',
+        'bootstrap': 'libs/bmd',
         'clipboard': ['//cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min', 'libs/clipboard.min']
     },
     shim: {

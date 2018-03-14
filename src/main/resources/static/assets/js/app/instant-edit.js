@@ -15,7 +15,6 @@ define(["require", "exports", "./alert", "./utils", "jquery"], function (require
                     li.classList.remove(_this._invalidFormClass);
                 });
                 li.addEventListener('focusout', function () {
-                    li.setSelectionRange(0, 0);
                     _this._saveItem(li, name_1);
                 });
             };
