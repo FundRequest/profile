@@ -1,6 +1,6 @@
 ##LINKEDIN
 
-delete from linkedin_post where id > 0;
+truncate table linkedin_post;
 
 ALTER TABLE linkedin_post
   DROP COLUMN description;
@@ -41,8 +41,7 @@ VALUES ('Check out fundrequest.io!', 'fundrequest.io',
         'https://cdn-images-1.medium.com/fit/c/120/120/1*PnVXfL_wAN1xSqJOOqzF4A.png');
 
 ##TWITTER
-delete from twitter_posts where id > 0;
-
+truncate table twitter_posts;
 
 INSERT INTO twitter_posts (content, verification_text)
 VALUES (
