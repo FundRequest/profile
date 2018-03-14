@@ -1,5 +1,6 @@
-package io.fundrequest.profile.bounty;
+package io.fundrequest.profile.bounty.controller;
 
+import io.fundrequest.profile.bounty.service.BountyService;
 import io.fundrequest.profile.github.GithubBountyService;
 import io.fundrequest.profile.linkedin.LinkedInService;
 import io.fundrequest.profile.profile.ProfileService;

@@ -1,5 +1,6 @@
 package io.fundrequest.profile.profile;
 
+import io.fundrequest.profile.linkedin.LinkedInService;
 import io.fundrequest.profile.profile.dto.UserProfile;
 import io.fundrequest.profile.profile.dto.UserProfileProvider;
 import io.fundrequest.profile.profile.provider.Provider;
@@ -22,7 +23,6 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.security.Principal;
 import java.util.ArrayList;
@@ -37,16 +37,19 @@ public class ProfileController {
     private ProfileService profileService;
     private TwitterBountyService twitterBountyService;
     private TelegramVerificationService telegramVerificationService;
+    private LinkedInService linkedInService;
 
 
     public ProfileController(final ApplicationEventPublisher eventPublisher,
                              final ProfileService profileService,
                              final TwitterBountyService twitterBountyService,
-                             final TelegramVerificationService telegramVerificationService) {
+                             final TelegramVerificationService telegramVerificationService,
+                             final LinkedInService linkedInService) {
         this.eventPublisher = eventPublisher;
         this.profileService = profileService;
         this.twitterBountyService = twitterBountyService;
         this.telegramVerificationService = telegramVerificationService;
+        this.linkedInService = linkedInService;
     }
 
     @GetMapping("/profile")
@@ -64,6 +67,7 @@ public class ProfileController {
         mav.addObject("refLinkTwitter", URLEncoder.encode(getRefLink(principal) + "&utm_source=referral&utm_medium=twitter&utm_campaign=early_signup", "UTF-8"));
         mav.addObject("refLinkLinkedin", URLEncoder.encode(getRefLink(principal) + "&utm_source=referral&utm_medium=linkedin&utm_campaign=early_signup", "UTF-8"));
         mav.addObject("refLinkFacebook", URLEncoder.encode(getRefLink(principal) + "&utm_source=referral&utm_medium=facebook&utm_campaign=early_signup", "UTF-8"));
+        mav.addObject("linkedInVerification", linkedInService.getVerification(principal));
         return mav;
     }
 

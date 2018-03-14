@@ -1,4 +1,4 @@
-package io.fundrequest.profile.bounty;
+package io.fundrequest.profile.bounty.service;
 
 import io.fundrequest.profile.bounty.domain.Bounty;
 import io.fundrequest.profile.bounty.domain.BountyType;

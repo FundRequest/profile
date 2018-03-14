@@ -1,6 +1,6 @@
 package io.fundrequest.profile.ref;
 
-import io.fundrequest.profile.bounty.BountyService;
+import io.fundrequest.profile.bounty.service.BountyService;
 import io.fundrequest.profile.bounty.event.CreateBountyCommand;
 import io.fundrequest.profile.profile.infrastructure.KeycloakRepository;
 import io.fundrequest.profile.ref.domain.Referral;

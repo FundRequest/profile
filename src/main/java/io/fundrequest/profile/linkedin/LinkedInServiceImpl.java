@@ -1,6 +1,6 @@
 package io.fundrequest.profile.linkedin;
 
-import io.fundrequest.profile.bounty.BountyService;
+import io.fundrequest.profile.bounty.service.BountyService;
 import io.fundrequest.profile.bounty.domain.BountyType;
 import io.fundrequest.profile.bounty.event.CreateBountyCommand;
 import io.fundrequest.profile.linkedin.domain.LinkedInPost;
