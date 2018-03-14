@@ -1,5 +1,3 @@
-##LINKEDIN
-
 truncate table linkedin_post;
 
 ALTER TABLE linkedin_post
@@ -40,7 +38,6 @@ VALUES ('Check out fundrequest.io!', 'fundrequest.io',
         'https://fundrequest.io?utm_source=besocial&utm_medium=linkedin&utm_campaign=early_signup&utm_content=5',
         'https://cdn-images-1.medium.com/fit/c/120/120/1*PnVXfL_wAN1xSqJOOqzF4A.png');
 
-##TWITTER
 truncate table twitter_posts;
 
 INSERT INTO twitter_posts (content, verification_text)
