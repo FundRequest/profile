@@ -22,6 +22,8 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -48,7 +50,7 @@ public class ProfileController {
     }
 
     @GetMapping("/profile")
-    public ModelAndView showProfile(Principal principal, @RequestParam(value = "ref", required = false) String ref, HttpServletRequest request, Model model) {
+    public ModelAndView showProfile(Principal principal, @RequestParam(value = "ref", required = false) String ref, HttpServletRequest request, Model model) throws Exception {
         if (StringUtils.isNotBlank(ref)) {
             eventPublisher.publishEvent(RefSignupEvent.builder().principal(principal).ref(ref).build());
             return redirectToProfile();
@@ -58,8 +60,10 @@ public class ProfileController {
         enrichTwitter(mav, userProfile);
         enrichTelegram(mav, principal);
 
-        mav.addObject("refLink", getRefLink(request, principal));
-
+        mav.addObject("refLink", getRefLink(principal) + "&utm_source=referral&utm_medium=web&utm_campaign=early_signup");
+        mav.addObject("refLinkTwitter", URLEncoder.encode(getRefLink(principal) + "&utm_source=referral&utm_medium=twitter&utm_campaign=early_signup", "UTF-8"));
+        mav.addObject("refLinkLinkedin", URLEncoder.encode(getRefLink(principal) + "&utm_source=referral&utm_medium=linkedin&utm_campaign=early_signup", "UTF-8"));
+        mav.addObject("refLinkFacebook", URLEncoder.encode(getRefLink(principal) + "&utm_source=referral&utm_medium=facebook&utm_campaign=early_signup", "UTF-8"));
         return mav;
     }
 
@@ -101,7 +105,7 @@ public class ProfileController {
         return redirectToProfile();
     }
 
-    private static String getRefLink(HttpServletRequest req, Principal principal) {
+    private static String getRefLink(final Principal principal) {
         return "https://fundrequest.io?ref=" + principal.getName();
     }
 
@@ -115,7 +119,7 @@ public class ProfileController {
                 } else {
                     mav.addObject("claimedTwitterBounty", false);
                     final List<TwitterPost> posts = new ArrayList<>(twitterBountyService.getTwitterPosts());
-                    Collections.shuffle(twitterBountyService.getTwitterPosts());
+                    Collections.shuffle(posts);
                     mav.addObject("twitterPost", posts.get(0));
                 }
             }
