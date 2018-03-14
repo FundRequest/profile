@@ -127,6 +127,7 @@ h2 .svg-inline--fa {
   color: #74bfe7;
   border: 2px solid #74bfe7;
   -webkit-transition: background-color .35s ease, color .35s ease, border-color .35s ease;
+  -o-transition: background-color .35s ease, color .35s ease, border-color .35s ease;
   transition: background-color .35s ease, color .35s ease, border-color .35s ease;
   will-change: background-color, color, border-color;
 }
@@ -146,6 +147,7 @@ h2 .svg-inline--fa {
   color: #74bfe7;
   font-size: 15px;
   -webkit-transition: font-size .35s ease;
+  -o-transition: font-size .35s ease;
   transition: font-size .35s ease;
   will-change: font-size;
 }
@@ -192,6 +194,7 @@ h2 .svg-inline--fa {
     position: absolute;
     opacity: 0;
     -webkit-transition: opacity .35s ease-in-out;
+    -o-transition: opacity .35s ease-in-out;
     transition: opacity .35s ease-in-out;
     will-change: opacity;
   }
@@ -304,6 +307,7 @@ a.partner-link {
           box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
   -webkit-transition: -webkit-box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1);
   transition: -webkit-box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1);
+  -o-transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1);
   transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1);
   transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1), -webkit-box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1);
   will-change: filter, transform;
@@ -354,12 +358,14 @@ a.partner-link:active, a.partner-link:focus {
 
 .fnd-header.headroom--unpinned {
   -webkit-transform: translateY(100%);
+      -ms-transform: translateY(100%);
           transform: translateY(100%);
 }
 
 @media (min-width: 768px) {
   .fnd-header.headroom--unpinned {
     -webkit-transform: none;
+        -ms-transform: none;
             transform: none;
   }
 }

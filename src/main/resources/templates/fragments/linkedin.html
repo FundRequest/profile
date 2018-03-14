@@ -20,21 +20,25 @@
             <span class="text-success" th:text="${platform.getUsername()}">User name, link to profile?</span>
         </div>
         <div class="card-body">
-            <div class="card-text">
-                <a th:if="${verification == null}" href="#"
-                   class="btn btn-outline-linkedin icon-left" data-target="#modal-share-linked-in" data-toggle="modal">
-                    <i class="fab fa-linkedin"></i>
-                    <span>Share and be rewarded</span>
-                </a>
-                <a th:if="${verification != null}" class="btn btn-primary" th:href="${verification.postUrl}">
-                    View your post ...
-                </a>
+            <div th:if="${verification == null}">
+                <div class="card-text">
+                    <a href="#" class="btn btn-outline-linkedin icon-left" data-target="#modal-share-linked-in"
+                       data-toggle="modal">
+                        <i class="fab fa-linkedin"></i>
+                        <span>Share and be rewarded</span>
+                    </a>
+                </div>
+                <div class="card-text">
+                    <span>Rewards 10 FND for sharing on LinkedIn</span>
+                </div>
             </div>
-            <div class="card-text">
-                <span th:if="${verification == null}">Rewards 10 FND for sharing on LinkedIn</span>
-                <span th:if="${verification != null}">
-                    <span class="text-success"><i class="fa fa-checked"></i> Verified</span>
-                </span>
+            <div th:if="${verification != null}">
+                <div class="card-text">Super, thanks for sharing!</div>
+                <div class="card-text">
+                    <a class="btn btn-primary" th:href="${verification.postUrl}">
+                        View your post
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -52,7 +56,7 @@
             </div>
             <div class="modal-body d-block">
                 <div class="d-flex mb-3">
-                    <img class="mr-3 img--linked-in-modal" data-share-linked-in="image" src="" />
+                    <img class="mr-3 img--linked-in-modal" data-share-linked-in="image" src=""/>
                     <div>
                         <div data-share-linked-in="title">Title</div>
                         <small><strong data-share-linked-in="url">fundrequest.io</strong></small>

@@ -1,4 +1,5 @@
 // fetch command line arguments
+let dev = false;
 const arg = (argList => {
     let arg = {}, a, opt, thisOpt, curOpt;
     for (a = 0; a < argList.length; a++) {
@@ -26,9 +27,10 @@ const arg = (argList => {
 
 const gulp = require('gulp'),
     sass = require('gulp-sass'),
+    gulpif = require('gulp-if'),
     rename = require('gulp-rename'),
-    cssmin = require('gulp-cssnano'),
-    prefix = require('gulp-autoprefixer'),
+    autoprefixer = require('gulp-autoprefixer'),
+    cssnano = require('gulp-cssnano'),
     plumber = require('gulp-plumber'),
     notify = require('gulp-notify'),
     sassLint = require('gulp-sass-lint'),
@@ -68,49 +70,45 @@ var onError = function(err) {
     this.emit('end');
 };
 
-var sassOptions = {
+let sassOptions = {
     outputStyle: 'expanded',
     importer: tildeImporter
 };
 
-var prefixerOptions = {
-    browsers: ['last 2 versions']
+let autoprefixerConfig = {
+    browsers: ['last 3 versions']
+};
+let cssnanoConfig = {
+    reduceIdents: false
 };
 
-gulp.task('styles-core', function() {
-    return gulp.src('scss/core.scss')
+function runSass(filename) {
+    return gulp.src(filename)
         .pipe(plumber({errorHandler: onError}))
-        .pipe(sourcemaps.init())
+        //.pipe(sourcemaps.init())
         .pipe(sass(sassOptions))
-        .pipe(prefix(prefixerOptions))
+        .pipe(autoprefixer(autoprefixerConfig))
+        //.pipe(sourcemaps.write('.'))
         .pipe(gulp.dest(target))
-        .pipe(cssmin())
+        //.pipe(sourcemaps.init())
+        .pipe(cssnano(cssnanoConfig))
+        .pipe(autoprefixer(autoprefixerConfig))
         .pipe(rename({suffix: '.min'}))
-        .pipe(gulp.dest(target))
+        //.pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest(target));
+}
+
+gulp.task('styles-core', function() {
+    return runSass('scss/core.scss')
+
 });
 
 gulp.task('styles-general', function() {
-    return gulp.src('scss/general.scss')
-        .pipe(plumber({errorHandler: onError}))
-        .pipe(sourcemaps.init())
-        .pipe(sass(sassOptions))
-        .pipe(prefix(prefixerOptions))
-        .pipe(gulp.dest(target))
-        .pipe(cssmin())
-        .pipe(rename({suffix: '.min'}))
-        .pipe(gulp.dest(target))
+    return runSass('scss/general.scss');
 });
 
 gulp.task('styles-website', function() {
-    return gulp.src('scss/website.scss')
-        .pipe(plumber({errorHandler: onError}))
-        .pipe(sourcemaps.init())
-        .pipe(sass(sassOptions))
-        .pipe(prefix(prefixerOptions))
-        .pipe(gulp.dest(target))
-        .pipe(cssmin())
-        .pipe(rename({suffix: '.min'}))
-        .pipe(gulp.dest(target))
+    return runSass('scss/website.scss');
 });
 
 gulp.task('watch', function() {
@@ -121,4 +119,10 @@ gulp.task('watch', function() {
 gulp.task('default', function(done) {
     target = (arg && arg.target) || target;
     runSequence('styles-core', 'styles-general', 'styles-website', 'watch', done);
+});
+
+gulp.task('dev-default', function(done) {
+    target = (arg && arg.target) || target;
+    //dev = true;
+    runSequence('styles-general', 'styles-website', 'watch', done);
 });
