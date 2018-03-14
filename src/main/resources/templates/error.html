@@ -2,6 +2,7 @@
 <html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layout"
       xmlns:th="http://www.thymeleaf.org">
 <head>
+    <title th:text="${'Fundrequest - Sorry, an error has occurred - ' + status + ' ' + error}">FundRequest - Error</title>
 </head>
 <body>
 <div layout:fragment="content">
@@ -15,7 +16,7 @@
             <div class="card-text">
                 <div class="fnd-error-template">
 
-                    <div class="fnd-error-details" th:text="${'Sorry, an error has occured: '+ message +'!'}">
+                    <div class="fnd-error-details" th:text="${'Sorry, an error has occurred: '+ message +'!'}">
                     </div>
 
                     <div class="fnd-error-actions">
