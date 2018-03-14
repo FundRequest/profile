@@ -30,6 +30,7 @@ body {
 .fnd-header {
   -webkit-transition: background-color .35s ease, color .35s ease, padding-top .35s ease, -webkit-transform .35s ease, -webkit-box-shadow .35s ease;
   transition: background-color .35s ease, color .35s ease, padding-top .35s ease, -webkit-transform .35s ease, -webkit-box-shadow .35s ease;
+  -o-transition: transform .35s ease, background-color .35s ease, color .35s ease, padding-top .35s ease, box-shadow .35s ease;
   transition: transform .35s ease, background-color .35s ease, color .35s ease, padding-top .35s ease, box-shadow .35s ease;
   transition: transform .35s ease, background-color .35s ease, color .35s ease, padding-top .35s ease, box-shadow .35s ease, -webkit-transform .35s ease, -webkit-box-shadow .35s ease;
   will-change: transform, background-color, color, padding-top, box-shadow;
@@ -85,8 +86,10 @@ body {
 
 .fnd-header--off-canvas {
   -webkit-transition: translateX .35s ease-in-out;
+  -o-transition: translateX .35s ease-in-out;
   transition: translateX .35s ease-in-out;
   -webkit-transform: translateX(-100%);
+      -ms-transform: translateX(-100%);
           transform: translateX(-100%);
   will-change: translateX;
 }
@@ -94,6 +97,7 @@ body {
 @media (min-width: 768px) {
   .fnd-header--off-canvas {
     -webkit-transform: translateX(0);
+        -ms-transform: translateX(0);
             transform: translateX(0);
   }
 }
@@ -153,6 +157,7 @@ body {
 
 .navbar--fnd-secondary .nav-link {
   -webkit-transition: border-color, color .3s ease;
+  -o-transition: border-color, color .3s ease;
   transition: border-color, color .3s ease;
   height: 100%;
   padding: 1rem 2rem;
@@ -176,6 +181,7 @@ a.anchor {
   position: fixed;
   left: 50%;
   -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
           transform: translateX(-50%);
   z-index: 1051;
   display: -webkit-box;
@@ -1758,6 +1764,7 @@ a.anchor {
   right: 0;
   top: 0;
   -webkit-transform: translate(30%, -30%) rotate(15deg);
+      -ms-transform: translate(30%, -30%) rotate(15deg);
           transform: translate(30%, -30%) rotate(15deg);
 }
 
@@ -1876,6 +1883,7 @@ a.anchor {
       -ms-flex-align: end;
           align-items: flex-end;
   -webkit-transform: rotate(45deg) translate(0, -75%);
+      -ms-transform: rotate(45deg) translate(0, -75%);
           transform: rotate(45deg) translate(0, -75%);
 }
 
@@ -2003,6 +2011,7 @@ a.anchor {
   padding-bottom: 0;
   -webkit-transition: -webkit-filter 0.2s cubic-bezier(0.4, 0, 1, 1);
   transition: -webkit-filter 0.2s cubic-bezier(0.4, 0, 1, 1);
+  -o-transition: filter 0.2s cubic-bezier(0.4, 0, 1, 1);
   transition: filter 0.2s cubic-bezier(0.4, 0, 1, 1);
   transition: filter 0.2s cubic-bezier(0.4, 0, 1, 1), -webkit-filter 0.2s cubic-bezier(0.4, 0, 1, 1);
   will-change: filter, transform;
@@ -2125,7 +2134,8 @@ a.anchor {
 
 .form-control--not-editable, .form-control--instant-edit {
   margin-left: calc(0 - 1px);
-  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
@@ -2201,6 +2211,7 @@ a.anchor {
 
 .progress .progress-bar-animated {
   -webkit-transition: width 2s ease-in-out;
+  -o-transition: width 2s ease-in-out;
   transition: width 2s ease-in-out;
 }
 
@@ -2675,12 +2686,14 @@ a.text--master:hover, a.text--master:focus {
 
 .profile-progress:hover i, .profile-progress:focus i, .profile-progress:active i {
   -webkit-transform: translateX(10px);
+      -ms-transform: translateX(10px);
           transform: translateX(10px);
 }
 
 .profile-progress i {
   -webkit-transition: -webkit-transform .6s ease;
   transition: -webkit-transform .6s ease;
+  -o-transition: transform .6s ease;
   transition: transform .6s ease;
   transition: transform .6s ease, -webkit-transform .6s ease;
 }

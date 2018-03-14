@@ -23,11 +23,11 @@
 </head>
 <body>
 <div class="alert alert-success alert--top">
-    <span>
+    <div class="container">
         Production release coming soon. Track progress
         <a th:href="@{https://github.com/orgs/FundRequest/projects/6}" class="alert-link" target="_blank"
            rel="noopener noreferrer">here</a>.
-    </span>
+    </div>
 </div>
 <div id="alert-container" class="alert-container"></div>
 <div class="progress primary-color-dark fixed-top d-none" data-page-loader="true">
@@ -35,52 +35,55 @@
 </div>
 <div class="fnd-page-container">
     <nav class="fnd-header navbar navbar-dark navbar-expand-md bg bg--blue bg--no-rect">
-        <a class="navbar-brand navbar-brand--fnd" th:href="@{/profile}">
-            <img class="d-md-none" th:src="@{/assets/img/logo-single180.png}" alt="Fundrequest logo"/>
-            <img class="d-none d-md-block" th:src="@{/assets/img/Fundrequest-title-white.png}" alt="Fundrequest logo"/>
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#primary-menu"
-                aria-controls="primary-menu" aria-expanded="false" aria-label="Toggle primary menu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        <div class="container">
+            <a class="navbar-brand navbar-brand--fnd" th:href="@{/profile}">
+                <img class="d-md-none" th:src="@{/assets/img/logo-single180.png}" alt="Fundrequest logo"/>
+                <img class="d-none d-md-block" th:src="@{/assets/img/Fundrequest-title-white.png}"
+                     alt="Fundrequest logo"/>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#primary-menu"
+                    aria-controls="primary-menu" aria-expanded="false" aria-label="Toggle primary menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <div class="collapse navbar-collapse" id="primary-menu">
-            <ul class="navbar-nav text-center ml-md-auto">
-                <li class="nav-item">
-                    <a class="nav-link" title="About" th:href="@{https://fundrequest.io#about}">About</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" title="Team" th:href="@{https://fundrequest.io#team}">Team</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" title="Roadmap" th:href="@{https://fundrequest.io#roadmap}">Roadmap</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" title="Whitepaper" th:href="@{https://fundrequest.io/whitepaper.pdf}"
-                       rel="noopener noreferrer"
-                       target="_blank">Whitepaper</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" title="Blog" th:href="@{https://blog.fundrequest.io/}"
-                       rel="noopener noreferrer"
-                       target="_blank">Blog</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <button class="btn btn-warning bmd-btn-fab bmd-btn-fab-sm btn--profile dropdown-toggle"
-                            title="Profile"
-                            type="button"
-                            id="user-profile-menu"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fa fa-user"></i>
-                    </button>
+            <div class="collapse navbar-collapse" id="primary-menu">
+                <ul class="navbar-nav text-center ml-md-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" title="About" th:href="@{https://fundrequest.io#about}">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" title="Team" th:href="@{https://fundrequest.io#team}">Team</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" title="Roadmap" th:href="@{https://fundrequest.io#roadmap}">Roadmap</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" title="Whitepaper" th:href="@{https://fundrequest.io/whitepaper.pdf}"
+                           rel="noopener noreferrer"
+                           target="_blank">Whitepaper</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" title="Blog" th:href="@{https://blog.fundrequest.io/}"
+                           rel="noopener noreferrer"
+                           target="_blank">Blog</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <button class="btn btn-warning bmd-btn-fab bmd-btn-fab-sm btn--profile dropdown-toggle"
+                                title="Profile"
+                                type="button"
+                                id="user-profile-menu"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-user"></i>
+                        </button>
 
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="user-profile-menu">
-                        <a class="dropdown-item" th:href="@{/profile}">Profile</a>
-                        <a class="dropdown-item" th:href="@{/rewards}">Rewards</a>
-                        <a class="dropdown-item" th:href="@{/logout}">Logout</a>
-                    </div>
-                </li>
-            </ul>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="user-profile-menu">
+                            <a class="dropdown-item" th:href="@{/profile}">Profile</a>
+                            <a class="dropdown-item" th:href="@{/rewards}">Rewards</a>
+                            <a class="dropdown-item" th:href="@{/logout}">Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 
