@@ -20,5 +20,8 @@ require.config({
 require(['jquery', 'popper'], function($, Popper) {
     window.Popper = Popper; // re-attach to global scope
     require(['app/main'], function() {
+        require(["app/linkedin"]);
+        require(["app/twitter"]);
+        require(["app/referrals"]);
     });
 });
