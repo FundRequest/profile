@@ -1,7 +1,7 @@
 package io.fundrequest.profile.ref;
 
-import io.fundrequest.profile.bounty.service.BountyService;
 import io.fundrequest.profile.bounty.event.CreateBountyCommand;
+import io.fundrequest.profile.bounty.service.BountyService;
 import io.fundrequest.profile.profile.infrastructure.KeycloakRepository;
 import io.fundrequest.profile.ref.domain.Referral;
 import io.fundrequest.profile.ref.infrastructure.ReferralRepository;
@@ -12,7 +12,9 @@ import org.mockito.ArgumentCaptor;
 
 import static io.fundrequest.profile.bounty.domain.BountyType.REFERRAL;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class ReferralServiceImplTest {
 
@@ -26,7 +28,7 @@ public class ReferralServiceImplTest {
         referralRepository = mock(ReferralRepository.class);
         keycloakRepository = mock(KeycloakRepository.class);
         bountyService = mock(BountyService.class);
-        referralService = new ReferralServiceImpl(referralRepository, keycloakRepository, bountyService);
+        referralService = new ReferralServiceImpl(referralRepository, keycloakRepository, bountyService, "key");
     }
 
     @Test
