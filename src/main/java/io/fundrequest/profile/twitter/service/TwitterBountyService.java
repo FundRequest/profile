@@ -77,10 +77,10 @@ public class TwitterBountyService {
     }
 
     private boolean hasFullFilled(final String username, final String userId, final TwitterBounty bounty, final Principal principal) {
-        return keycloakRepository.isVerifiedDeveloper(principal.getName()) && bounty.getType().equals(TwitterBountyType.TWEET) && validateTweets(username, userId, bounty);
+        return keycloakRepository.isVerifiedDeveloper(principal.getName()) && bounty.getType().equals(TwitterBountyType.TWEET) && validateTweets(username, userId, bounty, principal);
     }
 
-    private boolean validateTweets(final String username, final String userId, final TwitterBounty bounty) {
+    private boolean validateTweets(final String username, final String userId, final TwitterBounty bounty, final Principal principal) {
 
         final List<TwitterPost> posts = twitterPostRepository.findAll();
         try {
@@ -89,7 +89,7 @@ public class TwitterBountyService {
                     .anyMatch(status -> posts.stream()
                             .anyMatch(post -> status.getText().contains(post.getVerificationText())));
             if (fulfillled) {
-                fulfillBounty(username, userId, bounty);
+                fulfillBounty(username, userId, bounty, principal);
             }
             return fulfillled;
         } catch (final Exception ex) {
@@ -98,7 +98,7 @@ public class TwitterBountyService {
         }
     }
 
-    private void fulfillBounty(final String username, final String userId, final TwitterBounty bounty) {
+    private void fulfillBounty(final String username, final String userId, final TwitterBounty bounty, final Principal principal) {
         final boolean alreadyAdded = claimedBountyAlready(userId, bounty);
         if (!alreadyAdded) {
             final TwitterBountyFulfillment newFullfillment = new TwitterBountyFulfillment();
@@ -111,7 +111,7 @@ public class TwitterBountyService {
                     CreateBountyCommand
                             .builder()
                             .type(BountyType.TWITTER_TWEET_FOLLOW)
-                            .userId(userId)
+                            .userId(principal.getName())
                             .build()
             );
         }
