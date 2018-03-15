@@ -106,13 +106,12 @@ public class TwitterBountyService {
             newFullfillment.setFulfillmentDate(new Date());
             newFullfillment.setUserId(userId);
             newFullfillment.setUsername(username);
-            twitterBountyFulfillmentRepository.save(
-                    newFullfillment
-            );
+            twitterBountyFulfillmentRepository.save(newFullfillment);
             bountyService.createBounty(
                     CreateBountyCommand
                             .builder()
                             .type(BountyType.TWITTER_TWEET_FOLLOW)
+                            .userId(userId)
                             .build()
             );
         }
