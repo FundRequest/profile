@@ -3,7 +3,7 @@ import {Utils} from "./utils";
 import * as $ from 'jquery';
 
 interface VerifyResponse {
-    verified: boolean;
+    validated: boolean;
     message: string;
 }
 
@@ -36,8 +36,8 @@ class Twitter {
     private _verify(callback = null) {
         Utils.showLoading();
         $.get('/bounties/twitter/verify', (data: VerifyResponse) => {
-            Alert.show(data.message, data.verified ? 'success' : 'danger');
-            if (data.verified) {
+            Alert.show(data.message, data.validated ? 'success' : 'danger');
+            if (data.validated) {
                 callback != null ? callback() : null;
             }
         }).fail(() => {
