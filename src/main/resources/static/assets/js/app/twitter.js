@@ -27,8 +27,8 @@ define(["require", "exports", "./alert", "./utils", "jquery"], function (require
             if (callback === void 0) { callback = null; }
             utils_1.Utils.showLoading();
             $.get('/bounties/twitter/verify', function (data) {
-                alert_1.Alert.show(data.message, data.verified ? 'success' : 'danger');
-                if (data.verified) {
+                alert_1.Alert.show(data.message, data.validated ? 'success' : 'danger');
+                if (data.validated) {
                     callback != null ? callback() : null;
                 }
             }).fail(function () {
