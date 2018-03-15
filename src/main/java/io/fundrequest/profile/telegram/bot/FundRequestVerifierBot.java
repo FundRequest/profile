@@ -59,13 +59,13 @@ public class FundRequestVerifierBot extends AbilityBot {
                                     }
 
                                 } else {
-                                    silent.send(NEGATIV + ctx.user().username() + "! We found you as a member of our community, but you did not add your platform key. Please add your platform key to your verification.\nex. /verify myPlatformKey", ctx.chatId());
+                                    silent.send(NEGATIV + ctx.user().username() + "! We found you as a member of our community, but you did not add your platform key. Please register at " + registrationPage + " and add your platform key to your verification.\nex. /verify myPlatformKey", ctx.chatId());
                                 }
                             } else {
                                 silent.send(NEGATIV + ctx.user().username() + "! We found you as a member of our community but we failed to verify you as a registered user on our platform. Please register at " + registrationPage + " and include your platform key.\nex. /verify myPlatformKey", ctx.chatId());
                             }
                         } else {
-                            silent.send(NEGATIV + ctx.user().username() + "! You were not found as a member of the fundrequest channel. (" + execute.getStatus() + ")", ctx.chatId());
+                            silent.send(NEGATIV + ctx.user().username() + "! You were not found as a member of the fundrequest channel (" + execute.getStatus() + "). Please join us at " + fundrequestChannelLink, ctx.chatId());
                         }
                     } catch (final Exception ex) {
                         ex.printStackTrace();
