@@ -1,21 +1,34 @@
 package io.fundrequest.profile.ref;
 
-import io.fundrequest.profile.bounty.service.BountyService;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.fundrequest.profile.bounty.event.CreateBountyCommand;
+import io.fundrequest.profile.bounty.service.BountyService;
 import io.fundrequest.profile.profile.dto.UserLinkedProviderEvent;
 import io.fundrequest.profile.profile.infrastructure.KeycloakRepository;
 import io.fundrequest.profile.ref.domain.Referral;
 import io.fundrequest.profile.ref.domain.ReferralStatus;
 import io.fundrequest.profile.ref.dto.ReferralDto;
 import io.fundrequest.profile.ref.dto.ReferralOverviewDto;
+import io.fundrequest.profile.ref.dto.ShortUrlResult;
 import io.fundrequest.profile.ref.infrastructure.ReferralRepository;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.util.EntityUtils;
 import org.keycloak.representations.idm.UserRepresentation;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.event.EventListener;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
 import java.util.Map;
@@ -24,16 +37,22 @@ import java.util.stream.Collectors;
 import static io.fundrequest.profile.bounty.domain.BountyType.REFERRAL;
 
 @Service
+@Slf4j
 class ReferralServiceImpl implements ReferralService {
 
+    private final ObjectMapper objectMapper;
     private ReferralRepository repository;
     private KeycloakRepository keycloakRepository;
     private BountyService bountyService;
+    private String googleUrlShortenerKey;
 
-    public ReferralServiceImpl(ReferralRepository repository, KeycloakRepository keycloakRepository, BountyService bountyService) {
+    public ReferralServiceImpl(ReferralRepository repository, KeycloakRepository keycloakRepository, BountyService bountyService, @Value("${io.fundrequest.profile.google-url-shortener-key}") String googleUrlShortenerKey) {
         this.repository = repository;
         this.keycloakRepository = keycloakRepository;
         this.bountyService = bountyService;
+        this.googleUrlShortenerKey = googleUrlShortenerKey;
+        this.objectMapper = new ObjectMapper();
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
 
     @EventListener
@@ -53,6 +72,25 @@ class ReferralServiceImpl implements ReferralService {
                 .totalVerified(byStatus.get(ReferralStatus.VERIFIED).size())
                 .totalUnverified(byStatus.get(ReferralStatus.PENDING).size())
                 .build();
+    }
+
+    @Override
+    @Cacheable("ref_links")
+    public String generateRefLink(String userId, String source) {
+        String longUrl = "https://fundrequest.io?ref=" + userId + "&utm_source=referral&utm_medium=" + source + "&utm_campaign=early_signup";
+        HttpClient httpclient = HttpClientBuilder.create().build();
+        HttpPost httpPost = new HttpPost("https://www.googleapis.com/urlshortener/v1/url?key=" + googleUrlShortenerKey);
+        httpPost.addHeader("Content-Type", "application/json");
+        try {
+            String json = "{\"longUrl\": \"" + longUrl + "\"}";
+            StringEntity entity = new StringEntity(json);
+            httpPost.setEntity(entity);
+            HttpResponse response = httpclient.execute(httpPost);
+            return objectMapper.readValue(EntityUtils.toString(response.getEntity()), ShortUrlResult.class).getId();
+        } catch (IOException e) {
+            log.error("Error creating short url", e);
+            return longUrl;
+        }
     }
 
     @Transactional(readOnly = true)

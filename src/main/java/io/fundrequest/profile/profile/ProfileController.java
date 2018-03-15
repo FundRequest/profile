@@ -5,6 +5,7 @@ import io.fundrequest.profile.profile.dto.UserProfile;
 import io.fundrequest.profile.profile.dto.UserProfileProvider;
 import io.fundrequest.profile.profile.provider.Provider;
 import io.fundrequest.profile.ref.RefSignupEvent;
+import io.fundrequest.profile.ref.ReferralService;
 import io.fundrequest.profile.telegram.domain.TelegramVerification;
 import io.fundrequest.profile.telegram.service.TelegramVerificationService;
 import io.fundrequest.profile.twitter.model.TwitterBounty;
@@ -38,18 +39,20 @@ public class ProfileController {
     private TwitterBountyService twitterBountyService;
     private TelegramVerificationService telegramVerificationService;
     private LinkedInService linkedInService;
+    private ReferralService referralService;
 
 
     public ProfileController(final ApplicationEventPublisher eventPublisher,
                              final ProfileService profileService,
                              final TwitterBountyService twitterBountyService,
                              final TelegramVerificationService telegramVerificationService,
-                             final LinkedInService linkedInService) {
+                             final LinkedInService linkedInService, ReferralService referralService) {
         this.eventPublisher = eventPublisher;
         this.profileService = profileService;
         this.twitterBountyService = twitterBountyService;
         this.telegramVerificationService = telegramVerificationService;
         this.linkedInService = linkedInService;
+        this.referralService = referralService;
     }
 
     @GetMapping("/profile")
@@ -63,10 +66,10 @@ public class ProfileController {
         enrichTwitter(mav, userProfile);
         enrichTelegram(mav, principal);
 
-        mav.addObject("refLink", getRefLink(principal) + "&utm_source=referral&utm_medium=web&utm_campaign=early_signup");
-        mav.addObject("refLinkTwitter", URLEncoder.encode(getRefLink(principal) + "&utm_source=referral&utm_medium=twitter&utm_campaign=early_signup", "UTF-8"));
-        mav.addObject("refLinkLinkedin", URLEncoder.encode(getRefLink(principal) + "&utm_source=referral&utm_medium=linkedin&utm_campaign=early_signup", "UTF-8"));
-        mav.addObject("refLinkFacebook", URLEncoder.encode(getRefLink(principal) + "&utm_source=referral&utm_medium=facebook&utm_campaign=early_signup", "UTF-8"));
+        mav.addObject("refLink", getRefLink(principal, "web"));
+        mav.addObject("refLinkTwitter", URLEncoder.encode(getRefLink(principal, "twitter"), "UTF-8"));
+        mav.addObject("refLinkLinkedin", URLEncoder.encode(getRefLink(principal, "linkedin"), "UTF-8"));
+        mav.addObject("refLinkFacebook", URLEncoder.encode(getRefLink(principal, "facebook"), "UTF-8"));
         mav.addObject("linkedInVerification", linkedInService.getVerification(principal));
         return mav;
     }
@@ -109,8 +112,8 @@ public class ProfileController {
         return redirectToProfile();
     }
 
-    private static String getRefLink(final Principal principal) {
-        return "https://fundrequest.io?ref=" + principal.getName();
+    private String getRefLink(final Principal principal, String source) {
+        return referralService.generateRefLink(principal.getName(), source);
     }
 
     private void enrichTwitter(ModelAndView mav, UserProfile userProfile) {
