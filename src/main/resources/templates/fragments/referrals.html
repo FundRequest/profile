@@ -7,7 +7,6 @@
             </div>
             <div class="rewards-list__text">
                 <div th:text="${r.getName()}">Steve Maris</div>
-                <small th:text="${r.getEmail()}">steve.maris@fundrequest.io</small>
                 <small th:text="${#temporals.format(r.getCreatedAt(), 'yyyy-MM-dd HH:mm')}">date</small>
             </div>
         </div>
@@ -15,7 +14,6 @@
             <div th:if="${r.getStatus() == T(io.fundrequest.profile.ref.domain.ReferralStatus).PENDING}"
                  th:remove="tag">
                 <span class="text-muted">Not verified</span>
-                <span class="text-muted"><span class="badge badge-secondary">Not verified 0 FND</span></span>
             </div>
             <div th:if="${r.getStatus() == T(io.fundrequest.profile.ref.domain.ReferralStatus).VERIFIED}"
                  th:remove="tag">
