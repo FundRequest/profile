@@ -199,7 +199,6 @@
                 <filtering>true</filtering>
                 <excludes>
                     <exclude>frontend/**</exclude>
-                    <exclude>**/*.woff2</exclude>
                     <exclude>**/*.woff</exclude>
                     <exclude>**/*.woff2</exclude>
                     <exclude>**/*.ttf</exclude>
@@ -209,7 +208,6 @@
                 <directory>src/main/resources</directory>
                 <filtering>false</filtering>
                 <includes>
-                    <include>**/*.woff2</include>
                     <include>**/*.woff</include>
                     <include>**/*.woff2</include>
                     <include>**/*.ttf</include>
