@@ -200,6 +200,7 @@
                 <excludes>
                     <exclude>frontend/**</exclude>
                     <exclude>**/*.woff</exclude>
+                    <exclude>**/*.woff2</exclude>
                     <exclude>**/*.ttf</exclude>
                 </excludes>
             </resource>
@@ -208,6 +209,7 @@
                 <filtering>false</filtering>
                 <includes>
                     <include>**/*.woff</include>
+                    <include>**/*.woff2</include>
                     <include>**/*.ttf</include>
                 </includes>
             </resource>
