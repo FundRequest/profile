@@ -36,5 +36,9 @@
   "files": [
     "scss/**/*.scss",
     "LICENSE"
-  ]
+  ],
+  "dependencies": {
+    "gulp-typescript": "^4.0.1",
+    "typescript": "^2.7.2"
+  }
 }
