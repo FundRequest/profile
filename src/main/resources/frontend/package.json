@@ -24,6 +24,7 @@
     "@types/jquery": "^3.3.1",
     "bootstrap": "^4.0.0",
     "gulp": "^3.9.1",
+    "gulp-typescript": "^4.0.1",
     "gulp-autoprefixer": "^5.0.0",
     "gulp-cssnano": "^2.1.2",
     "gulp-if": "^2.0.2",
@@ -36,15 +37,14 @@
     "gulp-sourcemaps": "^2.6.4",
     "node-sass": "4.5.3",
     "node-sass-tilde-importer": "^1.0.0",
-    "run-sequence": "^2.2.1"
+    "run-sequence": "^2.2.1",
+    "typescript": "^2.7.2"
   },
   "files": [
     "scss/**/*.scss",
     "LICENSE"
   ],
   "dependencies": {
-    "gulp-typescript": "^4.0.1",
-    "typescript": "^2.7.2",
     "jquery": "latest",
     "clipboard": "latest"
   }
