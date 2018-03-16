@@ -36,7 +36,8 @@ const gulp = require('gulp'),
     sassLint = require('gulp-sass-lint'),
     sourcemaps = require('gulp-sourcemaps'),
     tildeImporter = require('node-sass-tilde-importer'),
-    runSequence = require('run-sequence');
+    runSequence = require('run-sequence'),
+    ts = require('gulp-typescript');
 
 let target = "../static/assets";
 
@@ -108,7 +109,8 @@ gulp.task('copy-assets', function() {
     let y = gulp.src(['webfonts/**/*']).pipe(gulp.dest(`${target}/webfonts`));
     let z = gulp.src(['img/**/*']).pipe(gulp.dest(`${target}/img`));
     let a = gulp.src(['js/**/*.js']).pipe(gulp.dest(`${target}/js`));
-    return [x, y, z, a];
+    let b = gulp.src(['css/**/*']).pipe(gulp.dest(`${target}/css`));
+    return [x, y, z, a, b];
 });
 
 gulp.task('styles-core', function() {
@@ -126,15 +128,14 @@ gulp.task('styles-website', function() {
 gulp.task('watch', function() {
     gulp.watch(['scss/fundrequest/*.scss', '!scss/fundrequest/website/*.scss'], ['styles-general']);
     gulp.watch('scss/fundrequest/website/*.scss', ['styles-website']);
+    gulp.watch('js/**/*.ts', ['scripts']);
 });
 
 gulp.task('default', function(done) {
     target = (arg && arg.target) || target;
-    runSequence('styles-core', 'styles-general', 'styles-website', 'watch', done);
+    runSequence('styles-core', 'styles-general', 'styles-website', 'copy-assets', 'scripts', done);
 });
 
-gulp.task('dev-default', function(done) {
-    target = (arg && arg.target) || target;
-    //dev = true;
-    runSequence('styles-general', 'styles-website', 'watch', done);
+gulp.task('watch', function(done) {
+    runSequence('styles-core', 'styles-general', 'styles-website', 'copy-assets', 'scripts', 'watch', done);
 });
