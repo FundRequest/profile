@@ -60,7 +60,9 @@ class ReferralServiceImpl implements ReferralService {
     public void onProviderLinked(UserLinkedProviderEvent event) {
         if (event.getPrincipal() != null) {
             repository.findByReferee(event.getPrincipal().getName())
-                    .ifPresent(r -> sendBountyIfPossible(r, event.getPrincipal()));
+                    .ifPresent(r -> {
+                        sendBountyIfPossible(r);
+                    });
         }
     }
 
@@ -125,26 +127,26 @@ class ReferralServiceImpl implements ReferralService {
                     .status(ReferralStatus.PENDING)
                     .build();
             repository.save(referral);
-            sendBountyIfPossible(referral, command.getPrincipal());
+            sendBountyIfPossible(referral);
 
         } else {
             throw new RuntimeException("This ref already exists!");
         }
     }
 
-    private void sendBountyIfPossible(Referral referral, Principal principal) {
-        if (isVerifiedPrincipal(principal)) {
+    private void sendBountyIfPossible(Referral referral) {
+        if (isVerifiedPrincipal(referral.getReferee())) {
             referral.setStatus(ReferralStatus.VERIFIED);
             bountyService.createBounty(CreateBountyCommand.builder()
-                    .userId(principal.getName())
+                    .userId(referral.getReferrer())
                     .type(REFERRAL)
                     .build());
             repository.save(referral);
         }
     }
 
-    private boolean isVerifiedPrincipal(Principal principal) {
-        return keycloakRepository.isVerifiedDeveloper(principal.getName());
+    private boolean isVerifiedPrincipal(String userId) {
+        return keycloakRepository.isVerifiedDeveloper(userId);
     }
 
     private void validReferral(String referrer, String referee) {
