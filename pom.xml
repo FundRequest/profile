@@ -195,11 +195,21 @@
     <build>
         <resources>
             <resource>
-                <directory>src/main/resources</directory>
+                <directory>${project.sources}</directory>
                 <filtering>true</filtering>
                 <excludes>
                     <exclude>frontend/**</exclude>
+                    <exclude>**/*.woff</exclude>
+                    <exclude>**/*.ttf</exclude>
                 </excludes>
+            </resource>
+            <resource>
+                <directory>${project.sources}</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>**/*.woff</include>
+                    <include>**/*.ttf</include>
+                </includes>
             </resource>
         </resources>
         <plugins>
@@ -242,24 +252,6 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
-        <resources>
-            <resource>
-                <directory>${project.sources}</directory>
-                <filtering>true</filtering>
-                <excludes>
-                    <exclude>**/*.woff</exclude>
-                    <exclude>**/*.ttf</exclude>
-                </excludes>
-            </resource>
-            <resource>
-                <directory>${project.sources}</directory>
-                <filtering>false</filtering>
-                <includes>
-                    <include>**/*.woff</include>
-                    <include>**/*.ttf</include>
-                </includes>
-            </resource>
-        </resources>
     </build>
 
 
