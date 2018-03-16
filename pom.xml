@@ -195,18 +195,20 @@
     <build>
         <resources>
             <resource>
-                <directory>${project.sources}</directory>
+                <directory>src/main/resources</directory>
                 <filtering>true</filtering>
                 <excludes>
                     <exclude>frontend/**</exclude>
+                    <exclude>**/*.woff2</exclude>
                     <exclude>**/*.woff</exclude>
                     <exclude>**/*.ttf</exclude>
                 </excludes>
             </resource>
             <resource>
-                <directory>${project.sources}</directory>
+                <directory>src/main/resources</directory>
                 <filtering>false</filtering>
                 <includes>
+                    <include>**/*.woff2</include>
                     <include>**/*.woff</include>
                     <include>**/*.ttf</include>
                 </includes>
