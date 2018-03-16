@@ -5,6 +5,7 @@
     "material",
     "design",
     "bootstrap",
+    "jquery",
     "css",
     "js",
     "sass",
@@ -15,8 +16,12 @@
     "web",
     "fundrequest"
   ],
+  "main": "./js/app.js",
   "license": "MIT",
   "devDependencies": {
+    "@types/bootstrap": "^4.0.1",
+    "@types/clipboard": "^2.0.0",
+    "@types/jquery": "^3.3.1",
     "bootstrap": "^4.0.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^5.0.0",
@@ -36,5 +41,11 @@
   "files": [
     "scss/**/*.scss",
     "LICENSE"
-  ]
+  ],
+  "dependencies": {
+    "gulp-typescript": "^4.0.1",
+    "typescript": "^2.7.2",
+    "jquery": "latest",
+    "clipboard": "latest"
+  }
 }

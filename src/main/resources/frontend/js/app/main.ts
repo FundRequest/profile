@@ -19,7 +19,7 @@ class Main {
         new InstantEdit();
         new OpenLinkInPopup();
         $('.fnd-badge[data-toggle="tooltip"]').tooltip();
-        $('body').bootstrapMaterialDesign();
+        (<any>$('body')).bootstrapMaterialDesign();
     }
 }
 

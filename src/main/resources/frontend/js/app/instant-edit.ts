@@ -1,6 +1,5 @@
 import {Alert} from "./alert";
 import {Utils} from './utils';
-import * as $ from 'jquery';
 
 export class InstantEdit {
     private _document: HTMLDocument = document;
@@ -84,16 +83,18 @@ export class InstantEdit {
                 return;
         }
 
-        $.post(postAddress, data, () => {
-            self._hideError(field, name);
-            Alert.show(`${title} saved!`);
-        }).fail(() => {
-            self._showError(field, name, 'Something went wrong.');
-        }).always(() => {
-            Utils.hideLoading();
-            self._showHideEmptyMessage(field, name);
-        });
-
+        $.post(postAddress, data).promise()
+            .then(() => {
+                self._hideError(field, name);
+                Alert.show(`${title} saved!`);
+            })
+            .catch(() => {
+                self._showError(field, name, 'Something went wrong.');
+            })
+            .always(() => {
+                Utils.hideLoading();
+                self._showHideEmptyMessage(field, name);
+            });
     }
 
     private _hideError(field, name) {

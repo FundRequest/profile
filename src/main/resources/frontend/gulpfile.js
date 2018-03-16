@@ -34,16 +34,14 @@ const gulp = require('gulp'),
     plumber = require('gulp-plumber'),
     notify = require('gulp-notify'),
     sassLint = require('gulp-sass-lint'),
-    sourcemaps = require('gulp-sourcemaps');
-tildeImporter = require('node-sass-tilde-importer');
+    sourcemaps = require('gulp-sourcemaps'),
+    tildeImporter = require('node-sass-tilde-importer'),
+    runSequence = require('run-sequence'),
+    ts = require('gulp-typescript');
 
-var target = "../static/assets/css";
+let target = "../static/assets";
 
-// Temporary solution until gulp 4
-// https://github.com/gulpjs/gulp/issues/355
-runSequence = require('run-sequence');
-
-var displayError = function(error) {
+let displayError = function(error) {
     // Initial building up of the error
     var errorString = '[' + error.plugin.error.bold + ']';
     errorString += ' ' + error.message.replace("\n", ''); // Removes new line at the end
@@ -60,7 +58,7 @@ var displayError = function(error) {
     console.error(errorString);
 };
 
-var onError = function(err) {
+let onError = function(err) {
     notify.onError({
         title: "Gulp",
         subtitle: "Failure!",
@@ -85,22 +83,38 @@ let cssnanoConfig = {
 function runSass(filename) {
     return gulp.src(filename)
         .pipe(plumber({errorHandler: onError}))
-        //.pipe(sourcemaps.init())
         .pipe(sass(sassOptions))
         .pipe(autoprefixer(autoprefixerConfig))
-        //.pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest(target))
-        //.pipe(sourcemaps.init())
+        .pipe(gulp.dest(`${target}/css`))
         .pipe(cssnano(cssnanoConfig))
         .pipe(autoprefixer(autoprefixerConfig))
         .pipe(rename({suffix: '.min'}))
-        //.pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest(target));
+        .pipe(gulp.dest(`${target}/css`));
 }
+
+function runTs(tsConfig, filename) {
+    let tsProject = ts.createProject(tsConfig);
+    let tsResult = gulp.src(filename)
+        .pipe(tsProject());
+
+    return tsResult.js.pipe(gulp.dest(`${target}/js`));
+}
+
+gulp.task('scripts', function() {
+    return runTs('tsconfig.json', 'js/**/*.ts');
+});
+
+gulp.task('copy-assets', function() {
+    let x = gulp.src(['fonts/**/*']).pipe(gulp.dest(`${target}/fonts`));
+    let y = gulp.src(['webfonts/**/*']).pipe(gulp.dest(`${target}/webfonts`));
+    let z = gulp.src(['img/**/*']).pipe(gulp.dest(`${target}/img`));
+    let a = gulp.src(['js/**/*.js']).pipe(gulp.dest(`${target}/js`));
+    let b = gulp.src(['css/**/*']).pipe(gulp.dest(`${target}/css`));
+    return [x, y, z, a, b];
+});
 
 gulp.task('styles-core', function() {
     return runSass('scss/core.scss')
-
 });
 
 gulp.task('styles-general', function() {
@@ -114,15 +128,14 @@ gulp.task('styles-website', function() {
 gulp.task('watch', function() {
     gulp.watch(['scss/fundrequest/*.scss', '!scss/fundrequest/website/*.scss'], ['styles-general']);
     gulp.watch('scss/fundrequest/website/*.scss', ['styles-website']);
+    gulp.watch('js/**/*.ts', ['scripts']);
 });
 
 gulp.task('default', function(done) {
     target = (arg && arg.target) || target;
-    runSequence('styles-core', 'styles-general', 'styles-website', 'watch', done);
+    runSequence('styles-core', 'styles-general', 'styles-website', 'copy-assets', 'scripts', done);
 });
 
-gulp.task('dev-default', function(done) {
-    target = (arg && arg.target) || target;
-    //dev = true;
-    runSequence('styles-general', 'styles-website', 'watch', done);
+gulp.task('watch', function(done) {
+    runSequence('styles-core', 'styles-general', 'styles-website', 'copy-assets', 'scripts', 'watch', done);
 });

@@ -1,22 +1,24 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "./js",
     "paths": {
       "jquery": ["//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min", "libs/jquery.min"],
       "popper": ["//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.2/umd/popper.min", "libs/popper.min"],
-      "bootstrap": "libs/bootstrap-material-design",
+      "bootstrap": ["libs/bmd.js"],
       "clipboard": ["//cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min", "libs/clipboard.min"]
     },
     "target": "es5", //defines what sort of code ts generates, es5 because it"s what most browsers currently UNDERSTANDS.
     "module": "AMD",
     "moduleResolution": "node",
-    "sourceMap": false,
+    "sourceMap": true,
     "emitDecoratorMetadata": true, //for angular to be able to use metadata we specify in our components.
     "experimentalDecorators": true, //angular needs decorators like @Component, @Injectable, etc.
-    "removeComments": false,
+    "removeComments": true,
     "noImplicitAny": false,
     "lib": [
+      "es2015",
       "es2016",
+      "es2017",
       "dom",
       "es5"
     ]

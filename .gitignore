@@ -31,6 +31,5 @@ docker_data
 
 FundRequestVerifierBot
 
-src/main/resources/static-project/
-src/main/resources/design/node_modules
+src/main/resources/static/assets/**
 **/node_modules/**
