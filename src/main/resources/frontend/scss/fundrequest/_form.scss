@@ -72,3 +72,12 @@
     }
 }
 
+.control-label--token-type {
+    padding: 0 10px !important;
+
+    .form-control {
+        height: 45px;
+        border: 0 none;
+    }
+}
+

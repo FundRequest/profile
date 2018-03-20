@@ -1,0 +1,15 @@
+.dt-responsive {
+    &.dataTable {
+        border-collapse: collapse !important;
+    }
+
+    td {
+        vertical-align: middle;
+        padding-top: .25rem;
+        padding-bottom: .25rem;
+        > .btn {
+            font-size: 0.75rem;
+            margin-bottom: 0;
+        }
+    }
+}

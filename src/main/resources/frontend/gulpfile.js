@@ -125,10 +125,10 @@ gulp.task('styles-website', function() {
     return runSass('scss/website.scss');
 });
 
-gulp.task('watch', function() {
-    gulp.watch(['scss/fundrequest/*.scss', '!scss/fundrequest/website/*.scss'], ['styles-general']);
-    gulp.watch('scss/fundrequest/website/*.scss', ['styles-website']);
-    gulp.watch('js/**/*.ts', ['scripts']);
+gulp.task('run-watch', function() {
+    gulp.watch(['general.scss', 'scss/fundrequest/*.scss', '!scss/fundrequest/website/*.scss'], ['styles-general','copy-assets']);
+    gulp.watch(['website.scss', 'scss/fundrequest/website/*.scss'], ['styles-website','copy-assets']);
+    gulp.watch(['js/**/*.ts'], ['scripts','copy-assets']);
 });
 
 gulp.task('default', function(done) {
@@ -137,5 +137,6 @@ gulp.task('default', function(done) {
 });
 
 gulp.task('watch', function(done) {
-    runSequence('styles-core', 'styles-general', 'styles-website', 'copy-assets', 'scripts', 'watch', done);
+    target = (arg && arg.target) || target;
+    runSequence('styles-core', 'styles-general', 'styles-website', 'copy-assets', 'scripts', 'run-watch', done);
 });
