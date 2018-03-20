@@ -14,23 +14,23 @@
     .alert {
         margin-bottom: .5rem;
         border-radius: $border-radius;
-        @include box-shadow($bmd-shadow-3dp);
+        @include box-shadow($z-depth-1-half);
 
         &:first-child {
             margin-top: 2rem;
         }
 
         &:hover {
-            @include box-shadow($bmd-shadow-6dp);
+            @include box-shadow($z-depth-3);
         }
     }
 
     .modal-open & {
         .alert {
-            @include box-shadow($bmd-shadow-6dp);
+            @include box-shadow($z-depth-3);
 
             &:hover {
-                @include box-shadow($bmd-shadow-8dp);
+                @include box-shadow($z-depth-4);
             }
         }
     }

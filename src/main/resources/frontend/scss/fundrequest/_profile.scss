@@ -11,7 +11,7 @@
     border-radius: $border-radius-lg;
     border: 2px solid $white;
     overflow: hidden;
-    @include box-shadow($bmd-shadow-6dp);
+    @include box-shadow($z-depth-3);
 
     @include media-breakpoint-up(sm) {
         width: 125px;

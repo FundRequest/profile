@@ -1,6 +1,11 @@
-@import "../bootstrap-material-design-4.1.1/scss/variables";
-@import "../bootstrap-material-design-4.1.1/scss/mixins";
-
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/_mixins";
+
+@import "fundrequest/colors";
+
+@import "mdb-overrides/colors";
+@import "../mdb-4.5.0/scss/core/variables";
+@import "../mdb-4.5.0/scss/core/mixins";
+
+@import "fundrequest/variables";

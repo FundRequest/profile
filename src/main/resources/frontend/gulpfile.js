@@ -105,20 +105,27 @@ gulp.task('scripts', function() {
 });
 
 gulp.task('copy-assets', function() {
-    let x = gulp.src(['fonts/**/*']).pipe(gulp.dest(`${target}/fonts`));
-    let y = gulp.src(['webfonts/**/*']).pipe(gulp.dest(`${target}/webfonts`));
-    let z = gulp.src(['img/**/*']).pipe(gulp.dest(`${target}/img`));
-    let a = gulp.src(['js/**/*.js']).pipe(gulp.dest(`${target}/js`));
-    let b = gulp.src(['css/**/*']).pipe(gulp.dest(`${target}/css`));
-    return [x, y, z, a, b];
+    let copy = [];
+    copy.push(gulp.src(['mdb-4.5.0/font/**/*']).pipe(gulp.dest(`${target}/font`)));
+    copy.push(gulp.src(['mdb-4.5.0/img/**/*']).pipe(gulp.dest(`${target}/img`)));
+    copy.push(gulp.src(['font/**/*']).pipe(gulp.dest(`${target}/font`)));
+    copy.push(gulp.src(['webfonts/**/*']).pipe(gulp.dest(`${target}/webfonts`)));
+    copy.push(gulp.src(['img/**/*']).pipe(gulp.dest(`${target}/img`)));
+    copy.push(gulp.src(['js/**/*.js']).pipe(gulp.dest(`${target}/js`)));
+    copy.push(gulp.src(['css/**/*']).pipe(gulp.dest(`${target}/css`)));
+    return copy;
+});
+
+gulp.task('styles-bootstrap', function() {
+    return runSass('scss/bootstrap.scss')
+});
+
+gulp.task('styles-mdb', function() {
+    return runSass('scss/mdb.scss')
 });
 
 gulp.task('styles-core', function() {
     return runSass('scss/core.scss')
-});
-
-gulp.task('styles-general', function() {
-    return runSass('scss/general.scss');
 });
 
 gulp.task('styles-website', function() {
@@ -126,17 +133,17 @@ gulp.task('styles-website', function() {
 });
 
 gulp.task('run-watch', function() {
-    gulp.watch(['general.scss', 'scss/fundrequest/*.scss', '!scss/fundrequest/website/*.scss'], ['styles-general','copy-assets']);
+    gulp.watch(['core.scss', 'scss/fundrequest/*.scss', '!scss/fundrequest/website/*.scss'], ['styles-core','copy-assets']);
     gulp.watch(['website.scss', 'scss/fundrequest/website/*.scss'], ['styles-website','copy-assets']);
     gulp.watch(['js/**/*.ts'], ['scripts','copy-assets']);
 });
 
 gulp.task('default', function(done) {
     target = (arg && arg.target) || target;
-    runSequence('styles-core', 'styles-general', 'styles-website', 'copy-assets', 'scripts', done);
+    runSequence('styles-bootstrap', 'styles-mdb', 'styles-core', 'styles-website', 'copy-assets', 'scripts', done);
 });
 
 gulp.task('watch', function(done) {
     target = (arg && arg.target) || target;
-    runSequence('styles-core', 'styles-general', 'styles-website', 'copy-assets', 'scripts', 'run-watch', done);
+    runSequence('styles-bootstrap', 'styles-mdb', 'styles-core', 'styles-website', 'copy-assets', 'scripts', 'run-watch', done);
 });

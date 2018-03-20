@@ -17,7 +17,7 @@
     </h5>
     <div class="card-body">
         <div class="card-text" th:if="${platform.getUsername() == null}">
-            <a class="btn btn-raised btn-primary"
+            <a class="btn btn-primary"
                th:href="${platform.getSignupLink()}">Connect</a>
         </div>
         <div class="card-text" th:if="${platform.getUsername() != null}">

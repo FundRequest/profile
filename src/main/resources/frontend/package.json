@@ -43,9 +43,10 @@
     "LICENSE"
   ],
   "dependencies": {
+    "clipboard": "latest",
     "gulp-typescript": "^4.0.1",
-    "typescript": "^2.7.2",
     "jquery": "latest",
-    "clipboard": "latest"
+    "node-waves": "^0.7.6",
+    "typescript": "^2.7.2"
   }
 }

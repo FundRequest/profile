@@ -1,16 +1,16 @@
 @keyframes rainbow {
-    0% {border-color: $yellow;}
-    20% {border-color: $green;}
-    40% {border-color: $teal;}
-    80% {border-color: $orange;}
-    100% {border-color: $yellow;}
+    0% {border-color: $yellow-500;}
+    20% {border-color: $green-500;}
+    40% {border-color: $teal-500;}
+    80% {border-color: $orange-500;}
+    100% {border-color: $yellow-500;}
 }
 
 @keyframes valid {
     0% {border-color: $input-border-color;}
-    25% {border-color: $teal;}
-    50% {border-color: $green;}
-    75% {border-color: $teal;}
+    25% {border-color: $teal-500;}
+    50% {border-color: $green-500;}
+    75% {border-color: $teal-500;}
     100% {border-color: $input-border-color;}
 }
 
@@ -18,7 +18,7 @@
 
 
     &.is-loading {
-        border-color: $yellow;
+        border-color: $yellow-500;
         animation: rainbow 1s infinite;
     }
 
@@ -42,7 +42,6 @@
 
     &--not-editable,
     &--instant-edit {
-        margin-left: calc(#{(-1 * $input-padding-x)} - #{$input-border-width});
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;
@@ -63,7 +62,7 @@
     }
 
     &--readonly-text {
-        background-color: $gray-lighter;
+        background-color: $gray-200;
         padding: $input-padding-y-lg;
         min-height: 6rem;
 

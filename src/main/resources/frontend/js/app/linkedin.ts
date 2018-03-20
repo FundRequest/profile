@@ -9,7 +9,7 @@ interface LinkedInData {
     submittedImageUrl: string;
 }
 
-class LinkedIn {
+export class LinkedIn {
     private _postId = null;
 
     constructor() {
@@ -60,5 +60,3 @@ class LinkedIn {
             }) as LinkedInData;*/
     }
 }
-
-new LinkedIn();

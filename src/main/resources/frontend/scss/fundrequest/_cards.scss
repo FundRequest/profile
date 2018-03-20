@@ -1,7 +1,7 @@
 
 .card {
     .card {
-        @include box-shadow($bmd-shadow-3dp);
+        @include box-shadow($z-depth-1-half);
     }
 
     @each $color, $value in $theme-colors {
@@ -44,7 +44,7 @@
             padding-left: 2rem;
 
             &::before {
-                color: $primary;
+                color: $primary-color;
                 left: 0;
                 top: 0;
                 display: block;
@@ -67,6 +67,8 @@
     }
 
     &-header {
+        background-color: $white;
+
         &--label {
             display: flex;
             flex-wrap: wrap;
@@ -124,13 +126,13 @@
 
     &--developer--primary,
     &--social--primary {
-        border-top-color: $primary;
+        border-top-color: $primary-color;
     }
 
     &--developer--success,
     &--social--success {
         justify-content: flex-end;
-        border-top-color: $success;
+        border-top-color: $success-color;
     }
 }
 
@@ -144,5 +146,5 @@
     background-size: contain;
     background-repeat: repeat-x;
     background-position: center center;
-    @include box-shadow($bmd-shadow-4dp);
+    @include box-shadow($z-depth-2);
 }

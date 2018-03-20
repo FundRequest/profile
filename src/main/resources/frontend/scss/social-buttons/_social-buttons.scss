@@ -1,39 +1,24 @@
-$social-colors: (
-        facebook:     #3b5998,
-        twitter:      #00aced,
-        google-plus:  #dd4b39,
-        github:       #333333,
-        linkedin:     #007bb6,
-        youtube:      #bb0000,
+$my-social-colors: (
+        facebook:     $fb-color,
+        twitter:      $tw-color,
+        google-plus:  $gplus-color,
+        github:       $git-color,
+        linkedin:     $li-color,
+        youtube:      $yt-color,
         vimeo:        #aad450,
         tumblr:       #32506d,
-        instagram:    #517fa4,
+        instagram:    $ins-color,
         flickr:       #ff0084,
         telegram:     #0088cc,
-        vk:           #45668e,
+        vk:           $vk-color,
         stumbleupon:  #EB4823,
-        yahoo:        #7B0099
-) !default;
+        slack:          $slack-color,
+        stack-overflow:  $so-color,
+        yahoo:        #7B0099,
+        email:        $email-color,
+);
 
-@each $media, $color in $social-colors {
-    .btn-#{$media} {
-        @include button-variant(#fff, $color, $color);
-        i {
-            border-color: $color;
-        }
-        &:hover i {
-            border-color: #fff;
-        }
-    }
-    .btn-outline-#{$media} {
-        border-width: 1px;
-        border-style: solid;
-        @include button-outline-variant($color);
-        i {
-            border-color: $color;
-        }
-        &:hover i {
-            border-color: #fff;
-        }
-    }
+@each $media, $color in $my-social-colors {
+    @include make-button($media, $color);
+    @include make-outline-button($media, $color);
 }

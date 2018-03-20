@@ -12,7 +12,7 @@
     box-shadow: none;
     height: 4px;
     border-radius: 0;
-    background-color: $blue;
+    background-color: $blue-500;
 }
 
 .progress .progress-bar-animated {
@@ -25,6 +25,7 @@
 
 .progress .indeterminate:before {
     content: "";
+    display: block;
     position: absolute;
     background-color: inherit;
     top: 0;
@@ -36,6 +37,7 @@
 
 .progress .indeterminate:after {
     content: "";
+    display: block;
     position: absolute;
     background-color: inherit;
     top: 0;

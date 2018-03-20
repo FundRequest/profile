@@ -44,7 +44,7 @@
 }
 
 .modal-sidebar a {
-    color: $gray;
+    color: $gray-500;
     text-decoration: none;
 }
 
@@ -69,7 +69,7 @@
         }
 
         &.active {
-            color: $primary;
+            color: $primary-color;
         }
 
         + a {
