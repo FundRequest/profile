@@ -1,8 +1,9 @@
-.dt-responsive {
+table.dt-responsive {
     &.dataTable {
         border-collapse: collapse !important;
     }
 
+    th,
     td {
         vertical-align: middle;
         padding-top: .25rem;
@@ -10,6 +11,20 @@
         > .btn {
             font-size: 0.75rem;
             margin-bottom: 0;
+        }
+    }
+
+    thead .sorting,
+    thead .sorting_asc,
+    thead .sorting_desc,
+    thead .sorting_asc_disabled,
+    thead .sorting_desc_disabled {
+        &:before, &:after {
+            display: flex;
+            height: 100%;
+            top: 0;
+            bottom: 0;
+            align-items: center;
         }
     }
 }

@@ -17,7 +17,7 @@ body {
 }
 
 .fnd-header {
-    z-index: 1;
+    z-index: $zindex-dropdown;
     transition: transform .35s ease, background-color .35s ease, color .35s ease, padding-top .35s ease, box-shadow .35s ease;
     will-change: transform, background-color, color, padding-top, box-shadow;
 

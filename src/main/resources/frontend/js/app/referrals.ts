@@ -1,4 +1,4 @@
-export class Referrals {
+class Referrals {
     constructor() {
         let rewardsContainer = document.querySelector('#rewards-list-content');
         if (rewardsContainer != null) {
@@ -22,3 +22,5 @@ export class Referrals {
             }) as string;*/
     }
 }
+
+new Referrals();

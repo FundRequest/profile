@@ -7,7 +7,7 @@ interface VerifyResponse {
     message: string;
 }
 
-export class Twitter {
+class Twitter {
     constructor() {
         let modal: HTMLElement = document.querySelector('#modal-twitter-verify') as HTMLElement;
         let button: HTMLElement = document.querySelector('[data-twitter-verify]') as HTMLElement;

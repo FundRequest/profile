@@ -65,7 +65,7 @@
     position: absolute !important;
     margin-top: 0;
     a {
-      padding: $navbar-dropdown-menu-padding;
+      //TODO: remove - padding: $navbar-dropdown-menu-padding;
       font-size: $navbar-dropdown-font-size;
       font-weight: $navbar-font-weight;
       color: $black !important;
