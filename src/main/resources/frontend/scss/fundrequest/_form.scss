@@ -73,9 +73,12 @@
 
 .control-label--token-type {
     padding: 0 10px !important;
+    margin: 0;
+    display: flex;
+    align-items: center;
 
     .form-control {
-        height: 45px;
+        box-shadow: none;
         border: 0 none;
     }
 }

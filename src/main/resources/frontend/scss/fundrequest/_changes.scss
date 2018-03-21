@@ -40,3 +40,15 @@ a.etherwallet-instructions {
 @each $level, $value in $mastery-levels {
     @include text-emphasis-variant(".text--#{$level}", $value);
 }
+
+.watch-link {
+    white-space: nowrap;
+
+    .fa.fa-star {
+        color: $warning-color;
+    }
+
+    &:hover {
+        text-decoration: none;
+    }
+}

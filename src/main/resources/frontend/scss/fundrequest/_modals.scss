@@ -6,6 +6,10 @@
 }
 
 .modal-dialog--with-tabs {
+    @include media-breakpoint-up(md) {
+        max-width: 650px;
+    }
+
     .modal-content {
         box-shadow: none;
         background: 0 none;
@@ -14,9 +18,8 @@
 
     .modal-header {
         background: rgba(255, 255, 255, 0.8);
-        border-radius: 10px 10px 0 0;
         border: 0 none;
-        padding-bottom: 0px;
+        padding-bottom: 0;
     }
 }
 
@@ -26,17 +29,10 @@
     }
 }
 
-.modal-multi {
-}
-
-.modal-select-tabs {
-
-}
-
 .modal-tabs {
     background: rgba(255, 255, 255, 0.8);
-    border-radius: 0 0 10px 10px;
-    padding: 15px;
+    border-radius: 0 0 $border-radius-base $border-radius-base;
+    padding: $modal-inner-padding;
 }
 
 .modal-tab {
@@ -56,8 +52,8 @@
     width: 60px;
 
     text-align: center;
-    border-radius: 10px;
-    margin-bottom: 10px;
+    border-radius: $border-radius-base;
+    margin-bottom: $modal-dialog-margin;
 
     a {
         display: block;
@@ -82,7 +78,7 @@
     height: 47px;
     padding: 0;
     a > span {
-        font-size: 2.5em;
+        font-size: 2rem;
         line-height: 1;
         display: block;
     }
@@ -130,7 +126,7 @@
 
 .form-horizontal--border {
     background: $white;
-    border-radius: 5px;
+    border-radius: $border-radius-base;
     overflow: hidden;
 
     + .form-horizontal--border {
@@ -167,6 +163,7 @@
 
         .control-label--image {
             line-height: 30px;
+            margin: 0;
         }
 
         .form-group__in-between {
@@ -190,6 +187,7 @@
                 text-align: right;
                 border-radius: 0;
                 border: 0 none;
+                box-shadow: none;
                 background-color: transparent;
                 padding-right: 8px;
                 height: 45px;

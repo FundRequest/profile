@@ -8,9 +8,7 @@ $font-family-base: 'jaf-domus', sans-serif;
 
 $enable-shadows: true;
 
-$btn-margin-basic: 0 0 .375rem 0;
-$btn-padding-y-basic: .5rem;
-$btn-padding-x-basic: 1rem;
+$border-radius-base: .25rem;
 
 $btn-margin-basic: 0 0 .375rem 0;
 $btn-padding-y-basic: .5rem;
@@ -25,7 +23,11 @@ $btn-padding-x-medium: 1.5rem;
 $btn-padding-y-small: .4rem;
 $btn-padding-x-small: .8rem;
 
-$btn-outline-padding-y-basic: .45rem;
-$btn-outline-padding-y-large: .95rem;
-$btn-outline-padding-y-medium: .70rem;
-$btn-outline-padding-y-small: .35rem;
+$btn-outline-padding-y-basic: calc(#{$btn-padding-y-basic} - 2px);
+$btn-outline-padding-y-large: calc(#{$btn-padding-y-large} - 2px);
+$btn-outline-padding-y-medium: calc(#{$btn-padding-y-medium} - 2px);
+$btn-outline-padding-y-small: calc(#{$btn-padding-y-small} - 2px);
+
+$input-group-form-control-pt: .5rem;
+$input-group-form-control-pb: .5rem;
+
