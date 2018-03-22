@@ -4,8 +4,8 @@
 
 @import "fundrequest/colors";
 
-@import "mdb-overrides/colors";
-@import "../mdb-4.5.0/scss/core/variables";
-@import "../mdb-4.5.0/scss/core/mixins";
+@import "mdb-overrides/core/colors";
+@import "~mdbootstrap/scss/core/variables";
+@import "mdb-overrides/core/mixins";
 
 @import "fundrequest/variables";

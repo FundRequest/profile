@@ -143,6 +143,7 @@
         @include media-breakpoint-up(md) {
             padding-top: 10rem;
             padding-bottom: 10rem;
+            min-height: 45rem;
             height: calc(100vh - 50px);
             flex-basis: calc(100vh - 50px);
         }

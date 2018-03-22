@@ -38,6 +38,16 @@ body {
         @include media-breakpoint-up(md) {
             padding-top: .5rem;
         }
+
+        .navbar-nav .nav-item .nav-link:not(:active):not(.active):not(:hover) {
+            color: rgba($black, .5);
+        }
+    }
+
+    &.navbar-dark {
+        .navbar-nav .nav-item .nav-link:not(:active):not(.active):not(:hover) {
+            color: rgba($white, .5);
+        }
     }
 
     &__logo {

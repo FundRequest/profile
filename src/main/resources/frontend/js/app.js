@@ -1,4 +1,4 @@
 require(['jquery', 'bootstrap.bundle', 'waves'], function() {
-    require(['app/main'], function() {
+    require(['mdb', 'app/main'], function() {
     });
 });
