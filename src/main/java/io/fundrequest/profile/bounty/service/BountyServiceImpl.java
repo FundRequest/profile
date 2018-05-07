@@ -3,13 +3,17 @@ package io.fundrequest.profile.bounty.service;
 import io.fundrequest.profile.bounty.domain.Bounty;
 import io.fundrequest.profile.bounty.domain.BountyType;
 import io.fundrequest.profile.bounty.dto.BountyDTO;
+import io.fundrequest.profile.bounty.dto.PaidBountyDto;
 import io.fundrequest.profile.bounty.event.CreateBountyCommand;
 import io.fundrequest.profile.bounty.infrastructure.BountyRepository;
+import io.fundrequest.profile.common.domain.AuditedEntity;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -59,6 +63,22 @@ class BountyServiceImpl implements BountyService {
                 .linkedInRewards(linkedInRewards)
                 .telegramRewards(telegramRewards)
                 .build();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<PaidBountyDto> getPaidBounties(Principal principal) {
+        return bountyRepository.findByUserId(principal.getName())
+                        .stream()
+                        .filter(f -> StringUtils.isNotBlank(f.getTransactionHash()))
+                        .sorted(Comparator.comparing(AuditedEntity::getCreationDate).reversed())
+                        .map(b -> PaidBountyDto.builder()
+                                               .type(b.getType())
+                             .amount(b.getType().getReward())
+                             .transactionHash(b.getTransactionHash())
+                             .build()
+                            )
+                        .collect(Collectors.toList());
     }
 
 
