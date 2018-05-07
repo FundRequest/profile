@@ -68,6 +68,7 @@ h2 .svg-inline--fa {
         color: $white;
 
         &:hover {
+            text-decoration: underline;
             color: $white;
         }
     }
@@ -117,10 +118,14 @@ h2 .svg-inline--fa {
 
     .nav-link:hover &,
     .active & {
-        background-color: $blue;
-        border-color: $blue;
+        background-color: $blue-500;
+        border-color: $blue-500;
         color: $white;
     }
+}
+
+.nav-pills--roadmap .nav-link.active {
+    background-color: transparent;
 }
 
 .nav-link__text {
@@ -134,7 +139,7 @@ h2 .svg-inline--fa {
     will-change: font-size;
 
     .active & {
-        color: $blue;
+        color: $blue-500;
         font-size: 20px;
     }
 
@@ -254,13 +259,13 @@ h2 .svg-inline--fa {
 }
 
 a.partner-link {
-    box-shadow: $bmd-shadow-2dp;
+    box-shadow: $z-depth-1;
 
     transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1);
     will-change: filter, transform;
 
     &:hover {
-        box-shadow: $bmd-shadow-4dp;
+        box-shadow: $z-depth-2;
     }
 
     &:active,

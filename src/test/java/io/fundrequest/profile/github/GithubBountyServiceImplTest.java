@@ -1,8 +1,8 @@
 package io.fundrequest.profile.github;
 
-import io.fundrequest.profile.bounty.service.BountyService;
 import io.fundrequest.profile.bounty.domain.BountyType;
 import io.fundrequest.profile.bounty.event.CreateBountyCommand;
+import io.fundrequest.profile.bounty.service.BountyService;
 import io.fundrequest.profile.github.domain.GithubBounty;
 import io.fundrequest.profile.github.dto.GithubUser;
 import io.fundrequest.profile.github.infrastructure.GithubBountyRepository;
@@ -54,7 +54,7 @@ public class GithubBountyServiceImplTest {
         when(authentication.getName()).thenReturn("davy");
         when(profileService.getUserProfile(null, authentication))
                 .thenReturn(UserProfile.builder().github(UserProfileProvider.builder().userId("id").username("davy").build()).verifiedDeveloper(true).build());
-        when(githubClient.getUser("davy")).thenReturn(GithubUser.builder().createdAt(LocalDateTime.now().minusMonths(3)).location("Belgium").build());
+        when(githubClient.getUser("davy")).thenReturn(GithubUser.builder().createdAt(LocalDateTime.of(2017, 1, 1, 1, 1)).location("Belgium").build());
 
         githubBountyService.onApplicationEvent(new AuthenticationSuccessEvent(authentication));
 
@@ -67,7 +67,7 @@ public class GithubBountyServiceImplTest {
         when(authentication.getName()).thenReturn("davy");
         when(profileService.getUserProfile(null, authentication))
                 .thenReturn(UserProfile.builder().github(UserProfileProvider.builder().userId("id").username("davy").build()).verifiedDeveloper(true).build());
-        when(githubClient.getUser("davy")).thenReturn(GithubUser.builder().createdAt(LocalDateTime.now().minusMonths(3)).location("Belgium").build());
+        when(githubClient.getUser("davy")).thenReturn(GithubUser.builder().createdAt(LocalDateTime.of(2017, 1, 1, 1, 1)).location("Belgium").build());
 
         githubBountyService.onProviderLinked(UserLinkedProviderEvent.builder().principal(authentication).provider(Provider.GITHUB).build());
 
@@ -78,8 +78,8 @@ public class GithubBountyServiceImplTest {
         verify(githubBountyRepository).save(GithubBounty.builder().githubId("id").userId("davy").build());
         verify(bountyService).createBounty(
                 CreateBountyCommand.builder()
-                        .type(BountyType.LINK_GITHUB)
-                        .userId("davy")
-                        .build());
+                                   .type(BountyType.LINK_GITHUB)
+                                   .userId("davy")
+                                   .build());
     }
 }

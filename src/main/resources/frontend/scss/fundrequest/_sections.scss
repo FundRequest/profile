@@ -56,7 +56,7 @@
         color: $white;
 
         &::before {
-            background-color: $blue;
+            background-color: $blue-500;
             background-image: url("../img/rect.png"), url("../img/bg-blue.png");
             background-repeat: no-repeat, repeat-y;
             background-size: contain, 100%;
@@ -143,6 +143,7 @@
         @include media-breakpoint-up(md) {
             padding-top: 10rem;
             padding-bottom: 10rem;
+            min-height: 45rem;
             height: calc(100vh - 50px);
             flex-basis: calc(100vh - 50px);
         }
@@ -214,4 +215,43 @@
 
 .section--white.section--compact {
     padding: 45px 0 50px 0;
+}
+
+.triangle {
+    width: 100%;
+    position: absolute;
+    &::after {
+        display: block;
+        content: "";
+        width: 1920px;
+        height: 0;
+        border-style: solid;
+        border-width: 0;
+        border-color: transparent;
+        border-left-width: 1920px;
+    }
+
+    &--inverse::after {
+        border-right-width: 1920px;
+        border-left-width: 0;
+    }
+
+    &--top {
+        top: 0;
+        &::after {
+            border-top: 7rem solid $white;
+        }
+    }
+
+    &--bottom {
+        bottom: 0;
+        &::after {
+            border-bottom: 7rem solid $white;
+        }
+    }
+
+    &--light::after {
+        border-top-color: $light-bg-color;
+        border-bottom-color: $light-bg-color;
+    }
 }
