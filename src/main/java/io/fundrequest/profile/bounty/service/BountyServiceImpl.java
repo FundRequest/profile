@@ -31,9 +31,9 @@ class BountyServiceImpl implements BountyService {
     @Override
     public void createBounty(CreateBountyCommand createBountyCommand) {
         final Bounty bounty = Bounty.builder()
-                .userId(createBountyCommand.getUserId())
-                .type(createBountyCommand.getType())
-                .build();
+                                    .userId(createBountyCommand.getUserId())
+                                    .type(createBountyCommand.getType())
+                                    .build();
 
         bountyRepository.save(bounty);
     }
@@ -42,43 +42,46 @@ class BountyServiceImpl implements BountyService {
     public BountyDTO getBounties(final Principal principal) {
         final List<Bounty> byUser = bountyRepository.findByUserId(principal.getName());
         Map<BountyType, List<Bounty>> byType = byUser.stream()
-                .collect(Collectors.groupingBy(Bounty::getType));
+                                                     .collect(Collectors.groupingBy(Bounty::getType));
 
         int referralRewards = byType.getOrDefault(BountyType.REFERRAL, new ArrayList<>()).size() * BountyType.REFERRAL.getReward();
         int twitterRewards = byType.getOrDefault(BountyType.TWITTER_TWEET_FOLLOW, new ArrayList<>()).size() * BountyType.TWITTER_TWEET_FOLLOW.getReward();
         int linkedInRewards = byType.getOrDefault(BountyType.POST_LINKEDIN_UPDATE, new ArrayList<>()).size() * BountyType.POST_LINKEDIN_UPDATE.getReward();
         int telegramRewards = byType.getOrDefault(BountyType.LINK_TELEGRAM, new ArrayList<>()).size() * BountyType.LINK_TELEGRAM.getReward();
+        int surveyRewards = byType.getOrDefault(BountyType.SURVEY, new ArrayList<>()).size() * BountyType.SURVEY.getReward();
         int otherRewards =
                 byType.getOrDefault(BountyType.LINK_GITHUB, new ArrayList<>()).size() * BountyType.LINK_GITHUB.getReward()
-                        + byType.getOrDefault(BountyType.LINK_STACK_OVERFLOW, new ArrayList<>()).size() * BountyType.LINK_STACK_OVERFLOW.getReward()
-                        + linkedInRewards
-                        + twitterRewards
-                        + telegramRewards;
+                + byType.getOrDefault(BountyType.LINK_STACK_OVERFLOW, new ArrayList<>()).size() * BountyType.LINK_STACK_OVERFLOW.getReward()
+                + linkedInRewards
+                + twitterRewards
+                + telegramRewards
+                + surveyRewards;
 
         return BountyDTO.builder()
-                .referralRewards(referralRewards)
-                .otherRewards(otherRewards)
-                .totalRewards(referralRewards + otherRewards)
-                .twitterRewards(twitterRewards)
-                .linkedInRewards(linkedInRewards)
-                .telegramRewards(telegramRewards)
-                .build();
+                        .referralRewards(referralRewards)
+                        .otherRewards(otherRewards)
+                        .totalRewards(referralRewards + otherRewards)
+                        .twitterRewards(twitterRewards)
+                        .linkedInRewards(linkedInRewards)
+                        .telegramRewards(telegramRewards)
+                        .surveyRewards(surveyRewards)
+                        .build();
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<PaidBountyDto> getPaidBounties(Principal principal) {
         return bountyRepository.findByUserId(principal.getName())
-                        .stream()
-                        .filter(f -> StringUtils.isNotBlank(f.getTransactionHash()))
-                        .sorted(Comparator.comparing(AuditedEntity::getCreationDate).reversed())
-                        .map(b -> PaidBountyDto.builder()
-                                               .type(b.getType())
-                             .amount(b.getType().getReward())
-                             .transactionHash(b.getTransactionHash())
-                             .build()
-                            )
-                        .collect(Collectors.toList());
+                               .stream()
+                               .filter(f -> StringUtils.isNotBlank(f.getTransactionHash()))
+                               .sorted(Comparator.comparing(AuditedEntity::getCreationDate).reversed())
+                               .map(b -> PaidBountyDto.builder()
+                                                      .type(b.getType())
+                                                      .amount(b.getType().getReward())
+                                                      .transactionHash(b.getTransactionHash())
+                                                      .build()
+                                   )
+                               .collect(Collectors.toList());
     }
 
 
