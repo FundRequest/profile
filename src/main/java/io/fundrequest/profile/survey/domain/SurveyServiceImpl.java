@@ -50,10 +50,11 @@ public class SurveyServiceImpl implements SurveyService, ApplicationListener<Aut
     @Transactional(readOnly = true)
     public SurveyDto getSurveyResult(Principal principal) {
         return repository.findByUserId(principal.getName())
-                .map(s -> SurveyDto.builder()
-                        .status(s.getStatus())
-                        .build()
-                ).orElse(null);
+                         .map(s -> SurveyDto.builder()
+                                            .status(s.getStatus())
+                                            .transactionHash(s.getTransactionHash())
+                                            .build()
+                             ).orElse(null);
     }
 
     @Transactional
@@ -80,8 +81,8 @@ public class SurveyServiceImpl implements SurveyService, ApplicationListener<Aut
         final ValueRange response;
         try {
             response = getSheetsService().spreadsheets().values()
-                    .get(spreadsheetId, SHEET_RANGE)
-                    .execute();
+                                         .get(spreadsheetId, SHEET_RANGE)
+                                         .execute();
             final List<List<Object>> values = response.getValues();
             Set<Survey> surveysToSave = new HashSet<>();
             values.forEach(v -> {
@@ -90,10 +91,10 @@ public class SurveyServiceImpl implements SurveyService, ApplicationListener<Aut
                     String email = fieldValue.toLowerCase();
                     if (!repository.findByEmail(email).isPresent()) {
                         Survey survey = Survey.builder()
-                                .email(email.toLowerCase().trim())
-                                .etherAddress(getEtherAddress(v))
-                                .status(SurveyStatus.UNVERIFIED)
-                                .build();
+                                              .email(email.toLowerCase().trim())
+                                              .etherAddress(getEtherAddress(v))
+                                              .status(SurveyStatus.UNVERIFIED)
+                                              .build();
                         surveysToSave.add(survey);
                     }
                 }
