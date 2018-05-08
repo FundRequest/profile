@@ -9,19 +9,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
-    <link rel="apple-touch-icon" type="image/png" th:href="@{/assets/favicons/logo-single180.png}" sizes="180x180"/>
-    <link rel="icon" type="image/png" th:href="@{/assets/img/logo-single32.png}" sizes="32x31"/>
-    <link rel="icon" type="image/png" th:href="@{/assets/img/logo-single16.png}" sizes="16x15"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/assets/fonts/typekit-jaf-domus/typekit.css}"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" />
 
-    <link rel="stylesheet" th:href="@{/assets/vendors/font-awesome/css/fontawesome-all.min.css}"/>
-    <link rel="stylesheet" th:href="@{/assets/vendors/typeface-titillium-web/index.css}"/>
-    <link rel="stylesheet" th:href="@{/assets/css/typekit-jaf-domus/typekit.css}"/>
-    <link rel="stylesheet" th:href="@{/assets/vendors/bootstrap/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" th:href="@{/assets/vendors/mdbootstrap/css/mdb.min.css}"/>
-    <link rel="stylesheet" th:href="@{/assets/css/core.min.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/assets/fonts/fontawesome/css/fontawesome-all.min.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/assets/vendors/bootstrap/css/bootstrap.min.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/assets/vendors/mdbootstrap/css/mdb.min.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/assets/css/core.min.css}"/>
 
-    <script data-main="/assets/js/app" th:src="@{/assets/vendors/requirejs/require.js}"></script>
-    <script th:src="@{/assets/js/requireconfig.js}"></script>
+    <link rel="apple-touch-icon" sizes="180x180" th:href="@{/assets/img/logo-single180.png}"/>
+    <link rel="icon" type="image/png" th:href="@{/assets/img/logo-single32.png}" sizes="32x32"/>
+    <link rel="icon" type="image/png" th:href="@{/assets/img/logo-single16.png}" sizes="16x16"/>
 
 </head>
 <body>
@@ -138,6 +136,11 @@
 
 <th:block layout:fragment="modals">
 </th:block>
+
+<script th:src="@{/assets/vendors/web3/web3.min.js}"></script>
+<script th:src="@{/assets/vendors/jquery/jquery.min.js}"></script>
+<script th:src="@{/assets/js/bundle.js}"></script>
+<script th:src="@{/assets/vendors/mdbootstrap/js/mdb.min.js}"></script>
 
 <th:block layout:fragment="scripts">
 </th:block>
