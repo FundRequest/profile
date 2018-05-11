@@ -1,0 +1,91 @@
+.form-control[data-edit="eth-address"] {
+    width: 100%;
+    max-width: 24rem;
+}
+
+.fnd-profile {
+    &__fields {
+
+        label {
+            font-size: $font-size-sm;
+            font-weight: $font-weight-normal;
+            color: $gray-500;
+        }
+
+        .md-form input {
+            font-size: $font-size-sm;
+            font-weight: $font-weight-normal;
+        }
+    }
+
+    &__picture {
+        width: 100%;
+        height: 100%;
+
+        background-color: $blue-200;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+
+        border-radius: $border-radius-lg;
+        border: 2px solid $white;
+        overflow: hidden;
+        @include box-shadow($z-depth-1);
+
+        @include media-breakpoint-up(md) {
+            margin: 0;
+            border-radius: $border-radius;
+            border: none;
+            @include box-shadow(none);
+        }
+    }
+}
+
+.btn.btn--profile {
+    margin-bottom: 0;
+    i {
+        font-size: 1rem;
+    }
+}
+
+.profile-progress {
+    background-image: url("../img/bg-blue.png");
+    background-repeat: repeat;
+    background-size: contain, 100%;
+    background-position: right bottom;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: $white;
+
+    &:hover,
+    &:focus,
+    &:active {
+        color: $white;
+        text-decoration: none;
+
+        i {
+            transform: translateX(10px);
+        }
+    }
+
+    i {
+        transition: transform .6s ease;
+    }
+
+    &__bar {
+        flex-basis: 100%;
+        padding: 0 1rem;
+
+        .progress {
+            height: 0.3rem;
+            background-color: rgba($white, 0.2);
+        }
+
+        .progress-bar {
+            border-radius: 1000px;
+            background-color: white;
+        }
+    }
+}
