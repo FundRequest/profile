@@ -133,7 +133,7 @@ class ReferralServiceImpl implements ReferralService {
     }
 
     private void sendBountyIfPossible(Referral referral, Principal principal) {
-        if (isVerifiedPrincipal(principal)) {
+        if (isVerifiedPrincipal(principal) && referral != null && referral.getStatus() ==  ReferralStatus.PENDING) {
             referral.setStatus(ReferralStatus.VERIFIED);
             bountyService.createBounty(CreateBountyCommand.builder()
                     .userId(principal.getName())
